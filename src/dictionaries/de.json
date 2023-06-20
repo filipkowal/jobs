@@ -124,10 +124,12 @@
   "saveForLater.title.mobile": "Später bewerben",
   "saveForLater.description": "Lass Dir dieses Inserat per E-Mail schicken, damit Du dich später bewerben kannst",
   "saveForLater.apply": "Inserat an mich senden",
-  "Drop files or click to select": "Dateien ablegen oder klicken zum Auswählen",
-  "Drop CV files or click to select": "CV-Datei ablegen oder klicken zum Auswählen",
-  "File reading was aborted": "Datei-Lesefehler",
-  "File upload error": "Fehler beim Hochladen der Datei",
+  "fileInput": {
+    "drop": "Dateien ablegen oder klicken zum Auswählen",
+    "select": "Bitte wähle eine Datei mit einem gültigen Typ",
+    "fileReadError": "Datei-Lesefehler",
+    "fileUploadError": "Fehler beim Hochladen der Datei"
+  },
   "Job saved": "Job gespeichert",
   "Job Levels": "Arbeitslevel",
   "Pin at least 2 jobs to compare and apply.": "Mindestens 2 Stellen zum Vergleichen und Bewerben anheften",

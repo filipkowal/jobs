@@ -1,7 +1,6 @@
-import Link from "../uiComponents/Link";
-import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import { useEffect } from "react";
-import { getLocaleFromPathname } from "../utils";
 import Button from "./Button";
 
 export default function ErrorPage({
@@ -11,7 +10,7 @@ export default function ErrorPage({
   error?: Error;
   reset?: () => void;
 }) {
-  const locale = getLocaleFromPathname(usePathname());
+  const locale = useParams()?.locale;
 
   useEffect(() => {
     console.error(error);

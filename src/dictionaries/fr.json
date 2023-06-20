@@ -124,10 +124,12 @@
   "saveForLater.title.mobile": "Postuler plus tard",
   "saveForLater.description": "Fais-toi envoyer cette annonce par e-mail pour pouvoir postuler plus tard",
   "saveForLater.apply": "Envoyer l'annonce à moi",
-  "Drop files or click to select": "Déposer des fichiers ou cliquer pour les sélectionner",
-  "Drop CV files or click to select": "Déposez les fichiers CV ou cliquez pour les sélectionner",
-  "File reading was aborted": "La lecture du fichier a été interrompue",
-  "File upload error": "Erreur de téléchargement de fichier",
+  "fileInput": {
+    "drop": "Déposer des fichiers ou cliquer pour les sélectionner",
+    "select": "Veuillez sélectionner un fichier avec un type valide",
+    "fileReadError": "La lecture du fichier a été interrompue",
+    "fileUploadError": "Erreur de téléchargement de fichier"
+  },
   "Job saved": "Emploi sauvegardé",
   "Job Levels": "Niveaux d'emploi",
   "Pin at least 2 jobs to compare and apply.": "Épingle au moins 2 emplois pour les comparer et postuler.",

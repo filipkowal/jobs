@@ -124,10 +124,12 @@
   "saveForLater.title.mobile": "Apply later",
   "saveForLater.description": "Have this ad emailed to you so you can apply later",
   "saveForLater.apply": "Send ad to me",
-  "Drop files or click to select": "Drop files or click to select",
-  "Drop CV files or click to select": "Drop CV files or click to select",
-  "File reading was aborted": "File reading was aborted",
-  "File upload error": "File upload error",
+  "fileInput": {
+    "drop": "Drop files or click to select",
+    "select": "Please select a file with a valid type",
+    "fileReadError": "File reading was aborted",
+    "fileUploadError": "File upload error"
+  },
   "Job saved": "Job saved",
   "Job Levels": "Job Levels",
   "Pin at least 2 jobs to compare and apply.": "Pin at least 2 jobs to compare and apply.",

@@ -2,8 +2,8 @@ import React, { Dispatch, SetStateAction } from "react";
 import toast from "react-hot-toast";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Dropzone, { DropzoneOptions } from "react-dropzone";
-import { createId, getLocaleFromPathname, translate } from "../utils";
-import { usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 export type FileWithId = Pick<
   File,
@@ -18,17 +18,20 @@ export default function FileInput({
   dropZoneText,
   className,
   accept: acceptProp,
+  dict,
 }: {
   files: FileWithId[];
   setFiles: Dispatch<SetStateAction<FileWithId[]>>;
   dropZoneText: string;
   className?: string;
   accept?: DropzoneOptions["accept"];
+  dict: {
+    drop: string;
+    select: string;
+    fileReadError: string;
+    fileUploadError: string;
+  };
 }) {
-  const pathname = usePathname();
-  const locale = getLocaleFromPathname(pathname);
-  const t = translate(locale);
-
   const accept = acceptProp || {
     "image/*": [],
     "application/pdf": [".pdf"],
@@ -46,15 +49,15 @@ export default function FileInput({
             const { name, lastModified, size, type } = file;
             const reader = new FileReader();
 
-            reader.onabort = () => toast.error(t("File reading was aborted"));
-            reader.onerror = (e) => toast.error(t("File upload error"));
+            reader.onabort = () => toast.error(dict.fileReadError);
+            reader.onerror = (e) => toast.error(dict.fileUploadError);
             reader.onload = () => {
               const content = reader.result;
 
               if (content)
                 setFiles((files) => [
                   ...files,
-                  { name, lastModified, size, type, content, id: createId() },
+                  { name, lastModified, size, type, content, id: uuidv4() },
                 ]);
             };
 
@@ -66,11 +69,7 @@ export default function FileInput({
         onDropRejected={(reasons) =>
           reasons.map((r) =>
             r.errors.map((e) =>
-              toast.error(
-                "file-invalid-type"
-                  ? t("Please select a file with a valid type")
-                  : e.code
-              )
+              toast.error("file-invalid-type" ? dict.select : e.code)
             )
           )
         }
@@ -84,7 +83,7 @@ export default function FileInput({
             >
               <input {...getInputProps()} />
               <p className="font-title font-medium uppercase">
-                {dropZoneText || t("Drop files or click to select")}
+                {dropZoneText || dict.drop}
               </p>
 
               {/* Accepted formats info */}
