@@ -1,5 +1,5 @@
 import { JOBS_LIMIT, JOBS_REVALIDATE_TIME } from "@/utils/server/constants";
-import { type Locale, i18n } from "i18n-config";
+import { type Locale, i18n } from "@/i18n-config";
 // import JobTable from "../JobTable";
 import { getFilters, getJobs } from "@/utils/server";
 import FiltersSection from "./FiltersSectionStatic";
