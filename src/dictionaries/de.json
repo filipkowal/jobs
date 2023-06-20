@@ -55,8 +55,10 @@
   "Choose this reward": "Diese option wählen",
   "Become a member": "Mitglied werden",
   "Share with a friend": "Job teilen und Geld verdienen",
-  "Finest jobs selection": "Handverlesene IT Jobs bei TOP Unternehmen",
-  "Interview in 24h": "Garantiertes Feedback innert 48 Stunden",
+  "title": {
+    "Finest jobs selection": "Handverlesene IT Jobs bei TOP Unternehmen",
+    "Interview in 24h": "Garantiertes Feedback innert 48 Stunden"
+  },
   "I am": " ",
   "Man": "Mann",
   "Woman": "Frau",

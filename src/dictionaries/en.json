@@ -55,8 +55,10 @@
   "Choose this reward": "Choose this reward",
   "Become a member": "Become a member",
   "Share with a friend": "Share with a friend",
-  "Finest jobs selection": "Finest jobs selection",
-  "Interview in 24h": "Interview in 24h",
+  "title": {
+    "Finest jobs selection": "Finest jobs selection",
+    "Interview in 24h": "Interview in 24h"
+  },
   "I am": " ",
   "Man": "Man",
   "Woman": "Woman",

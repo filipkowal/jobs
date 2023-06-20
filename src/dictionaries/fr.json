@@ -55,8 +55,10 @@
   "Choose this reward": "Choisis cette récompense",
   "Become a member": "Devenir membre",
   "Share with a friend": "Partage avec un ami",
-  "Finest jobs selection": "La meilleure sélection d'emplois",
-  "Interview in 24h": "Entretien d'embauche en 24h",
+  "title": {
+    "Finest jobs selection": "La meilleure sélection d'emplois",
+    "Interview in 24h": "Entretien d'embauche en 24h"
+  },
   "I am": "Je suis",
   "Man": "Homme",
   "Woman": "Femme",

@@ -1,9 +1,9 @@
 import { JOBS_LIMIT, JOBS_REVALIDATE_TIME } from "@/utils/server/constants";
 import { type Locale, i18n } from "i18n-config";
-import JobTable from "../JobTable";
+// import JobTable from "../JobTable";
 import { getFilters, getJobs } from "@/utils/server";
 import FiltersSection from "./FiltersSectionStatic";
-import Title from "../LayoutTitle";
+import Title from "./Title";
 import { getCustomBoard } from "@/utils/server";
 import { Suspense } from "react";
 import Spinner from "@/components/Spinner";
@@ -33,7 +33,7 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
   return (
     <main className="min-h-[calc(100vh-33.5px)] flex flex-col items-center">
       <Suspense fallback={<Spinner />}>
-        <Title locale={params.locale} customBoard={customBoard} />
+        <Title locale={params.locale} />
       </Suspense>
 
       {customBoard.hideAllFilters ? null : (
@@ -45,14 +45,14 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
         </Suspense>
       )}
 
-      <Suspense fallback={<Spinner />}>
+      {/* <Suspense fallback={<Spinner />}>
         {await JobTable({
           params,
           jobsPromise,
           limit: JOBS_LIMIT,
           offset: 0,
         })}
-      </Suspense>
+      </Suspense> */}
     </main>
   );
 }
