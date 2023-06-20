@@ -8,7 +8,7 @@ import Thumnbail from "@/public/images/thumbnail.png";
 import { Suspense } from "react";
 import Spinner from "@/components/Spinner";
 import { getCustomBoard } from "@/utils/server/helpers";
-import { Locale } from "i18n-config";
+import { type Locale } from "i18n-config";
 
 export default async function Header({
   params,
