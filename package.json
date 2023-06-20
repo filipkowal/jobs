@@ -12,6 +12,8 @@
     "@formatjs/intl-localematcher": "^0.4.0",
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
+    "@radix-ui/react-slider": "^1.1.2",
+    "@radix-ui/react-tooltip": "^1.0.6",
     "@types/node": "20.3.1",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",

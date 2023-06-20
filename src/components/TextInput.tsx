@@ -1,13 +1,12 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { useRef } from "react";
-import { useTranslate } from "../utils";
 
 export default function TextInput({
   type = "text",
   className,
   name,
+  dict,
   label,
   required,
   value,
@@ -17,6 +16,7 @@ export default function TextInput({
   onChange,
 }: {
   name: string;
+  dict: { invalidEmail: string };
   type?: string;
   className?: string;
   label?: string;
@@ -29,7 +29,6 @@ export default function TextInput({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
 }) {
-  const t = useTranslate(usePathname());
   const emailRef = useRef<HTMLInputElement>(null);
 
   const handleValidationMessage = () => {
@@ -38,7 +37,7 @@ export default function TextInput({
     if (!emailInput || type !== "email") return;
 
     if (emailInput.validity.typeMismatch) {
-      emailInput.setCustomValidity(t("Invalid email address."));
+      emailInput.setCustomValidity(dict.invalidEmail);
     } else {
       emailInput.setCustomValidity("");
     }
