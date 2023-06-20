@@ -114,10 +114,12 @@
   "application.basket.termsAndConditions.accordion.title": "Protection des données et processus de recrutement",
   "Your e-mail": "Ton e-mail",
   "Select CV file": "Sélectionner le fichier CV",
+  "cookiePopup": {
+    "title": "Avis sur les cookies",
+    "message": "Ce site utilise des cookies pour améliorer votre expérience de navigation et à des fins d'analyse et de publicité.",
+    "acceptButton": "Accepter"
+  },
   "Please select a file with a valid type": "Veuillez sélectionner un fichier avec un type valide",
-  "cookiePopup.title": "Avis sur les cookies",
-  "cookiePopup.message": "Ce site utilise des cookies pour améliorer votre expérience de navigation et à des fins d'analyse et de publicité.",
-  "cookiePopup.acceptButton": "Accepter",
   "saveForLater.title": "Retenir le poste et postuler plus tard",
   "saveForLater.title.mobile": "Postuler plus tard",
   "saveForLater.description": "Fais-toi envoyer cette annonce par e-mail pour pouvoir postuler plus tard",

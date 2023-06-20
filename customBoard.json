@@ -1,0 +1,38 @@
+{
+  "title": "",
+  "hideTitle": false,
+  "subtitle": "",
+  "hideSubtitle": false,
+  "hideLogo": false,
+  "hideBackgroundImage": false,
+  "hideFooter": false,
+  "colors": {
+    "backgroundColor": "",
+    "textColor": "",
+    "white": "white",
+    "yellow": { "300": "#E7E248" },
+    "gray": { "700": "#193B44" },
+    "digitalent-green": { "DEFAULT": "#66B573", "light": "#D7E4DD" },
+    "digitalent-gray": { "light": "#F2F2F2", "dark": "#131313" },
+    "digitalent-yellow": { "DEFAULT": "#E7E248" },
+    "digitalent-blue": { "DEFAULT": "#193B44" },
+    "digitalent-mine": { "DEFAULT": "#363636" }
+  },
+  "hideAllFilters": false,
+  "hiddenFilters": {
+    "categories": false,
+    "workLanguages": true,
+    "technologies": false,
+    "industries": false,
+    "companySize": false,
+    "workload": false,
+    "homeOffice": false,
+    "salary": false,
+    "regions": false
+  },
+  "disableCompareView": false,
+  "disableDetailView": false,
+  "disableSubscription": true,
+  "openJLPInSameTab": false,
+  "cards": false
+}

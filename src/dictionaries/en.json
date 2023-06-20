@@ -115,9 +115,11 @@
   "Your e-mail": "Your e-mail",
   "Select CV file": "Select CV file",
   "Please select a file with a valid type": "Please select a file with a valid type",
-  "cookiePopup.title": "Cookie notice",
-  "cookiePopup.message": "This website uses cookies to improve your browsing experience and for analytics and advertising purposes.",
-  "cookiePopup.acceptButton": "Accept",
+  "cookiePopup": {
+    "title": "Cookie notice",
+    "message": "This website uses cookies to improve your browsing experience and for analytics and advertising purposes.",
+    "acceptButton": "Accept"
+  },
   "saveForLater.title": "Bookmark job and apply later",
   "saveForLater.title.mobile": "Apply later",
   "saveForLater.description": "Have this ad emailed to you so you can apply later",

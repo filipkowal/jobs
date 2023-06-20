@@ -115,9 +115,11 @@
   "Your e-mail": "Deine E-Mail",
   "Select CV file": "CV-Datei auswählen",
   "Please select a file with a valid type": "Bitte wähle eine Datei mit einem gültigen Typ",
-  "cookiePopup.title": "Cookie-Hinweis",
-  "cookiePopup.message": "Diese Website verwendet Cookies, um Ihre Browser-Erfahrung zu verbessern und für Analyse- und Werbezwecke.",
-  "cookiePopup.acceptButton": "Akzeptieren",
+  "cookiePopup": {
+    "title": "Cookie-Hinweis",
+    "message": "Diese Website verwendet Cookies, um Ihre Browser-Erfahrung zu verbessern und für Analyse- und Werbezwecke.",
+    "acceptButton": "Akzeptieren"
+  },
   "saveForLater.title": "Job merken und später bewerben",
   "saveForLater.title.mobile": "Später bewerben",
   "saveForLater.description": "Lass Dir dieses Inserat per E-Mail schicken, damit Du dich später bewerben kannst",
