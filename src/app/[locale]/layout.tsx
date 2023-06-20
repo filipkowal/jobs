@@ -1,7 +1,7 @@
 import { type Locale, i18n } from "@/i18n-config";
 import Header from "./Header";
-// import CompareContextProvider from "./CompareContextProvider";
-// import ToastProvider from "./ToastProvider";
+import CompareContextProvider from "./CompareContextProvider";
+import ToastProvider from "@/components/ToastProvider";
 import Link from "next/link";
 import "../globals.css";
 import localFont from "next/font/local";
@@ -104,15 +104,15 @@ export default async function RootLayout({
         }}
       >
         <div className="min-h-screen overflow-y-auto flex flex-col overflow-x-hidden justify-between">
-          {/* <ToastProvider /> */}
+          <ToastProvider />
 
-          {/* <CompareContextProvider> */}
-          <div>
-            <Header params={params} />
+          <CompareContextProvider>
+            <div>
+              <Header params={params} />
 
-            {children}
-          </div>
-          {/* </CompareContextProvider> */}
+              {children}
+            </div>
+          </CompareContextProvider>
 
           {customBoard.hideFooter ? (
             ""
