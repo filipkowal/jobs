@@ -1,14 +1,14 @@
-import Link from "@/components/Link";
+import Link from "next/link";
 import LanguageSelector from "./LanguageSelector";
 // import CompareButton from "./CompareButton";
 // import { SubscriptionButton } from "./SubscriptionButton";
 import Image from "next/image";
-import DigitalentLogo from "../../public/logo.png";
-import Thumnbail from "../../public/thumbnail.png";
+import DigitalentLogo from "@/public/images/logo.png";
+import Thumnbail from "@/public/images/thumbnail.png";
 import { Suspense } from "react";
 import Spinner from "@/components/Spinner";
-import { getCustomBoard } from "utils/server/helpers";
-import { Locale } from "../../../i18n-config";
+import { getCustomBoard } from "@/utils/server/helpers";
+import { Locale } from "i18n-config";
 
 export default async function Header({
   params,
