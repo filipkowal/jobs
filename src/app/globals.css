@@ -2,26 +2,146 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  ul,
+  ol {
+    list-style: revert;
+    padding-left: 1.2rem;
+    padding-top: 0.5rem;
   }
 }
 
+:root {
+  --digitalent-white: #ffffff;
+  --digitalent-gray-light: #f2f2f2;
+  --digitalent-green: #66b573;
+  --digitalent-green-light: #d7e4dd;
+  --digitalent-blue: #193b44;
+  --digitalent-mine: #363636;
+  --digitalent-yellow: #e7e248;
+}
+
+html,
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  padding: 0;
+  margin: 0;
+  color-scheme: dark;
+  font-family: var(--font-merriweather), serif;
+}
+
+body {
+  color: white;
+  background: var(--digitalent-green-light);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Change Autocomplete styles in Chrome*/
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 2px solid var(--digitalent-blue);
+  -webkit-text-fill-color: var(--digitalent-blue);
+  -webkit-box-shadow: 0 0 0px 1000px var(--digitalent-gray-light) inset;
+  --tw-ring-offset-width: 2px;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[type="text"]:focus,
+[type="email"]:focus,
+[type="url"]:focus,
+[type="password"]:focus,
+[type="number"]:focus,
+[type="date"]:focus,
+[type="datetime-local"]:focus,
+[type="month"]:focus,
+[type="search"]:focus,
+[type="tel"]:focus,
+[type="time"]:focus,
+[type="week"]:focus,
+[multiple]:focus,
+[role="button"]:focus,
+[type="button"]:focus,
+[type="reset"]:focus,
+[type="submit"]:focus,
+[type="file"]:focus {
+  outline: none;
+  --tw-ring-offset-width: 1px;
+  --tw-ring-offset-color: var(--digitalent-blue);
+  --tw-ring-color: var(--digitalent-blue);
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
+    var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
+    calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
+    var(--tw-shadow);
+}
+
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.ellipsis-animation {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline;
+}
+
+.ellipsis-animation::after {
+  content: "...";
+  width: 20px;
+  animation: ellipsis 1s infinite;
+  display: inline-block;
+  text-align: left;
+}
+@keyframes ellipsis {
+  0% {
+    content: ".";
+  }
+  53% {
+    content: "..";
+  }
+  66% {
+    content: "...";
+  }
 }
