@@ -1,14 +1,14 @@
 import Link from "next/link";
 import LanguageSelector from "./LanguageSelector";
-// import CompareButton from "./CompareButton";
 // import { SubscriptionButton } from "./SubscriptionButton";
 import Image from "next/image";
 import DigitalentLogo from "@/public/images/logo.png";
 import Thumnbail from "@/public/images/thumbnail.png";
 import { Suspense } from "react";
 import Spinner from "@/components/Spinner";
-import { getCustomBoard } from "@/utils/server/helpers";
+import { getCustomBoard, getDictionary } from "@/utils/server/helpers";
 import { type Locale } from "@/i18n-config";
+import CompareButton from "./CompareButton";
 
 export default async function Header({
   params,
@@ -18,6 +18,7 @@ export default async function Header({
   logo?: string;
 }) {
   const customBoard = await getCustomBoard();
+  const dict = await getDictionary(params.locale);
 
   return (
     <header
@@ -51,12 +52,19 @@ export default async function Header({
       <div className="flex flex-row items-center">
         {/* <Suspense fallback={<Spinner />}>
           <SubscriptionButton dark />
-        </Suspense>
+        </Suspense> */}
         {customBoard.disableCompareView ? null : (
           <Suspense fallback={<Spinner />}>
-            <CompareButton params={params} />
+            <CompareButton
+              params={params}
+              dict={{
+                Compare: dict.Compare,
+                "Go back": dict["Go back"],
+                compareButtonHint: dict.compareButtonHint,
+              }}
+            />
           </Suspense>
-        )} */}
+        )}
         <Suspense fallback={<Spinner />}>
           <LanguageSelector params={params} />
         </Suspense>
