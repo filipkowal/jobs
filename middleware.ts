@@ -6,6 +6,8 @@ import { i18n } from "./i18n-config";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 
+const PUBLIC_FILE = /\.(.*)$/;
+
 function getLocale(request: NextRequest): string | undefined {
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
@@ -20,6 +22,10 @@ function getLocale(request: NextRequest): string | undefined {
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+
+  console.log("PATHNAME: ", pathname);
+  if (PUBLIC_FILE.test(pathname)) return;
+  console.log("NOT PUBLIC: ", pathname);
 
   if (pathname.includes("/images") || pathname.includes("/fonts")) return;
 

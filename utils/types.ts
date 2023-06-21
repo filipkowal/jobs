@@ -1,4 +1,4 @@
-import { components, paths } from "@/schema";
+import { components, paths } from "../schema";
 
 export type SearchParams =
   | Record<string, string | (string | boolean | number)[]>

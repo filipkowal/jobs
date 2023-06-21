@@ -1,7 +1,7 @@
-import { type Filters, type ActiveFilterName } from "@/utils";
-import { allUppercase } from "@/utils/server";
-import { type Locale } from "@/i18n-config";
-import { getCustomBoard, getDictionary } from "@/utils/server";
+import { type Filters, type ActiveFilterName } from "../../../utils";
+import { allUppercase } from "../../../utils/server";
+import { type Locale } from "../../../i18n-config";
+import { getCustomBoard, getDictionary } from "../../../utils/server";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 
 interface Salary {

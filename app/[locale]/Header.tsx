@@ -2,12 +2,12 @@ import Link from "next/link";
 import LanguageSelector from "./LanguageSelector";
 // import { SubscriptionButton } from "./SubscriptionButton";
 import Image from "next/image";
-import DigitalentLogo from "@/public/images/logo.png";
-import Thumnbail from "@/public/images/thumbnail.png";
+import DigitalentLogo from "../../public/logo.png";
+import Thumnbail from "../../public/thumbnail.png";
 import { Suspense } from "react";
-import Spinner from "@/components/Spinner";
-import { getCustomBoard, getDictionary } from "@/utils/server/helpers";
-import { type Locale } from "@/i18n-config";
+import Spinner from "../../components/Spinner";
+import { getCustomBoard, getDictionary } from "../../utils/server/helpers";
+import { type Locale } from "../../i18n-config";
 import CompareButton from "./CompareButton";
 
 export default async function Header({
