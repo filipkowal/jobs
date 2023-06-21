@@ -1,4 +1,9 @@
 import { components, paths } from "../schema";
+import customBoard from "../customBoard.json";
+
+export { type Locale } from "../i18n-config";
+
+export type CustomBoard = typeof customBoard;
 
 export type SearchParams =
   | Record<string, string | (string | boolean | number)[]>

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.4.0",
+    "@formkit/auto-animate": "^0.7.0",
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@radix-ui/react-slider": "^1.1.2",

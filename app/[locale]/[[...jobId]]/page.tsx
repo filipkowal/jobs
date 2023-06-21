@@ -1,9 +1,6 @@
-import {
-  JOBS_LIMIT,
-  JOBS_REVALIDATE_TIME,
-} from "../../../utils/server/constants";
+import { JOBS_LIMIT, JOBS_REVALIDATE_TIME } from "../../../utils/constants";
 import { type Locale, i18n } from "../../../i18n-config";
-// import JobTable from "../JobTable";
+import JobTable from "../JobTable";
 import { getFilters, getJobs } from "../../../utils/server";
 import FiltersSection from "./FiltersSectionStatic";
 import Title from "./Title";
@@ -48,14 +45,14 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
         </Suspense>
       )}
 
-      {/* <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<Spinner />}>
         {await JobTable({
           params,
           jobsPromise,
           limit: JOBS_LIMIT,
           offset: 0,
         })}
-      </Suspense> */}
+      </Suspense>
     </main>
   );
 }

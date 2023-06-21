@@ -23,9 +23,7 @@ function getLocale(request: NextRequest): string | undefined {
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  console.log("PATHNAME: ", pathname);
   if (PUBLIC_FILE.test(pathname)) return;
-  console.log("NOT PUBLIC: ", pathname);
 
   if (pathname.includes("/images") || pathname.includes("/fonts")) return;
 
