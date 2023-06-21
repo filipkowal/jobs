@@ -1,12 +1,15 @@
-import { JOBS_LIMIT, JOBS_REVALIDATE_TIME } from "@/utils/server/constants";
-import { type Locale, i18n } from "@/i18n-config";
+import {
+  JOBS_LIMIT,
+  JOBS_REVALIDATE_TIME,
+} from "../../../utils/server/constants";
+import { type Locale, i18n } from "../../../i18n-config";
 // import JobTable from "../JobTable";
-import { getFilters, getJobs } from "@/utils/server";
+import { getFilters, getJobs } from "../../../utils/server";
 import FiltersSection from "./FiltersSectionStatic";
 import Title from "./Title";
-import { getCustomBoard } from "@/utils/server";
+import { getCustomBoard } from "../../../utils/server";
 import { Suspense } from "react";
-import Spinner from "@/components/Spinner";
+import Spinner from "../../../components/Spinner";
 
 export const generateStaticParams = async () => {
   return i18n.locales.map((locale) => ({

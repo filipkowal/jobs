@@ -6,10 +6,10 @@ import Image from "next/image";
 import { useSelectedLayoutSegment, useRouter } from "next/navigation";
 
 import { CompareContext } from "./CompareContextProvider";
-import Button from "@/components/Button";
-import pinIcon from "@/public/images/pinIcon.png";
-import pinIconGreen from "@/public/images/pinIconGreen.png";
-import { Locale } from "@/i18n-config";
+import Button from "../../components/Button";
+import pinIcon from "../../public/pinIcon.png";
+import pinIconGreen from "../../public/pinIconGreen.png";
+import { Locale } from "../../i18n-config";
 import CompareButtonHint from "./CompareButtonHint";
 
 export default function CompareButton({

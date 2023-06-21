@@ -1,5 +1,5 @@
 import "server-only";
-import type { Locale } from "@/i18n-config";
+import type { Locale } from "../../i18n-config";
 
 // We enumerate all dictionaries here for better linting and typescript support
 // We also get the default import for cleaner types
@@ -12,7 +12,7 @@ const dictionaries = {
     import("../../dictionaries/fr.json").then((module) => module.default),
 };
 
-const customBoard = import("../../../customBoard.json").then(
+const customBoard = import("../../customBoard.json").then(
   (module) => module.default
 );
 

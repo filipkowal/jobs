@@ -2,7 +2,7 @@ import "server-only";
 import qs from "query-string";
 import { SERVER_URL, MOCK_SERVER_URL } from "./constants";
 import type { Filters, Jobs } from "../types";
-import { type Locale } from "@/i18n-config";
+import { type Locale } from "../../i18n-config";
 import { getCustomBoard } from "./helpers";
 
 export async function getJobs({
