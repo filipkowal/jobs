@@ -1,8 +1,13 @@
-import { type Filters, type ActiveFilterName } from "../../../utils";
-import { allUppercase } from "../../../utils/server";
+import { type Filters } from "../../../utils";
 import { type Locale } from "../../../i18n-config";
-import { getCustomBoard, getDictionary } from "../../../utils/server";
+import {
+  allUppercase,
+  getCustomBoard,
+  getDictionary,
+} from "../../../utils/server";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
+import FilterButton from "./FilterButton";
+import Link from "next/link";
 
 interface Salary {
   amount?: number[] | undefined;
@@ -28,23 +33,6 @@ export default async function FiltersSection({
   const customBoard = await getCustomBoard();
   const { filtersSection: dict } = await getDictionary(locale);
 
-  function FilterButton({
-    filterName,
-  }: {
-    filterName: ActiveFilterName | "regions";
-  }) {
-    return (
-      <span
-        key={filterName}
-        className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
-      >
-        {filterName === "categories"
-          ? dict["Career Fields"]
-          : allUppercase(filterName)}
-      </span>
-    );
-  }
-
   return (
     <div className="lg:w-10/12 w-full max-w-[70rem] justify-left">
       <div className="hidden lg:flex flex-row mb-2 gap-2 flex-wrap relative">
@@ -59,7 +47,11 @@ export default async function FiltersSection({
               ] ? null : (
                 <FilterButton
                   key={filterName}
-                  filterName={filterName as ActiveFilterName | "regions"}
+                  text={
+                    filterName === "categories"
+                      ? dict["Career Fields"]
+                      : allUppercase(filterName)
+                  }
                 />
               )
             )}
@@ -73,12 +65,14 @@ export default async function FiltersSection({
       </div>
 
       <div className="relative lg:hidden w-[fit-content] pl-1">
-        <span
-          className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
-        >
-          {dict["Filters"]}
-          <AdjustmentsHorizontalIcon className="ml-2 mb-1 w-6 h-6 inline-block" />
-        </span>
+        <Link href="filters">
+          <span
+            className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
+          >
+            {dict["Filters"]}
+            <AdjustmentsHorizontalIcon className="ml-2 mb-1 w-6 h-6 inline-block" />
+          </span>
+        </Link>
       </div>
     </div>
   );
