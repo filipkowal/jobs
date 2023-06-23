@@ -23,6 +23,7 @@
     "client-only": "^0.0.1",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.6",
+    "lodash": "^4.17.21",
     "negotiator": "^0.6.3",
     "next": "13.4.6",
     "postcss": "8.4.24",
@@ -37,6 +38,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.195",
     "@types/negotiator": "^0.6.1",
     "@types/uuid": "^9.0.2",
     "tailwindcss-animate": "^1.0.6"

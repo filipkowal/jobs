@@ -1,3 +1,3 @@
 import "server-only";
-export * from "./fetchers";
+export * from "../fetchers";
 export * from "./helpers";

@@ -1,6 +1,6 @@
 import { Job } from "../../../utils";
 import Image from "next/image";
-import { Tooltip } from "../../../components/Tooltip";
+import { Tooltip } from "../../../components";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import LikeButton from "./JobRowLikeButton";
 import { getCustomBoard, getDictionary } from "../../../utils/server";

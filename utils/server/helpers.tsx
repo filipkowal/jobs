@@ -18,6 +18,3 @@ const customBoard = import("../../customBoard.json").then(
 
 export const getDictionary = async (locale: Locale) => dictionaries[locale]();
 export const getCustomBoard = async () => customBoard;
-
-export const allUppercase = (text: string) =>
-  text.replace(/([A-Z])/g, " $&").replace(/^./, text[0].toUpperCase());

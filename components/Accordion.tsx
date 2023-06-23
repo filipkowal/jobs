@@ -8,12 +8,12 @@ export default function Accordion({
   title,
   children,
   isOpen = false,
-  disabled = false,
+  alwaysOpen = false,
 }: {
   title: string;
   children: ReactNode;
   isOpen?: boolean;
-  disabled?: boolean;
+  alwaysOpen?: boolean;
 }) {
   return (
     <div className="w-full py-2">
@@ -22,7 +22,7 @@ export default function Accordion({
           <>
             <Disclosure.Button
               className="flex w-full justify-left gap-2 py-2 text-left font-medium -mx-1"
-              disabled={disabled}
+              disabled={alwaysOpen}
             >
               <ChevronUpIcon
                 className={`${!open ? "rotate-180 transform" : ""} h-7 w-7`}

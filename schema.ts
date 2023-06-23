@@ -3,64 +3,63 @@
  * Do not make direct changes to the file.
  */
 
-
 export interface paths {
   "/{language}/jobs": {
     get: {
       parameters: {
-          /**
-           * @example [
-           *   "frontend",
-           *   "fullstack"
-           * ]
-           */
-          /**
-           * @example [
-           *   "react",
-           *   "nodejs"
-           * ]
-           */
-          /**
-           * @example [
-           *   "it"
-           * ]
-           */
-          /**
-           * @example [
-           *   "contributor",
-           *   "expert",
-           *   "leader"
-           * ]
-           */
-          /**
-           * @example [
-           *   "StartUp"
-           * ]
-           */
-          /**
-           * @example [
-           *   "german",
-           *   "english"
-           * ]
-           */
-          /**
-           * @example [
-           *   80,
-           *   100
-           * ]
-           */
-          /** @example 70 */
-          /** @example 1240 */
-          /**
-           * @example [
-           *   "Baden",
-           *   "Lugano"
-           * ]
-           */
-          /** @example 80000 */
-          /** @example CHF */
-          /** @description For pagination: index of the first job to be sent */
-          /** @description For pagination: limit of jobs to be sent */
+        /**
+         * @example [
+         *   "frontend",
+         *   "fullstack"
+         * ]
+         */
+        /**
+         * @example [
+         *   "react",
+         *   "nodejs"
+         * ]
+         */
+        /**
+         * @example [
+         *   "it"
+         * ]
+         */
+        /**
+         * @example [
+         *   "contributor",
+         *   "expert",
+         *   "leader"
+         * ]
+         */
+        /**
+         * @example [
+         *   "StartUp"
+         * ]
+         */
+        /**
+         * @example [
+         *   "german",
+         *   "english"
+         * ]
+         */
+        /**
+         * @example [
+         *   80,
+         *   100
+         * ]
+         */
+        /** @example 70 */
+        /** @example 1240 */
+        /**
+         * @example [
+         *   "Baden",
+         *   "Lugano"
+         * ]
+         */
+        /** @example 80000 */
+        /** @example CHF */
+        /** @description For pagination: index of the first job to be sent */
+        /** @description For pagination: limit of jobs to be sent */
         query?: {
           categories?: components["schemas"]["Tags"];
           technologies?: components["schemas"]["Tags"];
@@ -71,7 +70,7 @@ export interface paths {
           workload?: components["schemas"]["Range"];
           homeOffice?: number;
           zip?: string;
-          states?: (string)[];
+          states?: string[];
           salary?: number;
           currency?: string;
           offset?: number;
@@ -98,7 +97,7 @@ export interface paths {
   "/{language}/jobs/{id}": {
     get: {
       parameters: {
-          /** @description ID of the job */
+        /** @description ID of the job */
         path: {
           language: components["schemas"]["Language"];
           id: components["schemas"]["Id"];
@@ -298,10 +297,10 @@ export interface components {
      *   "tag3"
      * ]
      */
-    Tags: (string)[];
+    Tags: string[];
     File: {
       /**
-       * Format: base64 
+       * Format: base64
        * @example data:image/webp;base64,UklGRs61AABXRUJQVlA4WAoAAA
        */
       content?: string;
@@ -327,19 +326,6 @@ export interface components {
       currency?: string;
       unit?: string;
     };
-    /**
-     * @example {
-     *   "amount": 100000,
-     *   "currency": "CHF",
-     *   "unit": "year"
-     * }
-     */
-    Salary: {
-      /** @example 100000 */
-      amount?: string;
-      currency?: string;
-      unit?: string;
-    };
     Employer: {
       id?: components["schemas"]["Id"];
       /** @example Baggenstos */
@@ -353,9 +339,9 @@ export interface components {
      *   80
      * ]
      */
-    Range: (number)[];
+    Range: number[];
     /**
-     * @default de 
+     * @default de
      * @enum {string}
      */
     Language: "de" | "en" | "fr";
@@ -389,7 +375,7 @@ export interface components {
       workload?: components["schemas"]["Range"];
       /** @example 70 */
       homeOffice?: number;
-      salary?: components["schemas"]["Salary"];
+      salary?: number;
       /** @example 1240 */
       zip?: string;
       /**
@@ -398,7 +384,7 @@ export interface components {
        *   "Lugano"
        * ]
        */
-      states?: (string)[];
+      states?: string[];
     };
     Filters: {
       categories?: components["schemas"]["Tags"];
@@ -427,13 +413,13 @@ export interface components {
        *   }
        * ]
        */
-      regions?: (components["schemas"]["Filters_regions"])[];
+      regions?: components["schemas"]["Filters_regions"][];
     };
     Font: {
       /** @example Crimson Pro */
       name?: string;
       /**
-       * Format: url 
+       * Format: url
        * @example https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200..900&display=swap
        */
       url?: string;
@@ -449,12 +435,12 @@ export interface components {
       logo?: string;
       fonts?: components["schemas"]["CustomBoard_fonts"];
       /**
-       * Format: rgb 
+       * Format: rgb
        * @example 000000
        */
       backgroundColor?: string;
       /**
-       * Format: rgb 
+       * Format: rgb
        * @example ffffff
        */
       textColor?: string;
@@ -462,7 +448,7 @@ export interface components {
       backgroundImage?: string;
     };
     inline_response_200: {
-      jobs?: (components["schemas"]["Job"])[];
+      jobs?: components["schemas"]["Job"][];
       activeFilters?: components["schemas"]["ActiveFilters"];
       offset?: number;
       limit?: number;
@@ -486,10 +472,10 @@ export interface components {
       sex?: "man" | "woman" | "other";
       name?: string;
       message?: string;
-      files?: (components["schemas"]["File"])[];
+      files?: components["schemas"]["File"][];
       /** Format: url */
       linkedIn?: string;
-      jobIds?: (components["schemas"]["Id"])[];
+      jobIds?: components["schemas"]["Id"][];
     };
     refer_body: {
       /** Format: email */
@@ -498,7 +484,7 @@ export interface components {
     };
     Filters_regions: {
       name?: string;
-      states?: (string)[];
+      states?: string[];
     };
     CustomBoard_fonts: {
       title?: components["schemas"]["Font"];
@@ -560,7 +546,7 @@ export interface components {
      *   "Lugano"
      * ]
      */
-    States: (string)[];
+    States: string[];
   };
   requestBodies: never;
   headers: never;
