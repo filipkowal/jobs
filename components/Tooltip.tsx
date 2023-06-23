@@ -9,7 +9,7 @@ import {
   Arrow,
 } from "@radix-ui/react-tooltip";
 
-export function Tooltip({
+export default function Tooltip({
   children,
   content,
   name,
