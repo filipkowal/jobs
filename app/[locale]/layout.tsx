@@ -5,7 +5,7 @@ import ToastProvider from "../../components/ToastProvider";
 import Link from "next/link";
 import "../globals.css";
 import localFont from "next/font/local";
-import { Inter } from "next/font/google";
+import { Inter, Merriweather } from "next/font/google";
 import type { Metadata } from "next";
 import Script from "next/script";
 import CookiePopup from "../../components/CookiePopup";
@@ -37,13 +37,10 @@ const inter = Inter({
   preload: false,
 });
 
-const merriweather = localFont({
+const merriweather = Merriweather({
   variable: "--font-merriweather",
-  src: [
-    { path: "../../public/fonts/Merriweather-Light.ttf", weight: "300" },
-    { path: "../../public/fonts/Merriweather-Regular.ttf", weight: "400" },
-    { path: "../../public/fonts/Merriweather-Bold.ttf", weight: "700" },
-  ],
+  subsets: ["latin"],
+  weight: ["300", "400", "700"],
 });
 
 const stolzl = localFont({
