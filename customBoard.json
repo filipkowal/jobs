@@ -20,7 +20,7 @@
   },
   "hideAllFilters": false,
   "hiddenFilters": {
-    "categories": false,
+    "careerFields": false,
     "workLanguages": true,
     "technologies": false,
     "industries": false,

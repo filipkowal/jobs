@@ -25,7 +25,7 @@ export default function FiltersModal({
 }: {
   filters: Filters;
   locale: Locale;
-  dict: FiltersSectionDict;
+  dict: FiltersModalDict;
   customBoard: CustomBoard;
 }) {
   const { openFilterName, setOpenFilterName, activeFilters, setActiveFilters } =
@@ -90,9 +90,7 @@ export default function FiltersModal({
             shouldDisplayTagFilter(filterName) && (
               <TagsFilter
                 key={filterName}
-                title={
-                  dict[allUppercase(filterName) as keyof FiltersSectionDict]
-                }
+                title={dict[allUppercase(filterName) as keyof FiltersModalDict]}
                 filterName={filterName as ActiveFilterName}
                 filters={filters}
                 activeFilters={activeFilters}
@@ -226,13 +224,12 @@ export default function FiltersModal({
   );
 }
 
-interface FiltersSectionDict {
+export interface FiltersModalDict {
   "Apply filters": string;
   Filters: string;
   "More...": string;
   "Career Fields": string;
   Category: string;
-  Categories: string;
   Regions: string;
   "Work Languages": string;
   Technologies: string;

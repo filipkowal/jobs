@@ -18,7 +18,7 @@ export function pickSearchParams(searchParams: ReadonlyURLSearchParams | null) {
 
       if (
         [
-          "categories",
+          "careerFields",
           "technologies",
           "industries",
           "workLanguages",

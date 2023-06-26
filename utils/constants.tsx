@@ -6,7 +6,7 @@ export const JOBS_LIMIT = 20;
 export const JOBS_REVALIDATE_TIME = 60 * 60; // 1 hour
 
 export const FILTER_NAMES = [
-  "categories",
+  "careerFields",
   "workLanguages",
   "technologies",
   "industries",

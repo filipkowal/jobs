@@ -2,7 +2,7 @@ import { JOBS_LIMIT, JOBS_REVALIDATE_TIME } from "../../../utils/constants";
 import { type Locale, i18n } from "../../../i18n-config";
 import JobTable from "../JobTable";
 import { getFilters, getJobs } from "../../../utils/server";
-import FiltersSection from "../_Filters/FiltersSectionStatic";
+import FiltersSectionContainer from "../_Filters/FiltersSectionContainer";
 import Title from "./Title";
 import { getCustomBoard } from "../../../utils/server";
 import { Suspense } from "react";
@@ -38,7 +38,7 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
 
       {customBoard.hideAllFilters ? null : (
         <Suspense fallback={<Spinner />}>
-          <FiltersSection
+          <FiltersSectionContainer
             filtersPromise={filtersPromise}
             locale={params.locale}
           />

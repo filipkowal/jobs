@@ -61,7 +61,7 @@ export interface paths {
         /** @description For pagination: index of the first job to be sent */
         /** @description For pagination: limit of jobs to be sent */
         query?: {
-          categories?: components["schemas"]["Tags"];
+          careerFields?: components["schemas"]["Tags"];
           technologies?: components["schemas"]["Tags"];
           industries?: components["schemas"]["Tags"];
           jobLevels?: components["schemas"]["Tags"];
@@ -69,7 +69,6 @@ export interface paths {
           workLanguages?: components["schemas"]["Tags"];
           workload?: components["schemas"]["Range"];
           homeOffice?: number;
-          zip?: string;
           states?: string[];
           salary?: number;
           currency?: string;
@@ -268,8 +267,6 @@ export interface components {
     /** @example 123 */
     Id: string;
     Address: {
-      /** @example 1234 */
-      zip?: string;
       /** @example Wiener Str. */
       street?: string;
       /** @example Bern */
@@ -366,7 +363,7 @@ export interface components {
       requirements?: string;
     };
     ActiveFilters: {
-      categories?: components["schemas"]["Tags"];
+      careerFields?: components["schemas"]["Tags"];
       technologies?: components["schemas"]["Tags"];
       industries?: components["schemas"]["Tags"];
       workLanguages?: components["schemas"]["Tags"];
@@ -376,8 +373,6 @@ export interface components {
       /** @example 70 */
       homeOffice?: number;
       salary?: number;
-      /** @example 1240 */
-      zip?: string;
       /**
        * @example [
        *   "Baden",
@@ -387,7 +382,7 @@ export interface components {
       states?: string[];
     };
     Filters: {
-      categories?: components["schemas"]["Tags"];
+      careerFields?: components["schemas"]["Tags"];
       technologies?: components["schemas"]["Tags"];
       industries?: components["schemas"]["Tags"];
       workLanguages?: components["schemas"]["Tags"];
@@ -503,7 +498,7 @@ export interface components {
      *   "fullstack"
      * ]
      */
-    Categories: components["schemas"]["Tags"];
+    CareerFields: components["schemas"]["Tags"];
     /**
      * @example [
      *   "react",
@@ -539,13 +534,6 @@ export interface components {
     /** @example CHF */
     Currency: string;
     /** @example 1240 */
-    Zip: string;
-    /**
-     * @example [
-     *   "Baden",
-     *   "Lugano"
-     * ]
-     */
     States: string[];
   };
   requestBodies: never;
