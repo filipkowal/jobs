@@ -34,6 +34,7 @@ export const metadata: Metadata = {
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  preload: false,
 });
 
 const merriweather = localFont({
@@ -50,13 +51,13 @@ const stolzl = localFont({
   src: [
     { path: "../../public/fonts/Stolzl-Regular.ttf", weight: "400" },
     { path: "../../public/fonts/Stolzl-Medium.ttf", weight: "500" },
-    { path: "../../public/fonts/Stolzl-Bold.ttf", weight: "700" },
   ],
 });
 
 const loew = localFont({
   variable: "--font-loew",
   src: "../../public/fonts/Loew-Heavy.otf",
+  preload: false,
 });
 
 export async function generateStaticParams() {
@@ -76,7 +77,7 @@ export default async function RootLayout({
   return (
     <html
       lang={params.locale || "en"}
-      className={`${inter.variable} ${merriweather.variable} ${stolzl.variable} ${loew.variable}`}
+      className={`${merriweather.variable} ${stolzl.variable}`}
     >
       <head>
         <title>Digitalent Jobs</title>
@@ -117,7 +118,9 @@ export default async function RootLayout({
           {customBoard.hideFooter ? (
             ""
           ) : (
-            <footer className="self-bottom w-screen">
+            <footer
+              className={`self-bottom w-screen ${loew.variable} ${inter.variable}`}
+            >
               <div className="text-center py-2 max-w-screen bg-digitalent-gray-dark font-sans text-[11px]">
                 {dict["powered by"]}
                 <Link href="https://digitalent.community" target="_blank">
