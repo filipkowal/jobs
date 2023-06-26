@@ -8,7 +8,7 @@ export default function FilterButtonContainer({
   filterName,
   children,
 }: {
-  filterName: ActiveFilterName;
+  filterName: ActiveFilterName | "all";
   children: React.ReactNode;
 }) {
   const { setOpenFilterName } = useContext(FiltersModalContext);

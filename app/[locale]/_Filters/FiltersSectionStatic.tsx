@@ -6,7 +6,7 @@ import {
 import { type Locale } from "../../../i18n-config";
 import { getCustomBoard, getDictionary } from "../../../utils/server";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
-import FilterButtonContainer from "./FilterButton";
+import FilterButtonContainer from "./FilterButtonContainer";
 import Link from "next/link";
 import FiltersModalContextProvider from "./FiltersModalContext";
 import FiltersModal from "./FiltersModal";
@@ -39,8 +39,6 @@ export default async function FiltersSection({
     <div className="lg:w-10/12 w-full max-w-[70rem] justify-left">
       <div className="hidden lg:flex flex-row mb-2 gap-2 flex-wrap relative">
         <>
-          <AdjustmentsHorizontalIcon className="text-digitalent-blue pr-2 w-8 h-8 cursor-pointer"></AdjustmentsHorizontalIcon>
-
           <FiltersModalContextProvider>
             <FiltersModal
               locale={locale}
@@ -48,6 +46,9 @@ export default async function FiltersSection({
               customBoard={customBoard}
               dict={dict}
             />
+            <FilterButtonContainer filterName="all">
+              <AdjustmentsHorizontalIcon className="text-digitalent-blue pr-2 w-8 h-8 cursor-pointer"></AdjustmentsHorizontalIcon>
+            </FilterButtonContainer>
             <>
               {Object.keys(filters)
                 .slice(0, locale === "fr" ? 5 : 6)
@@ -74,14 +75,15 @@ export default async function FiltersSection({
                   )
                 )}
             </>
+            <FilterButtonContainer filterName="all">
+              <span
+                className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
+              >
+                {dict["More..."]}
+              </span>
+            </FilterButtonContainer>
           </FiltersModalContextProvider>
         </>
-
-        <span
-          className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
-        >
-          {dict["More..."]}
-        </span>
       </div>
 
       <div className="relative lg:hidden w-[fit-content] pl-1">
