@@ -5,7 +5,9 @@ import { ActiveFilters, JobsQuery } from "./types";
 export const allUppercase = (text: string): string =>
   text.replace(/([A-Z])/g, " $&").replace(/^./, text[0].toUpperCase());
 
-export function pickSearchParams(searchParams: ReadonlyURLSearchParams | null) {
+export function pickActiveFiltersFromSearchParams(
+  searchParams: ReadonlyURLSearchParams | null
+) {
   const pickedParams: ActiveFilters = {};
 
   if (!searchParams) {

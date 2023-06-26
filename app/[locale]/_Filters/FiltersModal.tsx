@@ -1,9 +1,10 @@
 "use client";
-import { useContext } from "react";
+import { Dispatch, SetStateAction, useContext } from "react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
 import {
   ActiveFilterName,
+  ActiveFilters,
   CustomBoard,
   FILTER_NAMES,
   Filters,
@@ -14,23 +15,28 @@ import ApplyFiltersButton from "./FiltersModalApplyButton";
 import RegionsFilter from "./FiltersModalRegionSection";
 import TagsFilter from "./FiltersTagsFilter";
 import { Modal, Accordion, RangeSlider } from "../../../components";
-import { FiltersModalContext } from "./FiltersModalContext";
 import FiltersClearButton from "./FiltersClearButton";
+import { OpenFilterName } from "./FiltersSection";
 
 export default function FiltersModal({
   filters,
   locale,
   dict,
   customBoard,
+  openFilterName,
+  setOpenFilterName,
+  activeFilters,
+  setActiveFilters,
 }: {
   filters: Filters;
   locale: Locale;
   dict: FiltersModalDict;
   customBoard: CustomBoard;
+  openFilterName: OpenFilterName;
+  setOpenFilterName: Dispatch<SetStateAction<OpenFilterName>>;
+  activeFilters: ActiveFilters;
+  setActiveFilters: Dispatch<SetStateAction<ActiveFilters>>;
 }) {
-  const { openFilterName, setOpenFilterName, activeFilters, setActiveFilters } =
-    useContext(FiltersModalContext);
-
   // @fixme can I remove notEmpty? If server sends only active filters, then probably yes
   const notEmpty = (v: any): boolean =>
     ((Array.isArray(v) || typeof v === "string") && !!v.length) ||

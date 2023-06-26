@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
 import { getJobs, JobsQuery, Locale, removeEmptyFilters } from "../../../utils";
-import { OpenFilterName } from "./FiltersModalContext";
 import { Button, LoadingEllipsis } from "../../../components";
+import { OpenFilterName } from "./FiltersSection";
 
 export default function ApplyFiltersButton({
   activeFilters,

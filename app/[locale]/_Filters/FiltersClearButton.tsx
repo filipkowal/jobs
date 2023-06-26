@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "../../../components";
 import { ActiveFilterName, ActiveFilters, Locale } from "../../../utils";
 import { Dispatch, SetStateAction } from "react";
-import { OpenFilterName } from "./FiltersModalContext";
+import { OpenFilterName } from "./FiltersSection";
 
 export default function FiltersClearButton({
   locale,
