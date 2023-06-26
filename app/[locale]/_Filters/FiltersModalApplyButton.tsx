@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 
-import { getJobs, JobsQuery, Locale } from "../../../utils";
+import { getJobs, JobsQuery, Locale, removeEmptyFilters } from "../../../utils";
 import { OpenFilterName } from "./FiltersModalContext";
 import { Button, LoadingEllipsis } from "../../../components";
-import { pickBy } from "lodash";
 
 export default function ApplyFiltersButton({
   activeFilters,
@@ -37,15 +36,6 @@ export default function ApplyFiltersButton({
     }
     fetchJobs();
   }, [nonEmptyActiveFilters, locale]);
-
-  function removeEmptyFilters(activeFilters: JobsQuery) {
-    return pickBy(
-      activeFilters,
-      (value: string[] | number[] | number | string | null) =>
-        (typeof value === "number" && value > 0) ||
-        (typeof value !== "number" && value && value.length > 0)
-    );
-  }
 
   return (
     <Link

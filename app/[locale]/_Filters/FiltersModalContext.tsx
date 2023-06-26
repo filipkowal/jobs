@@ -7,9 +7,12 @@ import {
   SetStateAction,
   useState,
 } from "react";
-import { ActiveFilterName, ActiveFilters, FILTER_NAMES } from "../../../utils";
+import {
+  ActiveFilterName,
+  ActiveFilters,
+  pickSearchParams,
+} from "../../../utils";
 import { useSearchParams } from "next/navigation";
-import { pick } from "lodash";
 
 export type OpenFilterName = ActiveFilterName | "all" | "";
 
@@ -34,7 +37,7 @@ export default function FiltersModalContextProvider({
 
   const [openFilterName, setOpenFilterName] = useState<OpenFilterName>("");
   const [activeFilters, setActiveFilters] = useState<ActiveFilters>(
-    pick(searchParams || {}, FILTER_NAMES)
+    pickSearchParams(searchParams)
   );
 
   return (
