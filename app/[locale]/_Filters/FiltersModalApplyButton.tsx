@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 
 import { getJobs, JobsQuery, Locale, removeEmptyFilters } from "../../../utils";
 import { Button, LoadingEllipsis } from "../../../components";
 import { OpenFilterName } from "./FiltersSection";
+import { useRouter } from "next/navigation";
 
 export default function ApplyFiltersButton({
   activeFilters,
@@ -16,6 +16,7 @@ export default function ApplyFiltersButton({
   locale: Locale;
   dict: { "Apply filters": string };
 }) {
+  const router = useRouter();
   const [jobsLength, setJobsLength] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,6 +24,25 @@ export default function ApplyFiltersButton({
     () => removeEmptyFilters(activeFilters),
     [activeFilters]
   );
+
+  const newSearchParams = useMemo(() => {
+    const searchParams = new URLSearchParams();
+
+    for (const key in nonEmptyActiveFilters) {
+      const value = nonEmptyActiveFilters[key];
+
+      if (Array.isArray(value)) {
+        value.forEach((item) => searchParams.append(key, item.toString()));
+      } else {
+        searchParams.append(key, value.toString());
+      }
+    }
+
+    return searchParams;
+  }, [nonEmptyActiveFilters]);
+
+  const anyActiveFilters =
+    nonEmptyActiveFilters && Object.keys(nonEmptyActiveFilters).length > 0;
 
   useEffect(() => {
     setIsLoading(true);
@@ -38,28 +58,19 @@ export default function ApplyFiltersButton({
   }, [nonEmptyActiveFilters, locale]);
 
   return (
-    <Link
-      href={
-        jobsLength > 0
-          ? {
-              query: nonEmptyActiveFilters,
-              pathname: locale,
-            }
-          : ""
-      }
-      data-testid="apply-filters-button"
+    <Button
+      onClick={() => {
+        setIsOpen("");
+        anyActiveFilters
+          ? router.push(`/${locale}/filtered?${newSearchParams.toString()}`)
+          : router.push(`/${locale}`);
+      }}
+      disabled={isLoading || jobsLength === 0}
+      name="Apply filters"
+      type="primary"
     >
-      <Button
-        onClick={() => {
-          setIsOpen("");
-        }}
-        disabled={isLoading || jobsLength === 0}
-        name="Apply filters"
-        type="primary"
-      >
-        {`${dict["Apply filters"]} ${isLoading ? "" : `(${jobsLength})`} `}
-        <LoadingEllipsis isLoading={isLoading} />
-      </Button>
-    </Link>
+      {`${dict["Apply filters"]} ${isLoading ? "" : `(${jobsLength})`} `}
+      <LoadingEllipsis isLoading={isLoading} />
+    </Button>
   );
 }
