@@ -7,6 +7,7 @@ import Title from "./Title";
 import { getCustomBoard } from "../../../utils/server";
 import { Suspense } from "react";
 import Spinner from "../../../components/Spinner";
+import FiltersSkeleton from "../_Filters/FiltersSkeleton";
 
 export const generateStaticParams = async () => {
   return i18n.locales.map((locale) => ({
@@ -37,7 +38,7 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
       </Suspense>
 
       {customBoard.hideAllFilters ? null : (
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<FiltersSkeleton />}>
           <FiltersSectionContainer
             filtersPromise={filtersPromise}
             locale={params.locale}
