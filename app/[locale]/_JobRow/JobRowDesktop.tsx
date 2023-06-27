@@ -29,10 +29,10 @@ export default async function JobRowDesktop({
   const customBoard = await getCustomBoard();
 
   return (
-    <div className="hidden sm:flex gap-4 pt-4 pb-4 px-3 sm:pr-8 sm:pl-6 w-full justify-between cursor-pointer flex-wrap relative items-center">
+    <div className="hidden sm:flex pt-4 pb-4 px-3 sm:pr-8 sm:pl-6 w-full justify-between cursor-pointer flex-wrap relative items-center">
       <div
         className={`flex gap-6 items-center ${
-          customBoard?.cards ? "" : "xl:max-w-[65%]"
+          customBoard?.cards ? "" : "w-full lg:w-[60%] xl:w-[65%]"
         }`}
       >
         {!customBoard?.cards && employer?.logo ? (
@@ -63,8 +63,8 @@ export default async function JobRowDesktop({
         </div>
       </div>
 
-      <div className="flex flex-row gap-6 align-middle w-full sm:w-auto">
-        <div className="flex flex-row-reverse sm:flex-row gap-4 align-middle w-full justify-start sm:justify-end sm:w-auto">
+      <div className="flex flex-row gap-2 xl:gap-6 align-middle w-auto">
+        <div className="flex flex-row-reverse sm:flex-row gap-1 xl:gap-4 align-middle w-full justify-start sm:justify-end sm:w-auto">
           {salary?.amount && (
             <span
               className={`h-10 py-2 my-auto whitespace-nowrap ${
