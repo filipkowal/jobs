@@ -57,10 +57,6 @@ const loew = localFont({
   preload: false,
 });
 
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ locale }));
-}
-
 export default async function RootLayout({
   params,
   children,
