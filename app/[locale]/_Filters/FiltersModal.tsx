@@ -64,7 +64,7 @@ export default function FiltersModal({
       "workLanguages",
       "technologies",
       "industries",
-      "companySize",
+      "companySizes",
       "jobLevels",
     ];
 
@@ -240,7 +240,7 @@ export interface FiltersModalDict {
   "Work Languages": string;
   Technologies: string;
   Industries: string;
-  "Company Size": string;
+  "Company Sizes": string;
   "Work language": string;
   Workload: string;
   "Workload range": string;

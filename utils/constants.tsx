@@ -10,7 +10,7 @@ export const FILTER_NAMES = [
   "workLanguages",
   "technologies",
   "industries",
-  "companySize",
+  "companySizes",
   "jobLevels",
   "workload",
   "homeOffice",

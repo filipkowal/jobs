@@ -24,7 +24,7 @@
     "workLanguages": true,
     "technologies": false,
     "industries": false,
-    "companySize": false,
+    "companySizes": false,
     "workload": false,
     "homeOffice": false,
     "salary": false,

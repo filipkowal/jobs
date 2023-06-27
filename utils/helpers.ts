@@ -25,7 +25,7 @@ export function pickActiveFiltersFromSearchParams(
           "industries",
           "workLanguages",
           "jobLevels",
-          "companySize",
+          "companySizes",
           "states",
         ].includes(name)
       ) {
