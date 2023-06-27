@@ -17,15 +17,14 @@ export default function FiltersClearButton({
   setOpenFilterName: Dispatch<OpenFilterName>;
   dict: { Clear: string };
 }) {
-  return activeFilters ? (
+  return activeFilters && Object.keys(activeFilters).length ? (
     <Link href={`/${locale}`}>
-      <Button
+      <span
         onClick={() => {
           setActiveFilters({});
           setOpenFilterName("");
         }}
-        name="Clear filters"
-        disabled={Object.keys(activeFilters)?.length === 0}
+        className="font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer"
       >
         <svg
           className="w-6 h-6 inline pr-1 pb-1"
@@ -42,7 +41,7 @@ export default function FiltersClearButton({
           ></path>
         </svg>
         {dict["Clear"]}
-      </Button>
+      </span>
     </Link>
   ) : null;
 }

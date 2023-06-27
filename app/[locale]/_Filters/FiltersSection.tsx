@@ -13,6 +13,7 @@ import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 import FiltersModal, { FiltersModalDict } from "./FiltersModal";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
+import FiltersClearButton from "./FiltersClearButton";
 
 interface Salary {
   amount?: number[] | undefined;
@@ -105,6 +106,14 @@ export default function FiltersSection({
         >
           {dict["More..."]}
         </span>
+
+        <FiltersClearButton
+          locale={locale}
+          activeFilters={activeFilters}
+          setActiveFilters={setActiveFilters}
+          setOpenFilterName={setOpenFilterName}
+          dict={{ Clear: dict["Clear"] }}
+        />
       </div>
 
       {/* Mobile */}
