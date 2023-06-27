@@ -60,7 +60,7 @@ export default function FiltersModal({
   function shouldDisplayTagFilter(filterName: ActiveFilterName): boolean {
     const filterValues = filters?.[filterName as keyof Filters];
     const TAG_FILTERS = [
-      "categories",
+      "careerFields",
       "workLanguages",
       "technologies",
       "industries",
