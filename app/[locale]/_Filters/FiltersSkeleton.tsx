@@ -10,9 +10,7 @@ export default function FiltersSkeleton() {
         <span className="bg-digitalent-gray-light animate-pulse h-10 mr-2 w-32" />
       </div>
 
-      <div className="relative lg:hidden w-[fit-content] pl-1">
-        <span className="bg-digitalent-gray-light animate-pulse h-10 mr-2 w-32" />
-      </div>
+      <span className="block lg:hidden bg-digitalent-gray-light animate-pulse h-10 w-28 mb-2 ml-1" />
     </div>
   );
 }
