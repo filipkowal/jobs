@@ -12,12 +12,10 @@ export default async function JobTable({
   searchParams,
   params,
   jobsPromise,
-  offset,
   limit,
 }: {
   searchParams?: SearchParams;
   params: { locale: Locale; jobId?: string[] };
-  offset: number;
   limit: number;
   jobsPromise?: Promise<Jobs>;
 }) {
@@ -74,7 +72,6 @@ export default async function JobTable({
       ))}
 
       <JobTablePagination
-        offset={offset}
         limit={limit}
         locale={params.locale}
         length={length}

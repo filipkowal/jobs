@@ -51,7 +51,7 @@ export default async function Home({
           params,
           jobsPromise,
           limit: JOBS_LIMIT,
-          offset: 0,
+          searchParams: searchParams,
         })}
       </Suspense>
     </main>

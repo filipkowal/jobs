@@ -47,7 +47,6 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
           params,
           jobsPromise,
           limit: JOBS_LIMIT,
-          offset: 0,
         })}
       </Suspense>
     </main>
