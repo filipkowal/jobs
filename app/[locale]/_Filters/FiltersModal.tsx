@@ -53,10 +53,18 @@ export default function FiltersModal({
   }
 
   function setActiveFilter(filterName: ActiveFilterName, value: any) {
-    setActiveFilters((prev) => ({
-      ...prev,
-      [filterName]: value,
-    }));
+    setActiveFilters((prev) => {
+      const updatedFilters = {
+        ...prev,
+        [filterName]: value,
+      };
+
+      if (!notEmpty(value)) {
+        delete updatedFilters[filterName];
+      }
+
+      return updatedFilters;
+    });
   }
 
   function shouldDisplayTagFilter(filterName: ActiveFilterName): boolean {
