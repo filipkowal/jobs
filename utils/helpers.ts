@@ -1,12 +1,12 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { FILTER_NAMES } from "./constants";
-import { ActiveFilters, JobsQuery } from "./types";
+import { ActiveFilters, JobsQuery, SearchParams } from "./types";
 
 export const allUppercase = (text: string): string =>
   text.replace(/([A-Z])/g, " $&").replace(/^./, text[0].toUpperCase());
 
 export function pickActiveFiltersFromSearchParams(
-  searchParams: ReadonlyURLSearchParams | null
+  searchParams: ReadonlyURLSearchParams | SearchParams | null
 ) {
   const pickedParams: ActiveFilters = {};
 

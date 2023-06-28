@@ -1,6 +1,10 @@
 import Link from "next/link";
 import Button from "../../../components/Button";
-import { Locale, SearchParams } from "../../../utils";
+import {
+  Locale,
+  SearchParams,
+  pickActiveFiltersFromSearchParams,
+} from "../../../utils";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
 import { getDictionary } from "../../../utils/server";
 
@@ -21,57 +25,66 @@ export default async function JobTablePagination({
 }) {
   const dict = await getDictionary(locale);
 
+  const pageIndex: number = params?.pageIndex ? parseInt(params.pageIndex) : 0;
+
   return (
     <div className="flex relative justify-between w-full mt-8">
-      {offset > 0 ? (
-        <Link
-          href={{
-            pathname: locale,
-            // @fixme add query params
-            // query: {
-            //   ...searchParams,
-            //   offset: offset - limit > 0 ? offset - limit : undefined,
-            // },
-          }}
-        >
-          <Button type="primary" name="Previous">
-            {dict[`Previous`]}
-          </Button>
-        </Link>
-      ) : (
-        <span></span>
-      )}
+      {pageIndex > 0 ? <PreviousButton /> : <span></span>}
 
-      {length && length - offset > 8 ? (
-        <Link
-          href={"#top"}
-          className="absolute bottom-0 left-[50%] translate-x-[-50%] md:hidden"
-        >
-          <Button type="primary" name="top">
-            <ArrowUpIcon className="h-5 w-5 inline" />
-          </Button>
-        </Link>
-      ) : (
-        ""
-      )}
+      {length && length - pageIndex * limit > 8 ? <TopButton /> : ""}
 
-      {length && length > offset + limit ? (
-        <Link
-          href={{
-            pathname: locale,
-            // query: {
-            //   ...searchParams,
-            //   offset: offset + limit,
-            // },
-          }}
-        >
-          <Button type="primary" name="Next">
-            {dict[`Next`]}
-          </Button>
-        </Link>
-      ) : (
-        ""
-      )}
+      {length && length > pageIndex * limit + limit ? <NextButton /> : ""}
     </div>
   );
+
+  function PreviousButton() {
+    const previousPage = pageIndex - 1;
+
+    return (
+      <Link
+        href={{
+          pathname: `/${locale}${pageIndex > 1 ? `/${previousPage}` : ""}`,
+          // @fixme it's not all possible searchParams. Can it be simpler and more generic?
+          query:
+            searchParams && pickActiveFiltersFromSearchParams(searchParams),
+        }}
+      >
+        <Button type="primary" name="Previous">
+          {dict[`Previous`]}
+        </Button>
+      </Link>
+    );
+  }
+
+  function TopButton() {
+    return (
+      <Link
+        href={"#top"}
+        className="absolute bottom-0 left-[50%] translate-x-[-50%] md:hidden"
+      >
+        <Button type="primary" name="top">
+          <ArrowUpIcon className="h-5 w-5 inline" />
+        </Button>
+      </Link>
+    );
+  }
+
+  function NextButton() {
+    const nextPage = pageIndex + 1;
+
+    return (
+      <Link
+        href={{
+          pathname: `/${locale}/${nextPage}`,
+          // query:
+          //   //@fixme: same as above
+          //   searchParams && pickActiveFiltersFromSearchParams(searchParams),
+        }}
+      >
+        <Button type="primary" name="Next">
+          {dict[`Next`]}
+        </Button>
+      </Link>
+    );
+  }
 }

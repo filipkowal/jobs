@@ -5,9 +5,7 @@ export { type Locale } from "../i18n-config";
 
 export type CustomBoard = typeof customBoard;
 
-export type SearchParams =
-  | Record<string, string | (string | boolean | number)[]>
-  | undefined;
+export type SearchParams = ActiveFilters & { [key: string]: any };
 
 // Response types
 export type CustomUser = paths["/{language}/customBoard"]["get"]["responses"][
