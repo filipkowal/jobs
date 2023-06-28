@@ -1,22 +1,16 @@
 import Link from "next/link";
 import Button from "../../../components/Button";
-import {
-  Locale,
-  SearchParams,
-  pickActiveFiltersFromSearchParams,
-} from "../../../utils";
+import { Locale, SearchParams } from "../../../utils";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
 import { getDictionary } from "../../../utils/server";
 
 export default async function JobTablePagination({
-  offset,
   limit,
   locale,
   length,
   searchParams,
   params,
 }: {
-  offset: number;
   limit: number;
   locale: Locale;
   length?: number;
@@ -26,6 +20,10 @@ export default async function JobTablePagination({
   const dict = await getDictionary(locale);
 
   const pageIndex: number = params?.pageIndex ? parseInt(params.pageIndex) : 0;
+
+  const pathnameWithoutPageIndex = `${locale}${
+    searchParams ? `/filtered` : ""
+  }`;
 
   return (
     <div className="flex relative justify-between w-full mt-8">
@@ -43,10 +41,10 @@ export default async function JobTablePagination({
     return (
       <Link
         href={{
-          pathname: `/${locale}${pageIndex > 1 ? `/${previousPage}` : ""}`,
-          // @fixme it's not all possible searchParams. Can it be simpler and more generic?
-          query:
-            searchParams && pickActiveFiltersFromSearchParams(searchParams),
+          pathname: `/${pathnameWithoutPageIndex}${
+            pageIndex > 1 ? `/${previousPage}` : ""
+          }`,
+          query: searchParams,
         }}
       >
         <Button type="primary" name="Previous">
@@ -75,10 +73,8 @@ export default async function JobTablePagination({
     return (
       <Link
         href={{
-          pathname: `/${locale}/${nextPage}`,
-          // query:
-          //   //@fixme: same as above
-          //   searchParams && pickActiveFiltersFromSearchParams(searchParams),
+          pathname: `/${pathnameWithoutPageIndex}/${nextPage}`,
+          query: searchParams,
         }}
       >
         <Button type="primary" name="Next">

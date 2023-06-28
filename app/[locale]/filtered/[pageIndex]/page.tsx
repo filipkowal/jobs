@@ -17,8 +17,6 @@ export default async function Home({
   params: { locale: Locale; pageIndex: string };
   searchParams: ActiveFilters & { [key: string]: any };
 }) {
-  console.log("pageIndex", typeof params.pageIndex, params.pageIndex);
-
   const filtersPromise = getFilters({
     locale: params.locale,
     init: { next: { revalidate: 0 } },
@@ -26,9 +24,9 @@ export default async function Home({
   const jobsPromise = getJobs({
     locale: params.locale,
     searchParams: {
+      ...searchParams,
       offset: parseInt(params.pageIndex) * JOBS_LIMIT,
       limit: JOBS_LIMIT,
-      ...searchParams,
     },
     init: { next: { revalidate: 0 } },
   });
@@ -54,7 +52,7 @@ export default async function Home({
           params,
           jobsPromise,
           limit: JOBS_LIMIT,
-          offset: 0,
+          searchParams: searchParams,
         })}
       </Suspense>
     </main>
