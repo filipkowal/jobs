@@ -12,8 +12,9 @@ import {
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 import FiltersModal, { FiltersModalDict } from "./FiltersModal";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import FiltersClearButton from "./FiltersClearButton";
+import FilterButton from "./FilterButton";
 
 interface Salary {
   amount?: number[] | undefined;
@@ -45,10 +46,14 @@ export default function FiltersSection({
 }) {
   const searchParams = useSearchParams();
 
-  const [openFilterName, setOpenFilterName] = useState<OpenFilterName>("");
-  const [activeFilters, setActiveFilters] = useState<ActiveFilters>(
-    pickActiveFiltersFromSearchParams(searchParams)
+  const defaultActiveFilters = useMemo(
+    () => pickActiveFiltersFromSearchParams(searchParams),
+    [searchParams]
   );
+
+  const [openFilterName, setOpenFilterName] = useState<OpenFilterName>("");
+  const [activeFilters, setActiveFilters] =
+    useState<ActiveFilters>(defaultActiveFilters);
 
   return (
     <>
@@ -61,6 +66,7 @@ export default function FiltersSection({
         setOpenFilterName={setOpenFilterName}
         activeFilters={activeFilters}
         setActiveFilters={setActiveFilters}
+        defaultActiveFilters={defaultActiveFilters}
       />
 
       <div className="hidden lg:flex flex-row mb-2 gap-2 flex-wrap relative">
@@ -76,26 +82,13 @@ export default function FiltersSection({
               customBoard.hiddenFilters?.[
                 filterName as keyof typeof customBoard.hiddenFilters
               ] ? null : (
-                <span
+                <FilterButton
                   key={filterName}
-                  onClick={() =>
-                    setOpenFilterName(
-                      filterName === "regions"
-                        ? "states"
-                        : (filterName as OpenFilterName)
-                    )
-                  }
-                  className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1 mr-2 mb-2 break-keep inline-block cursor-pointer
-                  ${
-                    activeFilters &&
-                    Object.keys(activeFilters).includes(
-                      filterName === "regions" ? "states" : filterName
-                    ) &&
-                    "!bg-digitalent-blue !text-white"
-                  }`}
-                >
-                  {dict[allUppercase(filterName) as keyof typeof dict]}
-                </span>
+                  filterName={filterName}
+                  setOpenFilterName={setOpenFilterName}
+                  activeFilters={activeFilters}
+                  dict={dict}
+                />
               )
             )}
         </>

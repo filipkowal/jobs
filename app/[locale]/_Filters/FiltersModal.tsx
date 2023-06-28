@@ -27,6 +27,7 @@ export default function FiltersModal({
   setOpenFilterName,
   activeFilters,
   setActiveFilters,
+  defaultActiveFilters,
 }: {
   filters: Filters;
   locale: Locale;
@@ -36,6 +37,7 @@ export default function FiltersModal({
   setOpenFilterName: Dispatch<SetStateAction<OpenFilterName>>;
   activeFilters: ActiveFilters;
   setActiveFilters: Dispatch<SetStateAction<ActiveFilters>>;
+  defaultActiveFilters: ActiveFilters;
 }) {
   // @fixme can I remove notEmpty? If server sends only active filters, then probably yes
   const notEmpty = (v: any): boolean =>
@@ -84,10 +86,15 @@ export default function FiltersModal({
     return true;
   }
 
+  function closeModal() {
+    setActiveFilters(defaultActiveFilters);
+    setOpenFilterName("");
+  }
+
   return (
     <Modal
       isOpen={!!openFilterName}
-      setIsOpen={setOpenFilterName}
+      setIsOpen={closeModal}
       title={dict["Filters"]}
     >
       <div className="sm:max-h-[68vh] max-h-[62vh] w-full overflow-auto sm:pr-[37px] sm:-mr-[37px]">
