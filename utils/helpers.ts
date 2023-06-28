@@ -1,10 +1,11 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { FILTER_NAMES } from "./constants";
-import { ActiveFilters, JobsQuery } from "./types";
+import { ActiveFilters } from "./types";
 
 export const allUppercase = (text: string): string =>
   text.replace(/([A-Z])/g, " $&").replace(/^./, text[0].toUpperCase());
 
+//@fixme how to remove it or make it responsive to activeFilers list
 export function pickActiveFiltersFromSearchParams(
   searchParams: ReadonlyURLSearchParams | null
 ) {
@@ -39,22 +40,4 @@ export function pickActiveFiltersFromSearchParams(
   });
 
   return pickedParams;
-}
-
-export function removeEmptyFilters(activeFilters: JobsQuery) {
-  return (
-    activeFilters &&
-    Object.fromEntries(
-      Object.entries(activeFilters).filter(([_, value]) =>
-        filterNotEmpty(value)
-      )
-    )
-  );
-
-  function filterNotEmpty(value: string[] | number[] | number | string | null) {
-    return (
-      (typeof value === "number" && value > 0) ||
-      (typeof value !== "number" && value && value.length > 0)
-    );
-  }
 }

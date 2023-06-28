@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
-import { getJobs, JobsQuery, Locale, removeEmptyFilters } from "../../../utils";
+import { getJobs, JobsQuery, Locale } from "../../../utils";
 import { Button, LoadingEllipsis } from "../../../components";
 import { OpenFilterName } from "./FiltersSection";
 import { useRouter } from "next/navigation";
@@ -20,18 +20,16 @@ export default function ApplyFiltersButton({
   const [jobsLength, setJobsLength] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const nonEmptyActiveFilters = useMemo(
-    () => removeEmptyFilters(activeFilters),
-    [activeFilters]
-  );
-
   const newSearchParams = useMemo(() => {
     const searchParams = new URLSearchParams();
 
-    for (const key in nonEmptyActiveFilters) {
-      const value = nonEmptyActiveFilters[key];
+    if (!activeFilters) return searchParams;
 
-      if (Array.isArray(value)) {
+    for (const key in activeFilters) {
+      const value = activeFilters[key as keyof typeof activeFilters];
+
+      if (!value) continue;
+      else if (Array.isArray(value)) {
         value.forEach((item) => searchParams.append(key, item.toString()));
       } else {
         searchParams.append(key, value.toString());
@@ -39,23 +37,23 @@ export default function ApplyFiltersButton({
     }
 
     return searchParams;
-  }, [nonEmptyActiveFilters]);
+  }, [activeFilters]);
 
   const anyActiveFilters =
-    nonEmptyActiveFilters && Object.keys(nonEmptyActiveFilters).length > 0;
+    activeFilters && Object.keys(activeFilters).length > 0;
 
   useEffect(() => {
     setIsLoading(true);
     async function fetchJobs() {
       const { length } = await getJobs({
-        searchParams: nonEmptyActiveFilters,
+        searchParams: activeFilters,
         locale: locale,
       });
       setJobsLength(length || 0);
       setIsLoading(false);
     }
     fetchJobs();
-  }, [nonEmptyActiveFilters, locale]);
+  }, [activeFilters, locale]);
 
   return (
     <Button
