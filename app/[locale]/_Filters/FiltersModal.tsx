@@ -39,15 +39,10 @@ export default function FiltersModal({
   setActiveFilters: Dispatch<SetStateAction<ActiveFilters>>;
   defaultActiveFilters: ActiveFilters;
 }) {
-  // @fixme can I remove notEmpty? If server sends only active filters, then probably yes
-  const notEmpty = (v: any): boolean =>
-    ((Array.isArray(v) || typeof v === "string") && !!v.length) ||
-    (typeof v === "number" && v > 0);
-
   function isAccordionOpen(filterName: ActiveFilterName): boolean {
     return (
       openFilterName === filterName ||
-      notEmpty(activeFilters?.[filterName]) ||
+      !!activeFilters?.[filterName] ||
       openFilterName === "all"
     );
   }
@@ -65,6 +60,13 @@ export default function FiltersModal({
 
       return updatedFilters;
     });
+
+    function notEmpty(v: any): boolean {
+      return (
+        ((Array.isArray(v) || typeof v === "string") && !!v.length) ||
+        (typeof v === "number" && v > 0)
+      );
+    }
   }
 
   function shouldDisplayTagFilter(filterName: ActiveFilterName): boolean {
@@ -117,7 +119,6 @@ export default function FiltersModal({
                 activeFilters={activeFilters}
                 setActiveFilter={setActiveFilter}
                 isAccordionOpen={isAccordionOpen}
-                notEmpty={notEmpty}
               />
             )
         )}
@@ -126,7 +127,7 @@ export default function FiltersModal({
           <Accordion
             title={dict["Workload"]}
             isOpen={isAccordionOpen("workload")}
-            alwaysOpen={notEmpty(activeFilters?.workload)}
+            alwaysOpen={!!activeFilters?.workload}
           >
             <RangeSlider
               value={activeFilters?.workload || [0, 100]}
@@ -148,7 +149,7 @@ export default function FiltersModal({
           <Accordion
             title={dict["Home Office"]}
             isOpen={isAccordionOpen("homeOffice")}
-            alwaysOpen={notEmpty(activeFilters?.homeOffice)}
+            alwaysOpen={!!activeFilters?.homeOffice}
           >
             <RangeSlider
               value={activeFilters?.homeOffice || 0}
@@ -170,7 +171,7 @@ export default function FiltersModal({
           <Accordion
             title={dict["Salary"]}
             isOpen={isAccordionOpen("salary")}
-            alwaysOpen={notEmpty(activeFilters?.salary)}
+            alwaysOpen={!!activeFilters?.salary}
           >
             <RangeSlider
               value={activeFilters?.salary || 0}
@@ -214,7 +215,7 @@ export default function FiltersModal({
             selectedStates={activeFilters?.states || []}
             isOpen={isAccordionOpen("states")}
             setSelectedStates={(states) => setActiveFilter("states", states)}
-            alwaysOpen={notEmpty(activeFilters?.states)}
+            alwaysOpen={!!activeFilters?.states}
             dict={{
               Regions: dict["Regions"],
               "Whole Switzerland": dict["Whole Switzerland"],

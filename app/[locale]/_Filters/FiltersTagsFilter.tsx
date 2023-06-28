@@ -8,7 +8,6 @@ export default function TagsFilter({
   activeFilters,
   setActiveFilter,
   isAccordionOpen,
-  notEmpty,
   singleChoice,
 }: {
   title: string;
@@ -17,7 +16,6 @@ export default function TagsFilter({
   activeFilters: JobsQuery;
   setActiveFilter: (filterName: ActiveFilterName, values: any) => void;
   isAccordionOpen: (filterName: ActiveFilterName) => boolean;
-  notEmpty: (v: any) => boolean;
   singleChoice?: boolean;
 }) {
   const filterValues = filters?.[filterName as keyof Filters];
@@ -26,7 +24,7 @@ export default function TagsFilter({
     <Accordion
       title={title}
       isOpen={isAccordionOpen(filterName)}
-      alwaysOpen={notEmpty(activeFilters?.[filterName])}
+      alwaysOpen={!!activeFilters?.[filterName]}
     >
       <TagOptionGroup
         tags={filterValues as string[]}
