@@ -15,6 +15,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "fonts.gstatic.com",
       },
+      { protocol: "https", hostname: "vitals.vercel-insights.com" },
     ],
   },
 };
