@@ -10,14 +10,18 @@ import Spinner from "../../../components/Spinner";
 import FiltersSkeleton from "../_Filters/FiltersSkeleton";
 
 export async function generateStaticParams() {
-  return i18n.locales.map(async (locale) => {
+  const params: Record<string, string>[] = [];
+
+  for (const locale of i18n.locales) {
     const jobResponse = await getJobs({ locale });
-    const numOfPages = Math.ceil(jobResponse?.length || 1 / JOBS_LIMIT);
+    const numOfPages = Math.ceil((jobResponse?.length || 1) / JOBS_LIMIT);
 
     for (let i = 0; i < numOfPages; i++) {
-      return { locale, pageIndex: i };
+      params.push({ locale, pageIndex: i.toString() });
     }
-  });
+  }
+
+  return params;
 }
 
 export default async function Home({
@@ -25,8 +29,6 @@ export default async function Home({
 }: {
   params: { locale: Locale; pageIndex: number };
 }) {
-  console.log("pageIndex", typeof params.pageIndex, params.pageIndex);
-
   const filtersPromise = getFilters({
     locale: params.locale,
     init: { next: { revalidate: JOBS_REVALIDATE_TIME } },
