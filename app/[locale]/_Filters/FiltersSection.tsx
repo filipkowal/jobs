@@ -111,7 +111,6 @@ export default function FiltersSection({
           locale={locale}
           activeFilters={activeFilters}
           setActiveFilters={setActiveFilters}
-          setOpenFilterName={setOpenFilterName}
           dict={{ Clear: dict["Clear"] }}
         />
       </div>

@@ -1,30 +1,27 @@
 import Link from "next/link";
-import { Button } from "../../../components";
-import { ActiveFilterName, ActiveFilters, Locale } from "../../../utils";
+import { ActiveFilters, Locale } from "../../../utils";
 import { Dispatch, SetStateAction } from "react";
-import { OpenFilterName } from "./FiltersSection";
 
 export default function FiltersClearButton({
   locale,
   activeFilters,
   setActiveFilters,
-  setOpenFilterName,
   dict,
+  className,
 }: {
   locale: Locale;
   activeFilters: ActiveFilters;
   setActiveFilters: Dispatch<SetStateAction<ActiveFilters>>;
-  setOpenFilterName: Dispatch<OpenFilterName>;
   dict: { Clear: string };
+  className?: string;
 }) {
   return activeFilters && Object.keys(activeFilters).length ? (
     <Link href={`/${locale}`}>
       <span
         onClick={() => {
           setActiveFilters({});
-          setOpenFilterName("");
         }}
-        className="font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer"
+        className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1 mr-2 mb-2 break-keep inline-block cursor-pointer ${className}`}
       >
         <svg
           className="w-6 h-6 inline pr-1 pb-1"
