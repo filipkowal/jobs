@@ -37,11 +37,13 @@ export default function JobRowAccordion({
       return landingPageUrl || "";
     }
 
-    if (openJobId === jobId || isOpen) {
-      return `/${params.locale}`;
-    }
+    // @fixme add individual job page
 
-    return `/${params.locale}${`/${jobId}`}#${jobId}`;
+    // if (openJobId === jobId || isOpen) {
+    //   return `/${params.locale}`;
+    // }
+
+    // return `/${params.locale}${`/${jobId}`}#${jobId}`;
   };
 
   return (
