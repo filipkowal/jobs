@@ -23,6 +23,7 @@ const RangeSlider = ({
   className?: string;
 }) => {
   function handleOnValueChange(newValue: number[]) {
+    console.log(newValue, min);
     if (Array.isArray(value)) {
       if (newValue[0] === min && newValue[1] === max) {
         return onValueChange(null);
@@ -31,6 +32,7 @@ const RangeSlider = ({
       return onValueChange(newValue);
     }
 
+    if (newValue[0] === min) return onValueChange(null);
     return onValueChange(newValue[0]);
   }
 
