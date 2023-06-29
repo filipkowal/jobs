@@ -12,7 +12,7 @@ import {
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 import FiltersModal, { FiltersModalDict } from "./FiltersModal";
 import { useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useMemo, useState } from "react";
 import FiltersClearButton from "./FiltersClearButton";
 import FilterButton from "./FilterButton";
 
@@ -74,6 +74,10 @@ export default function FiltersSection({
           onClick={() => setOpenFilterName("all")}
           className="text-digitalent-blue pr-2 w-8 h-8 cursor-pointer"
         />
+        <NumberOfFiltersIcon
+          activeFilters={activeFilters}
+          setOpenFilterName={setOpenFilterName}
+        />
 
         <>
           {Object.keys(filters)
@@ -121,4 +125,26 @@ export default function FiltersSection({
       </div>
     </>
   );
+}
+
+function NumberOfFiltersIcon({
+  activeFilters,
+  setOpenFilterName,
+}: {
+  activeFilters: ActiveFilters;
+  setOpenFilterName: Dispatch<SetStateAction<OpenFilterName>>;
+}) {
+  if (!activeFilters) return null;
+  if (Object.keys(activeFilters).length === 0) return null;
+
+  return Object.keys(activeFilters).length ? (
+    <span
+      onClick={() => {
+        setOpenFilterName("all");
+      }}
+      className="absolute -top-2 -left-2 cursor-pointer bg-digitalent-green text-white font-title w-5 h-5 flex justify-center items-center rounded-full"
+    >
+      {Object.keys(activeFilters).length}
+    </span>
+  ) : null;
 }

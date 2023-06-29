@@ -48,7 +48,7 @@ export default function CompareButton({
       {!buttonActive ? (
         <ButtonWithIcon />
       ) : (
-        <Link href={params?.locale + "/compare"}>
+        <Link href={"/" + params?.locale + "/compare"}>
           <ButtonWithIcon />
         </Link>
       )}
