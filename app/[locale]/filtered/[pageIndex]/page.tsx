@@ -6,7 +6,6 @@ import FiltersSectionContainer from "../../_Filters/FiltersSectionContainer";
 import Title, { TitleSkeleton } from "../../Title";
 import { getCustomBoard } from "../../../../utils/server";
 import { Suspense } from "react";
-import Spinner from "../../../../components/Spinner";
 import FiltersSkeleton from "../../_Filters/FiltersSkeleton";
 import { ActiveFilters } from "../../../../utils";
 import JobTableSkeleton from "../../JobTableSkeleton";

@@ -25,7 +25,9 @@ export default function FiltersSkeleton() {
         </span>
       </div>
 
-      <span className="block lg:hidden border-digitalent-blue border-2 py-1 px-3 text-digitalent-blue ml-1" />
+      <span className="block lg:hidden w-fit border-digitalent-blue border-2 py-1 px-3 text-digitalent-blue ml-1 blur-sm animate-pulse">
+        Filter &nbsp;&nbsp; H
+      </span>
     </div>
   );
 }
