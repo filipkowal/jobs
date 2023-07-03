@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import Spinner from "../../../components/Spinner";
 import FiltersSkeleton from "../_Filters/FiltersSkeleton";
 import { ActiveFilters } from "../../../utils";
+import JobTableSkeleton from "../JobTableSkeleton";
 
 export default async function Home({
   params,
@@ -46,7 +47,7 @@ export default async function Home({
         </Suspense>
       )}
 
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<JobTableSkeleton />}>
         {await JobTable({
           params,
           jobsPromise,
