@@ -20,3 +20,16 @@ export default async function Title({ locale }: { locale: Locale }) {
     </div>
   );
 }
+
+export function TitleSkeleton() {
+  return (
+    <div className="md:my-40 mb-14 mt-28 text-center blur-xl animate-pulse min-h:[123.188px]">
+      <h1 className="text-4xl md:text-[3.6rem] font-medium mb-4 font-title leading-snug text-digitalent-blue">
+        Handverlesene IT Jobs bei TOP Unternehmen
+      </h1>
+      <h2 className="text-xl font-serif font-light text-digitalent-blue">
+        Garantiertes Feedback innert 48 Stunden
+      </h2>
+    </div>
+  );
+}
