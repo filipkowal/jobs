@@ -51,7 +51,7 @@ export default function Modal({
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel
-                  className={`transform h-fit overflow-hidden  bg-digitalent-gray-light text-digitalent-blue px-4 py-10 md:p-16 text-left align-middle shadow-xl transition-all w-[60rem] max-w-full`}
+                  className={`transform h-[100vh] sm:h-fit overflow-hidden  bg-digitalent-gray-light text-digitalent-blue px-4 py-7 sm:py-10 md:p-16 text-left align-middle shadow-xl transition-all w-[60rem] max-w-full`}
                 >
                   <svg
                     className="w-6 h-6 absolute right-6 top-6"
@@ -68,7 +68,7 @@ export default function Modal({
                   </svg>
                   <Dialog.Title
                     as="h3"
-                    className="text-2xl font-title font-medium uppercase leading-6 pb-12 mt-8 sm:mt-0"
+                    className="text-2xl font-title font-medium uppercase leading-6 pb-6 sm:pb-12"
                   >
                     {title}
                   </Dialog.Title>
