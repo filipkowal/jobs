@@ -122,6 +122,10 @@ export default function FiltersSection({
           {dict["Filters"]}
           <AdjustmentsHorizontalIcon className="ml-2 mb-1 w-6 h-6 inline-block" />
         </span>
+        <NumberOfFiltersIcon
+          activeFilters={activeFilters}
+          setOpenFilterName={setOpenFilterName}
+        />
       </div>
     </>
   );
@@ -142,7 +146,7 @@ function NumberOfFiltersIcon({
       onClick={() => {
         setOpenFilterName("all");
       }}
-      className="absolute -top-2 -left-2 cursor-pointer bg-digitalent-green text-white font-title w-5 h-5 flex justify-center items-center rounded-full"
+      className="absolute -top-2 right-0 sm:!-left-2 cursor-pointer bg-digitalent-green text-white font-title w-5 h-5 flex justify-center items-center rounded-full"
     >
       {Object.keys(activeFilters).length}
     </span>
