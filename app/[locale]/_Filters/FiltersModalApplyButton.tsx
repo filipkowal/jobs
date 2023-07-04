@@ -14,7 +14,7 @@ export default function ApplyFiltersButton({
   activeFilters: JobsQuery;
   setIsOpen: (isOpen: OpenFilterName) => void;
   locale: Locale;
-  dict: { "Apply filters": string };
+  dict: { "Apply filters": string; Apply: string };
 }) {
   const router = useRouter();
   const [jobsLength, setJobsLength] = useState(0);
@@ -67,7 +67,9 @@ export default function ApplyFiltersButton({
       name="Apply filters"
       type="primary"
     >
-      {`${dict["Apply filters"]} ${isLoading ? "" : `(${jobsLength})`} `}
+      <span className="sm:hidden inline">{dict["Apply"]}</span>
+      <span className="hidden sm:inline">{dict["Apply filters"]}</span>
+      {` ${isLoading ? "" : `(${jobsLength})`} `}
       <LoadingEllipsis isLoading={isLoading} />
     </Button>
   );

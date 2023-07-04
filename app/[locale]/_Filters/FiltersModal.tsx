@@ -245,7 +245,10 @@ export default function FiltersModal({
           activeFilters={activeFilters}
           setIsOpen={setOpenFilterName}
           locale={locale}
-          dict={{ "Apply filters": dict["Apply filters"] }}
+          dict={{
+            "Apply filters": dict["Apply filters"],
+            Apply: dict["Apply"],
+          }}
         />
       </div>
     </Modal>
@@ -253,6 +256,7 @@ export default function FiltersModal({
 }
 
 export interface FiltersModalDict {
+  Apply: string;
   "Apply filters": string;
   Filters: string;
   "More...": string;
