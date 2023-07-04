@@ -24,7 +24,7 @@ export default function FiltersClearButton({
         className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1 mr-2 mb-2 break-keep inline-block cursor-pointer ${className}`}
       >
         <svg
-          className="w-6 h-6 inline pr-1 pb-1"
+          className="hidden sm:inline w-6 h-6 pr-1 pb-1"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
