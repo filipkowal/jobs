@@ -25,7 +25,12 @@ export function middleware(request: NextRequest) {
 
   if (PUBLIC_FILE.test(pathname)) return;
 
-  if (pathname.includes("/images") || pathname.includes("/fonts")) return;
+  if (
+    pathname.includes("/images") ||
+    pathname.includes("/fonts") ||
+    pathname.includes("sentry")
+  )
+    return;
 
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
