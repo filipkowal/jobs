@@ -2,7 +2,7 @@
 // with Sentry.
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
-const { withSentryConfig } = require('@sentry/nextjs');
+const { withSentryConfig } = require("@sentry/nextjs");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -21,7 +21,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "fonts.gstatic.com",
       },
-      { protocol: "https", hostname: "vitals.vercel-insights.com" },
+      { protocol: "https", hostname: "*vercel-insights.com" },
+      { protocol: "https", hostname: "vercel-insights.com" },
+      { protocol: "https", hostname: "*sentry.io" },
+      { protocol: "https", hostname: "sentry.io" },
     ],
   },
 };
@@ -35,5 +38,5 @@ module.exports = withBundleAnalyzer(nextConfig);
 module.exports = withSentryConfig(
   module.exports,
   { silent: true },
-  { hideSourcemaps: true },
+  { hideSourcemaps: true }
 );
