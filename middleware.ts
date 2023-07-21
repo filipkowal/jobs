@@ -17,6 +17,14 @@ function getLocale(request: NextRequest): string | undefined {
   }).languages();
   // @ts-ignore locales are readonly
   const availableLocales: string[] = i18n.locales;
+  console.log(
+    "expectedLanguages: ",
+    expectedLanguages,
+    ", availableLocales: ",
+    availableLocales,
+    ", defaultLocale: ",
+    i18n.defaultLocale
+  );
   return matchLocale(expectedLanguages, availableLocales, i18n.defaultLocale);
 }
 
