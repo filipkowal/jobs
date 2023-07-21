@@ -197,7 +197,7 @@ export default function ApplicationFormAboutYou({
           <div>
             {dict["termsAgreed1"]}
             <a
-              href="https://dttest.ch/stewatec/datenschutz/"
+              href="https://talentforce.ch/legal/datenschutz-rekrutierungsprozess/"
               className="font-bold"
             >
               {" " + dict["termsAgreed2"] + " "}
