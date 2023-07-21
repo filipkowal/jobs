@@ -63,10 +63,10 @@
     "Interview in 24h": "Entretien d'embauche en 24h"
   },
   "compareJobTable": {
-    "Please select a file with a valid type": "Veuillez sélectionner un fichier avec un type valide",
+    "Please select a file with a valid type": "Sélectionne un fichier avec un type valide",
     "E-mail": "E-mail",
     "Next": "Suivant",
-    "Drop CV files or click to select": "Déposez les fichiers CV ou cliquez pour sélectionner",
+    "Drop CV files or click to select": "Pour envoyer ton CV, clique ici",
     "invalidEmail": "Adresse e-mail invalide.",
     "Workload": "Volume de travail",
     "Home Office": "Home-Office",
