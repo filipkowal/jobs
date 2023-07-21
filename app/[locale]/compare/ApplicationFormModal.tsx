@@ -107,7 +107,8 @@ export interface ApplicationDict {
   "Apply for": string;
   jobs: string;
   "Something went wrong": string;
-  recruiterInfo: string;
+  recruiterInfo1: string;
+  recruiterInfo2: string;
   "Drop CV files or click to select": string;
   invalidEmail: string;
   fileInput: {
