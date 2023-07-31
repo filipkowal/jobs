@@ -1,5 +1,5 @@
 import { GetServerSidePropsContext } from "next";
-import { getJobs, Locale } from "../../../utils";
+import { getJobs, JOBS_REVALIDATE_TIME, Locale } from "../../../utils";
 import CompareJobTable from "./CompareJobTable";
 import { getDictionary } from "../../../utils/server";
 
@@ -10,6 +10,7 @@ export default async function ComparePage({
 }) {
   const { jobs } = await getJobs({
     locale: params.locale as Locale,
+    init: { next: { revalidate: JOBS_REVALIDATE_TIME } },
   });
 
   const dict = await getDictionary(params.locale as Locale);

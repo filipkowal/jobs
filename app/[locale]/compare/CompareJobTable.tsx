@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import Button from "../../../components/Button";
 import { Job, Locale } from "../../../utils";
 import { CompareContext } from "../CompareContextProvider";
@@ -19,18 +19,21 @@ export default function CompareJobTable({
   locale: Locale;
   dict: CompareJobTableDict;
 }) {
+  const COLUMN_WIDTH_WITH_MARGIN = 432;
+
   const { likedJobs: likedJobsIds } = useContext(CompareContext);
-  const likedJobs = jobs.filter((job) =>
-    likedJobsIds.includes(job.id as string)
-  );
+
   const [jobsCompared, setJobsCompared] = useState<string[]>([]);
   const [applicationBasket, setApplicationBasket] =
     useState<string[]>(jobsCompared);
   const [isApplicationOpen, setIsApplicationOpen] = useState(false);
   const tableRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const COLUMN_WIDTH_WITH_MARGIN = 432;
   const [showRightArrowButton, setShowRightArrowButton] = useState(false);
+
+  const likedJobs = useMemo(() => {
+    return jobs.filter((job) => likedJobsIds.includes(job.id as string));
+  }, [jobs, likedJobsIds]);
 
   useEffect(() => {
     setApplicationBasket(jobsCompared);
