@@ -2,7 +2,7 @@ import qs from "query-string";
 import { SERVER_URL, MOCK_SERVER_URL } from "./constants";
 import type { Filters, Jobs } from "./types";
 import { type Locale } from "../i18n-config";
-import { getCustomBoard } from "./server/helpers";
+import { getCustomBoard } from "./helpers";
 
 export async function postData(endpoint: string, locale: Locale, data: any) {
   const url = `${SERVER_URL}/${locale}/${endpoint}`;
@@ -62,7 +62,20 @@ export async function getJobs({
   searchParams?: any;
   init?: RequestInit;
 }): Promise<Jobs> {
-  return await getData({ endpoint: "jobs", locale, searchParams, init });
+  const customBoard = await getCustomBoard();
+
+  return await getData({
+    endpoint: "jobs",
+    locale,
+    searchParams:
+      customBoard.employerNameFilter.length > 0
+        ? {
+            ...searchParams,
+            employerName: customBoard.employerNameFilter,
+          }
+        : searchParams,
+    init,
+  });
 }
 
 export async function getFilters({
