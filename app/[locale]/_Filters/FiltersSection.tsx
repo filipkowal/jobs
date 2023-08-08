@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  allUppercase,
   type ActiveFilterName,
   CustomBoard,
   Locale,
@@ -50,6 +49,20 @@ export default function FiltersSection({
     () => pickActiveFiltersFromSearchParams(searchParams),
     [searchParams]
   );
+  const numberOfVisibleFliterButtons = useMemo(
+    () => (locale === "fr" ? 6 : 7),
+    [locale]
+  );
+  const filtersNotHiddenNames = useMemo(
+    () =>
+      Object.keys(filters).filter(
+        (filterName) =>
+          !customBoard.hiddenFilters?.[
+            filterName as keyof typeof customBoard.hiddenFilters
+          ]
+      ),
+    [filters, customBoard]
+  );
 
   const [openFilterName, setOpenFilterName] = useState<OpenFilterName>("");
   const [activeFilters, setActiveFilters] =
@@ -80,29 +93,27 @@ export default function FiltersSection({
         />
 
         <>
-          {Object.keys(filters)
-            .slice(0, locale === "fr" ? 5 : 6)
-            .map((filterName) =>
-              customBoard.hiddenFilters?.[
-                filterName as keyof typeof customBoard.hiddenFilters
-              ] ? null : (
-                <FilterButton
-                  key={filterName}
-                  filterName={filterName}
-                  setOpenFilterName={setOpenFilterName}
-                  activeFilters={activeFilters}
-                  dict={dict}
-                />
-              )
-            )}
+          {filtersNotHiddenNames
+            .slice(0, numberOfVisibleFliterButtons - 1)
+            .map((filterName) => (
+              <FilterButton
+                key={filterName}
+                filterName={filterName}
+                setOpenFilterName={setOpenFilterName}
+                activeFilters={activeFilters}
+                dict={dict}
+              />
+            ))}
         </>
 
-        <span
-          onClick={() => setOpenFilterName("all")}
-          className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
-        >
-          {dict["More..."]}
-        </span>
+        {filtersNotHiddenNames.length > numberOfVisibleFliterButtons ? (
+          <span
+            onClick={() => setOpenFilterName("all")}
+            className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
+          >
+            {dict["More..."]}
+          </span>
+        ) : null}
 
         <FiltersClearButton
           locale={locale}
