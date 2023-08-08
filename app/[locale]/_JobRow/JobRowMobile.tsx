@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Job, Locale } from "../../../utils";
-import { getCustomBoard, getDictionary } from "../../../utils/server";
+import { getCustomBoard } from "../../../utils";
+import { getDictionary } from "../../../utils/server";
 
 export default async function JobRowMobile({
   job,

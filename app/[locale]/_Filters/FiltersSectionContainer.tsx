@@ -1,6 +1,7 @@
 import { type Filters } from "../../../utils";
 import { type Locale } from "../../../i18n-config";
-import { getCustomBoard, getDictionary } from "../../../utils/server";
+import { getDictionary } from "../../../utils/server";
+import { getCustomBoard } from "../../../utils";
 import FiltersSection from "./FiltersSection";
 
 interface Salary {

@@ -1,4 +1,5 @@
-import { getCustomBoard, getDictionary } from "../../utils/server";
+import { getDictionary } from "../../utils/server";
+import { getCustomBoard } from "../../utils";
 import { Locale } from "../../i18n-config";
 
 export default async function Title({ locale }: { locale: Locale }) {

@@ -2,6 +2,11 @@ import { ReadonlyURLSearchParams } from "next/navigation";
 import { FILTER_NAMES } from "./constants";
 import { ActiveFilters } from "./types";
 
+const customBoard = import("../customBoard.json").then(
+  (module) => module.default
+);
+export const getCustomBoard = async () => customBoard;
+
 export const allUppercase = (text: string): string =>
   text.replace(/([A-Z])/g, " $&").replace(/^./, text[0].toUpperCase());
 

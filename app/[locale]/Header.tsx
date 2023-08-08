@@ -6,7 +6,8 @@ import DigitalentLogo from "../../public/logo.png";
 import Thumnbail from "../../public/thumbnail.png";
 import { Suspense } from "react";
 import Spinner from "../../components/Spinner";
-import { getCustomBoard, getDictionary } from "../../utils/server/helpers";
+import { getDictionary } from "../../utils/server/helpers";
+import { getCustomBoard } from "../../utils/helpers";
 import { type Locale } from "../../i18n-config";
 import CompareButton from "./CompareButton";
 

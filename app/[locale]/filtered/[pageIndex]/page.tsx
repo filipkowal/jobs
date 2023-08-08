@@ -4,7 +4,7 @@ import JobTable from "../../JobTable";
 import { getFilters, getJobs } from "../../../../utils/server";
 import FiltersSectionContainer from "../../_Filters/FiltersSectionContainer";
 import Title, { TitleSkeleton } from "../../Title";
-import { getCustomBoard } from "../../../../utils/server";
+import { getCustomBoard } from "../../../../utils";
 import { Suspense } from "react";
 import FiltersSkeleton from "../../_Filters/FiltersSkeleton";
 import { ActiveFilters } from "../../../../utils";

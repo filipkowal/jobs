@@ -9,7 +9,8 @@ import { Inter, Merriweather } from "next/font/google";
 import type { Metadata } from "next";
 import Script from "next/script";
 import CookiePopup from "../../components/CookiePopup";
-import { getCustomBoard, getDictionary } from "../../utils/server/helpers";
+import { getDictionary } from "../../utils/server/helpers";
+import { getCustomBoard } from "../../utils";
 
 export const metadata: Metadata = {
   title: "Digitalent Jobs",

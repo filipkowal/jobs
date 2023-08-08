@@ -13,10 +13,5 @@ const dictionaries = {
     import("../../dictionaries/fr.json").then((module) => module.default),
 };
 
-const customBoard = import("../../customBoard.json").then(
-  (module) => module.default
-);
-
 export const getDictionary = async (locale: Locale) =>
   dictionaries[i18n.locales.includes(locale) ? locale : i18n.defaultLocale]();
-export const getCustomBoard = async () => customBoard;
