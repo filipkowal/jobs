@@ -3,76 +3,81 @@
  * Do not make direct changes to the file.
  */
 
+
 export interface paths {
   "/{language}/jobs": {
     get: {
       parameters: {
-        /**
-         * @example [
-         *   "frontend",
-         *   "fullstack"
-         * ]
-         */
-        /**
-         * @example [
-         *   "react",
-         *   "nodejs"
-         * ]
-         */
-        /**
-         * @example [
-         *   "it"
-         * ]
-         */
-        /**
-         * @example [
-         *   "contributor",
-         *   "expert",
-         *   "leader"
-         * ]
-         */
-        /**
-         * @example [
-         *   "StartUp"
-         * ]
-         */
-        /**
-         * @example [
-         *   "german",
-         *   "english"
-         * ]
-         */
-        /**
-         * @example [
-         *   80,
-         *   100
-         * ]
-         */
-        /** @example 70 */
-        /** @example 1240 */
-        /**
-         * @example [
-         *   "Baden",
-         *   "Lugano"
-         * ]
-         */
-        /** @example 80000 */
-        /** @example CHF */
-        /** @description For pagination: index of the first job to be sent */
-        /** @description For pagination: limit of jobs to be sent */
         query?: {
+          /**
+           * @example [
+           *   "frontend",
+           *   "fullstack"
+           * ]
+           */
           careerFields?: components["schemas"]["Tags"];
+          /**
+           * @example [
+           *   "react",
+           *   "nodejs"
+           * ]
+           */
           technologies?: components["schemas"]["Tags"];
+          /**
+           * @example [
+           *   "it"
+           * ]
+           */
           industries?: components["schemas"]["Tags"];
+          /**
+           * @example [
+           *   "contributor",
+           *   "expert",
+           *   "leader"
+           * ]
+           */
           jobLevels?: components["schemas"]["Tags"];
+          /**
+           * @example [
+           *   "StartUp"
+           * ]
+           */
           companySizes?: components["schemas"]["Tags"];
+          /**
+           * @example [
+           *   "german",
+           *   "english"
+           * ]
+           */
           workLanguages?: components["schemas"]["Tags"];
+          /**
+           * @example [
+           *   80,
+           *   100
+           * ]
+           */
           workload?: components["schemas"]["Range"];
+          /** @example 70 */
           homeOffice?: number;
+          /**
+           * @example [
+           *   "Baden",
+           *   "Lugano"
+           * ]
+           */
           states?: string[];
+          /** @example 80000 */
           salary?: number;
+          /** @example CHF */
           currency?: string;
+          /**
+           * @description Employer name. Case insensitive.
+           * @example amag group ag
+           */
+          employerName?: string;
+          /** @description For pagination: index of the first job to be sent */
           offset?: number;
+          /** @description For pagination: limit of jobs to be sent */
           limit?: number;
         };
         path: {
@@ -96,9 +101,9 @@ export interface paths {
   "/{language}/jobs/{id}": {
     get: {
       parameters: {
-        /** @description ID of the job */
         path: {
           language: components["schemas"]["Language"];
+          /** @description ID of the job */
           id: components["schemas"]["Id"];
         };
       };
@@ -489,8 +494,8 @@ export interface components {
   };
   responses: never;
   parameters: {
-    UserId: components["schemas"]["Id"];
-    BoardId: components["schemas"]["Id"];
+    UserId?: components["schemas"]["Id"];
+    BoardId?: components["schemas"]["Id"];
     Language: components["schemas"]["Language"];
     /**
      * @example [
@@ -498,20 +503,20 @@ export interface components {
      *   "fullstack"
      * ]
      */
-    CareerFields: components["schemas"]["Tags"];
+    CareerFields?: components["schemas"]["Tags"];
     /**
      * @example [
      *   "react",
      *   "nodejs"
      * ]
      */
-    Technologies: components["schemas"]["Tags"];
+    Technologies?: components["schemas"]["Tags"];
     /**
      * @example [
      *   "it"
      * ]
      */
-    Industries: components["schemas"]["Tags"];
+    Industries?: components["schemas"]["Tags"];
     /**
      * @example [
      *   "contributor",
@@ -519,22 +524,25 @@ export interface components {
      *   "leader"
      * ]
      */
-    JobLevels: components["schemas"]["Tags"];
+    JobLevels?: components["schemas"]["Tags"];
     /**
      * @example [
      *   80,
      *   100
      * ]
      */
-    Workload: components["schemas"]["Range"];
+    Workload?: components["schemas"]["Range"];
     /** @example 70 */
-    HomeOffice: number;
-    /** @example 80000 */
-    Salary: number;
+    HomeOffice?: number;
     /** @example CHF */
-    Currency: string;
-    /** @example 1240 */
-    States: string[];
+    Currency?: string;
+    /**
+     * @example [
+     *   "Baden",
+     *   "Lugano"
+     * ]
+     */
+    States?: string[];
   };
   requestBodies: never;
   headers: never;
