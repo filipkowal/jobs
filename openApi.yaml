@@ -1,0 +1,811 @@
+openapi: 3.0.2
+info:
+  title: Jobs
+  version: "1.0"
+servers:
+- url: https://merge.digitalent.cloud/api/vertical/
+- url: https://virtserver.swaggerhub.com/filipkowal/jobs/1.0
+  description: SwaggerHub API Auto Mocking
+paths:
+  /{language}/jobs:
+    get:
+      tags:
+      - job
+      parameters:
+      - name: language
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Language'
+      - name: careerFields
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Tags'
+        example:
+        - frontend
+        - fullstack
+      - name: technologies
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Tags'
+        example:
+        - react
+        - nodejs
+      - name: industries
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Tags'
+        example:
+        - it
+      - name: jobLevels
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Tags'
+        example:
+        - contributor
+        - expert
+        - leader
+      - name: companySizes
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Tags'
+        example:
+        - StartUp
+      - name: workLanguages
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Tags'
+        example:
+        - german
+        - english
+      - name: workload
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Range'
+        example:
+        - 80
+        - 100
+      - name: homeOffice
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: number
+        example: 70
+      - name: states
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+        example:
+        - Baden
+        - Lugano
+      - name: salary
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: number
+        example: 80000
+      - name: currency
+        in: query
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: string
+        example: CHF
+      - name: employerName
+        in: query
+        description: Employer name. Case insensitive.
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: string
+        example: amag group ag
+      - name: offset
+        in: query
+        description: "For pagination: index of the first job to be sent"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+      - name: limit
+        in: query
+        description: "For pagination: limit of jobs to be sent"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: number
+      responses:
+        "200":
+          description: Get all or filtered and paginated jobs and active filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "400":
+          description: Invalid filters supplied
+        "404":
+          description: Language not found
+  /{language}/jobs/{id}:
+    get:
+      tags:
+      - job
+      parameters:
+      - name: language
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Language'
+      - name: id
+        in: path
+        description: ID of the job
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Id'
+      responses:
+        "200":
+          description: Get individual Job data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        "404":
+          description: Language or jobId not found
+  /{language}/filters:
+    get:
+      tags:
+      - filter
+      parameters:
+      - name: language
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Language'
+      - name: userId
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/Id'
+      - name: boardId
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/Id'
+      responses:
+        "200":
+          description: Get all filters' possible values
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filters'
+        "404":
+          description: Language not found
+  /{language}/customBoard:
+    get:
+      tags:
+      - customBoard
+      parameters:
+      - name: language
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Language'
+      - name: userId
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/Id'
+      - name: boardId
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          $ref: '#/components/schemas/Id'
+      responses:
+        "200":
+          description: Get content and styling of a custom board
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomBoard'
+        "400":
+          description: Invalid request body supplied
+        "404":
+          description: Language not found
+  /{language}/subscribe:
+    post:
+      tags:
+      - filter
+      parameters:
+      - name: language
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Language'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/subscribe_body'
+      responses:
+        "200":
+          description: Subscription successful
+          content:
+            application/json:
+              schema:
+                type: string
+        "400":
+          description: Invalid request body supplied
+  /{language}/save:
+    post:
+      tags:
+      - job
+      parameters:
+      - name: language
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Language'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/save_body'
+      responses:
+        "200":
+          description: Save successful
+          content:
+            application/json:
+              schema:
+                type: string
+        "400":
+          description: Invalid request body supplied
+  /{language}/apply:
+    post:
+      tags:
+      - job
+      parameters:
+      - name: language
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Language'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/apply_body'
+      responses:
+        "200":
+          description: 'Application successful. '
+          content:
+            application/json:
+              schema:
+                type: string
+                example: You've successfuly applied for 2 jobs. Check your email to
+                  arrange an interview.
+        "400":
+          description: Invalid request body supplied
+  /{language}/refer:
+    post:
+      tags:
+      - job
+      parameters:
+      - name: language
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/Language'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/refer_body'
+      responses:
+        "200":
+          description: Unique link for job referral
+          content:
+            application/json:
+              schema:
+                type: string
+                format: url
+        "400":
+          description: Invalid request body supplied
+components:
+  schemas:
+    Id:
+      type: string
+      example: "123"
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          example: Wiener Str.
+        city:
+          type: string
+          example: Bern
+        state:
+          type: string
+          example: Bern
+        region:
+          type: string
+          example: Western Part of Switzerland
+        country:
+          type: string
+          example: Switzerland
+        geoCoordinates:
+          $ref: '#/components/schemas/GeoCoordinates'
+    GeoCoordinate:
+      pattern: ^(-?\d+(\.\d+)?)
+      type: string
+      example: "47.4708538"
+    GeoCoordinates:
+      type: object
+      properties:
+        latitude:
+          $ref: '#/components/schemas/GeoCoordinate'
+        longitude:
+          $ref: '#/components/schemas/GeoCoordinate'
+    DateTime:
+      type: string
+      format: date-time
+    Tags:
+      type: array
+      example:
+      - tag1
+      - tag2
+      - tag3
+      items:
+        type: string
+    File:
+      type: object
+      properties:
+        content:
+          type: string
+          format: base64
+          example: "data:image/webp;base64,UklGRs61AABXRUJQVlA4WAoAAA"
+        lastModified:
+          type: number
+        name:
+          type: string
+          example: cv.webp
+        size:
+          type: number
+        type:
+          type: string
+          example: image/webp
+    SalaryRange:
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/Range'
+        currency:
+          type: string
+        unit:
+          type: string
+      example:
+        amount:
+        - 40000
+        - 100000
+        currency: CHF
+        unit: year
+    Employer:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          type: string
+          example: Baggenstos
+        logo:
+          type: string
+          format: url
+    Range:
+      maxLength: 2
+      minLength: 2
+      type: array
+      example:
+      - 20
+      - 80
+      items:
+        type: number
+    Language:
+      maxLength: 2
+      type: string
+      default: de
+      enum:
+      - de
+      - en
+      - fr
+    Job:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        title:
+          type: string
+          example: React Engineer
+        datePosted:
+          $ref: '#/components/schemas/DateTime'
+        address:
+          $ref: '#/components/schemas/Address'
+        employer:
+          $ref: '#/components/schemas/Employer'
+        salary:
+          $ref: '#/components/schemas/SalaryRange'
+        workload:
+          $ref: '#/components/schemas/Range'
+        homeOffice:
+          $ref: '#/components/schemas/Range'
+        tags:
+          $ref: '#/components/schemas/Tags'
+        jobLevel:
+          type: string
+          enum:
+          - contributor
+          - expert
+          - leader
+        landingPageUrl:
+          type: string
+          format: url
+        responsibilities:
+          type: string
+          format: markup
+        requirements:
+          type: string
+          format: markup
+    ActiveFilters:
+      type: object
+      properties:
+        careerFields:
+          $ref: '#/components/schemas/Tags'
+        technologies:
+          $ref: '#/components/schemas/Tags'
+        industries:
+          $ref: '#/components/schemas/Tags'
+        workLanguages:
+          $ref: '#/components/schemas/Tags'
+        jobLevels:
+          $ref: '#/components/schemas/Tags'
+        companySizes:
+          $ref: '#/components/schemas/Tags'
+        workload:
+          $ref: '#/components/schemas/Range'
+        homeOffice:
+          type: number
+          example: 70
+        salary:
+          type: number
+        states:
+          type: array
+          example:
+          - Baden
+          - Lugano
+          items:
+            type: string
+    Filters:
+      type: object
+      properties:
+        careerFields:
+          $ref: '#/components/schemas/Tags'
+        technologies:
+          $ref: '#/components/schemas/Tags'
+        industries:
+          $ref: '#/components/schemas/Tags'
+        workLanguages:
+          $ref: '#/components/schemas/Tags'
+        jobLevels:
+          $ref: '#/components/schemas/Tags'
+        companySizes:
+          $ref: '#/components/schemas/Tags'
+        workload:
+          $ref: '#/components/schemas/Range'
+        homeOffice:
+          $ref: '#/components/schemas/Range'
+        salary:
+          $ref: '#/components/schemas/SalaryRange'
+        regions:
+          type: array
+          example:
+          - name: German part of Switzerland
+            states:
+            - Zürich
+            - Bern
+          - name: Western Part of Switzerland
+            states:
+            - Geneva
+          items:
+            $ref: '#/components/schemas/Filters_regions'
+    Font:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Crimson Pro
+        url:
+          type: string
+          format: url
+          example: https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200..900&display=swap
+        weight:
+          type: string
+          example: "700"
+    CustomBoard:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Hi Anna
+        subtitle:
+          type: string
+          example: Here's a selection of jobs for you
+        logo:
+          type: string
+          format: url
+        fonts:
+          $ref: '#/components/schemas/CustomBoard_fonts'
+        backgroundColor:
+          type: string
+          format: rgb
+          example: "000000"
+        textColor:
+          type: string
+          format: rgb
+          example: ffffff
+        backgroundImage:
+          type: string
+          format: url
+    inline_response_200:
+      type: object
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        activeFilters:
+          $ref: '#/components/schemas/ActiveFilters'
+        offset:
+          type: integer
+        limit:
+          type: integer
+        length:
+          type: integer
+          description: "Length of the collection filtered by ActiveFilters, without\
+            \ pagination"
+    subscribe_body:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        activeFilters:
+          $ref: '#/components/schemas/ActiveFilters'
+    save_body:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        jobId:
+          type: string
+    apply_body:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        sex:
+          type: string
+          enum:
+          - man
+          - woman
+          - other
+        name:
+          type: string
+        message:
+          type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+        linkedIn:
+          type: string
+          format: url
+        jobIds:
+          type: array
+          items:
+            $ref: '#/components/schemas/Id'
+    refer_body:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        jobId:
+          $ref: '#/components/schemas/Id'
+    Filters_regions:
+      type: object
+      properties:
+        name:
+          type: string
+        states:
+          type: array
+          items:
+            type: string
+    CustomBoard_fonts:
+      type: object
+      properties:
+        title:
+          $ref: '#/components/schemas/Font'
+        interface:
+          $ref: '#/components/schemas/Font'
+        body:
+          $ref: '#/components/schemas/Font'
+  parameters:
+    UserId:
+      name: userId
+      in: query
+      required: false
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/Id'
+    BoardId:
+      name: boardId
+      in: query
+      required: false
+      style: form
+      explode: true
+      schema:
+        $ref: '#/components/schemas/Id'
+    Language:
+      name: language
+      in: path
+      required: true
+      style: simple
+      explode: false
+      schema:
+        $ref: '#/components/schemas/Language'
+    CareerFields:
+      name: careerFields
+      in: query
+      required: false
+      style: form
+      explode: false
+      schema:
+        $ref: '#/components/schemas/Tags'
+      example:
+      - frontend
+      - fullstack
+    Technologies:
+      name: technologies
+      in: query
+      required: false
+      style: form
+      explode: false
+      schema:
+        $ref: '#/components/schemas/Tags'
+      example:
+      - react
+      - nodejs
+    Industries:
+      name: industries
+      in: query
+      required: false
+      style: form
+      explode: false
+      schema:
+        $ref: '#/components/schemas/Tags'
+      example:
+      - it
+    JobLevels:
+      name: jobLevels
+      in: query
+      required: false
+      style: form
+      explode: false
+      schema:
+        $ref: '#/components/schemas/Tags'
+      example:
+      - contributor
+      - expert
+      - leader
+    Workload:
+      name: workload
+      in: query
+      required: false
+      style: form
+      explode: false
+      schema:
+        $ref: '#/components/schemas/Range'
+      example:
+      - 80
+      - 100
+    HomeOffice:
+      name: homeOffice
+      in: query
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: number
+      example: 70
+    Currency:
+      name: currency
+      in: query
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: string
+      example: CHF
+    States:
+      name: states
+      in: query
+      required: false
+      style: form
+      explode: false
+      schema:
+        type: array
+        items:
+          type: string
+      example:
+      - Baden
+      - Lugano
