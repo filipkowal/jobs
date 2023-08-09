@@ -58,8 +58,9 @@
   "Become a member": "Mitglied werden",
   "Share with a friend": "Job teilen und Geld verdienen",
   "title": {
-    "Finest jobs selection": "Bereit für eine neue Mission?",
-    "Interview in 24h": "Entdecke ausgewählte Karrieremöglichkeiten in Schweizer Top-Unternehmen! Mit garantiertem Feedback innert 2 Tagen"
+    "title": "Bereit für eine neue Mission?",
+    "subtitle.1": "Entdecke ausgewählte Karrieremöglichkeiten in Schweizer Top-Unternehmen!",
+    "subtitle.2": "Mit garantiertem Feedback innert 2 Tagen"
   },
   "compareJobTable": {
     "E-mail": "E-mail",

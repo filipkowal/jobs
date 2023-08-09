@@ -59,8 +59,9 @@
   "Become a member": "Devenir membre",
   "Share with a friend": "Partager avec un ami",
   "title": {
-    "Finest jobs selection": "Prêt pour une nouvelle mission?",
-    "Interview in 24h": "Découvrez des opportunités de carrière sélectionnées dans des entreprises suisses de premier plan ! Avec un retour d'information garanti dans les 2 jours"
+    "title": "Prêt pour une nouvelle mission?",
+    "subtitle.1": "Découvrez des opportunités de carrière sélectionnées dans des entreprises suisses de premier plan!",
+    "subtitle.2": "Avec un retour d'information garanti dans les 2 jours"
   },
   "compareJobTable": {
     "Please select a file with a valid type": "Sélectionne un fichier avec un type valide",
