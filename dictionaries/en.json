@@ -58,8 +58,9 @@
   "Become a member": "Become a member",
   "Share with a friend": "Share with a friend",
   "title": {
-    "Finest jobs selection": "Ready for a new mission?",
-    "Interview in 24h": "Discover selected career opportunities in top Swiss companies! With guaranteed feedback within 2 days"
+    "title": "Ready for a new mission?",
+    "subtitle.1": "Discover selected career opportunities in top Swiss companies!",
+    "subtitle.2": "With guaranteed feedback within 2 days"
   },
   "compareJobTable": {
     "E-mail": "E-mail",
