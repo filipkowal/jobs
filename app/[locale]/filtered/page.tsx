@@ -1,7 +1,7 @@
 import { JOBS_LIMIT } from "../../../utils/constants";
 import { type Locale } from "../../../i18n-config";
 import JobTable from "../JobTable";
-import { getFilters, getJobs } from "../../../utils/server";
+import { getFilters, getJobs } from "../../../utils";
 import FiltersSectionContainer from "../_Filters/FiltersSectionContainer";
 import Title, { TitleSkeleton } from "../Title";
 import { getCustomBoard } from "../../../utils/server";

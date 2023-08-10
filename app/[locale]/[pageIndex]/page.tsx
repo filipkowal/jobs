@@ -1,10 +1,10 @@
 import { JOBS_LIMIT, JOBS_REVALIDATE_TIME } from "../../../utils/constants";
 import { type Locale, i18n } from "../../../i18n-config";
 import JobTable from "../JobTable";
-import { getFilters, getJobs } from "../../../utils/server";
+import { getFilters, getJobs } from "../../../utils";
+import { getCustomBoard } from "../../../utils/server";
 import FiltersSectionContainer from "../_Filters/FiltersSectionContainer";
 import Title from "../Title";
-import { getCustomBoard } from "../../../utils/server";
 import { Suspense } from "react";
 import Spinner from "../../../components/Spinner";
 import FiltersSkeleton from "../_Filters/FiltersSkeleton";

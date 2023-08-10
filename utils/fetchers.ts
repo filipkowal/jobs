@@ -2,7 +2,7 @@ import qs from "query-string";
 import { SERVER_URL, MOCK_SERVER_URL } from "./constants";
 import type { Filters, Jobs } from "./types";
 import { type Locale } from "../i18n-config";
-import { getCustomBoard } from "./helpers";
+import { getCustomBoard } from "./server/helpers";
 
 export async function postData(endpoint: string, locale: Locale, data: any) {
   const url = `${SERVER_URL}/${locale}/${endpoint}`;
