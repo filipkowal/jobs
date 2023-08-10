@@ -17,14 +17,6 @@ function getLocale(request: NextRequest): string | undefined {
   }).languages();
   // @ts-ignore locales are readonly
   const availableLocales: string[] = i18n.locales;
-  console.log(
-    "expectedLanguages: ",
-    expectedLanguages,
-    ", availableLocales: ",
-    availableLocales,
-    ", defaultLocale: ",
-    i18n.defaultLocale
-  );
   return matchLocale(
     expectedLanguages?.length === 1 && expectedLanguages[0] === "*" // Negotiator returns ["*"] if no Accept-Language header is present
       ? ["en"]
