@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, Dispatch, ReactNode, useState, useEffect } from "react";
-import { scrollToElement } from "../../../utils/client";
 
 export const JobRowOpenContext = createContext<{
   jobOpen: string | undefined;
@@ -23,12 +22,6 @@ export default function JobRowOpenContextProvider({
   testJobOpen?: string;
 }) {
   const [jobOpen, setJobOpen] = useState(defaultJobOpen);
-
-  useEffect(() => {
-    const element = document?.querySelector(`#id_${defaultJobOpen}`);
-
-    scrollToElement(element);
-  }, [defaultJobOpen]);
 
   return (
     <JobRowOpenContext.Provider
