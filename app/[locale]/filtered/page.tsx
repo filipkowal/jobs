@@ -18,6 +18,8 @@ export default async function Home({
   params: { locale: Locale };
   searchParams: ActiveFilters & { [key: string]: any };
 }) {
+  const customBoard = await getCustomBoard();
+
   const filtersPromise = getFilters({
     locale: params.locale,
     init: { next: { revalidate: 0 } },
@@ -25,12 +27,12 @@ export default async function Home({
   const jobsPromise = getJobs({
     locale: params.locale,
     searchParams: {
+      employerName: customBoard.employerNameFilter,
       limit: JOBS_LIMIT,
       ...searchParams,
     },
     init: { next: { revalidate: 0 } },
   });
-  const customBoard = await getCustomBoard();
 
   return (
     <main className="min-h-[calc(100vh-33.5px)] flex flex-col items-center">

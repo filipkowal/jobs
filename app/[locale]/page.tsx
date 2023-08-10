@@ -14,6 +14,8 @@ export async function generateStaticParams() {
 }
 
 export default async function Home({ params }: { params: { locale: Locale } }) {
+  const customBoard = await getCustomBoard();
+
   const filtersPromise = getFilters({
     locale: params.locale,
     init: { next: { revalidate: JOBS_REVALIDATE_TIME } },
@@ -22,10 +24,10 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
     locale: params.locale,
     searchParams: {
       limit: JOBS_LIMIT,
+      employerName: customBoard.employerNameFilter,
     },
     init: { next: { revalidate: JOBS_REVALIDATE_TIME } },
   });
-  const customBoard = await getCustomBoard();
 
   return (
     <main className="min-h-[calc(100vh-33.5px)] flex flex-col items-center">

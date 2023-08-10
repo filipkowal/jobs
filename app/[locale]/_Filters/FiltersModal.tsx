@@ -249,6 +249,7 @@ export default function FiltersModal({
             "Apply filters": dict["Apply filters"],
             Apply: dict["Apply"],
           }}
+          customBoard={customBoard}
         />
       </div>
     </Modal>

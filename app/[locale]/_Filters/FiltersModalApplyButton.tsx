@@ -1,6 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 
-import { getJobs, JobsQuery, Locale } from "../../../utils";
+import {
+  type CustomBoard,
+  type Locale,
+  type JobsQuery,
+  getJobs,
+} from "../../../utils";
 import { Button, LoadingEllipsis } from "../../../components";
 import { OpenFilterName } from "./FiltersSection";
 import { useRouter } from "next/navigation";
@@ -10,11 +15,13 @@ export default function ApplyFiltersButton({
   setIsOpen,
   locale,
   dict,
+  customBoard,
 }: {
   activeFilters: JobsQuery;
   setIsOpen: (isOpen: OpenFilterName) => void;
   locale: Locale;
   dict: { "Apply filters": string; Apply: string };
+  customBoard: CustomBoard;
 }) {
   const router = useRouter();
   const [jobsLength, setJobsLength] = useState(0);
@@ -46,14 +53,17 @@ export default function ApplyFiltersButton({
     setIsLoading(true);
     async function fetchJobs() {
       const { length } = await getJobs({
-        searchParams: activeFilters,
+        searchParams: {
+          ...activeFilters,
+          employerName: customBoard.employerNameFilter,
+        },
         locale: locale,
       });
       setJobsLength(length || 0);
       setIsLoading(false);
     }
     fetchJobs();
-  }, [activeFilters, locale]);
+  }, [activeFilters, locale, customBoard]);
 
   return (
     <Button
