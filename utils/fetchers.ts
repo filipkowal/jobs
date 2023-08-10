@@ -62,18 +62,12 @@ export async function getJobs({
   searchParams?: any;
   init?: RequestInit;
 }): Promise<Jobs> {
-  const customBoard = await getCustomBoard();
+  const { employerName, ...restSearchParams } = searchParams;
 
   return await getData({
     endpoint: "jobs",
     locale,
-    searchParams:
-      customBoard.employerNameFilter.length > 0
-        ? {
-            ...searchParams,
-            employerName: customBoard.employerNameFilter,
-          }
-        : searchParams,
+    searchParams: employerName?.length > 0 ? searchParams : restSearchParams,
     init,
   });
 }
