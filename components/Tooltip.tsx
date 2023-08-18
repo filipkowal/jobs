@@ -28,10 +28,10 @@ export default function Tooltip({
         </Trigger>
         <Portal>
           <Content side={side}>
-            <div className="p-4 bg-digitalent-blue shadow-lg focus:ring-1 z-50">
+            <div className="p-4 text-digitalent-blue bg-white shadow-lg focus:ring-1 z-50">
               {content}
             </div>
-            <Arrow className="text-digitalent-blue stroke-digitalent-blue fill-digitalent-blue"></Arrow>
+            <Arrow className="text-white stroke-white fill-white"></Arrow>
           </Content>
         </Portal>
       </Root>
