@@ -165,7 +165,7 @@ export default function ApplicationFormAboutYou({
             }}
             required
           />
-          <span>{dict["I am applying directly"] + " *"}</span>
+          <span>{"* " + dict["I am applying directly"]}</span>
         </label>
         <label className="w-full inline-block sm:w-fit sm:ml-4">
           <Checkbox
@@ -191,7 +191,7 @@ export default function ApplicationFormAboutYou({
           >
             {" " + dict["termsAgreed2"] + " "}
           </a>
-          {dict["recruiterInfo2"] + " *"}
+          {dict["recruiterInfo2"]}
         </div>
       )}
 
@@ -206,14 +206,14 @@ export default function ApplicationFormAboutYou({
             }}
           />
           <div>
-            {dict["termsAgreed1"]}
+            {"* " + dict["termsAgreed1"]}
             <a
               href="https://talentforce.ch/legal/datenschutz-rekrutierungsprozess/"
               className="font-bold"
             >
               {" " + dict["termsAgreed2"] + " "}
             </a>
-            {dict["termsAgreed3"] + " *"}
+            {dict["termsAgreed3"]}
           </div>
         </label>
       )}
