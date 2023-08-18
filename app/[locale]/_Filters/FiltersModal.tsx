@@ -17,13 +17,16 @@ import TagsFilter from "./FiltersTagsFilter";
 import { Modal, Accordion, RangeSlider } from "../../../components";
 import FiltersClearButton from "./FiltersClearButton";
 import { OpenFilterName } from "./FiltersSection";
+import { set } from "lodash";
 
 export default function FiltersModal({
   filters,
   locale,
   dict,
   customBoard,
+  isModalOpen,
   openFilterName,
+  setIsModalOpen,
   setOpenFilterName,
   activeFilters,
   setActiveFilters,
@@ -33,6 +36,8 @@ export default function FiltersModal({
   locale: Locale;
   dict: FiltersModalDict;
   customBoard: CustomBoard;
+  isModalOpen: boolean;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   openFilterName: OpenFilterName;
   setOpenFilterName: Dispatch<SetStateAction<OpenFilterName>>;
   activeFilters: ActiveFilters;
@@ -40,11 +45,7 @@ export default function FiltersModal({
   defaultActiveFilters: ActiveFilters;
 }) {
   function isAccordionOpen(filterName: ActiveFilterName): boolean {
-    return (
-      openFilterName === filterName ||
-      !!activeFilters?.[filterName] ||
-      openFilterName === "all"
-    );
+    return openFilterName === filterName || !!activeFilters?.[filterName];
   }
 
   function setActiveFilter(filterName: ActiveFilterName, value: any) {
@@ -98,15 +99,12 @@ export default function FiltersModal({
 
   function closeModal() {
     setActiveFilters(defaultActiveFilters);
-    setOpenFilterName("");
+    setOpenFilterName("none");
+    setIsModalOpen(false);
   }
 
   return (
-    <Modal
-      isOpen={!!openFilterName}
-      setIsOpen={closeModal}
-      title={dict["Filters"]}
-    >
+    <Modal isOpen={isModalOpen} setIsOpen={closeModal} title={dict["Filters"]}>
       <div className="sm:max-h-[68vh] max-h-[62vh] w-full overflow-y-auto overflow-x-hidden sm:pr-[37px] sm:-mr-[37px]">
         {FILTER_NAMES.map(
           (filterName) =>
@@ -243,7 +241,7 @@ export default function FiltersModal({
         />
         <ApplyFiltersButton
           activeFilters={activeFilters}
-          setIsOpen={setOpenFilterName}
+          setIsModalOpen={setIsModalOpen}
           locale={locale}
           dict={{
             "Apply filters": dict["Apply filters"],

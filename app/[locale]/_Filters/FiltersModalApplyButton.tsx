@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 
 import {
   type CustomBoard,
@@ -7,18 +7,17 @@ import {
   getJobs,
 } from "../../../utils";
 import { Button, LoadingEllipsis } from "../../../components";
-import { OpenFilterName } from "./FiltersSection";
 import { useRouter } from "next/navigation";
 
 export default function ApplyFiltersButton({
   activeFilters,
-  setIsOpen,
+  setIsModalOpen,
   locale,
   dict,
   customBoard,
 }: {
   activeFilters: JobsQuery;
-  setIsOpen: (isOpen: OpenFilterName) => void;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   locale: Locale;
   dict: { "Apply filters": string; Apply: string };
   customBoard: CustomBoard;
@@ -68,7 +67,7 @@ export default function ApplyFiltersButton({
   return (
     <Button
       onClick={() => {
-        setIsOpen("");
+        setIsModalOpen(false);
         anyActiveFilters
           ? router.push(`/${locale}/filtered?${newSearchParams.toString()}`)
           : router.push(`/${locale}`);
