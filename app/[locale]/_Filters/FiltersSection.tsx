@@ -14,7 +14,6 @@ import { useSearchParams } from "next/navigation";
 import { Dispatch, SetStateAction, useMemo, useState } from "react";
 import FiltersClearButton from "./FiltersClearButton";
 import FilterButton from "./FilterButton";
-import { set } from "lodash";
 
 interface Salary {
   amount?: number[] | undefined;

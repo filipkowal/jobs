@@ -16,7 +16,7 @@ export const FILTER_NAMES = [
   "industries",
   "companySizes",
   "workLanguages",
-];
+] as const;
 
 export const ACTIVE_FILTER_NAMES = [
   "careerFields",

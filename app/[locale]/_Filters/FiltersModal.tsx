@@ -6,7 +6,7 @@ import {
   ActiveFilterName,
   ActiveFilters,
   CustomBoard,
-  ACTIVE_FILTER_NAMES,
+  FILTER_NAMES,
   Filters,
   Locale,
   allUppercase,
@@ -229,107 +229,7 @@ export default function FiltersModal({
   return (
     <Modal isOpen={isModalOpen} setIsOpen={closeModal} title={dict["Filters"]}>
       <div className="sm:max-h-[68vh] max-h-[62vh] w-full overflow-y-auto overflow-x-hidden sm:pr-[37px] sm:-mr-[37px]">
-        {isFilterVisible("regions") && (
-          <RegionsFilter
-            regions={filters.regions}
-            selectedStates={activeFilters?.states || []}
-            isOpen={isAccordionOpen("states")}
-            setSelectedStates={(states) => setActiveFilter("states", states)}
-            alwaysOpen={!!activeFilters?.states}
-            dict={{
-              Regions: dict["Regions"],
-              "Whole Switzerland": dict["Whole Switzerland"],
-            }}
-            locale={locale}
-          />
-        )}
-
-        <TagsFilterContainer filterName="careerFields" />
-        <TagsFilterContainer filterName="technologies" />
-        <TagsFilterContainer filterName="jobLevels" />
-
-        {isFilterVisible("salary") && (
-          <Accordion
-            title={dict["Salary"]}
-            isOpen={isAccordionOpen("salary")}
-            alwaysOpen={!!activeFilters?.salary}
-          >
-            <RangeSlider
-              value={activeFilters?.salary || 0}
-              onValueChange={(salary) => setActiveFilter("salary", salary)}
-              min={filters?.salary?.amount?.[0] || 0}
-              max={filters?.salary?.amount?.[1] || 900000}
-              step={1000}
-              unit="CHF"
-              name={dict["Min. salary"]}
-            />
-            <div className="flex gap-2 mt-8">
-              <CheckIcon width="24" className="w-4" />
-              <span className="w-4/5 text-digitalent-blue">
-                {dict["We never share this with companies"]}
-              </span>
-            </div>
-            <div className="flex gap-2 mt-4">
-              <CheckIcon width="24" className="w-4" />
-              <span className="w-4/5 text-digitalent-blue">
-                {dict["We only use this to filter out roles and save you time"]}
-              </span>
-            </div>
-            <div className="flex gap-2 mt-4">
-              <CheckIcon width="24" className="w-4" />
-              <span className="w-4/5 text-digitalent-blue">
-                {
-                  dict[
-                    `If you're unsure, we recommend choosing a lower amount so you don't miss out on roles that could be great`
-                  ]
-                }
-              </span>
-            </div>
-          </Accordion>
-        )}
-
-        {isFilterVisible("workload") && (
-          <Accordion
-            title={dict["Workload"]}
-            isOpen={isAccordionOpen("workload")}
-            alwaysOpen={!!activeFilters?.workload}
-          >
-            <RangeSlider
-              value={activeFilters?.workload || [0, 100]}
-              onValueChange={(workload) =>
-                setActiveFilter("workload", workload)
-              }
-              min={0}
-              max={100}
-              step={10}
-              name={dict["Workload range"]}
-              unit={dict["% of full time"]}
-            />
-          </Accordion>
-        )}
-
-        {isFilterVisible("homeOffice") && (
-          <Accordion
-            title={dict["Home Office"]}
-            isOpen={isAccordionOpen("homeOffice")}
-            alwaysOpen={!!activeFilters?.homeOffice}
-          >
-            <RangeSlider
-              value={activeFilters?.homeOffice || 0}
-              onValueChange={(homeOffice) =>
-                setActiveFilter("homeOffice", homeOffice)
-              }
-              min={0}
-              max={100}
-              step={10}
-              unit={dict["% of full time"]}
-              name={dict["Min. Home Office"]}
-            />
-          </Accordion>
-        )}
-
-        <TagsFilterContainer filterName="industries" />
-        <TagsFilterContainer filterName="companySizes" />
+        {FILTER_NAMES.map((name) => getFilterComponent(name))}
       </div>
 
       <div
