@@ -6,7 +6,7 @@ export default async function Title({ locale }: { locale: Locale }) {
   const { title: dict } = await getDictionary(locale);
 
   return (
-    <div className="my-14 mx-3 sm:mt-28 md:my-40 text-center">
+    <div className="sm:mt-28 md:my-40">
       {customBoard.hideTitle ? null : (
         <h1 className="text-3xl md:text-[3.6rem] font-medium mb-4 font-title leading-snug text-digitalent-blue">
           {dict["title"]}
@@ -28,7 +28,7 @@ export default async function Title({ locale }: { locale: Locale }) {
 
 export function TitleSkeleton() {
   return (
-    <div className="my-14 mx-3 sm:mt-28 md:my-40 text-center blur-xl animate-pulse min-h:[123.188px]">
+    <div className="sm:mt-28 md:my-40 blur-xl animate-pulse min-h:[123.188px]">
       <h1 className="text-3xl md:text-[3.6rem] font-medium mb-4 font-title leading-snug text-digitalent-blue">
         Handverlesene IT Jobs bei TOP Unternehmen
       </h1>

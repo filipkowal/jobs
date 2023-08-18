@@ -34,7 +34,7 @@ export default async function JobTable({
 
   return (
     <div
-      className={`lg:w-10/12 w-full max-w-[70rem] mb-48 items-center ${
+      className={`mb-48 items-center ${
         customBoard.cards
           ? `grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8`
           : `flex flex-col`
