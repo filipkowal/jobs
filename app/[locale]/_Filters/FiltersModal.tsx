@@ -70,31 +70,13 @@ export default function FiltersModal({
     }
   }
 
-  function shouldDisplayTagFilter(filterName: ActiveFilterName): boolean {
-    const filterValues = filters?.[filterName as keyof Filters];
-    const TAG_FILTERS = [
-      "careerFields",
-      "workLanguages",
-      "technologies",
-      "industries",
-      "companySizes",
-      "jobLevels",
-    ];
-
-    if (!TAG_FILTERS.includes(filterName)) return false;
-
-    if (!Array.isArray(filterValues)) return false;
-
-    if (filterValues?.length <= 0) return false;
-
-    if (
-      customBoard.hiddenFilters?.[
+  function isFilterVisible(filterName: keyof typeof filters): boolean {
+    return (
+      !!filters[filterName] &&
+      !customBoard.hiddenFilters?.[
         filterName as keyof typeof customBoard.hiddenFilters
       ]
-    )
-      return false;
-
-    return true;
+    );
   }
 
   function closeModal() {
@@ -103,69 +85,48 @@ export default function FiltersModal({
     setIsModalOpen(false);
   }
 
+  function TagsFilterContainer({
+    filterName,
+  }: {
+    filterName: keyof typeof filters;
+  }) {
+    return (
+      isFilterVisible(filterName) && (
+        <TagsFilter
+          title={dict[allUppercase(filterName) as keyof FiltersModalDict]}
+          filterName={filterName as ActiveFilterName}
+          filters={filters}
+          activeFilters={activeFilters}
+          setActiveFilter={setActiveFilter}
+          isAccordionOpen={isAccordionOpen}
+        />
+      )
+    );
+  }
+
   return (
     <Modal isOpen={isModalOpen} setIsOpen={closeModal} title={dict["Filters"]}>
       <div className="sm:max-h-[68vh] max-h-[62vh] w-full overflow-y-auto overflow-x-hidden sm:pr-[37px] sm:-mr-[37px]">
-        {FILTER_NAMES.map(
-          (filterName) =>
-            shouldDisplayTagFilter(filterName) && (
-              <TagsFilter
-                key={filterName}
-                title={dict[allUppercase(filterName) as keyof FiltersModalDict]}
-                filterName={filterName as ActiveFilterName}
-                filters={filters}
-                activeFilters={activeFilters}
-                setActiveFilter={setActiveFilter}
-                isAccordionOpen={isAccordionOpen}
-              />
-            )
+        {isFilterVisible("regions") && (
+          <RegionsFilter
+            regions={filters.regions}
+            selectedStates={activeFilters?.states || []}
+            isOpen={isAccordionOpen("states")}
+            setSelectedStates={(states) => setActiveFilter("states", states)}
+            alwaysOpen={!!activeFilters?.states}
+            dict={{
+              Regions: dict["Regions"],
+              "Whole Switzerland": dict["Whole Switzerland"],
+            }}
+            locale={locale}
+          />
         )}
 
-        {filters.workload && !customBoard.hiddenFilters.workload ? (
-          <Accordion
-            title={dict["Workload"]}
-            isOpen={isAccordionOpen("workload")}
-            alwaysOpen={!!activeFilters?.workload}
-          >
-            <RangeSlider
-              value={activeFilters?.workload || [0, 100]}
-              onValueChange={(workload) =>
-                setActiveFilter("workload", workload)
-              }
-              min={0}
-              max={100}
-              step={10}
-              name={dict["Workload range"]}
-              unit={dict["% of full time"]}
-            />
-          </Accordion>
-        ) : (
-          ""
-        )}
+        <TagsFilterContainer filterName="careerFields" />
+        <TagsFilterContainer filterName="technologies" />
+        <TagsFilterContainer filterName="jobLevels" />
 
-        {filters.homeOffice && !customBoard.hiddenFilters.homeOffice ? (
-          <Accordion
-            title={dict["Home Office"]}
-            isOpen={isAccordionOpen("homeOffice")}
-            alwaysOpen={!!activeFilters?.homeOffice}
-          >
-            <RangeSlider
-              value={activeFilters?.homeOffice || 0}
-              onValueChange={(homeOffice) =>
-                setActiveFilter("homeOffice", homeOffice)
-              }
-              min={0}
-              max={100}
-              step={10}
-              unit={dict["% of full time"]}
-              name={dict["Min. Home Office"]}
-            />
-          </Accordion>
-        ) : (
-          ""
-        )}
-
-        {filters.salary && !customBoard.hiddenFilters.salary ? (
+        {isFilterVisible("salary") && (
           <Accordion
             title={dict["Salary"]}
             isOpen={isAccordionOpen("salary")}
@@ -203,26 +164,50 @@ export default function FiltersModal({
               </span>
             </div>
           </Accordion>
-        ) : (
-          ""
         )}
 
-        {!customBoard.hiddenFilters.regions ? (
-          <RegionsFilter
-            regions={filters.regions}
-            selectedStates={activeFilters?.states || []}
-            isOpen={isAccordionOpen("states")}
-            setSelectedStates={(states) => setActiveFilter("states", states)}
-            alwaysOpen={!!activeFilters?.states}
-            dict={{
-              Regions: dict["Regions"],
-              "Whole Switzerland": dict["Whole Switzerland"],
-            }}
-            locale={locale}
-          />
-        ) : (
-          ""
+        {isFilterVisible("workload") && (
+          <Accordion
+            title={dict["Workload"]}
+            isOpen={isAccordionOpen("workload")}
+            alwaysOpen={!!activeFilters?.workload}
+          >
+            <RangeSlider
+              value={activeFilters?.workload || [0, 100]}
+              onValueChange={(workload) =>
+                setActiveFilter("workload", workload)
+              }
+              min={0}
+              max={100}
+              step={10}
+              name={dict["Workload range"]}
+              unit={dict["% of full time"]}
+            />
+          </Accordion>
         )}
+
+        {isFilterVisible("homeOffice") && (
+          <Accordion
+            title={dict["Home Office"]}
+            isOpen={isAccordionOpen("homeOffice")}
+            alwaysOpen={!!activeFilters?.homeOffice}
+          >
+            <RangeSlider
+              value={activeFilters?.homeOffice || 0}
+              onValueChange={(homeOffice) =>
+                setActiveFilter("homeOffice", homeOffice)
+              }
+              min={0}
+              max={100}
+              step={10}
+              unit={dict["% of full time"]}
+              name={dict["Min. Home Office"]}
+            />
+          </Accordion>
+        )}
+
+        <TagsFilterContainer filterName="industries" />
+        <TagsFilterContainer filterName="companySizes" />
       </div>
 
       <div
