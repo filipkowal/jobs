@@ -7,6 +7,7 @@ import {
   Filters,
   pickActiveFiltersFromSearchParams,
   ActiveFilters,
+  FILTER_NAMES,
 } from "../../../utils";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 import FiltersModal, { FiltersModalDict } from "./FiltersModal";
@@ -53,16 +54,16 @@ export default function FiltersSection({
     () => (locale === "fr" ? 6 : 7),
     [locale]
   );
-  const filtersNotHiddenNames = useMemo(
-    () =>
-      Object.keys(filters).filter(
-        (filterName) =>
-          !customBoard.hiddenFilters?.[
-            filterName as keyof typeof customBoard.hiddenFilters
-          ]
-      ),
-    [filters, customBoard]
-  );
+  const filtersNotHiddenNames = useMemo(() => {
+    const hiddenButtonNames = ["technologies", "jobLevels", "homeOffice"];
+
+    return FILTER_NAMES.filter(
+      (filterName) =>
+        !customBoard.hiddenFilters?.[
+          filterName as keyof typeof customBoard.hiddenFilters
+        ] && !hiddenButtonNames.includes(filterName)
+    );
+  }, [customBoard]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFilterName, setOpenFilterName] = useState<OpenFilterName>("none");
@@ -94,7 +95,6 @@ export default function FiltersSection({
           activeFilters={activeFilters}
           setIsModalOpen={setIsModalOpen}
         />
-
         <>
           {filtersNotHiddenNames
             .slice(0, numberOfVisibleFliterButtons - 1)
@@ -110,14 +110,12 @@ export default function FiltersSection({
             ))}
         </>
 
-        {filtersNotHiddenNames.length > numberOfVisibleFliterButtons ? (
-          <span
-            onClick={() => setIsModalOpen(true)}
-            className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
-          >
-            {dict["More..."]}
-          </span>
-        ) : null}
+        <span
+          onClick={() => setIsModalOpen(true)}
+          className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
+        >
+          {dict["More..."]}
+        </span>
 
         <FiltersClearButton
           locale={locale}
