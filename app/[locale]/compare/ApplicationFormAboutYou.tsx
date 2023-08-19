@@ -32,13 +32,16 @@ export default function ApplicationFormAboutYou({
   );
   const [termsAccepted, setTermsAccepted] = useState(false);
 
+  const isApplicationInvalid =
+    !email || userType === null || (userType === "talent" && !termsAccepted);
+
   return (
     <form
       key={"aboutYou"}
       onSubmit={async (e) => {
         e.preventDefault();
 
-        if (!email || userType !== "talent" || !termsAccepted) return;
+        if (isApplicationInvalid) return;
 
         const body = filterObject({
           email,
@@ -163,9 +166,8 @@ export default function ApplicationFormAboutYou({
             onChange={() => {
               setUserType("talent");
             }}
-            required
           />
-          <span>{"* " + dict["I am applying directly"]}</span>
+          <span>{dict["I am applying directly"]}</span>
         </label>
         <label className="w-full inline-block sm:w-fit sm:ml-4">
           <Checkbox
@@ -216,7 +218,7 @@ export default function ApplicationFormAboutYou({
         type="primary"
         className="mt-16 float-right"
         name="Next"
-        disabled={!email || userType !== "talent" || !termsAccepted}
+        disabled={isApplicationInvalid}
         submitType
       >
         {dict["Next"]}
