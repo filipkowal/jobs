@@ -182,18 +182,7 @@ export default function ApplicationFormAboutYou({
 
       {/* Terms and conditions */}
 
-      {userType === "headhunter" && (
-        <div>
-          {dict["recruiterInfo1"]}
-          <a
-            href="https://talentforce.ch/legal/datenschutz-rekrutierungsprozess/"
-            className="font-bold"
-          >
-            {" " + dict["termsAgreed2"] + " "}
-          </a>
-          {dict["recruiterInfo2"]}
-        </div>
-      )}
+      {userType === "headhunter" && <div>{dict["recruiterInfo"]}</div>}
 
       {userType === "talent" && (
         <label className="flex gap-1">

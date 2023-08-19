@@ -165,8 +165,7 @@ export interface CompareJobTableDict {
   termsAgreed1: string;
   termsAgreed2: string;
   termsAgreed3: string;
-  recruiterInfo1: string;
-  recruiterInfo2: string;
+  recruiterInfo: string;
   applyFormSuccess: string;
   "Something went wrong": string;
   "Please enter a valid LinkedIn profile link": string;
