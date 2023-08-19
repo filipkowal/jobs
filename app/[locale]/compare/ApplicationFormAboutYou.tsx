@@ -1,9 +1,16 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { Button, Checkbox, FileInput, TextInput } from "../../../components";
+import {
+  Button,
+  Checkbox,
+  FileInput,
+  LoadingEllipsis,
+  TextInput,
+} from "../../../components";
 import { ApplicationDict } from "./ApplicationFormModal";
 import BackButton from "./BackButton";
 import { Locale, postData } from "../../../utils";
 import { toast } from "react-hot-toast";
+import { set } from "lodash";
 
 export default function ApplicationFormAboutYou({
   dict,
@@ -31,6 +38,7 @@ export default function ApplicationFormAboutYou({
     null
   );
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const isApplicationInvalid =
     !email || userType === null || (userType === "talent" && !termsAccepted);
@@ -42,6 +50,8 @@ export default function ApplicationFormAboutYou({
         e.preventDefault();
 
         if (isApplicationInvalid) return;
+
+        setIsLoading(true);
 
         const body = filterObject({
           email,
@@ -57,8 +67,10 @@ export default function ApplicationFormAboutYou({
           await postData("apply", locale, body);
 
           setStepNumber(stepNumber + 1);
+          setIsLoading(false);
         } catch (e) {
           toast.error((e as Error)?.message || dict["Something went wrong"]);
+          setIsLoading(false);
         }
 
         function filterObject(obj: Record<string, any>): Record<string, any> {
@@ -215,13 +227,14 @@ export default function ApplicationFormAboutYou({
         dict={{ "Go back": dict["Go back"] }}
       />
       <Button
+        submitType
         type="primary"
         className="mt-16 float-right"
         name="Next"
-        disabled={isApplicationInvalid}
-        submitType
+        disabled={isApplicationInvalid || isLoading}
       >
         {dict["Next"]}
+        <LoadingEllipsis isLoading={isLoading} />
       </Button>
     </form>
   );
