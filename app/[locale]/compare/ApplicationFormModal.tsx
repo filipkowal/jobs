@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import Modal from "../../../components/Modal";
 import { Job, Locale } from "../../../utils";
 import { useRouter } from "next/navigation";
 import ApplicationFormSuccessStep from "./ApplicationFormSuccess";
 import ApplicationFormBasket from "./ApplicationFormBasket";
 import ApplicationFormAboutYou from "./ApplicationFormAboutYou";
+import dynamic from "next/dynamic";
 
 export default function ApplicationFormModal({
   isOpen,
@@ -29,6 +29,8 @@ export default function ApplicationFormModal({
   testStepNumber?: number;
   dict: ApplicationDict;
 }) {
+  const Modal = dynamic(() => import("../../../components/Modal"));
+
   const router = useRouter();
 
   const [stepNumber, setStepNumber] = useState(testStepNumber || 0);
@@ -60,6 +62,8 @@ export default function ApplicationFormModal({
   const resetForm = () => {
     setStepNumber(0);
   };
+
+  if (!isOpen) return null;
 
   return (
     <Modal

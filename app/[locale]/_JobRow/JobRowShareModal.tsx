@@ -4,9 +4,9 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import Button from "../../../components/Button";
 import Checkbox from "../../../components/Checkbox";
-import Modal from "../../../components/Modal";
 import TextInput from "../../../components/TextInput";
 import { type Locale, postData } from "../../../utils";
+import dynamic from "next/dynamic";
 
 export default function ShareJob({
   locale,
@@ -34,6 +34,8 @@ export default function ShareJob({
   };
   jobId?: string;
 }) {
+  const Modal = dynamic(() => import("../../../components/Modal"));
+
   const [isOpen, setIsOpen] = useState(false);
   const [stepNumber, setStepNumber] = useState(0);
   const [uniqueLink, setUniqueLink] = useState("");
@@ -154,9 +156,16 @@ export default function ShareJob({
       >
         {dict["Share this job and earn 500 CHF"]}
       </Button>
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={dict["Share a job"]}>
-        {steps[stepNumber]}
-      </Modal>
+
+      {isOpen && (
+        <Modal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          title={dict["Share a job"]}
+        >
+          {steps[stepNumber]}
+        </Modal>
+      )}
     </div>
   );
 }

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import toast from "react-hot-toast";
 import Button from "../../../components/Button";
-import Modal from "../../../components/Modal";
 import TextInput from "../../../components/TextInput";
 import { type Locale, postData } from "../../../utils";
 
@@ -24,6 +24,8 @@ export default function SaveJob({
     error: string;
   };
 }) {
+  const Modal = dynamic(() => import("../../../components/Modal"));
+
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
 
@@ -45,45 +47,47 @@ export default function SaveJob({
       >
         {dict.titleMobile}
       </Button>
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={dict.title}>
-        <form
-          onSubmit={async (e) => {
-            e.preventDefault();
+      {isOpen && (
+        <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={dict.title}>
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
 
-            try {
-              await postData("save", locale, {
-                email,
-                jobId,
-              });
+              try {
+                await postData("save", locale, {
+                  email,
+                  jobId,
+                });
 
-              toast.success(dict.success);
-              setIsOpen(false);
-            } catch (e) {
-              toast.error(dict.error);
-            }
-          }}
-        >
-          <p className="mb-8">{dict.description}</p>
-          <TextInput
-            type="email"
-            name="email"
-            label="E-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="mb-12 block"
-            dict={{ invalidEmail: dict.invalidEmail }}
-          />
-          <Button
-            type="primary"
-            submitType
-            className="w-full"
-            disabled={!email}
+                toast.success(dict.success);
+                setIsOpen(false);
+              } catch (e) {
+                toast.error(dict.error);
+              }
+            }}
           >
-            {dict.apply}
-          </Button>
-        </form>
-      </Modal>
+            <p className="mb-8">{dict.description}</p>
+            <TextInput
+              type="email"
+              name="email"
+              label="E-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="mb-12 block"
+              dict={{ invalidEmail: dict.invalidEmail }}
+            />
+            <Button
+              type="primary"
+              submitType
+              className="w-full"
+              disabled={!email}
+            >
+              {dict.apply}
+            </Button>
+          </form>
+        </Modal>
+      )}
     </>
   );
 }
