@@ -10,11 +10,12 @@ import {
   FILTER_NAMES,
 } from "../../../utils";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
-import FiltersModal, { FiltersModalDict } from "./FiltersModal";
+import { type FiltersModalDict } from "./FiltersModal";
 import { useSearchParams } from "next/navigation";
 import { Dispatch, SetStateAction, useMemo, useState } from "react";
 import FiltersClearButton from "./FiltersClearButton";
 import FilterButton from "./FilterButton";
+import dynamic from "next/dynamic";
 
 interface Salary {
   amount?: number[] | undefined;
@@ -44,6 +45,8 @@ export default function FiltersSection({
   filters: Filters;
   customBoard: CustomBoard;
 }) {
+  const FiltersModal = dynamic(() => import("./FiltersModal"));
+
   const searchParams = useSearchParams();
 
   const defaultActiveFilters = useMemo(
@@ -72,19 +75,21 @@ export default function FiltersSection({
 
   return (
     <>
-      <FiltersModal
-        locale={locale}
-        filters={filters}
-        customBoard={customBoard}
-        dict={dict}
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
-        openFilterName={openFilterName}
-        setOpenFilterName={setOpenFilterName}
-        activeFilters={activeFilters}
-        setActiveFilters={setActiveFilters}
-        defaultActiveFilters={defaultActiveFilters}
-      />
+      {isModalOpen && (
+        <FiltersModal
+          locale={locale}
+          filters={filters}
+          customBoard={customBoard}
+          dict={dict}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          openFilterName={openFilterName}
+          setOpenFilterName={setOpenFilterName}
+          activeFilters={activeFilters}
+          setActiveFilters={setActiveFilters}
+          defaultActiveFilters={defaultActiveFilters}
+        />
+      )}
 
       <div className="hidden lg:flex flex-row mb-2 gap-2 flex-wrap relative">
         <AdjustmentsHorizontalIcon
