@@ -67,14 +67,13 @@ export default async function JobRowDesktop({
         <div className="flex flex-row-reverse sm:flex-row gap-1 xl:gap-4 align-middle w-full justify-start sm:justify-end sm:w-auto">
           {salary?.amount && (
             <span
-              className={`h-10 py-2 my-auto whitespace-nowrap ${
+              className={`flex h-10 py-2 my-auto whitespace-nowrap ${
                 customBoard?.cards ? "" : "pr-4 sm:pl-4 md:w-40"
               }`}
             >
               <Tooltip
                 content={dict["Yearly salary in thousands"]}
-                name="Salary"
-                side="bottom"
+                ariaLabel="Salary"
               >
                 <span className="font-title font-medium">
                   {salary.amount?.[0] === salary?.amount?.[1]
@@ -85,21 +84,22 @@ export default async function JobRowDesktop({
                 </span>
               </Tooltip>
               <Tooltip
-                side="bottom"
                 content={
                   dict[
                     "Salary slightly below or above this range is possible, depending on your skills"
                   ]
                 }
-                name="Salary Range Info"
+                ariaLabel="Salary Range Info"
               >
-                <InformationCircleIcon className="hidden sm:block h-[1.2rem] w-[1.2rem] text-white ml-2 translate-y-1" />
+                <span className="h-[1.2rem] w-[1.2rem]">
+                  <InformationCircleIcon className="hidden sm:block h-[1.2rem] w-[1.2rem] text-white ml-2 translate-y-1" />
+                </span>
               </Tooltip>
             </span>
           )}
           {address && (
             <span className="px-4 py-2 md:w-28 text-right">
-              <Tooltip side="bottom" content={dict["Location"]} name="Location">
+              <Tooltip content={dict["Location"]} ariaLabel="Location">
                 <span className="font-title font-medium">
                   {`${address?.city || address?.country}`}
                 </span>
@@ -113,8 +113,7 @@ export default async function JobRowDesktop({
             : jobId && (
                 <Tooltip
                   content={dict["Like 2 or more jobs to compare"]}
-                  name="Like"
-                  side="bottom"
+                  ariaLabel="Like"
                 >
                   <LikeButton jobId={jobId} />
                 </Tooltip>

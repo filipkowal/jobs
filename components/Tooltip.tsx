@@ -1,40 +1,73 @@
 "use client";
 
-import {
-  Provider,
-  Root,
-  Trigger,
-  Portal,
-  Content,
-  Arrow,
-} from "@radix-ui/react-tooltip";
+import { useEffect, useRef, useState } from "react";
 
 export default function Tooltip({
   children,
   content,
-  name,
-  side,
+  ariaLabel,
 }: {
   children: React.ReactNode;
-  content: React.ReactNode;
-  name?: string;
-  side?: "top" | "right" | "bottom" | "left";
+  content: string;
+  ariaLabel: string;
 }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const childrenRef = useRef<HTMLSpanElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [right, setRight] = useState(0);
+
+  useEffect(() => {
+    const { offsetWidth: contentWidth = 0 } = contentRef.current ?? {};
+    const { offsetWidth: childrenWidth = 0 } = childrenRef.current ?? {};
+
+    setRight(-contentWidth / 2 + childrenWidth / 2);
+  }, [childrenRef.current?.offsetWidth, contentRef.current?.offsetWidth]);
+
   return (
-    <Provider>
-      <Root delayDuration={0}>
-        <Trigger aria-label={name} className="focus:ring-1">
-          {children}
-        </Trigger>
-        <Portal>
-          <Content side={side}>
-            <div className="p-4 text-digitalent-blue bg-white shadow-lg focus:ring-1 z-50">
-              {content}
-            </div>
-            <Arrow className="text-white stroke-white fill-white"></Arrow>
-          </Content>
-        </Portal>
-      </Root>
-    </Provider>
+    <span className={`relative w-[${childrenRef.current?.offsetWidth || 0}px]`}>
+      <span
+        onMouseEnter={() => setIsVisible(true)}
+        onMouseLeave={() => setIsVisible(false)}
+        ref={childrenRef}
+      >
+        {children}
+      </span>
+
+      <div
+        className={`absolute -z-10 bg-white text-digitalent-blue p-4 opacity-0 transition-all duration-300 ${
+          isVisible ? "opacity-100 !z-10" : ""
+        }`}
+        style={{ right: `${right}px`, top: `calc(100% + 24px)` }}
+        aria-label={ariaLabel}
+        aria-describedby={isVisible ? "tooltip-content" : ""}
+        ref={contentRef}
+      >
+        <div className="relative">
+          <div
+            style={{
+              whiteSpace: "normal",
+              overflowWrap: "break-word",
+              wordWrap: "break-word",
+              width: "max-content",
+              maxWidth: "10rem",
+            }}
+          >
+            {content}
+          </div>
+
+          {/* arrow */}
+          <div
+            className="absolute top-[-24px] left-[47%]"
+            style={{
+              width: "0",
+              height: "0",
+              border: "solid",
+              borderWidth: "0 10px 10px 10px",
+              borderColor: "transparent transparent white transparent",
+            }}
+          />
+        </div>
+      </div>
+    </span>
   );
 }
