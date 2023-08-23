@@ -7,9 +7,7 @@ import type { CustomBoard, Job, Locale } from "../../../utils";
 
 interface JobRowProps {
   job: Job;
-  params: { locale: Locale };
   children: ReactNode;
-  openJobId?: string;
   customBoard?: CustomBoard;
   headingDesktop?: ReactNode;
   headingMobile?: ReactNode;
@@ -17,10 +15,8 @@ interface JobRowProps {
 
 export default function JobRowAccordion({
   job,
-  params,
   children,
   customBoard,
-  openJobId,
   headingDesktop,
   headingMobile,
 }: JobRowProps) {
@@ -36,14 +32,6 @@ export default function JobRowAccordion({
     if (customBoard?.disableDetailView) {
       return landingPageUrl || "";
     }
-
-    // @fixme add individual job page
-
-    // if (openJobId === jobId || isOpen) {
-    //   return `/${params.locale}`;
-    // }
-
-    // return `/${params.locale}${`/${jobId}`}#${jobId}`;
   };
 
   return (

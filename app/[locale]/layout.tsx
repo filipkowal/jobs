@@ -1,4 +1,4 @@
-import { type Locale, i18n } from "../../i18n-config";
+import { type Locale } from "../../i18n-config";
 import Header from "./Header";
 import CompareContextProvider from "./CompareContextProvider";
 import ToastProvider from "../../components/ToastProvider";
