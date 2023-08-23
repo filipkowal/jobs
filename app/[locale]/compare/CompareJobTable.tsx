@@ -3,12 +3,12 @@ import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import Button from "../../../components/Button";
 import { Job, Locale } from "../../../utils";
 import { CompareContext } from "../CompareContextProvider";
-import ApplicationFormModal, { ApplicationDict } from "./ApplicationFormModal";
 import JobColumn from "./JobColumn";
 import {
   ArrowLeftCircleIcon,
   ArrowRightCircleIcon,
 } from "@heroicons/react/24/solid";
+import dynamic from "next/dynamic";
 
 export default function CompareJobTable({
   jobs,
@@ -19,6 +19,8 @@ export default function CompareJobTable({
   locale: Locale;
   dict: CompareJobTableDict;
 }) {
+  const ApplicationFormModal = dynamic(() => import("./ApplicationFormModal"));
+
   const COLUMN_WIDTH_WITH_MARGIN = 432;
 
   const { likedJobs: likedJobsIds } = useContext(CompareContext);
@@ -48,18 +50,19 @@ export default function CompareJobTable({
 
   return (
     <>
-      <ApplicationFormModal
-        isOpen={isApplicationOpen}
-        setIsOpen={setIsApplicationOpen}
-        jobIds={applicationBasket}
-        locale={locale}
-        jobsCompared={jobsCompared}
-        applicationBasket={applicationBasket}
-        setApplicationBasket={setApplicationBasket}
-        likedJobs={likedJobs}
-        dict={dict}
-      />
-
+      {isApplicationOpen && (
+        <ApplicationFormModal
+          isOpen={isApplicationOpen}
+          setIsOpen={setIsApplicationOpen}
+          jobIds={applicationBasket}
+          locale={locale}
+          jobsCompared={jobsCompared}
+          applicationBasket={applicationBasket}
+          setApplicationBasket={setApplicationBasket}
+          likedJobs={likedJobs}
+          dict={dict}
+        />
+      )}
       <div className="w-full flex justify-center sm:mt-16">
         <Button
           type="primary"
