@@ -24,7 +24,6 @@ export default async function JobTable({
   const jobsResponse = await jobsPromise;
   const jobs = jobsResponse?.jobs;
   const length = jobsResponse?.length;
-  const openJobId = params?.jobId?.[0];
 
   function k(s: string | number | undefined) {
     if (s === undefined) return;
@@ -43,8 +42,6 @@ export default async function JobTable({
       {jobs?.map((job) => (
         <JobRowAccordion
           job={job}
-          params={params}
-          openJobId={openJobId}
           key={job.id}
           customBoard={customBoard}
           headingDesktop={
