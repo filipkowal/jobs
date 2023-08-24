@@ -35,8 +35,10 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 module.exports = withBundleAnalyzer(nextConfig);
 
-module.exports = withSentryConfig(
-  module.exports,
-  { silent: true },
-  { hideSourcemaps: false }
-);
+module.exports = process.env.ENABLE_SENTRY
+  ? withSentryConfig(
+      module.exports,
+      { silent: true },
+      { hideSourcemaps: false }
+    )
+  : nextConfig;
