@@ -6,7 +6,7 @@ import LikeButton from "./JobRowLikeButton";
 import { getCustomBoard, getDictionary } from "../../../utils/server";
 import { Locale } from "../../../i18n-config";
 
-export default async function JobRowDesktop({
+export default async function JobRowHeading({
   job,
   locale,
   k,
@@ -29,7 +29,7 @@ export default async function JobRowDesktop({
   const customBoard = await getCustomBoard();
 
   return (
-    <div className="hidden sm:flex pt-4 pb-4 px-3 sm:pr-8 sm:pl-6 w-full justify-between cursor-pointer flex-wrap relative items-center">
+    <div className="sm:flex p-3 sm:pr-8 sm:pl-6 w-full justify-between cursor-pointer flex-wrap relative items-center">
       <div
         className={`flex gap-6 items-center ${
           customBoard?.cards ? "" : "w-full lg:w-[60%] xl:w-[65%]"
@@ -39,7 +39,7 @@ export default async function JobRowDesktop({
           <Image
             src={employer.logo}
             alt={`${dict["Logo of"]} ${employer?.name}`}
-            className="block h-[52px] object-contain md:w-[130px] w-24"
+            className="block h-[52px] w-[70px] object-contain md:w-[130px] "
             width={130}
             height={52}
           />
@@ -47,7 +47,7 @@ export default async function JobRowDesktop({
           ""
         )}
         <div className="flex flex-col w-3/4 md:w-full">
-          <h2 className="text-xl break-words font-title font-medium text-digitalent-green">
+          <h2 className="md:text-xl break-words font-title font-medium text-digitalent-green">
             {title}{" "}
             {workload && workload[0] === workload[1]
               ? `${workload[0]}%`
@@ -75,7 +75,7 @@ export default async function JobRowDesktop({
                 content={dict["Yearly salary in thousands"]}
                 ariaLabel="Salary"
               >
-                <span className="font-title font-medium">
+                <span className="font-title font-light text-sm md:font-medium">
                   {salary.amount?.[0] === salary?.amount?.[1]
                     ? k(salary.amount?.[0])
                     : k(salary.amount?.[0])}
@@ -100,7 +100,7 @@ export default async function JobRowDesktop({
           {address && (
             <span className="px-4 py-2 md:w-28 text-right">
               <Tooltip content={dict["Location"]} ariaLabel="Location">
-                <span className="font-title font-medium">
+                <span className="font-title text-xs md:font-medium">
                   {`${address?.city || address?.country}`}
                 </span>
               </Tooltip>
