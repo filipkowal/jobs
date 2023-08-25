@@ -213,6 +213,7 @@ export default function ApplicationFormAboutYou({
             <a
               href="https://talentforce.ch/legal/datenschutz-rekrutierungsprozess/"
               className="font-bold"
+              target="_blank"
             >
               {" " + dict["termsAgreed2"] + " "}
             </a>
