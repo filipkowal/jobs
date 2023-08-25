@@ -66,10 +66,10 @@ export default async function JobRowHeading({
       </div>
 
       <div className="flex flex-row gap-2 xl:gap-6 align-middle w-auto">
-        <div className="flex flex-col pl-[95px] md:pl-0 md:flex-row-reverse sm:flex-row md:gap-1 xl:gap-4 align-middle w-full justify-start sm:justify-end sm:w-auto">
+        <div className="flex flex-col pl-[95px] md:pl-0 sm:flex-row md:gap-1 xl:gap-4 align-middle w-full justify-start sm:justify-end sm:w-auto">
           {salary?.amount && (
             <span
-              className={`flex md:h-10 md:py-2 my-auto whitespace-nowrap align-baseline ${
+              className={`flex md:h-10 md:py-2 my-auto whitespace-nowrap items-baseline md:items-start ${
                 customBoard?.cards ? "" : "pr-4 sm:pl-4 md:w-40"
               }`}
             >
@@ -86,9 +86,7 @@ export default async function JobRowHeading({
                 </span>
               </Tooltip>
               <span className="sm:hidden font-title !font-lighter text-xs pl-3">
-                {homeOffice?.[1]
-                  ? ` ${homeOffice[0]}% - ${homeOffice[1]}%`
-                  : ""}
+                {workload?.[1] ? ` ${workload[0]}% - ${workload[1]}%` : ""}
               </span>
               <Tooltip
                 content={
