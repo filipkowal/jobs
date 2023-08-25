@@ -31,7 +31,7 @@ export default async function JobRowHeading({
   return (
     <div className="sm:flex p-3 md:py-4 sm:pr-8 sm:pl-6 w-full justify-between cursor-pointer md:flex-wrap relative items-center">
       <div
-        className={`flex gap-6 items-center ${
+        className={`flex gap-6 md:items-center ${
           customBoard?.cards ? "" : "w-full lg:w-[60%] xl:w-[65%]"
         }`}
       >
@@ -66,10 +66,10 @@ export default async function JobRowHeading({
       </div>
 
       <div className="flex flex-row gap-2 xl:gap-6 align-middle w-auto">
-        <div className="flex flex-row-reverse sm:flex-row gap-1 xl:gap-4 align-middle w-full justify-start sm:justify-end sm:w-auto">
+        <div className="flex flex-col pl-[95px] md:pl-0 md:flex-row-reverse sm:flex-row md:gap-1 xl:gap-4 align-middle w-full justify-start sm:justify-end sm:w-auto">
           {salary?.amount && (
             <span
-              className={`flex h-10 py-2 my-auto whitespace-nowrap ${
+              className={`flex md:h-10 md:py-2 my-auto whitespace-nowrap align-baseline ${
                 customBoard?.cards ? "" : "pr-4 sm:pl-4 md:w-40"
               }`}
             >
@@ -85,6 +85,11 @@ export default async function JobRowHeading({
                   {"k " + salary?.currency}
                 </span>
               </Tooltip>
+              <span className="sm:hidden font-title !font-lighter text-xs pl-3">
+                {homeOffice?.[1]
+                  ? ` ${homeOffice[0]}% - ${homeOffice[1]}%`
+                  : ""}
+              </span>
               <Tooltip
                 content={
                   dict[
@@ -100,7 +105,7 @@ export default async function JobRowHeading({
             </span>
           )}
           {address && (
-            <span className="px-4 py-2 md:w-28 text-right">
+            <span className="md:px-4 md:py-2 md:w-28 md:text-right">
               <Tooltip content={dict["Location"]} ariaLabel="Location">
                 <span className="font-title text-xs md:text-base md:font-medium">
                   {`${address?.city || address?.country}`}
