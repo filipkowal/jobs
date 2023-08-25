@@ -29,20 +29,22 @@ export default async function JobRowHeading({
   const customBoard = await getCustomBoard();
 
   return (
-    <div className="sm:flex p-3 sm:pr-8 sm:pl-6 w-full justify-between cursor-pointer flex-wrap relative items-center">
+    <div className="sm:flex p-3 sm:pr-8 sm:pl-6 w-full justify-between cursor-pointer md:flex-wrap relative items-center">
       <div
         className={`flex gap-6 items-center ${
           customBoard?.cards ? "" : "w-full lg:w-[60%] xl:w-[65%]"
         }`}
       >
         {!customBoard?.cards && employer?.logo ? (
-          <Image
-            src={employer.logo}
-            alt={`${dict["Logo of"]} ${employer?.name}`}
-            className="block h-[52px] w-[70px] object-contain md:w-[130px] "
-            width={130}
-            height={52}
-          />
+          <div className="block h-[52px] w-[70px] object-contain md:w-[130px]">
+            <Image
+              src={employer.logo}
+              alt={`${dict["Logo of"]} ${employer?.name}`}
+              className="absolute top-[30px] md:static block h-[52px] w-[70px] object-contain md:w-[130px] "
+              width={130}
+              height={52}
+            />
+          </div>
         ) : (
           ""
         )}
