@@ -29,7 +29,7 @@ export default async function JobRowHeading({
   const customBoard = await getCustomBoard();
 
   return (
-    <div className="sm:flex p-3 sm:pr-8 sm:pl-6 w-full justify-between cursor-pointer md:flex-wrap relative items-center">
+    <div className="sm:flex p-3 md:py-4 sm:pr-8 sm:pl-6 w-full justify-between cursor-pointer md:flex-wrap relative items-center">
       <div
         className={`flex gap-6 items-center ${
           customBoard?.cards ? "" : "w-full lg:w-[60%] xl:w-[65%]"
@@ -77,7 +77,7 @@ export default async function JobRowHeading({
                 content={dict["Yearly salary in thousands"]}
                 ariaLabel="Salary"
               >
-                <span className="font-title font-light text-sm md:font-medium">
+                <span className="font-title font-light text-sm md:text-base md:font-medium">
                   {salary.amount?.[0] === salary?.amount?.[1]
                     ? k(salary.amount?.[0])
                     : k(salary.amount?.[0])}
@@ -102,7 +102,7 @@ export default async function JobRowHeading({
           {address && (
             <span className="px-4 py-2 md:w-28 text-right">
               <Tooltip content={dict["Location"]} ariaLabel="Location">
-                <span className="font-title text-xs md:font-medium">
+                <span className="font-title text-xs md:text-base md:font-medium">
                   {`${address?.city || address?.country}`}
                 </span>
               </Tooltip>
