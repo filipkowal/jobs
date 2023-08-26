@@ -135,7 +135,7 @@
     "intro.bullet2": "Send the link to your friends or share it in your networks",
     "intro.bullet3": "If the position is successfully filled based on your recommendation, you will receive a bonus of 500 CHF",
     "email.info": "We need your email address to send you the personal referral link and to notify you when you have earned a reward.",
-    "email.accept": "I have read and agree to the <a href='https://dttest.ch/stewatec/datenschutz/'>terms of use</a>. *",
+    "email.accept": "I have read and agree to the <a target='_blank' href='https://www.digitalent.ch/datenschutz'>terms of use</a>. *",
     "Create a link": "Create a link",
     "Share a job": "Share a job",
     "link.instructions": "Now share your recommendation link to the job with your friends and networks. We keep our fingers crossed that your recommendation leads to a successful job placement and that we can pay you your bonus.",
