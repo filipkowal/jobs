@@ -17,6 +17,8 @@ import FiltersClearButton from "./FiltersClearButton";
 import FilterButton from "./FilterButton";
 import dynamic from "next/dynamic";
 
+const FiltersModal = dynamic(() => import("./FiltersModal"));
+
 interface Salary {
   amount?: number[] | undefined;
   currency?: string | undefined;
@@ -45,8 +47,6 @@ export default function FiltersSection({
   filters: Filters;
   customBoard: CustomBoard;
 }) {
-  const FiltersModal = dynamic(() => import("./FiltersModal"));
-
   const searchParams = useSearchParams();
 
   const defaultActiveFilters = useMemo(

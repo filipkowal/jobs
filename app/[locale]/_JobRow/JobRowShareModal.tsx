@@ -8,6 +8,8 @@ import TextInput from "../../../components/TextInput";
 import { type Locale, postData } from "../../../utils";
 import dynamic from "next/dynamic";
 
+const Modal = dynamic(() => import("../../../components/Modal"));
+
 export default function ShareJob({
   locale,
   jobId,
@@ -34,8 +36,6 @@ export default function ShareJob({
   };
   jobId?: string;
 }) {
-  const Modal = dynamic(() => import("../../../components/Modal"));
-
   const [isOpen, setIsOpen] = useState(false);
   const [stepNumber, setStepNumber] = useState(0);
   const [uniqueLink, setUniqueLink] = useState("");

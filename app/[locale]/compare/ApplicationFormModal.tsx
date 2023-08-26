@@ -6,6 +6,8 @@ import ApplicationFormBasket from "./ApplicationFormBasket";
 import ApplicationFormAboutYou from "./ApplicationFormAboutYou";
 import dynamic from "next/dynamic";
 
+const Modal = dynamic(() => import("../../../components/Modal"));
+
 export default function ApplicationFormModal({
   isOpen,
   setIsOpen,
@@ -29,8 +31,6 @@ export default function ApplicationFormModal({
   testStepNumber?: number;
   dict: ApplicationDict;
 }) {
-  const Modal = dynamic(() => import("../../../components/Modal"));
-
   const router = useRouter();
 
   const [stepNumber, setStepNumber] = useState(testStepNumber || 0);

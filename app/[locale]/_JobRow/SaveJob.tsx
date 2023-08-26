@@ -7,6 +7,8 @@ import Button from "../../../components/Button";
 import TextInput from "../../../components/TextInput";
 import { type Locale, postData } from "../../../utils";
 
+const Modal = dynamic(() => import("../../../components/Modal"));
+
 export default function SaveJob({
   jobId,
   locale,
@@ -24,8 +26,6 @@ export default function SaveJob({
     error: string;
   };
 }) {
-  const Modal = dynamic(() => import("../../../components/Modal"));
-
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
 
@@ -47,47 +47,45 @@ export default function SaveJob({
       >
         {dict.titleMobile}
       </Button>
-      {isOpen && (
-        <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={dict.title}>
-          <form
-            onSubmit={async (e) => {
-              e.preventDefault();
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={dict.title}>
+        <form
+          onSubmit={async (e) => {
+            e.preventDefault();
 
-              try {
-                await postData("save", locale, {
-                  email,
-                  jobId,
-                });
+            try {
+              await postData("save", locale, {
+                email,
+                jobId,
+              });
 
-                toast.success(dict.success);
-                setIsOpen(false);
-              } catch (e) {
-                toast.error(dict.error);
-              }
-            }}
+              toast.success(dict.success);
+              setIsOpen(false);
+            } catch (e) {
+              toast.error(dict.error);
+            }
+          }}
+        >
+          <p className="mb-8">{dict.description}</p>
+          <TextInput
+            type="email"
+            name="email"
+            label="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="mb-12 block"
+            dict={{ invalidEmail: dict.invalidEmail }}
+          />
+          <Button
+            type="primary"
+            submitType
+            className="w-full"
+            disabled={!email}
           >
-            <p className="mb-8">{dict.description}</p>
-            <TextInput
-              type="email"
-              name="email"
-              label="E-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="mb-12 block"
-              dict={{ invalidEmail: dict.invalidEmail }}
-            />
-            <Button
-              type="primary"
-              submitType
-              className="w-full"
-              disabled={!email}
-            >
-              {dict.apply}
-            </Button>
-          </form>
-        </Modal>
-      )}
+            {dict.apply}
+          </Button>
+        </form>
+      </Modal>
     </>
   );
 }
