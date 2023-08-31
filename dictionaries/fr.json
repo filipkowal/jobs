@@ -153,8 +153,8 @@
     "title": "Retenir le poste et postuler plus tard",
     "titleMobile": "Postuler plus tard",
     "description": "Fais-toi envoyer cette annonce par e-mail pour pouvoir postuler plus tard",
-    "apply": "Envoyer l'annonce à moi",
-    "success": "Job a été livré à votre boîte aux lettres.",
+    "apply": "Envoyer cet emploi à ma boîte mail",
+    "success": "Job a été livré à votre boîte mail.",
     "error": "Quelque chose s'est mal passé"
   },
   "fileInput": {
