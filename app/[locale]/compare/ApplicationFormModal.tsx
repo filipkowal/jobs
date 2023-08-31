@@ -53,10 +53,7 @@ export default function ApplicationFormModal({
       dict={dict}
       locale={locale}
     />,
-    <ApplicationFormSuccessStep
-      key="applicationFormSuccess"
-      dict={{ applyFormSuccess: dict.applyFormSuccess }}
-    />,
+    <ApplicationFormSuccessStep key="applicationFormSuccess" />,
   ];
 
   const resetForm = () => {
