@@ -104,7 +104,6 @@ export interface ApplicationDict {
   "application.basket.title.0": string;
   "application.basket.title.1": string;
   "application.basket.title.2": string;
-  applyFormSuccess: string;
   "Apply for": string;
   jobs: string;
   "Something went wrong": string;
