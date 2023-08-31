@@ -6,6 +6,7 @@ const { withSentryConfig } = require("@sentry/nextjs");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   images: {
     minimumCacheTTL: 86400, // 1 day
     remotePatterns: [
