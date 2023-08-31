@@ -100,15 +100,12 @@
     "termsAgreed2": "Datenschutz & Rekrutierungsprozess",
     "termsAgreed3": "gelesen und bin damit einverstanden.",
     "recruiterInfo": "Bewerbungen über Personalvermittler werden weder berücksichtigt noch bearbeitet. Sämtliche Bewerbungen - unabhängig vom Absender - werden als Direktbewerbungen behandelt und schliessen jegliche Zahlung von Vermittlungsgebühren aus.",
-    "applyFormSuccess": "Vielen Dank für die Kontaktaufnahme. Wir werden uns innerhalb von 48 Stunden melden!",
     "Something went wrong": "Etwas ist schief gelaufen",
     "Please enter a valid LinkedIn profile link": "Bitte gib einen gültigen Link zu Deinem LinkedIn-Profil an",
     "Apply for another job": "Bewerben Sie sich für eine andere Stelle",
     "application.basket.title.0": "Bewerbungskorb",
     "application.basket.title.1": "Deine Angaben",
-    "application.basket.title.2": "Deine Erfahrungen",
-    "application.basket.title.3": "Das Kleingedruckte",
-    "application.basket.title.4": "DEINE BEWERBUNGEN SIND UNTERWEGS ZU UNS",
+    "application.basket.title.2": "Vielen Dank für die Kontaktaufnahme. Wir werden uns innerhalb von 48 Stunden melden!",
     "application.basket.termsAndConditions.accordion.title": "Datenschutz & Rekrutierungsprozess",
     "Your e-mail": "Deine E-Mail",
     "Select CV file": "CV-Datei auswählen",
@@ -155,9 +152,9 @@
     "title": "Job merken und später bewerben",
     "titleMobile": "Später bewerben",
     "description": "Lass Dir dieses Inserat per E-Mail schicken, damit Du Dich später bewerben kannst",
-    "apply": "Inserat an mich senden",
+    "apply": "Diesen Auftrag an meine Mailbox senden",
     "error": "Etwas ist schief gelaufen",
-    "success": "Job gespeichert"
+    "success": "Der Job wurde an deine Email geschickt."
   },
   "fileInput": {
     "drop": "Dateien ablegen oder klicken zum Auswählen",

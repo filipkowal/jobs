@@ -53,10 +53,7 @@ export default function ApplicationFormModal({
       dict={dict}
       locale={locale}
     />,
-    <ApplicationFormSuccessStep
-      key="applicationFormSuccess"
-      dict={{ applyFormSuccess: dict.applyFormSuccess }}
-    />,
+    <ApplicationFormSuccessStep key="applicationFormSuccess" />,
   ];
 
   const resetForm = () => {
@@ -107,7 +104,6 @@ export interface ApplicationDict {
   "application.basket.title.0": string;
   "application.basket.title.1": string;
   "application.basket.title.2": string;
-  applyFormSuccess: string;
   "Apply for": string;
   jobs: string;
   "Something went wrong": string;

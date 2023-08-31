@@ -3,7 +3,7 @@ import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import Button from "../../../components/Button";
 import { Job, Locale } from "../../../utils";
 import { CompareContext } from "../CompareContextProvider";
-import ApplicationFormModal, { ApplicationDict } from "./ApplicationFormModal";
+import ApplicationFormModal from "./ApplicationFormModal";
 import JobColumn from "./JobColumn";
 import {
   ArrowLeftCircleIcon,
@@ -166,15 +166,12 @@ export interface CompareJobTableDict {
   termsAgreed2: string;
   termsAgreed3: string;
   recruiterInfo: string;
-  applyFormSuccess: string;
   "Something went wrong": string;
   "Please enter a valid LinkedIn profile link": string;
   "Apply for another job": string;
   "application.basket.title.0": string;
   "application.basket.title.1": string;
   "application.basket.title.2": string;
-  "application.basket.title.3": string;
-  "application.basket.title.4": string;
   "application.basket.termsAndConditions.accordion.title": string;
   "Your e-mail": string;
   "Select CV file": string;
