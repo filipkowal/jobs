@@ -42,25 +42,12 @@ export default async function JobActions({
         locale={locale}
         jobId={jobId}
         dict={{
-          intro: shareJob["intro"],
-          "intro.bullet1": shareJob["intro.bullet1"],
-          "intro.bullet2": shareJob["intro.bullet2"],
-          "intro.bullet3": shareJob["intro.bullet3"],
-          "email.info": shareJob["email.info"],
-          "email.accept": shareJob["email.accept"],
-          "Create a link": shareJob["Create a link"],
+          ...shareJob,
           "Something went wrong": dict["Something went wrong"],
-          "It's your link. Now you just have to share it.":
-            shareJob["It's your link. Now you just have to share it."],
-          "Copied the link to clipboard":
-            shareJob["Copied the link to clipboard"],
-          "link.instructions": shareJob["link.instructions"],
           "Go back": dict["Go back"],
           "Share this job and earn 500 CHF":
             dict["Share this job and earn 500 CHF"],
-          "Share a job": shareJob["Share a job"],
           invalidEmail: dict["invalidEmail"],
-          Copy: shareJob["Copy"],
         }}
       />
 

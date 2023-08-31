@@ -28,7 +28,7 @@ export default async function FiltersSectionContainer({
   const { filtersSection: dict } = await getDictionary(locale);
 
   return (
-    <div className="lg:w-10/12 w-full max-w-[70rem] justify-left">
+    <div className="justify-left">
       <FiltersSection
         dict={dict}
         locale={locale}

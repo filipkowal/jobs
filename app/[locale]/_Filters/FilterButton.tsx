@@ -5,11 +5,13 @@ import { FiltersModalDict } from "./FiltersModal";
 
 export default function FilterButton({
   filterName,
+  setIsModalOpen,
   setOpenFilterName,
   activeFilters,
   dict,
 }: {
   filterName: string;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   setOpenFilterName: Dispatch<SetStateAction<OpenFilterName>>;
   activeFilters: ActiveFilters;
   dict: {
@@ -21,11 +23,12 @@ export default function FilterButton({
   return (
     <span
       key={filterName}
-      onClick={() =>
+      onClick={() => {
         setOpenFilterName(
           filterName === "regions" ? "states" : (filterName as OpenFilterName)
-        )
-      }
+        );
+        setIsModalOpen(true);
+      }}
       className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1 mr-2 mb-2 break-keep inline-block cursor-pointer
                 ${
                   activeFilters &&

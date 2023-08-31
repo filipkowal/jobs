@@ -7,20 +7,24 @@ import {
   Filters,
   pickActiveFiltersFromSearchParams,
   ActiveFilters,
+  FILTER_NAMES,
 } from "../../../utils";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
-import FiltersModal, { FiltersModalDict } from "./FiltersModal";
+import { type FiltersModalDict } from "./FiltersModal";
 import { useSearchParams } from "next/navigation";
 import { Dispatch, SetStateAction, useMemo, useState } from "react";
 import FiltersClearButton from "./FiltersClearButton";
 import FilterButton from "./FilterButton";
+import dynamic from "next/dynamic";
+
+const FiltersModal = dynamic(() => import("./FiltersModal"));
 
 interface Salary {
   amount?: number[] | undefined;
   currency?: string | undefined;
   unit?: string | undefined;
 }
-export type OpenFilterName = ActiveFilterName | "all" | "";
+export type OpenFilterName = ActiveFilterName | "none";
 
 export function isOfSalaryType(
   value: Salary | any[] | undefined
@@ -53,45 +57,49 @@ export default function FiltersSection({
     () => (locale === "fr" ? 6 : 7),
     [locale]
   );
-  const filtersNotHiddenNames = useMemo(
-    () =>
-      Object.keys(filters).filter(
-        (filterName) =>
-          !customBoard.hiddenFilters?.[
-            filterName as keyof typeof customBoard.hiddenFilters
-          ]
-      ),
-    [filters, customBoard]
-  );
+  const filtersNotHiddenNames = useMemo(() => {
+    const hiddenButtonNames = ["technologies", "jobLevels", "homeOffice"];
 
-  const [openFilterName, setOpenFilterName] = useState<OpenFilterName>("");
+    return FILTER_NAMES.filter(
+      (filterName) =>
+        !customBoard.hiddenFilters?.[
+          filterName as keyof typeof customBoard.hiddenFilters
+        ] && !hiddenButtonNames.includes(filterName)
+    );
+  }, [customBoard]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openFilterName, setOpenFilterName] = useState<OpenFilterName>("none");
   const [activeFilters, setActiveFilters] =
     useState<ActiveFilters>(defaultActiveFilters);
 
   return (
     <>
-      <FiltersModal
-        locale={locale}
-        filters={filters}
-        customBoard={customBoard}
-        dict={dict}
-        openFilterName={openFilterName}
-        setOpenFilterName={setOpenFilterName}
-        activeFilters={activeFilters}
-        setActiveFilters={setActiveFilters}
-        defaultActiveFilters={defaultActiveFilters}
-      />
+      {isModalOpen && (
+        <FiltersModal
+          locale={locale}
+          filters={filters}
+          customBoard={customBoard}
+          dict={dict}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          openFilterName={openFilterName}
+          setOpenFilterName={setOpenFilterName}
+          activeFilters={activeFilters}
+          setActiveFilters={setActiveFilters}
+          defaultActiveFilters={defaultActiveFilters}
+        />
+      )}
 
       <div className="hidden lg:flex flex-row mb-2 gap-2 flex-wrap relative">
         <AdjustmentsHorizontalIcon
-          onClick={() => setOpenFilterName("all")}
+          onClick={() => setIsModalOpen(true)}
           className="text-digitalent-blue pr-2 w-8 h-8 cursor-pointer"
         />
         <NumberOfFiltersIcon
           activeFilters={activeFilters}
-          setOpenFilterName={setOpenFilterName}
+          setIsModalOpen={setIsModalOpen}
         />
-
         <>
           {filtersNotHiddenNames
             .slice(0, numberOfVisibleFliterButtons - 1)
@@ -100,20 +108,19 @@ export default function FiltersSection({
                 key={filterName}
                 filterName={filterName}
                 setOpenFilterName={setOpenFilterName}
+                setIsModalOpen={setIsModalOpen}
                 activeFilters={activeFilters}
                 dict={dict}
               />
             ))}
         </>
 
-        {filtersNotHiddenNames.length > numberOfVisibleFliterButtons ? (
-          <span
-            onClick={() => setOpenFilterName("all")}
-            className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
-          >
-            {dict["More..."]}
-          </span>
-        ) : null}
+        <span
+          onClick={() => setIsModalOpen(true)}
+          className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
+        >
+          {dict["More..."]}
+        </span>
 
         <FiltersClearButton
           locale={locale}
@@ -127,7 +134,7 @@ export default function FiltersSection({
 
       <div className="relative lg:hidden w-[fit-content] pl-1">
         <span
-          onClick={() => setOpenFilterName("all")}
+          onClick={() => setIsModalOpen(true)}
           className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
         >
           {dict["Filters"]}
@@ -135,7 +142,7 @@ export default function FiltersSection({
         </span>
         <NumberOfFiltersIcon
           activeFilters={activeFilters}
-          setOpenFilterName={setOpenFilterName}
+          setIsModalOpen={setIsModalOpen}
         />
       </div>
     </>
@@ -144,10 +151,10 @@ export default function FiltersSection({
 
 function NumberOfFiltersIcon({
   activeFilters,
-  setOpenFilterName,
+  setIsModalOpen,
 }: {
   activeFilters: ActiveFilters;
-  setOpenFilterName: Dispatch<SetStateAction<OpenFilterName>>;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }) {
   if (!activeFilters) return null;
   if (Object.keys(activeFilters).length === 0) return null;
@@ -155,7 +162,7 @@ function NumberOfFiltersIcon({
   return Object.keys(activeFilters).length ? (
     <span
       onClick={() => {
-        setOpenFilterName("all");
+        setIsModalOpen(true);
       }}
       className="absolute -top-2 right-0 sm:!-left-2 cursor-pointer bg-digitalent-green text-white font-title w-5 h-5 flex justify-center items-center rounded-full"
     >

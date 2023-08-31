@@ -30,27 +30,29 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
   });
 
   return (
-    <main className="min-h-[calc(100vh-33.5px)] flex flex-col items-center">
-      <Suspense fallback={<Spinner />}>
-        <Title locale={params.locale} />
-      </Suspense>
-
-      {customBoard.hideAllFilters ? null : (
-        <Suspense fallback={<FiltersSkeleton />}>
-          <FiltersSectionContainer
-            filtersPromise={filtersPromise}
-            locale={params.locale}
-          />
+    <main className="w-full flex justify-center">
+      <div className="min-h-[calc(100vh-33.5px)] lg:w-10/12 w-full max-w-[70rem] items-left flex flex-col">
+        <Suspense fallback={<Spinner />}>
+          <Title locale={params.locale} />
         </Suspense>
-      )}
 
-      <Suspense fallback={<Spinner />}>
-        {await JobTable({
-          params,
-          jobsPromise,
-          limit: JOBS_LIMIT,
-        })}
-      </Suspense>
+        {customBoard.hideAllFilters ? null : (
+          <Suspense fallback={<FiltersSkeleton />}>
+            <FiltersSectionContainer
+              filtersPromise={filtersPromise}
+              locale={params.locale}
+            />
+          </Suspense>
+        )}
+
+        <Suspense fallback={<Spinner />}>
+          {await JobTable({
+            params,
+            jobsPromise,
+            limit: JOBS_LIMIT,
+          })}
+        </Suspense>
+      </div>
     </main>
   );
 }

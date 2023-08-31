@@ -1,10 +1,12 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import Modal from "../../../components/Modal";
 import { Job, Locale } from "../../../utils";
 import { useRouter } from "next/navigation";
 import ApplicationFormSuccessStep from "./ApplicationFormSuccess";
 import ApplicationFormBasket from "./ApplicationFormBasket";
 import ApplicationFormAboutYou from "./ApplicationFormAboutYou";
+import dynamic from "next/dynamic";
+
+const Modal = dynamic(() => import("../../../components/Modal"));
 
 export default function ApplicationFormModal({
   isOpen,
@@ -61,6 +63,8 @@ export default function ApplicationFormModal({
     setStepNumber(0);
   };
 
+  if (!isOpen) return null;
+
   return (
     <Modal
       isOpen={isOpen}
@@ -107,8 +111,7 @@ export interface ApplicationDict {
   "Apply for": string;
   jobs: string;
   "Something went wrong": string;
-  recruiterInfo1: string;
-  recruiterInfo2: string;
+  recruiterInfo: string;
   "Drop CV files or click to select": string;
   invalidEmail: string;
   fileInput: {

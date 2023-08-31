@@ -16,13 +16,14 @@ export default function CompareButtonHint({
 
   return (
     <div
-      className={`absolute z-[-1] bottom-16 right-0 bg-digitalent-blue p-4 opacity-0 transition-all duration-300 ${
+      className={`absolute z-[-1] bottom-16 right-0 bg-white text-digitalent-blue p-4 opacity-0 transition-all duration-300 ${
         likedJobs?.length === 1 && !hintHidden
           ? "opacity-100 !bottom-[-7rem]"
           : ""
       }`}
     >
       <div className="relative">
+        {/* arrow */}
         <div
           className="absolute top-[-24px] left-[47%]"
           style={{
@@ -30,11 +31,14 @@ export default function CompareButtonHint({
             height: "0",
             border: "solid",
             borderWidth: "0 10px 10px 10px",
-            borderColor: "transparent transparent rgb(25, 59, 68) transparent",
+            borderColor: "transparent transparent white transparent",
           }}
         />
+
         {dict.compareButtonHint}
       </div>
+
+      {/* X button */}
       <svg
         className="w-4 h-4 absolute top-2 right-2 cursor-pointer"
         fill="currentColor"

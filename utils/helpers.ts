@@ -1,5 +1,5 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
-import { FILTER_NAMES } from "./constants";
+import { ACTIVE_FILTER_NAMES } from "./constants";
 import { ActiveFilters } from "./types";
 
 export const allUppercase = (text: string): string =>
@@ -15,7 +15,7 @@ export function pickActiveFiltersFromSearchParams(
     return pickedParams;
   }
 
-  FILTER_NAMES.forEach((name) => {
+  ACTIVE_FILTER_NAMES.forEach((name) => {
     if (searchParams.has(name)) {
       const values = searchParams.getAll(name);
 

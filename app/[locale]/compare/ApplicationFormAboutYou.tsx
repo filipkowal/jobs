@@ -1,9 +1,16 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { Button, Checkbox, FileInput, TextInput } from "../../../components";
+import {
+  Button,
+  Checkbox,
+  FileInput,
+  LoadingEllipsis,
+  TextInput,
+} from "../../../components";
 import { ApplicationDict } from "./ApplicationFormModal";
 import BackButton from "./BackButton";
 import { Locale, postData } from "../../../utils";
 import { toast } from "react-hot-toast";
+import { set } from "lodash";
 
 export default function ApplicationFormAboutYou({
   dict,
@@ -31,6 +38,10 @@ export default function ApplicationFormAboutYou({
     null
   );
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const isApplicationInvalid =
+    !email || userType === null || (userType === "talent" && !termsAccepted);
 
   return (
     <form
@@ -38,7 +49,9 @@ export default function ApplicationFormAboutYou({
       onSubmit={async (e) => {
         e.preventDefault();
 
-        if (!email || userType !== "talent" || !termsAccepted) return;
+        if (isApplicationInvalid) return;
+
+        setIsLoading(true);
 
         const body = filterObject({
           email,
@@ -54,8 +67,10 @@ export default function ApplicationFormAboutYou({
           await postData("apply", locale, body);
 
           setStepNumber(stepNumber + 1);
+          setIsLoading(false);
         } catch (e) {
           toast.error((e as Error)?.message || dict["Something went wrong"]);
+          setIsLoading(false);
         }
 
         function filterObject(obj: Record<string, any>): Record<string, any> {
@@ -163,9 +178,8 @@ export default function ApplicationFormAboutYou({
             onChange={() => {
               setUserType("talent");
             }}
-            required
           />
-          <span>{dict["I am applying directly"] + " *"}</span>
+          <span>{dict["I am applying directly"]}</span>
         </label>
         <label className="w-full inline-block sm:w-fit sm:ml-4">
           <Checkbox
@@ -182,18 +196,7 @@ export default function ApplicationFormAboutYou({
 
       {/* Terms and conditions */}
 
-      {userType === "headhunter" && (
-        <div>
-          {dict["recruiterInfo1"]}
-          <a
-            href="https://talentforce.ch/legal/datenschutz-rekrutierungsprozess/"
-            className="font-bold"
-          >
-            {" " + dict["termsAgreed2"] + " "}
-          </a>
-          {dict["recruiterInfo2"] + " *"}
-        </div>
-      )}
+      {userType === "headhunter" && <div>{dict["recruiterInfo"]}</div>}
 
       {userType === "talent" && (
         <label className="flex gap-1">
@@ -206,14 +209,15 @@ export default function ApplicationFormAboutYou({
             }}
           />
           <div>
-            {dict["termsAgreed1"]}
+            {"* " + dict["termsAgreed1"]}
             <a
               href="https://talentforce.ch/legal/datenschutz-rekrutierungsprozess/"
               className="font-bold"
+              target="_blank"
             >
               {" " + dict["termsAgreed2"] + " "}
             </a>
-            {dict["termsAgreed3"] + " *"}
+            {dict["termsAgreed3"]}
           </div>
         </label>
       )}
@@ -224,13 +228,14 @@ export default function ApplicationFormAboutYou({
         dict={{ "Go back": dict["Go back"] }}
       />
       <Button
+        submitType
         type="primary"
         className="mt-16 float-right"
         name="Next"
-        disabled={!email || userType !== "talent" || !termsAccepted}
-        submitType
+        disabled={isApplicationInvalid || isLoading}
       >
         {dict["Next"]}
+        <LoadingEllipsis isLoading={isLoading} />
       </Button>
     </form>
   );

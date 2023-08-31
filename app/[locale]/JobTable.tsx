@@ -4,8 +4,7 @@ import { Jobs, SearchParams } from "../../utils";
 import JobRowAccordion from "./_JobRow/JobRowAccordion";
 import JobRowDetails from "./_JobRow/JobRowDetails";
 import JobTablePagination from "./_JobRow/JobTablePagination";
-import JobRowDesktop from "./_JobRow/JobRowDesktop";
-import JobRowMobile from "./_JobRow/JobRowMobile";
+import JobRowHeading from "./_JobRow/JobRowHeading";
 import JobActions from "./_JobRow/JobRowActions";
 
 export default async function JobTable({
@@ -24,7 +23,6 @@ export default async function JobTable({
   const jobsResponse = await jobsPromise;
   const jobs = jobsResponse?.jobs;
   const length = jobsResponse?.length;
-  const openJobId = params?.jobId?.[0];
 
   function k(s: string | number | undefined) {
     if (s === undefined) return;
@@ -34,7 +32,7 @@ export default async function JobTable({
 
   return (
     <div
-      className={`lg:w-10/12 w-full max-w-[70rem] mb-48 items-center ${
+      className={`mb-48 items-center ${
         customBoard.cards
           ? `grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8`
           : `flex flex-col`
@@ -43,15 +41,10 @@ export default async function JobTable({
       {jobs?.map((job) => (
         <JobRowAccordion
           job={job}
-          params={params}
-          openJobId={openJobId}
           key={job.id}
           customBoard={customBoard}
           headingDesktop={
-            <JobRowDesktop job={job} k={k} locale={params.locale} />
-          }
-          headingMobile={
-            <JobRowMobile job={job} k={k} locale={params.locale} />
+            <JobRowHeading job={job} k={k} locale={params.locale} />
           }
         >
           {!customBoard?.disableDetailView && (
