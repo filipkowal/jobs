@@ -154,7 +154,7 @@
     "titleMobile": "Postuler plus tard",
     "description": "Fais-toi envoyer cette annonce par e-mail pour pouvoir postuler plus tard",
     "apply": "Envoyer l'annonce à moi",
-    "success": "Emploi sauvegardé",
+    "success": "Job a été livré à votre boîte aux lettres.",
     "error": "Quelque chose s'est mal passé"
   },
   "fileInput": {

@@ -151,7 +151,7 @@
     "title": "Bookmark job and apply later",
     "description": "Have this ad emailed to you so you can apply later",
     "apply": "Send ad to me",
-    "success": "Job saved",
+    "success": "Job has been delivered to your mailbox.",
     "error": "Something went wrong",
     "titleMobile": "Apply later"
   },

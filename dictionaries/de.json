@@ -154,7 +154,7 @@
     "description": "Lass Dir dieses Inserat per E-Mail schicken, damit Du Dich später bewerben kannst",
     "apply": "Inserat an mich senden",
     "error": "Etwas ist schief gelaufen",
-    "success": "Job gespeichert"
+    "success": "Der Job wurde an deine Email geschickt."
   },
   "fileInput": {
     "drop": "Dateien ablegen oder klicken zum Auswählen",
