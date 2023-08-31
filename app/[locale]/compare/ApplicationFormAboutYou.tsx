@@ -92,17 +92,6 @@ export default function ApplicationFormAboutYou({
       <label className="mr-4">
         <Checkbox
           name="sex"
-          value="woman"
-          checked={sex === "woman"}
-          onChange={() => {
-            setSex("woman");
-          }}
-        />
-        <span>{dict["Woman"]}</span>
-      </label>
-      <label className="mr-4">
-        <Checkbox
-          name="sex"
           value="man"
           checked={sex === "man"}
           onChange={() => {
@@ -110,6 +99,17 @@ export default function ApplicationFormAboutYou({
           }}
         />
         <span>{dict["Man"]}</span>
+      </label>
+      <label className="mr-4">
+        <Checkbox
+          name="sex"
+          value="woman"
+          checked={sex === "woman"}
+          onChange={() => {
+            setSex("woman");
+          }}
+        />
+        <span>{dict["Woman"]}</span>
       </label>
       <label className="mr-4">
         <Checkbox
