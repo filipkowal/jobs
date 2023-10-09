@@ -68,7 +68,7 @@ export default function Modal({
                   </svg>
                   <Dialog.Title
                     as="h3"
-                    className="text-2xl font-title font-medium uppercase leading-6 pb-6 sm:pb-12"
+                    className="text-2xl font-title font-medium uppercase leading-6 pr-6 pb-6 sm:pb-12"
                   >
                     {title}
                   </Dialog.Title>
