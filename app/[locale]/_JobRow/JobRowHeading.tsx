@@ -29,20 +29,20 @@ export default async function JobRowHeading({
   const customBoard = await getCustomBoard();
 
   return (
-    <div className="sm:flex p-3 md:py-4 sm:pr-8 sm:pl-6 w-full justify-between cursor-pointer relative items-center">
+    <div className="md:flex p-3 md:py-4 md:pr-8 md:pl-6 w-full justify-between cursor-pointer relative items-center">
       <div
         className={`flex gap-6 md:items-center ${
           customBoard?.cards ? "" : "w-full lg:w-[60%] xl:w-[65%]"
         }`}
       >
         {!customBoard?.cards && employer?.logo ? (
-          <div className="block h-[52px] w-[70px] object-contain md:w-[130px]">
+          <div className="block h-[52px] w-[70px] object-contain md:w-[130px] relative">
             <Image
               src={employer.logo}
               alt={`${dict["Logo of"]} ${employer?.name}`}
-              className="absolute top-[30px] md:static block h-[52px] w-[70px] object-contain md:w-[130px] "
-              width={130}
-              height={52}
+              className="absolute !top-[22px] md:!top-0 md:static block object-contain"
+              fill
+              sizes="70px, (min-width: 768px) 130px"
             />
           </div>
         ) : (
@@ -55,7 +55,7 @@ export default async function JobRowHeading({
               ? `${workload[0]}%`
               : `${workload?.[0]} - ${workload?.[1]}%`}
           </h2>
-          <span className="font-light text-sm hidden sm:block">
+          <span className="font-light text-sm hidden md:block">
             {employer?.name}
 
             {homeOffice?.[1]
@@ -66,11 +66,11 @@ export default async function JobRowHeading({
       </div>
 
       <div className="flex flex-row gap-2 xl:gap-6 align-middle w-auto">
-        <div className="flex flex-col pl-[95px] md:pl-0 sm:flex-row md:gap-1 xl:gap-4 align-middle w-full justify-start sm:justify-end sm:w-auto">
+        <div className="flex flex-col pl-[95px] md:pl-0 md:flex-row md:gap-1 xl:gap-4 align-middle w-full justify-start md:justify-end md:w-auto">
           {salary?.amount && (
             <span
               className={`flex md:h-10 md:py-2 my-auto whitespace-nowrap items-baseline md:items-start ${
-                customBoard?.cards ? "" : "pr-4 sm:pl-4 md:w-40"
+                customBoard?.cards ? "" : "pr-4 md:pl-4 md:w-40"
               }`}
             >
               <Tooltip
@@ -85,7 +85,7 @@ export default async function JobRowHeading({
                   {"k " + salary?.currency}
                 </span>
               </Tooltip>
-              <span className="sm:hidden font-title !font-lighter text-xs pl-3">
+              <span className="md:hidden font-title !font-lighter text-xs pl-3">
                 {workload?.[1] ? ` ${workload[0]}% - ${workload[1]}%` : ""}
               </span>
               <Tooltip
@@ -97,7 +97,7 @@ export default async function JobRowHeading({
                 ariaLabel="Salary Range Info"
               >
                 <span className="h-[1.2rem] w-[1.2rem]">
-                  <InformationCircleIcon className="hidden sm:block h-[1.2rem] w-[1.2rem] text-white ml-2 translate-y-1" />
+                  <InformationCircleIcon className="hidden md:block h-[1.2rem] w-[1.2rem] text-white ml-2 translate-y-1" />
                 </span>
               </Tooltip>
             </span>
@@ -112,7 +112,7 @@ export default async function JobRowHeading({
             </span>
           )}
         </div>
-        <div className="hidden sm:block">
+        <div className="hidden md:block">
           {customBoard?.disableCompareView
             ? null
             : jobId && (
