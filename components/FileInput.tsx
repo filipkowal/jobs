@@ -35,10 +35,6 @@ export default function FileInput({
   const accept = acceptProp || {
     "image/*": [],
     "application/pdf": [".pdf"],
-    "application/msword": [".doc"],
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [
-      ".docx",
-    ],
   };
 
   return (
