@@ -132,7 +132,7 @@ export default function FiltersSection({
 
       {/* Mobile */}
 
-      <div className="relative lg:hidden w-[fit-content] pl-1">
+      <div className="relative lg:hidden w-[fit-content] mx-3">
         <span
           onClick={() => setIsModalOpen(true)}
           className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}

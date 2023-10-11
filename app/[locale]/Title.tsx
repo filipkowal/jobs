@@ -38,7 +38,7 @@ function TitleLayout({
   customBoard?: CustomBoard;
 }) {
   return (
-    <div className="mt-16 sm:mt-28 md:mt-40 mb-10 md:mb-20">
+    <div className="mt-16 sm:mt-28 md:mt-40 mb-10 md:mb-20 mx-6 lg:mx-0">
       {customBoard?.hideTitle ? null : (
         <h1 className="text-3xl md:text-[3.6rem] font-medium mb-2 font-title leading-snug text-digitalent-blue">
           {title}
