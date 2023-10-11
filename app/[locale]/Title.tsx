@@ -49,7 +49,7 @@ function TitleLayout({
           <h2 className="text-md md:text-2xl font-title text-digitalent-blue">
             {subtitle1}
           </h2>
-          <h2 className="text-md md:text-2xl font-title text-white">
+          <h2 className="text-md md:text-2xl font-title text-digitalent-blue font-medium">
             {subtitle2}
           </h2>
         </>
