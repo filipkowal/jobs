@@ -72,7 +72,7 @@ export default function TextInput({
           value={value}
           disabled={disabled}
           // The regex has double backslashes because otherwise it is escaped in the string.
-          pattern={type === "email" && !pattern ? `.+@.+\\..+` : pattern}
+          pattern={type === "email" && !pattern ? `.+@.+\\...+` : pattern}
           onChange={(e) => {
             handleValidationMessage();
             onChange && onChange(e);
