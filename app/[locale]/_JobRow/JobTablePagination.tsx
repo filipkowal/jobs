@@ -47,7 +47,7 @@ export default async function JobTablePagination({
           query: searchParams,
         }}
       >
-        <Button type="primary" name="Previous">
+        <Button type="primary" name="Previous" className="min-w-[140px]">
           {dict[`Previous`]}
         </Button>
       </Link>
@@ -77,7 +77,7 @@ export default async function JobTablePagination({
           query: searchParams,
         }}
       >
-        <Button type="primary" name="Next">
+        <Button type="primary" name="Next" className="min-w-[140px]">
           {dict[`Next`]}
         </Button>
       </Link>

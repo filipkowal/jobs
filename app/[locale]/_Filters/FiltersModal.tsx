@@ -110,6 +110,7 @@ export default function FiltersModal({
       case "regions":
         return (
           <RegionsFilter
+            key="regions"
             regions={filters.regions}
             selectedStates={activeFilters?.states || []}
             isOpen={isAccordionOpen("states")}
@@ -124,17 +125,22 @@ export default function FiltersModal({
         );
 
       case "careerFields":
-        return <TagsFilterContainer filterName="careerFields" />;
+        return (
+          <TagsFilterContainer filterName="careerFields" key="careerFields" />
+        );
 
       case "technologies":
-        return <TagsFilterContainer filterName="technologies" />;
+        return (
+          <TagsFilterContainer filterName="technologies" key="technologies" />
+        );
 
       case "jobLevels":
-        return <TagsFilterContainer filterName="jobLevels" />;
+        return <TagsFilterContainer filterName="jobLevels" key="jobLevels" />;
 
       case "salary":
         return (
           <Accordion
+            key="salary"
             title={dict["Salary"]}
             isOpen={isAccordionOpen("salary")}
             alwaysOpen={!!activeFilters?.salary}
@@ -176,6 +182,7 @@ export default function FiltersModal({
       case "workload":
         return (
           <Accordion
+            key="workload"
             title={dict["Workload"]}
             isOpen={isAccordionOpen("workload")}
             alwaysOpen={!!activeFilters?.workload}
@@ -197,6 +204,7 @@ export default function FiltersModal({
       case "homeOffice":
         return (
           <Accordion
+            key="homeOffice"
             title={dict["Home Office"]}
             isOpen={isAccordionOpen("homeOffice")}
             alwaysOpen={!!activeFilters?.homeOffice}
@@ -216,10 +224,12 @@ export default function FiltersModal({
         );
 
       case "industries":
-        return <TagsFilterContainer filterName="industries" />;
+        return <TagsFilterContainer filterName="industries" key="industries" />;
 
       case "companySizes":
-        return <TagsFilterContainer filterName="companySizes" />;
+        return (
+          <TagsFilterContainer filterName="companySizes" key="companySize" />
+        );
 
       default:
         return null;
