@@ -29,17 +29,17 @@ export default function TextInput({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
 }) {
-  const emailRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleValidationMessage = () => {
-    const emailInput = emailRef.current;
+    const inputElement = inputRef.current;
 
-    if (!emailInput || type !== "email") return;
+    if (!inputElement || type !== "email") return;
 
-    if (emailInput.validity.typeMismatch) {
-      emailInput.setCustomValidity(dict.invalidEmail);
+    if (inputElement.validity.typeMismatch) {
+      inputElement.setCustomValidity(dict.invalidEmail);
     } else {
-      emailInput.setCustomValidity("");
+      inputElement.setCustomValidity("");
     }
   };
 
@@ -66,7 +66,8 @@ export default function TextInput({
           className={`w-full ring-2 bg-digitalent-gray-light text-digitalent-blue 
                     ring-digitalent-blue border-none pl-4 
                       mt-4 block autofill:bg-digitalent-gray-light ${className} 
-                      [&:not(:placeholder-shown)+label]:-translate-y-[1.2rem] [&:not(:placeholder-shown)+label]:text-sm`}
+                      [&:not(:placeholder-shown)+label]:-translate-y-[1.2rem] [&:not(:placeholder-shown)+label]:text-sm
+                      [&:not(:placeholder-shown)]:invalid:[&:not(:focus)]:ring-red-500 [&:not(:placeholder-shown)]:invalid:[&:not(:focus)]:ring-offset-red-500`}
           required={required}
           name={name}
           value={value}
@@ -77,7 +78,7 @@ export default function TextInput({
             handleValidationMessage();
             onChange && onChange(e);
           }}
-          ref={emailRef}
+          ref={inputRef}
           id={name}
           placeholder=" "
         />
