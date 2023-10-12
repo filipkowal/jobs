@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import {
   Button,
   Checkbox,
@@ -40,11 +40,14 @@ export default function ApplicationFormAboutYou({
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const formRef = useRef<HTMLFormElement>(null);
+
   const isApplicationInvalid =
-    !email || userType === null || (userType === "talent" && !termsAccepted);
+    userType === null || (userType === "talent" && !termsAccepted);
 
   return (
     <form
+      ref={formRef}
       key={"aboutYou"}
       onSubmit={async (e) => {
         e.preventDefault();
@@ -232,7 +235,11 @@ export default function ApplicationFormAboutYou({
         type="primary"
         className="mt-16 float-right"
         name="Next"
-        disabled={isApplicationInvalid || isLoading}
+        disabled={
+          isApplicationInvalid ||
+          isLoading ||
+          (!!formRef.current && !formRef.current?.checkValidity())
+        }
       >
         {dict["Next"]}
         <LoadingEllipsis isLoading={isLoading} />
