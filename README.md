@@ -1,4 +1,4 @@
-# Digitalent job board
+# Digitalent job board 
 
 [Demo](https://digitalentjobs.netlify.app/)
 
