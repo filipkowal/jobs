@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import Button from "../../../components/Button";
 import Checkbox from "../../../components/Checkbox";
@@ -41,11 +41,13 @@ export default function ShareJob({
   const [uniqueLink, setUniqueLink] = useState("");
   const [email, setEmail] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const steps = [
     <form
+      ref={formRef}
       role="form"
-      key={"0"}
+      key="0"
       onSubmit={async (e) => {
         e.preventDefault();
 
@@ -100,7 +102,11 @@ export default function ShareJob({
         className="mt-16 mb-4 float-right"
         name={dict["Create a link"]}
         submitType
-        disabled={!termsAccepted || !email}
+        disabled={
+          (!!formRef.current && !formRef.current?.checkValidity()) ||
+          !termsAccepted ||
+          !email
+        }
       >
         {dict["Create a link"]}
       </Button>

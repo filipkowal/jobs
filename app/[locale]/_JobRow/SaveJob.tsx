@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import toast from "react-hot-toast";
 import Button from "../../../components/Button";
@@ -28,6 +28,7 @@ export default function SaveJob({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [email, setEmail] = useState("");
+  const formRef = useRef<HTMLFormElement>(null);
 
   return (
     <>
@@ -64,6 +65,7 @@ export default function SaveJob({
               toast.error(dict.error);
             }
           }}
+          ref={formRef}
         >
           <p className="mb-8">{dict.description}</p>
           <TextInput
@@ -80,7 +82,9 @@ export default function SaveJob({
             type="primary"
             submitType
             className="w-full"
-            disabled={!email}
+            disabled={
+              !email || (!!formRef.current && !formRef.current?.checkValidity())
+            }
           >
             {dict.apply}
           </Button>
