@@ -14,14 +14,26 @@ export default async function JobTable({
   limit,
 }: {
   searchParams?: SearchParams;
-  params: { locale: Locale; jobId?: string[] };
+  params: { locale: Locale; jobId?: string };
   limit: number;
   jobsPromise?: Promise<Jobs>;
 }) {
   const customBoard = await getCustomBoard();
 
   const jobsResponse = await jobsPromise;
-  const jobs = jobsResponse?.jobs;
+
+  const jobs = params?.jobId
+    ? jobsResponse?.jobs?.sort((a, b) => {
+        if (a.id === params?.jobId) {
+          return -1;
+        } else if (b.id === params?.jobId) {
+          return 1;
+        } else {
+          return 0;
+        }
+      })
+    : jobsResponse?.jobs;
+
   const length = jobsResponse?.length;
 
   function k(s: string | number | undefined) {
@@ -49,9 +61,7 @@ export default async function JobTable({
         >
           {!customBoard?.disableDetailView && (
             <div className="flex flex-row flex-wrap-reverse lg:flex-nowrap justify-center sm:pb-6 bg-digitalent-gray-light sm:bg-inherit">
-              {customBoard.disableDetailView ? null : (
-                <JobRowDetails locale={params.locale} job={job} />
-              )}
+              <JobRowDetails locale={params.locale} job={job} />
 
               <JobActions
                 landingPageUrl={job.landingPageUrl}
