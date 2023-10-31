@@ -1,5 +1,5 @@
 import { Locale } from "../../i18n-config";
-import { getCustomBoard } from "../../utils/server";
+import { getCustomBoard, getDictionary } from "../../utils/server";
 import { Job, Jobs, SearchParams } from "../../utils";
 import JobRowAccordion from "./_JobRow/JobRowAccordion";
 import JobRowDetails from "./_JobRow/JobRowDetails";
@@ -19,6 +19,7 @@ export default async function JobTable({
   jobsPromise?: Promise<Jobs>;
 }) {
   const customBoard = await getCustomBoard();
+  const dict = await getDictionary(params.locale);
 
   const jobsResponse = await jobsPromise;
 
@@ -57,29 +58,40 @@ export default async function JobTable({
       }`}
     >
       {jobs?.map((job) => (
-        <JobRowAccordion
-          job={job}
-          initOpenJobId={params?.jobId}
-          locale={params.locale}
-          key={job.id}
-          customBoard={customBoard}
-          jobRowHeading={
-            <JobRowHeading job={job} k={k} locale={params.locale} />
-          }
-        >
-          {!customBoard?.disableDetailView && (
-            <div className="flex flex-row flex-wrap-reverse lg:flex-nowrap justify-center sm:pb-6 bg-digitalent-gray-light sm:bg-inherit">
-              <JobRowDetails locale={params.locale} job={job} />
+        <>
+          <JobRowAccordion
+            job={job}
+            initOpenJobId={params?.jobId}
+            locale={params.locale}
+            key={job.id}
+            customBoard={customBoard}
+            jobRowHeading={
+              <JobRowHeading job={job} k={k} locale={params.locale} />
+            }
+          >
+            {!customBoard?.disableDetailView && (
+              <div className="flex flex-row flex-wrap-reverse lg:flex-nowrap justify-center sm:pb-6 bg-digitalent-gray-light sm:bg-inherit">
+                <JobRowDetails locale={params.locale} job={job} />
 
-              <JobActions
-                landingPageUrl={job.landingPageUrl}
-                locale={params.locale}
-                jobId={job.id}
-                customBoard={customBoard}
-              />
-            </div>
-          )}
-        </JobRowAccordion>
+                <JobActions
+                  landingPageUrl={job.landingPageUrl}
+                  locale={params.locale}
+                  jobId={job.id}
+                  customBoard={customBoard}
+                />
+              </div>
+            )}
+          </JobRowAccordion>
+
+          {
+            // Separator after initially open job
+            params.jobId === job.id && (
+              <div className="my-6 w-full text-center text-digitalent-blue text-xl font-title">
+                - {dict["More jobs"]} -
+              </div>
+            )
+          }
+        </>
       ))}
 
       <JobTablePagination
