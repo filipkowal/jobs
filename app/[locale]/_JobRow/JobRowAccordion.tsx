@@ -1,16 +1,21 @@
 "use client";
-import { ReactNode, useState } from "react";
+import { ReactNode, use, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-import type { CustomBoard, Job, Locale } from "../../../utils";
+import {
+  getShortId,
+  type CustomBoard,
+  type Job,
+  type Locale,
+} from "../../../utils";
 import JobRowHeadingContainer from "./JobRowHeadingContainer";
 
 interface JobRowProps {
   job: Job;
   children: ReactNode;
   customBoard?: CustomBoard;
-  initOpenJobId?: string;
+  initOpenJobTitleId?: string;
   jobRowHeading?: ReactNode;
   locale: Locale;
 }
@@ -19,7 +24,7 @@ export default function JobRowAccordion({
   job,
   children,
   customBoard,
-  initOpenJobId,
+  initOpenJobTitleId,
   jobRowHeading,
   locale,
 }: JobRowProps) {
@@ -27,8 +32,10 @@ export default function JobRowAccordion({
 
   const [animationRef] = useAutoAnimate();
 
+  const pathname = usePathname();
+
   const [isOpen, setIsOpen] = useState(
-    usePathname()?.includes(job.id as string) || false
+    pathname?.includes(getShortId(job.id)) || false
   );
 
   const getHref = () => {
@@ -37,8 +44,11 @@ export default function JobRowAccordion({
     }
   };
 
+  const isNotInitOpenJob = () =>
+    getShortId(initOpenJobTitleId) !== getShortId(job.id);
+
   return (
-    <div
+    <article
       className={`flex flex-col bg-digitalent-blue my-1 sm:my-2 w-full ${
         customBoard?.cards ? `h-96 justify-end` : ``
       }`}
@@ -47,7 +57,7 @@ export default function JobRowAccordion({
     >
       <div
         onClick={() => {
-          initOpenJobId !== job.id && setIsOpen(!isOpen);
+          isNotInitOpenJob() && setIsOpen(!isOpen);
           history && history.pushState(null, "", getHref());
         }}
       >
@@ -57,7 +67,7 @@ export default function JobRowAccordion({
           id={jobId}
         />
         <JobRowHeadingContainer
-          initOpenJobId={initOpenJobId}
+          initOpenJobTitleId={initOpenJobTitleId}
           job={job}
           locale={locale}
         >
@@ -66,6 +76,6 @@ export default function JobRowAccordion({
       </div>
 
       {isOpen ? children : null}
-    </div>
+    </article>
   );
 }

@@ -1,6 +1,6 @@
 import { Locale } from "../../i18n-config";
 import { getCustomBoard, getDictionary } from "../../utils/server";
-import { Job, Jobs, SearchParams } from "../../utils";
+import { Job, Jobs, SearchParams, getShortId } from "../../utils";
 import JobRowAccordion from "./_JobRow/JobRowAccordion";
 import JobRowDetails from "./_JobRow/JobRowDetails";
 import JobTablePagination from "./_JobRow/JobTablePagination";
@@ -14,7 +14,7 @@ export default async function JobTable({
   limit,
 }: {
   searchParams?: SearchParams;
-  params: { locale: Locale; jobId?: string };
+  params: { locale: Locale; jobTitleId?: string };
   limit: number;
   jobsPromise?: Promise<Jobs>;
 }) {
@@ -24,11 +24,11 @@ export default async function JobTable({
   const jobsResponse = await jobsPromise;
 
   function sortJobsInitOpenFirst(jobs?: Job[]) {
-    if (params?.jobId) {
+    if (params?.jobTitleId) {
       return jobs?.sort((a, b) => {
-        if (a.id === params?.jobId) {
+        if (getShortId(a.id) === getShortId(params?.jobTitleId)) {
           return -1;
-        } else if (b.id === params?.jobId) {
+        } else if (getShortId(b.id) === getShortId(params?.jobTitleId)) {
           return 1;
         } else {
           return 0;
@@ -61,7 +61,7 @@ export default async function JobTable({
         <>
           <JobRowAccordion
             job={job}
-            initOpenJobId={params?.jobId}
+            initOpenJobTitleId={params?.jobTitleId}
             locale={params.locale}
             key={job.id}
             customBoard={customBoard}
@@ -85,7 +85,7 @@ export default async function JobTable({
 
           {
             // Separator after initially open job
-            params.jobId === job.id && (
+            getShortId(params.jobTitleId) === getShortId(job.id) && (
               <div className="my-6 w-full text-center text-digitalent-blue text-xl font-title">
                 - {dict["More jobs"]} -
               </div>

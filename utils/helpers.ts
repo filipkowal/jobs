@@ -41,3 +41,11 @@ export function pickActiveFiltersFromSearchParams(
 
   return pickedParams;
 }
+
+export function getShortId(str?: string) {
+  if (!str) {
+    return "";
+  }
+
+  return str.slice(-6);
+}

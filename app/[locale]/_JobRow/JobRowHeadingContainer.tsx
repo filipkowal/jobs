@@ -1,20 +1,28 @@
 "use client";
 
 import { ReactNode, useState } from "react";
-import { Job, Locale } from "../../../utils";
+import { Job, Locale, getShortId } from "../../../utils";
 
 export default function JobRowHeadingContainer({
   job,
   locale,
-  initOpenJobId,
+  initOpenJobTitleId,
   children,
 }: {
   job: Job;
   locale: Locale;
-  initOpenJobId?: string;
+  initOpenJobTitleId?: string;
   children: ReactNode;
 }) {
   const [lastOpenJobId, setLastOpenJobId] = useState<string | null>(null);
+
+  function createUrlFriendlyString(str?: string) {
+    if (!str) return;
+    return str
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-") // Replace any sequence of non-alphanumeric characters with a hyphen
+      .replace(/^-+|-+$/g, ""); // Remove leading and trailing hyphens
+  }
 
   function updateUrl() {
     if (typeof window === "undefined") return;
@@ -22,10 +30,10 @@ export default function JobRowHeadingContainer({
     if (!job.id) return;
 
     // Keep the intially open job always open
-    if (initOpenJobId === job.id) return;
+    if (getShortId(initOpenJobTitleId) === getShortId(job.id)) return;
 
-    const initialUrl = initOpenJobId
-      ? `/${locale}/jobs/${initOpenJobId}`
+    const initialUrl = initOpenJobTitleId
+      ? `/${locale}/jobs/${initOpenJobTitleId}`
       : `/${locale}`;
 
     if (lastOpenJobId === job.id) {
@@ -34,8 +42,10 @@ export default function JobRowHeadingContainer({
       return;
     }
 
+    const jobTitleId =
+      createUrlFriendlyString(job.title) + "-" + getShortId(job.id);
     setLastOpenJobId(job.id);
-    window.history.pushState({}, "", `/${locale}/jobs/${job.id}`);
+    window.history.pushState({}, "", `/${locale}/jobs/${jobTitleId}`);
   }
 
   return (

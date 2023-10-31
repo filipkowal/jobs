@@ -1,7 +1,7 @@
 import { JOBS_LIMIT } from "../../../../utils/constants";
 import { type Locale } from "../../../../i18n-config";
 import JobTable from "../../JobTable";
-import { getFilters, getJobs } from "../../../../utils";
+import { getFilters, getJobs, getShortId } from "../../../../utils";
 import FiltersSectionContainer from "../../_Filters/FiltersSectionContainer";
 import Title, { TitleSkeleton } from "../../Title";
 import { getCustomBoard } from "../../../../utils/server";
@@ -15,7 +15,7 @@ export default async function Home({
   params,
   searchParams,
 }: {
-  params: { locale: Locale; jobId: string };
+  params: { locale: Locale; jobTitleId: string };
   searchParams: ActiveFilters & { [key: string]: any };
 }) {
   const customBoard = await getCustomBoard();
@@ -35,7 +35,10 @@ export default async function Home({
   });
   const jobsResponse = await jobsPromise;
   const jobs = jobsResponse?.jobs;
-  const job = jobs?.find((job) => job.id === params.jobId);
+
+  const job = jobs?.find(
+    (job) => getShortId(job.id) === getShortId(params.jobTitleId)
+  );
 
   if (!job) {
     redirect(`/${params.locale}`);
