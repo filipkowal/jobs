@@ -1,6 +1,6 @@
 import { Locale } from "../../i18n-config";
 import { getCustomBoard } from "../../utils/server";
-import { Jobs, SearchParams } from "../../utils";
+import { Job, Jobs, SearchParams } from "../../utils";
 import JobRowAccordion from "./_JobRow/JobRowAccordion";
 import JobRowDetails from "./_JobRow/JobRowDetails";
 import JobTablePagination from "./_JobRow/JobTablePagination";
@@ -23,9 +23,9 @@ export default async function JobTable({
 
   const jobsResponse = await jobsPromise;
 
-  function getOpenJobFirstJobs(jobs?: Jobs) {
+  function sortJobsInitOpenFirst(jobs?: Job[]) {
     if (params?.jobId) {
-      return jobsResponse?.jobs?.sort((a, b) => {
+      return jobs?.sort((a, b) => {
         if (a.id === params?.jobId) {
           return -1;
         } else if (b.id === params?.jobId) {
@@ -36,10 +36,10 @@ export default async function JobTable({
       });
     }
 
-    return jobsResponse?.jobs;
+    return jobs;
   }
 
-  const jobs = getOpenJobFirstJobs(jobsResponse?.jobs);
+  const jobs = sortJobsInitOpenFirst(jobsResponse?.jobs);
 
   const length = jobsResponse?.length;
 
@@ -64,7 +64,7 @@ export default async function JobTable({
           customBoard={customBoard}
           headingDesktop={
             <JobRowHeadingContainer
-              initiallyOpenJobId={params?.jobId}
+              initOpenJobId={params?.jobId}
               job={job}
               locale={params.locale}
             >
