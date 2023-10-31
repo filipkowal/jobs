@@ -9,6 +9,7 @@ interface JobRowProps {
   job: Job;
   children: ReactNode;
   customBoard?: CustomBoard;
+  initOpenJobId?: string;
   headingDesktop?: ReactNode;
 }
 
@@ -16,6 +17,7 @@ export default function JobRowAccordion({
   job,
   children,
   customBoard,
+  initOpenJobId,
   headingDesktop,
 }: JobRowProps) {
   const { id: jobId, landingPageUrl } = job;
@@ -42,7 +44,7 @@ export default function JobRowAccordion({
     >
       <div
         onClick={() => {
-          setIsOpen(!isOpen);
+          initOpenJobId !== job.id && setIsOpen(!isOpen);
           history && history.pushState(null, "", getHref());
         }}
       >

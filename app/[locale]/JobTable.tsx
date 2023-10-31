@@ -60,6 +60,7 @@ export default async function JobTable({
       {jobs?.map((job) => (
         <JobRowAccordion
           job={job}
+          initOpenJobId={params?.jobId}
           key={job.id}
           customBoard={customBoard}
           headingDesktop={
