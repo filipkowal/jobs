@@ -23,8 +23,9 @@ export default async function JobTable({
 
   const jobsResponse = await jobsPromise;
 
-  const jobs = params?.jobId
-    ? jobsResponse?.jobs?.sort((a, b) => {
+  function getOpenJobFirstJobs(jobs?: Jobs) {
+    if (params?.jobId) {
+      return jobsResponse?.jobs?.sort((a, b) => {
         if (a.id === params?.jobId) {
           return -1;
         } else if (b.id === params?.jobId) {
@@ -32,8 +33,13 @@ export default async function JobTable({
         } else {
           return 0;
         }
-      })
-    : jobsResponse?.jobs;
+      });
+    }
+
+    return jobsResponse?.jobs;
+  }
+
+  const jobs = getOpenJobFirstJobs(jobsResponse?.jobs);
 
   const length = jobsResponse?.length;
 
@@ -57,7 +63,11 @@ export default async function JobTable({
           key={job.id}
           customBoard={customBoard}
           headingDesktop={
-            <JobRowHeadingContainer job={job} locale={params.locale}>
+            <JobRowHeadingContainer
+              initiallyOpenJobId={params?.jobId}
+              job={job}
+              locale={params.locale}
+            >
               <JobRowHeading job={job} k={k} locale={params.locale} />
             </JobRowHeadingContainer>
           }
