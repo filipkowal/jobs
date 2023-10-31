@@ -29,7 +29,7 @@ export default async function JobRowHeading({
   const customBoard = await getCustomBoard();
 
   return (
-    <div className="md:flex p-3 md:py-4 md:pr-8 md:pl-6 w-full justify-between cursor-pointer relative items-center">
+    <>
       <div
         className={`flex gap-6 md:items-center ${
           customBoard?.cards ? "" : "w-full lg:w-[60%] xl:w-[65%]"
@@ -125,6 +125,6 @@ export default async function JobRowHeading({
               )}
         </div>
       </div>
-    </div>
+    </>
   );
 }
