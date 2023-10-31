@@ -4,7 +4,6 @@ import { Job, Jobs, SearchParams } from "../../utils";
 import JobRowAccordion from "./_JobRow/JobRowAccordion";
 import JobRowDetails from "./_JobRow/JobRowDetails";
 import JobTablePagination from "./_JobRow/JobTablePagination";
-import JobRowHeadingContainer from "./_JobRow/JobRowHeadingContainer";
 import JobRowHeading from "./_JobRow/JobRowHeading";
 import JobActions from "./_JobRow/JobRowActions";
 
@@ -61,16 +60,11 @@ export default async function JobTable({
         <JobRowAccordion
           job={job}
           initOpenJobId={params?.jobId}
+          locale={params.locale}
           key={job.id}
           customBoard={customBoard}
-          headingDesktop={
-            <JobRowHeadingContainer
-              initOpenJobId={params?.jobId}
-              job={job}
-              locale={params.locale}
-            >
-              <JobRowHeading job={job} k={k} locale={params.locale} />
-            </JobRowHeadingContainer>
+          jobRowHeading={
+            <JobRowHeading job={job} k={k} locale={params.locale} />
           }
         >
           {!customBoard?.disableDetailView && (

@@ -3,14 +3,16 @@ import { ReactNode, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-import type { CustomBoard, Job } from "../../../utils";
+import type { CustomBoard, Job, Locale } from "../../../utils";
+import JobRowHeadingContainer from "./JobRowHeadingContainer";
 
 interface JobRowProps {
   job: Job;
   children: ReactNode;
   customBoard?: CustomBoard;
   initOpenJobId?: string;
-  headingDesktop?: ReactNode;
+  jobRowHeading?: ReactNode;
+  locale: Locale;
 }
 
 export default function JobRowAccordion({
@@ -18,7 +20,8 @@ export default function JobRowAccordion({
   children,
   customBoard,
   initOpenJobId,
-  headingDesktop,
+  jobRowHeading,
+  locale,
 }: JobRowProps) {
   const { id: jobId, landingPageUrl } = job;
 
@@ -53,7 +56,13 @@ export default function JobRowAccordion({
           className="sm:relative sm:top-[-64px]"
           id={jobId}
         />
-        {headingDesktop}
+        <JobRowHeadingContainer
+          initOpenJobId={initOpenJobId}
+          job={job}
+          locale={locale}
+        >
+          {jobRowHeading}
+        </JobRowHeadingContainer>
       </div>
 
       {isOpen ? children : null}
