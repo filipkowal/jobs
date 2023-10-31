@@ -6,10 +6,12 @@ import { Job, Locale } from "../../../utils";
 export default function JobRowHeadingContainer({
   job,
   locale,
+  initiallyOpenJobId,
   children,
 }: {
   job: Job;
   locale: Locale;
+  initiallyOpenJobId?: string;
   children: ReactNode;
 }) {
   const [lastOpenJobId, setLastOpenJobId] = useState<string | null>(null);
@@ -19,9 +21,16 @@ export default function JobRowHeadingContainer({
 
     if (!job.id) return;
 
+    // Keep the intially open job always open
+    if (initiallyOpenJobId === job.id) return;
+
+    const initialUrl = initiallyOpenJobId
+      ? `/${locale}/jobs/${initiallyOpenJobId}`
+      : `/${locale}`;
+
     if (lastOpenJobId === job.id) {
       setLastOpenJobId(null);
-      window.history.pushState({}, "", `/${locale}`);
+      window.history.pushState({}, "", initialUrl);
       return;
     }
 
