@@ -8,12 +8,14 @@ export default function Modal({
   setIsOpen,
   title,
   children,
+  footer,
   onClose,
 }: {
   isOpen: boolean;
   setIsOpen: Function;
   title: string;
   children: React.ReactNode;
+  footer?: React.ReactNode;
   onClose?: Function;
 }) {
   function closeModal() {
@@ -71,9 +73,10 @@ export default function Modal({
                     {title}
                   </Dialog.Title>
 
-                  <div className="max-h-[82vh] px-1 -mx-1 sm:mx-0 max-w-full overflow-x-hidden overflow-y-auto">
+                  <div className="max-h-[76vh] px-1 -mx-1 sm:mx-0 max-w-full overflow-x-hidden overflow-y-auto">
                     {children}
                   </div>
+                  <div className="w-full">{footer}</div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
