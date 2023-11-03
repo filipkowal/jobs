@@ -238,7 +238,7 @@ export default function FiltersModal({
 
   return (
     <Modal isOpen={isModalOpen} setIsOpen={closeModal} title={dict["Filters"]}>
-      <div className="sm:max-h-[68vh] max-h-[62vh] w-full overflow-y-auto overflow-x-hidden sm:pr-[37px] sm:-mr-[37px]">
+      <div className="sm:pr-[37px] sm:-mr-[37px]">
         {FILTER_NAMES.map((name) => getFilterComponent(name))}
       </div>
 
