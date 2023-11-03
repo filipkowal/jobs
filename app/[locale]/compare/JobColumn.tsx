@@ -1,16 +1,13 @@
 import Image from "next/image";
-import Checkbox from "../../../components/Checkbox";
 import { Job } from "../../../utils";
 
 export default function JobColumn({
   job,
-  applicationBasket,
-  setApplicationBasket,
   dict,
+  removeLikedJob,
 }: {
   job: Job;
-  applicationBasket: string[];
-  setApplicationBasket: (applicationBasket: string[]) => void;
+  removeLikedJob: (jobId: string) => void;
   dict: {
     "Add to application basket": string;
     Workload: string;
@@ -24,20 +21,6 @@ export default function JobColumn({
     <div className="flex flex-col gap-8 sm:px-8 px-4 sm:py-16 py-6 bg-digitalent-blue h-auto sm:min-w-[25rem] max-w-xl">
       {typeof job.id === "string" && (
         <label>
-          <Checkbox
-            inverse
-            name={job?.title || ""}
-            checked={applicationBasket.includes(job.id)}
-            onChange={(e) => {
-              if (e.target.checked && job.id) {
-                setApplicationBasket([...applicationBasket, job.id]);
-              } else {
-                setApplicationBasket(
-                  applicationBasket.filter((id) => id !== job.id)
-                );
-              }
-            }}
-          />
           <span className="text-xl">{dict["Add to application basket"]}</span>
         </label>
       )}
