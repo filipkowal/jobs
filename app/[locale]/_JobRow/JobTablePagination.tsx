@@ -22,7 +22,7 @@ export default async function JobTablePagination({
   const pageIndex: number = params?.pageIndex ? parseInt(params.pageIndex) : 0;
 
   const pathnameWithoutPageIndex = `${locale}${
-    searchParams ? `/filtered` : ""
+    searchParams && Object.keys(searchParams).length ? `/filtered` : ""
   }`;
 
   return (

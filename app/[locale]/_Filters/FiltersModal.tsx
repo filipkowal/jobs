@@ -237,35 +237,40 @@ export default function FiltersModal({
   }
 
   return (
-    <Modal isOpen={isModalOpen} setIsOpen={closeModal} title={dict["Filters"]}>
-      <div className="sm:max-h-[68vh] max-h-[62vh] w-full overflow-y-auto overflow-x-hidden sm:pr-[37px] sm:-mr-[37px]">
+    <Modal
+      isOpen={isModalOpen}
+      setIsOpen={closeModal}
+      title={dict["Filters"]}
+      footer={
+        <div
+          className={`mt-6 sm:mt-16 flex justify-between ${
+            activeFilters && Object.keys(activeFilters).length === 0
+              ? "!justify-end"
+              : ""
+          }`}
+        >
+          <FiltersClearButton
+            locale={locale}
+            activeFilters={activeFilters}
+            setActiveFilters={setActiveFilters}
+            dict={{ Clear: dict["Clear"] }}
+            className="!px-[20px] !py-[10px] !uppercase !mb-0"
+          />
+          <ApplyFiltersButton
+            activeFilters={activeFilters}
+            setIsModalOpen={setIsModalOpen}
+            locale={locale}
+            dict={{
+              "Apply filters": dict["Apply filters"],
+              Apply: dict["Apply"],
+            }}
+            customBoard={customBoard}
+          />
+        </div>
+      }
+    >
+      <div className="sm:pr-[37px] sm:-mr-[37px]">
         {FILTER_NAMES.map((name) => getFilterComponent(name))}
-      </div>
-
-      <div
-        className={`mt-6 sm:mt-16 flex justify-between ${
-          activeFilters && Object.keys(activeFilters).length === 0
-            ? "!justify-end"
-            : ""
-        }`}
-      >
-        <FiltersClearButton
-          locale={locale}
-          activeFilters={activeFilters}
-          setActiveFilters={setActiveFilters}
-          dict={{ Clear: dict["Clear"] }}
-          className="!px-[20px] !py-[10px] !uppercase !mb-0"
-        />
-        <ApplyFiltersButton
-          activeFilters={activeFilters}
-          setIsModalOpen={setIsModalOpen}
-          locale={locale}
-          dict={{
-            "Apply filters": dict["Apply filters"],
-            Apply: dict["Apply"],
-          }}
-          customBoard={customBoard}
-        />
       </div>
     </Modal>
   );

@@ -7,10 +7,8 @@ import {
   TextInput,
 } from "../../../components";
 import { ApplicationDict } from "./ApplicationFormModal";
-import BackButton from "./BackButton";
 import { Locale, postData } from "../../../utils";
 import { toast } from "react-hot-toast";
-import { set } from "lodash";
 
 export default function ApplicationFormAboutYou({
   dict,
@@ -172,7 +170,7 @@ export default function ApplicationFormAboutYou({
 
       {/* Entity type */}
 
-      <div className="mb-8 mt-4">
+      <div className="my-4">
         <label className="w-full inline-block sm:w-fit">
           <Checkbox
             name="userType"
@@ -199,10 +197,12 @@ export default function ApplicationFormAboutYou({
 
       {/* Terms and conditions */}
 
-      {userType === "headhunter" && <div>{dict["recruiterInfo"]}</div>}
+      {userType === "headhunter" && (
+        <div className="mt-4 mb-8">{dict["recruiterInfo"]}</div>
+      )}
 
       {userType === "talent" && (
-        <label className="flex gap-1">
+        <label className="flex gap-1 mt-4 mb-8">
           <Checkbox
             name="termsAccepted"
             className="!mt-0"
@@ -225,15 +225,21 @@ export default function ApplicationFormAboutYou({
         </label>
       )}
 
-      <BackButton
-        setStepNumber={setStepNumber}
-        stepNumber={stepNumber}
-        dict={{ "Go back": dict["Go back"] }}
-      />
+      <Button
+        className="float-left"
+        onClick={(e) => {
+          e.preventDefault();
+          setStepNumber(stepNumber - 1);
+        }}
+        name="Go back"
+      >
+        {dict["Go back"]}
+      </Button>
+
       <Button
         submitType
         type="primary"
-        className="mt-16 float-right"
+        className="float-right"
         name="Next"
         disabled={
           isApplicationInvalid ||

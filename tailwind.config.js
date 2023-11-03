@@ -13,6 +13,9 @@ module.exports = {
         "2xl": "1536px",
         "3xl": "1920px",
       },
+      height: {
+        initial: "initial",
+      },
     },
     fontFamily: {
       sans: ["var(--font-inter)", "sans-serif"],

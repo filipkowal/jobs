@@ -1,6 +1,6 @@
 import { Locale } from "../../i18n-config";
-import { getCustomBoard } from "../../utils/server";
-import { Jobs, SearchParams } from "../../utils";
+import { getCustomBoard, getDictionary } from "../../utils/server";
+import { Job, Jobs, SearchParams, getShortId } from "../../utils";
 import JobRowAccordion from "./_JobRow/JobRowAccordion";
 import JobRowDetails from "./_JobRow/JobRowDetails";
 import JobTablePagination from "./_JobRow/JobTablePagination";
@@ -14,14 +14,33 @@ export default async function JobTable({
   limit,
 }: {
   searchParams?: SearchParams;
-  params: { locale: Locale; jobId?: string[] };
+  params: { locale: Locale; jobTitleId?: string };
   limit: number;
   jobsPromise?: Promise<Jobs>;
 }) {
   const customBoard = await getCustomBoard();
+  const dict = await getDictionary(params.locale);
 
   const jobsResponse = await jobsPromise;
-  const jobs = jobsResponse?.jobs;
+
+  function sortJobsInitOpenFirst(jobs?: Job[]) {
+    if (params?.jobTitleId) {
+      return jobs?.sort((a, b) => {
+        if (getShortId(a.id) === getShortId(params?.jobTitleId)) {
+          return -1;
+        } else if (getShortId(b.id) === getShortId(params?.jobTitleId)) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    }
+
+    return jobs;
+  }
+
+  const jobs = sortJobsInitOpenFirst(jobsResponse?.jobs);
+
   const length = jobsResponse?.length;
 
   function k(s: string | number | undefined) {
@@ -39,29 +58,40 @@ export default async function JobTable({
       }`}
     >
       {jobs?.map((job) => (
-        <JobRowAccordion
-          job={job}
-          key={job.id}
-          customBoard={customBoard}
-          headingDesktop={
-            <JobRowHeading job={job} k={k} locale={params.locale} />
-          }
-        >
-          {!customBoard?.disableDetailView && (
-            <div className="flex flex-row flex-wrap-reverse lg:flex-nowrap justify-center sm:pb-6 bg-digitalent-gray-light sm:bg-inherit">
-              {customBoard.disableDetailView ? null : (
+        <>
+          <JobRowAccordion
+            job={job}
+            initOpenJobTitleId={params?.jobTitleId}
+            locale={params.locale}
+            key={job.id}
+            customBoard={customBoard}
+            jobRowHeading={
+              <JobRowHeading job={job} k={k} locale={params.locale} />
+            }
+          >
+            {!customBoard?.disableDetailView && (
+              <div className="flex flex-row flex-wrap-reverse lg:flex-nowrap justify-center sm:pb-6 bg-digitalent-gray-light sm:bg-inherit">
                 <JobRowDetails locale={params.locale} job={job} />
-              )}
 
-              <JobActions
-                landingPageUrl={job.landingPageUrl}
-                locale={params.locale}
-                jobId={job.id}
-                customBoard={customBoard}
-              />
-            </div>
-          )}
-        </JobRowAccordion>
+                <JobActions
+                  landingPageUrl={job.landingPageUrl}
+                  locale={params.locale}
+                  jobId={job.id}
+                  customBoard={customBoard}
+                />
+              </div>
+            )}
+          </JobRowAccordion>
+
+          {
+            // Separator after initially open job
+            getShortId(params.jobTitleId) === getShortId(job.id) && (
+              <div className="my-6 w-full text-center text-digitalent-blue text-xl font-title">
+                - {dict["More jobs"]} -
+              </div>
+            )
+          }
+        </>
       ))}
 
       <JobTablePagination

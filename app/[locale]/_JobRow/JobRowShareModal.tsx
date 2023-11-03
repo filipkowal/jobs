@@ -99,7 +99,7 @@ export default function ShareJob({
       </Checkbox>
       <Button
         type="primary"
-        className="mt-16 mb-4 float-right"
+        className="mt-16 float-right"
         name={dict["Create a link"]}
         submitType
         disabled={
