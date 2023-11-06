@@ -9,7 +9,6 @@ export default function RegionsFilter({
   setSelectedStates,
   dict,
   locale,
-  alwaysOpen,
 }: {
   regions: components["schemas"]["Filters"]["regions"];
   selectedStates: string[];
@@ -17,7 +16,6 @@ export default function RegionsFilter({
   setSelectedStates: (regions: string[]) => void;
   dict: { Regions: string; "Whole Switzerland": string };
   locale: Locale;
-  alwaysOpen?: boolean;
 }) {
   if (!regions) return null;
 
@@ -26,7 +24,7 @@ export default function RegionsFilter({
     .flat();
 
   return (
-    <Accordion title={dict["Regions"]} isOpen={isOpen} alwaysOpen={alwaysOpen}>
+    <Accordion title={dict["Regions"]} isOpen={isOpen}>
       <label className="text-digitalent-blue text-xl mb">
         <Checkbox
           name="allRegions"

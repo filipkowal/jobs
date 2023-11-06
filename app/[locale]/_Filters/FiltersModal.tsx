@@ -9,12 +9,15 @@ import {
   FILTER_NAMES,
   Filters,
   Locale,
-  allUppercase,
 } from "../../../utils";
 import ApplyFiltersButton from "./FiltersModalApplyButton";
 import RegionsFilter from "./FiltersModalRegionSection";
-import TagsFilter from "./FiltersTagsFilter";
-import { Modal, Accordion, RangeSlider } from "../../../components";
+import {
+  Modal,
+  Accordion,
+  RangeSlider,
+  TagOptionGroup,
+} from "../../../components";
 import FiltersClearButton from "./FiltersClearButton";
 import { OpenFilterName } from "./FiltersSection";
 
@@ -43,7 +46,7 @@ export default function FiltersModal({
     useState<ActiveFilters>(defaultActiveFilters);
 
   function isAccordionOpen(filterName: ActiveFilterName): boolean {
-    return openFilterName === filterName || !!activeFilters?.[filterName];
+    return openFilterName === filterName;
   }
 
   function setActiveFilter(filterName: ActiveFilterName, value: any) {
@@ -83,22 +86,14 @@ export default function FiltersModal({
     setIsModalOpen(false);
   }
 
-  function TagsFilterContainer({
-    filterName,
-  }: {
-    filterName: keyof typeof filters;
-  }) {
+  function TagsFilter({ filterName }: { filterName: ActiveFilterName }) {
     return (
-      isFilterVisible(filterName) && (
-        <TagsFilter
-          title={dict[allUppercase(filterName) as keyof FiltersModalDict]}
-          filterName={filterName as ActiveFilterName}
-          filters={filters}
-          activeFilters={activeFilters}
-          setActiveFilter={setActiveFilter}
-          isAccordionOpen={isAccordionOpen}
-        />
-      )
+      <TagOptionGroup
+        tags={filters?.[filterName as keyof Filters] as string[]}
+        selectedTags={(activeFilters?.[filterName] as string[]) || []}
+        setSelectedTags={(values) => setActiveFilter(filterName, values)}
+        singleChoice={false}
+      />
     );
   }
 
@@ -114,7 +109,6 @@ export default function FiltersModal({
             selectedStates={activeFilters?.states || []}
             isOpen={isAccordionOpen("states")}
             setSelectedStates={(states) => setActiveFilter("states", states)}
-            alwaysOpen={!!activeFilters?.states}
             dict={{
               Regions: dict["Regions"],
               "Whole Switzerland": dict["Whole Switzerland"],
@@ -125,16 +119,33 @@ export default function FiltersModal({
 
       case "careerFields":
         return (
-          <TagsFilterContainer filterName="careerFields" key="careerFields" />
+          <Accordion
+            title={dict["Career Fields"]}
+            isOpen={isAccordionOpen("careerFields")}
+          >
+            <TagsFilter filterName="careerFields" key="careerFields" />
+          </Accordion>
         );
 
       case "technologies":
         return (
-          <TagsFilterContainer filterName="technologies" key="technologies" />
+          <Accordion
+            title={dict["Technologies"]}
+            isOpen={isAccordionOpen("technologies")}
+          >
+            <TagsFilter filterName="technologies" key="technologies" />
+          </Accordion>
         );
 
       case "jobLevels":
-        return <TagsFilterContainer filterName="jobLevels" key="jobLevels" />;
+        return (
+          <Accordion
+            title={dict["Job Levels"]}
+            isOpen={isAccordionOpen("jobLevels")}
+          >
+            <TagsFilter filterName="jobLevels" key="jobLevels" />
+          </Accordion>
+        );
 
       case "salary":
         return (
@@ -220,11 +231,23 @@ export default function FiltersModal({
         );
 
       case "industries":
-        return <TagsFilterContainer filterName="industries" key="industries" />;
+        return (
+          <Accordion
+            title={dict["Industries"]}
+            isOpen={isAccordionOpen("industries")}
+          >
+            <TagsFilter filterName="industries" key="industries" />
+          </Accordion>
+        );
 
       case "companySizes":
         return (
-          <TagsFilterContainer filterName="companySizes" key="companySize" />
+          <Accordion
+            title={dict["Company Sizes"]}
+            isOpen={isAccordionOpen("companySizes")}
+          >
+            <TagsFilter filterName="companySizes" key="companySizes" />
+          </Accordion>
         );
 
       default:
