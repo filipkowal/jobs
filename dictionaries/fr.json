@@ -116,7 +116,8 @@
       "select": "Veuillez sélectionner un fichier avec un type valide",
       "fileReadError": "La lecture du fichier a été interrompue",
       "fileUploadError": "Erreur de téléchargement de fichier"
-    }
+    },
+    "Unpin": "Détacher"
   },
   "Something went wrong": "Quelque chose s'est mal passé",
   "powered by": "powered by",

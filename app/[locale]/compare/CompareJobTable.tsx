@@ -110,15 +110,9 @@ export default function CompareJobTable({
             </div>
           </button>
         )}
-        {likedJobs &&
-          likedJobs.map((job) => (
-            <JobColumn
-              key={job.id}
-              job={job}
-              removeLikedJob={removeLikedJob}
-              dict={dict}
-            />
-          ))}
+        {likedJobs?.map((job) => (
+          <JobColumn key={job.id} job={job} dict={dict} />
+        ))}
       </div>
     </>
   );
@@ -178,4 +172,5 @@ export interface CompareJobTableDict {
     fileReadError: string;
     fileUploadError: string;
   };
+  Unpin: string;
 }

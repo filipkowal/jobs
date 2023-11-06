@@ -115,7 +115,8 @@
       "select": "Bitte wähle eine Datei mit einem gültigen Typ",
       "fileReadError": "Datei-Lesefehler",
       "fileUploadError": "Fehler beim Hochladen der Datei"
-    }
+    },
+    "Unpin": "Lösen"
   },
   "Something went wrong": "Etwas ist schief gelaufen",
   "powered by": "powered by",

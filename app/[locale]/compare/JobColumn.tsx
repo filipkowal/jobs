@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { Job } from "../../../utils";
+import { Tooltip } from "../../../components";
+import LikeButton from "../_JobRow/JobRowLikeButton";
 
 export default function JobColumn({
   job,
   dict,
-  removeLikedJob,
 }: {
   job: Job;
-  removeLikedJob: (jobId: string) => void;
   dict: {
     "Add to application basket": string;
     Workload: string;
@@ -15,24 +15,27 @@ export default function JobColumn({
     "Home Office": string;
     "You have": string;
     Responsibilities: string;
+    Unpin: string;
   };
 }) {
   return (
     <div className="flex flex-col gap-8 sm:px-8 px-4 sm:py-16 py-6 bg-digitalent-blue h-auto sm:min-w-[25rem] max-w-xl">
-      {typeof job.id === "string" && (
-        <label>
-          <span className="text-xl">{dict["Add to application basket"]}</span>
-        </label>
-      )}
-      {job?.employer?.logo && (
-        <Image
-          src={job?.employer?.logo}
-          alt={job?.employer?.name || "logo"}
-          className="block object-contain"
-          width={130}
-          height={52}
-        />
-      )}
+      <div className="flex justify-between">
+        {job?.employer?.logo && (
+          <Image
+            src={job?.employer?.logo}
+            alt={job?.employer?.name || "logo"}
+            className="block object-contain"
+            width={130}
+            height={52}
+          />
+        )}
+        {job.id && (
+          <Tooltip content={dict["Unpin"]} ariaLabel="dict['Unpin']">
+            <LikeButton jobId={job.id} />
+          </Tooltip>
+        )}
+      </div>
       <h1 className="text-3xl font-title font-medium text-digitalent-green sm:h-[100px]">
         {job.title}
       </h1>
