@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { Job } from "../../../utils";
-import { Button, Checkbox } from "../../../components";
+import { Button, Checkbox, Tooltip } from "../../../components";
+import LikeButton from "../_JobRow/JobRowLikeButton";
 
 export default function ApplicationFormBasket({
   setStepNumber,
@@ -25,21 +26,35 @@ export default function ApplicationFormBasket({
       data-testid="applicationBasket"
     >
       <h3>{dict["You are applying for"]}:</h3>
-      {likedJobs.map((job) => {
-        if (!job?.id) return null;
+      <ul>
+        {likedJobs.map((job) => {
+          if (!job?.id) return null;
 
-        return (
-          <label key={job?.id} className="flex flex-row flex-nowrap gap-4">
-            <div className="flex items-center gap-4">
-              <div className="flex flex-col">
-                <h3 className="text-lg">
+          return (
+            <li key={job.id} className="text-lg mt-4">
+              <div className="flex gap-4">
+                <span>
                   {job?.title}, {job.employer?.name}
-                </h3>
+                </span>
+                <Tooltip content="Remove" ariaLabel="Remove">
+                  <svg
+                    className="w-6 h-6 cursor-pointer fill-digitalent-green"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                    onClick={() => removeLikedJob(job.id as string)}
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </Tooltip>
               </div>
-            </div>
-          </label>
-        );
-      })}
+            </li>
+          );
+        })}
+      </ul>
       <Button
         type="primary"
         disabled={likedJobs.length === 0}
