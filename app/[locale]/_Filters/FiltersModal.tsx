@@ -120,8 +120,10 @@ export default function FiltersModal({
       case "careerFields":
         return (
           <Accordion
+            labelTag={activeFilters?.["careerFields"]?.length}
             title={dict["Career Fields"]}
             isOpen={isAccordionOpen("careerFields")}
+            key={"careerFields"}
           >
             <TagsFilter filterName="careerFields" key="careerFields" />
           </Accordion>
@@ -130,8 +132,10 @@ export default function FiltersModal({
       case "technologies":
         return (
           <Accordion
+            labelTag={activeFilters?.["technologies"]?.length}
             title={dict["Technologies"]}
             isOpen={isAccordionOpen("technologies")}
+            key={"technologies"}
           >
             <TagsFilter filterName="technologies" key="technologies" />
           </Accordion>
@@ -140,8 +144,10 @@ export default function FiltersModal({
       case "jobLevels":
         return (
           <Accordion
+            labelTag={activeFilters?.["jobLevels"]?.length}
             title={dict["Job Levels"]}
             isOpen={isAccordionOpen("jobLevels")}
+            key={"jobLevels"}
           >
             <TagsFilter filterName="jobLevels" key="jobLevels" />
           </Accordion>
@@ -150,6 +156,7 @@ export default function FiltersModal({
       case "salary":
         return (
           <Accordion
+            labelTag={activeFilters?.salary && activeFilters?.salary + " CHF"}
             key="salary"
             title={dict["Salary"]}
             isOpen={isAccordionOpen("salary")}
@@ -191,6 +198,13 @@ export default function FiltersModal({
       case "workload":
         return (
           <Accordion
+            labelTag={
+              activeFilters?.workload &&
+              activeFilters?.workload[0] +
+                " - " +
+                activeFilters?.workload[1] +
+                " %"
+            }
             key="workload"
             title={dict["Workload"]}
             isOpen={isAccordionOpen("workload")}
@@ -212,6 +226,9 @@ export default function FiltersModal({
       case "homeOffice":
         return (
           <Accordion
+            labelTag={
+              activeFilters?.homeOffice && activeFilters?.homeOffice + " %"
+            }
             key="homeOffice"
             title={dict["Home Office"]}
             isOpen={isAccordionOpen("homeOffice")}
@@ -233,8 +250,10 @@ export default function FiltersModal({
       case "industries":
         return (
           <Accordion
+            labelTag={activeFilters?.["industries"]?.length}
             title={dict["Industries"]}
             isOpen={isAccordionOpen("industries")}
+            key={"industries"}
           >
             <TagsFilter filterName="industries" key="industries" />
           </Accordion>
@@ -243,8 +262,10 @@ export default function FiltersModal({
       case "companySizes":
         return (
           <Accordion
+            labelTag={activeFilters?.["companySizes"]?.length}
             title={dict["Company Sizes"]}
             isOpen={isAccordionOpen("companySizes")}
+            key={"companySizes"}
           >
             <TagsFilter filterName="companySizes" key="companySizes" />
           </Accordion>

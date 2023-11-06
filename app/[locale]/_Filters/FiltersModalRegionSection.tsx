@@ -24,7 +24,13 @@ export default function RegionsFilter({
     .flat();
 
   return (
-    <Accordion title={dict["Regions"]} isOpen={isOpen}>
+    <Accordion
+      title={dict["Regions"]}
+      isOpen={isOpen}
+      labelTag={
+        selectedStates.length > 0 ? selectedStates.length.toString() : undefined
+      }
+    >
       <label className="text-digitalent-blue text-xl mb">
         <Checkbox
           name="allRegions"
