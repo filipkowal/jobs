@@ -1,25 +1,27 @@
 import Link from "next/link";
 import { ActiveFilters, Locale } from "../../../utils";
-import { Dispatch, SetStateAction } from "react";
+import { useRouter } from "next/navigation";
+import { ActiveFiltersURL } from "../../../utils/hooks";
 
 export default function FiltersClearButton({
   locale,
   activeFilters,
-  setActiveFilters,
   dict,
   className,
 }: {
   locale: Locale;
   activeFilters: ActiveFilters;
-  setActiveFilters: Dispatch<SetStateAction<ActiveFilters>>;
   dict: { Clear: string };
   className?: string;
 }) {
+  const router = useRouter();
+  const activeFiltersURL = ActiveFiltersURL(activeFilters, locale);
+
   return activeFilters && Object.keys(activeFilters).length ? (
     <Link href={`/${locale}`}>
       <span
         onClick={() => {
-          setActiveFilters({});
+          router.push(activeFiltersURL);
         }}
         className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1 mr-2 mb-2 break-keep inline-block cursor-pointer ${className}`}
       >

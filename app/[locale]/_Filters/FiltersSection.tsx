@@ -70,8 +70,6 @@ export default function FiltersSection({
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFilterName, setOpenFilterName] = useState<OpenFilterName>("none");
-  const [activeFilters, setActiveFilters] =
-    useState<ActiveFilters>(defaultActiveFilters);
 
   return (
     <>
@@ -85,8 +83,6 @@ export default function FiltersSection({
           setIsModalOpen={setIsModalOpen}
           openFilterName={openFilterName}
           setOpenFilterName={setOpenFilterName}
-          activeFilters={activeFilters}
-          setActiveFilters={setActiveFilters}
           defaultActiveFilters={defaultActiveFilters}
         />
       )}
@@ -97,7 +93,7 @@ export default function FiltersSection({
           className="text-digitalent-blue pr-2 w-8 h-8 cursor-pointer"
         />
         <NumberOfFiltersIcon
-          activeFilters={activeFilters}
+          activeFilters={defaultActiveFilters}
           setIsModalOpen={setIsModalOpen}
         />
         <>
@@ -109,7 +105,7 @@ export default function FiltersSection({
                 filterName={filterName}
                 setOpenFilterName={setOpenFilterName}
                 setIsModalOpen={setIsModalOpen}
-                activeFilters={activeFilters}
+                activeFilters={defaultActiveFilters}
                 dict={dict}
               />
             ))}
@@ -124,8 +120,7 @@ export default function FiltersSection({
 
         <FiltersClearButton
           locale={locale}
-          activeFilters={activeFilters}
-          setActiveFilters={setActiveFilters}
+          activeFilters={defaultActiveFilters}
           dict={{ Clear: dict["Clear"] }}
         />
       </div>
@@ -141,7 +136,7 @@ export default function FiltersSection({
           <AdjustmentsHorizontalIcon className="ml-2 mb-1 w-6 h-6 inline-block" />
         </span>
         <NumberOfFiltersIcon
-          activeFilters={activeFilters}
+          activeFilters={defaultActiveFilters}
           setIsModalOpen={setIsModalOpen}
         />
       </div>

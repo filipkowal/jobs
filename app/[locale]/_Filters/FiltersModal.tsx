@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
 import {
@@ -27,8 +27,6 @@ export default function FiltersModal({
   openFilterName,
   setIsModalOpen,
   setOpenFilterName,
-  activeFilters,
-  setActiveFilters,
   defaultActiveFilters,
 }: {
   filters: Filters;
@@ -39,10 +37,11 @@ export default function FiltersModal({
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   openFilterName: OpenFilterName;
   setOpenFilterName: Dispatch<SetStateAction<OpenFilterName>>;
-  activeFilters: ActiveFilters;
-  setActiveFilters: Dispatch<SetStateAction<ActiveFilters>>;
   defaultActiveFilters: ActiveFilters;
 }) {
+  const [activeFilters, setActiveFilters] =
+    useState<ActiveFilters>(defaultActiveFilters);
+
   function isAccordionOpen(filterName: ActiveFilterName): boolean {
     return openFilterName === filterName || !!activeFilters?.[filterName];
   }
@@ -143,7 +142,6 @@ export default function FiltersModal({
             key="salary"
             title={dict["Salary"]}
             isOpen={isAccordionOpen("salary")}
-            alwaysOpen={!!activeFilters?.salary}
           >
             <RangeSlider
               value={activeFilters?.salary || 0}
@@ -185,7 +183,6 @@ export default function FiltersModal({
             key="workload"
             title={dict["Workload"]}
             isOpen={isAccordionOpen("workload")}
-            alwaysOpen={!!activeFilters?.workload}
           >
             <RangeSlider
               value={activeFilters?.workload || [0, 100]}
@@ -207,7 +204,6 @@ export default function FiltersModal({
             key="homeOffice"
             title={dict["Home Office"]}
             isOpen={isAccordionOpen("homeOffice")}
-            alwaysOpen={!!activeFilters?.homeOffice}
           >
             <RangeSlider
               value={activeFilters?.homeOffice || 0}
@@ -252,7 +248,6 @@ export default function FiltersModal({
           <FiltersClearButton
             locale={locale}
             activeFilters={activeFilters}
-            setActiveFilters={setActiveFilters}
             dict={{ Clear: dict["Clear"] }}
             className="!px-[20px] !py-[10px] !uppercase !mb-0"
           />
