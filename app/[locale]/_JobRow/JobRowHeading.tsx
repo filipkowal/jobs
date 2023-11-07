@@ -105,7 +105,7 @@ export default async function JobRowHeading({
           {address && (
             <span className="md:px-4 md:py-2 md:w-28 md:text-right">
               <Tooltip content={dict["Location"]} ariaLabel="Location">
-                <span className="font-title text-xs md:text-base md:font-medium">
+                <span className="font-title text-xs md:text-base md:font-medium inline-block w-[100px] whitespace-nowrap text-ellipsis overflow-hidden">
                   {`${address?.city || address?.country}`}
                 </span>
               </Tooltip>
