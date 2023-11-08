@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { DragEventHandler, MouseEventHandler, useMemo, useState } from "react";
 import { type JobsQuery, type Locale } from "./types";
 
 export function ActiveFiltersURL(
@@ -32,4 +32,48 @@ export function ActiveFiltersURL(
   }
 
   return `/${locale}`;
+}
+
+export function IsDraggingOver() {
+  const [isDragging, setIsDragging] = useState(false);
+
+  const onDragEnter: DragEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    setIsDragging(true);
+    return e;
+  };
+
+  const onDragLeave: DragEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (e.relatedTarget && e.currentTarget.contains(e.relatedTarget as Node)) {
+      // Ignore the event if the mouse pointer is entering a child element.
+      return;
+    }
+
+    setIsDragging(false);
+    return e;
+  };
+
+  const onMouseLeave: MouseEventHandler<HTMLDivElement> = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (e.relatedTarget && e.currentTarget.contains(e.relatedTarget as Node)) {
+      return;
+    }
+
+    setIsDragging(false);
+    return e;
+  };
+
+  return {
+    isDragging,
+    onDragEnter,
+    onDragLeave,
+    onMouseLeave,
+  };
 }
