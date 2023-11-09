@@ -112,7 +112,7 @@ export default async function JobRowHeading({
             </span>
           )}
         </div>
-        <div className="hidden md:block">
+        <div className="hidden sm:block">
           {customBoard?.disableCompareView
             ? null
             : jobId && (

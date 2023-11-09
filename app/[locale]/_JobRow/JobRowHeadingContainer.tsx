@@ -50,7 +50,7 @@ export default function JobRowHeadingContainer({
 
   return (
     <div
-      className="md:flex p-3 md:py-4 md:pr-8 md:pl-6 w-full justify-between cursor-pointer relative items-center"
+      className="md:flex p-3 md:py-4 lg:pr-8 md:pl-6 w-full justify-between cursor-pointer relative items-center"
       onClick={updateUrl}
     >
       {children}
