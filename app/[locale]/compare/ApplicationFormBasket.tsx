@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { Job } from "../../../utils";
-import { Button, Checkbox, Tooltip } from "../../../components";
-import LikeButton from "../_JobRow/JobRowLikeButton";
+import { Button, Tooltip } from "../../../components";
 
 export default function ApplicationFormBasket({
   setStepNumber,
@@ -14,7 +13,12 @@ export default function ApplicationFormBasket({
   stepNumber: number;
   likedJobs: Job[];
   removeLikedJob: (jobId: string) => void;
-  dict: { "You are applying for": string; "Apply for": string; jobs: string };
+  dict: {
+    "You are applying for": string;
+    "Apply for": string;
+    jobs: string;
+    job: string;
+  };
 }) {
   return (
     <form
@@ -62,7 +66,8 @@ export default function ApplicationFormBasket({
         name="Apply for jobs"
         submitType
       >
-        {dict["Apply for"]} {likedJobs.length} {dict["jobs"]}
+        {dict["Apply for"]} {likedJobs.length}{" "}
+        {likedJobs.length > 1 ? dict["jobs"] : dict["job"]}
       </Button>
     </form>
   );

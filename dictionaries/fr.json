@@ -60,7 +60,7 @@
   "title": {
     "title": "Prêt pour une nouvelle mission?",
     "subtitle.1": "Découvrez des opportunités de carrière sélectionnées dans des entreprises suisses de premier plan!",
-    "subtitle.2": "Avec un retour d'information garanti dans les 2 jours"
+    "subtitle.2": "Avec un retour d'information garanti dans les 2 jours ouvrables"
   },
   "compareJobTable": {
     "Please select a file with a valid type": "Sélectionne un fichier avec un type valide",
@@ -92,6 +92,7 @@
     "Apply for": "Postule pour",
     "You are applying for": "Tu postules pour",
     "jobs": "jobs",
+    "job": "job",
     "Add to application basket": "Ajouter au panier d'application",
     "Work location": "Lieu de travail",
     "applyFormFileUpload": "Lettres de motivation et procédures de candidature compliquées ? Oublie ça ! Envoie-nous simplement ton CV (sans lettre de motivation) ou copie le lien vers ton profil LinkedIn et nous te contacterons dans les deux jours ouvrables.",
@@ -106,7 +107,7 @@
     "Apply for another job": "Postuler pour un autre emploi",
     "application.basket.title.0": "Panier d'application",
     "application.basket.title.1": "À propos de vous",
-    "application.basket.title.2": "Nous vous remercions de nous avoir contactés. Nous vous contacterons dans les 48 heures!",
+    "application.basket.title.2": "Nous vous remercions de nous avoir contactés. Nous vous contacterons dans les 2 jours ouvrables!",
     "application.basket.termsAndConditions.accordion.title": "Protection des données et processus de recrutement",
     "Your email": "Ton email",
     "Select CV file": "Sélectionner le fichier CV",
@@ -152,7 +153,7 @@
   "saveForLater": {
     "title": "Retenir le poste et postuler plus tard",
     "titleMobile": "Postuler plus tard",
-    "description": "Fais-toi envoyer cette annonce par email pour pouvoir postuler plus tard",
+    "description": "Fais-toi envoyer ce job par email pour pouvoir postuler plus tard",
     "apply": "Envoyer cet emploi à ma boîte mail",
     "success": "Job a été livré à votre boîte mail.",
     "error": "Quelque chose s'est mal passé"

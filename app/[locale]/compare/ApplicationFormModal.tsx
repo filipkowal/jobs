@@ -98,6 +98,7 @@ export interface ApplicationDict {
   "application.basket.title.2": string;
   "Apply for": string;
   jobs: string;
+  job: string;
   "Something went wrong": string;
   recruiterInfo: string;
   "Drop CV files or click to select": string;

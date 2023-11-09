@@ -59,7 +59,7 @@
   "title": {
     "title": "Ready for a new mission?",
     "subtitle.1": "Discover selected career opportunities in top Swiss companies!",
-    "subtitle.2": "With guaranteed feedback within 2 days"
+    "subtitle.2": "With guaranteed feedback within 2 working days"
   },
   "compareJobTable": {
     "Email": "Email",
@@ -90,6 +90,7 @@
     "Apply for": "Apply for",
     "You are applying for": "You are applying for",
     "jobs": "jobs",
+    "job": "job",
     "Add to application basket": "Add to application basket",
     "Work location": "Work location",
     "applyFormFileUpload": "Letters of motivation and complicated application procedures? Forget it! Just send us your CV (without any cover letter) or copy the link to your LinkedIn profile and we'll get back to you within two working days.",
@@ -104,7 +105,7 @@
     "Apply for another job": "Apply for another job",
     "application.basket.title.0": "Application basket",
     "application.basket.title.1": "About you",
-    "application.basket.title.2": "Thank you very much for contacting us. We will get back to you within 48 hours!",
+    "application.basket.title.2": "Thank you very much for contacting us. We will get back to you within 2 working days!",
     "application.basket.termsAndConditions.accordion.title": "Data protection & recruitment process",
     "Your email": "Your email",
     "Select CV file": "Select CV file",
@@ -149,7 +150,7 @@
   },
   "saveForLater": {
     "title": "Bookmark job and apply later",
-    "description": "Have this ad emailed to you so you can apply later",
+    "description": "Have this job emailed to you so you can apply later",
     "apply": "Send this job to my mailbox",
     "success": "Job has been delivered to your mailbox.",
     "error": "Something went wrong",
