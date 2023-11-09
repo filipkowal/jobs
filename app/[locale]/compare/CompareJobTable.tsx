@@ -69,7 +69,8 @@ export default function CompareJobTable({
           onClick={() => setIsApplicationOpen(true)}
           name="apply for jobs"
         >
-          {dict["Apply for"]} <b>{likedJobsIds.length}</b> {dict["jobs"]}
+          {dict["Apply for"]} <b>{likedJobsIds.length}</b>{" "}
+          {likedJobs.length > 1 ? dict["jobs"] : dict["job"]}
         </Button>
       </div>
 
