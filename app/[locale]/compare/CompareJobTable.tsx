@@ -159,10 +159,10 @@ export interface CompareJobTableDict {
   "application.basket.title.1": string;
   "application.basket.title.2": string;
   "application.basket.termsAndConditions.accordion.title": string;
-  "Your e-mail": string;
+  "Your email": string;
   "Select CV file": string;
   "Please select a file with a valid type": string;
-  "E-mail": string;
+  Email: string;
   Next: string;
   "Drop CV files or click to select": string;
   invalidEmail: string;

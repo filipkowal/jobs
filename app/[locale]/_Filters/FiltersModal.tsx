@@ -218,7 +218,7 @@ export default function FiltersModal({
               max={100}
               step={10}
               name={dict["Workload range"]}
-              unit={dict["% of full time"]}
+              unit="%"
             />
           </Accordion>
         );
@@ -241,7 +241,7 @@ export default function FiltersModal({
               min={0}
               max={100}
               step={10}
-              unit={dict["% of full time"]}
+              unit="%"
               name={dict["Min. Home Office"]}
             />
           </Accordion>
@@ -330,7 +330,6 @@ export interface FiltersModalDict {
   "Work language": string;
   Workload: string;
   "Workload range": string;
-  "% of full time": string;
   Salary: string;
   "Min. salary": string;
   "Techonolgies:": string;

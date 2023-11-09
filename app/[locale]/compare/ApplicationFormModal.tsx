@@ -83,7 +83,7 @@ export interface ApplicationDict {
   Woman: string;
   Man: string;
   Other: string;
-  "E-mail": string;
+  Email: string;
   Name: string;
   Message: string;
   "Link to your LinkedIn profile": string;
