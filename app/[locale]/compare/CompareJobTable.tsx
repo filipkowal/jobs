@@ -42,6 +42,14 @@ export default function CompareJobTable({
       );
   }, [likedJobs, scrollPosition]);
 
+  const [maxRequirementsHeight, setMaxRequirementsHeight] = useState(0);
+  const longestRequirementsLengths = useMemo(() => {
+    return likedJobs.reduce((acc, job) => {
+      const requirementsLength = job.requirements?.length || 0;
+      return requirementsLength > acc ? requirementsLength : acc;
+    }, 0);
+  }, [likedJobs]);
+
   return (
     <>
       <ApplicationFormModal
@@ -111,7 +119,14 @@ export default function CompareJobTable({
           </button>
         )}
         {likedJobs?.map((job) => (
-          <JobColumn key={job.id} job={job} dict={dict} />
+          <JobColumn
+            key={job.id}
+            job={job}
+            dict={dict}
+            maxRequirementsHeight={maxRequirementsHeight}
+            setMaxRequirementsHeight={setMaxRequirementsHeight}
+            longestRequirementsLengths={longestRequirementsLengths}
+          />
         ))}
       </div>
     </>
@@ -143,6 +158,7 @@ export interface CompareJobTableDict {
   "Apply for": string;
   "You are applying for": string;
   jobs: string;
+  job: string;
   "Add to application basket": string;
   "Work location": string;
   applyFormFileUpload: string;

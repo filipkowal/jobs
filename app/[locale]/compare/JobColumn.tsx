@@ -2,12 +2,19 @@ import Image from "next/image";
 import { Job } from "../../../utils";
 import { Tooltip } from "../../../components";
 import LikeButton from "../_JobRow/JobRowLikeButton";
+import { useEffect, useRef } from "react";
 
 export default function JobColumn({
   job,
   dict,
+  maxRequirementsHeight,
+  setMaxRequirementsHeight,
+  longestRequirementsLengths,
 }: {
   job: Job;
+  maxRequirementsHeight: number;
+  setMaxRequirementsHeight: (height: number) => void;
+  longestRequirementsLengths: number;
   dict: {
     "Add to application basket": string;
     Workload: string;
@@ -18,6 +25,17 @@ export default function JobColumn({
     Unpin: string;
   };
 }) {
+  const requirementsRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (requirementsRef.current) {
+      const height = requirementsRef.current.offsetHeight;
+      if (height > maxRequirementsHeight) {
+        setMaxRequirementsHeight(height);
+      }
+    }
+  }, [job, maxRequirementsHeight, setMaxRequirementsHeight]);
+
   return (
     <div className="flex flex-col gap-8 sm:px-8 px-4 sm:py-16 py-6 bg-digitalent-blue h-auto sm:min-w-[25rem] max-w-xl">
       <div className="flex justify-between">
@@ -59,7 +77,16 @@ export default function JobColumn({
         </p>
       </div>
       {job.requirements && (
-        <div className="sm:h-[750px] overflow-auto">
+        <div
+          className={`overflow-auto`}
+          ref={requirementsRef}
+          style={{
+            height:
+              longestRequirementsLengths > job.requirements.length
+                ? maxRequirementsHeight
+                : "auto",
+          }}
+        >
           <h3 className="font-light text-xl mb-2">{dict["You have"]}</h3>
           <p dangerouslySetInnerHTML={{ __html: job.requirements }} />
         </div>
