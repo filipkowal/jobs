@@ -1,16 +1,20 @@
 import Image from "next/image";
-import Checkbox from "../../../components/Checkbox";
 import { Job } from "../../../utils";
+import { Tooltip } from "../../../components";
+import LikeButton from "../_JobRow/JobRowLikeButton";
+import { useEffect, useRef } from "react";
 
 export default function JobColumn({
   job,
-  applicationBasket,
-  setApplicationBasket,
   dict,
+  maxRequirementsHeight,
+  setMaxRequirementsHeight,
+  longestRequirementsLengths,
 }: {
   job: Job;
-  applicationBasket: string[];
-  setApplicationBasket: (applicationBasket: string[]) => void;
+  maxRequirementsHeight: number;
+  setMaxRequirementsHeight: (height: number) => void;
+  longestRequirementsLengths: number;
   dict: {
     "Add to application basket": string;
     Workload: string;
@@ -18,38 +22,38 @@ export default function JobColumn({
     "Home Office": string;
     "You have": string;
     Responsibilities: string;
+    Unpin: string;
   };
 }) {
+  const requirementsRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    if (requirementsRef.current) {
+      const height = requirementsRef.current.offsetHeight;
+      if (height > maxRequirementsHeight) {
+        setMaxRequirementsHeight(height);
+      }
+    }
+  }, [job, maxRequirementsHeight, setMaxRequirementsHeight]);
+
   return (
     <div className="flex flex-col gap-8 sm:px-8 px-4 sm:py-16 py-6 bg-digitalent-blue h-auto sm:min-w-[25rem] max-w-xl">
-      {typeof job.id === "string" && (
-        <label>
-          <Checkbox
-            inverse
-            name={job?.title || ""}
-            checked={applicationBasket.includes(job.id)}
-            onChange={(e) => {
-              if (e.target.checked && job.id) {
-                setApplicationBasket([...applicationBasket, job.id]);
-              } else {
-                setApplicationBasket(
-                  applicationBasket.filter((id) => id !== job.id)
-                );
-              }
-            }}
+      <div className="flex justify-between">
+        {job?.employer?.logo && (
+          <Image
+            src={job?.employer?.logo}
+            alt={job?.employer?.name || "logo"}
+            className="block object-contain"
+            width={130}
+            height={52}
           />
-          <span className="text-xl">{dict["Add to application basket"]}</span>
-        </label>
-      )}
-      {job?.employer?.logo && (
-        <Image
-          src={job?.employer?.logo}
-          alt={job?.employer?.name || "logo"}
-          className="block object-contain"
-          width={130}
-          height={52}
-        />
-      )}
+        )}
+        {job.id && (
+          <Tooltip content={dict["Unpin"]} ariaLabel="dict['Unpin']">
+            <LikeButton jobId={job.id} />
+          </Tooltip>
+        )}
+      </div>
       <h1 className="text-3xl font-title font-medium text-digitalent-green sm:h-[100px]">
         {job.title}
       </h1>
@@ -73,7 +77,16 @@ export default function JobColumn({
         </p>
       </div>
       {job.requirements && (
-        <div className="sm:h-[750px] overflow-auto">
+        <div
+          className={`overflow-auto`}
+          ref={requirementsRef}
+          style={{
+            height:
+              longestRequirementsLengths > job.requirements.length
+                ? maxRequirementsHeight
+                : "auto",
+          }}
+        >
           <h3 className="font-light text-xl mb-2">{dict["You have"]}</h3>
           <p dangerouslySetInnerHTML={{ __html: job.requirements }} />
         </div>

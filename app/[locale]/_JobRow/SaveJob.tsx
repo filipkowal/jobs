@@ -71,7 +71,7 @@ export default function SaveJob({
           <TextInput
             type="email"
             name="email"
-            label="E-mail"
+            label="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

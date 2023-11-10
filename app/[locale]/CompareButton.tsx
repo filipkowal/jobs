@@ -3,7 +3,7 @@
 import { useContext } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useSelectedLayoutSegment, useRouter } from "next/navigation";
+import { useSearchParams, useSelectedLayoutSegment } from "next/navigation";
 
 import { CompareContext } from "./CompareContextProvider";
 import Button from "../../components/Button";
@@ -19,37 +19,47 @@ export default function CompareButton({
   params: { locale: Locale };
   dict: { "Go back": string; Compare: string; compareButtonHint: string };
 }) {
-  const router = useRouter();
+  const searchParamsString = new URLSearchParams(
+    useSearchParams() || undefined
+  ).toString();
+  const selectedLayoutSegment = useSelectedLayoutSegment();
 
   const { likedJobs } = useContext(CompareContext);
   const buttonActive = likedJobs && likedJobs.length > 1;
 
-  // @fixme: can I achieve it with only params and turn the component to server component?
-  const selectedLayoutSegment = useSelectedLayoutSegment();
-
-  if (selectedLayoutSegment === "compare") {
+  if (selectedLayoutSegment?.includes("compare")) {
     return (
-      <Button
-        name="Go back"
-        onClick={() =>
-          window && window?.history.length <= 1
-            ? router.push(`/${params.locale}`)
-            : router.back()
-        }
-        className="!mx-4 sm:!mx-8 !ring-white !border-white !text-white hover:!bg-white hover:!text-digitalent-green"
+      <Link
+        href={{
+          pathname:
+            "/" +
+            params.locale +
+            (searchParamsString.length > 0 ? "/filtered" : ""),
+          search: searchParamsString,
+        }}
       >
-        {dict["Go back"]}
-      </Button>
+        <Button
+          name="Go back"
+          className="!mx-4 sm:!mx-8 !ring-white !border-white !text-white hover:!bg-white hover:!text-digitalent-green"
+        >
+          {dict["Go back"]}
+        </Button>
+      </Link>
     );
   }
 
   return (
     <div className="relative hidden sm:block">
       {!buttonActive ? (
-        <ButtonWithIcon />
+        <ButtonWithNumberIcon />
       ) : (
-        <Link href={"/" + params?.locale + "/compare"}>
-          <ButtonWithIcon />
+        <Link
+          href={{
+            pathname: "/" + params.locale + "/compare",
+            search: searchParamsString,
+          }}
+        >
+          <ButtonWithNumberIcon />
         </Link>
       )}
 
@@ -60,7 +70,7 @@ export default function CompareButton({
     </div>
   );
 
-  function ButtonWithIcon() {
+  function ButtonWithNumberIcon() {
     return (
       <Button
         className={`group !mx-4 sm:!mx-8 flex gap-2 relative ${

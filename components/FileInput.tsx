@@ -1,9 +1,10 @@
+"use client";
 import React, { Dispatch, SetStateAction } from "react";
 import toast from "react-hot-toast";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Dropzone, { DropzoneOptions } from "react-dropzone";
-import { useParams } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
+import { IsDraggingOver } from "../utils/hooks";
 
 export type FileWithId = Pick<
   File,
@@ -36,6 +37,8 @@ export default function FileInput({
     "image/*": [],
     "application/pdf": [".pdf"],
   };
+
+  const { isDragging, ...draggingHandlers } = IsDraggingOver();
 
   return (
     <div className={`flex flex-col justify-between ${className}`}>
@@ -75,7 +78,12 @@ export default function FileInput({
           <section>
             <div
               {...getRootProps()}
-              className="w-full h-24 flex flex-col justify-center items-center border-digitalent-blue border-2"
+              {...draggingHandlers}
+              className={`${
+                isDragging
+                  ? "bg-digitalent-blue text-digitalent-gray-light"
+                  : ""
+              } w-full h-24 flex flex-col justify-center items-center border-digitalent-blue border-2 cursor-pointer hover:bg-digitalent-blue hover:text-digitalent-gray-light`}
             >
               <input {...getInputProps()} />
               <p className="font-title font-medium uppercase">

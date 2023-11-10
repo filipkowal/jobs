@@ -23,7 +23,7 @@ export default function LikeButton({ jobId }: { jobId: string }) {
           setLikedJobs([...likedJobs, jobId]);
         }
       }}
-      className="hidden sm:flex items-center absolute right-6 p-1 mt-1 sm:mt-0 sm:static bottom-[1.2rem]"
+      className="min-w-[32px] flex items-center absolute right-6 p-1 ml-4 mt-1 sm:mt-0 sm:static bottom-[1.2rem] cursor-pointer"
     >
       {likedJobs.includes(jobId) ? (
         <Image src={pinIconFill} alt="pin icon" width={24} height={24} />

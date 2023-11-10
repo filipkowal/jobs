@@ -61,11 +61,6 @@ export default function JobRowAccordion({
           history && history.pushState(null, "", getHref());
         }}
       >
-        <div
-          // hash link with id scrolls here. 64px is the height of the sticky header on desktop
-          className="sm:relative sm:top-[-64px]"
-          id={jobId}
-        />
         <JobRowHeadingContainer
           initOpenJobTitleId={initOpenJobTitleId}
           job={job}

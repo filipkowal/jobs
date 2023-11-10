@@ -130,7 +130,7 @@ export default function ApplicationFormAboutYou({
         name="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        label={"E-mail"}
+        label={"Email"}
       />
       <TextInput
         dict={{ invalidEmail: dict["invalidEmail"] }}

@@ -19,9 +19,6 @@ export default function FiltersSkeleton() {
           Arbeitslevel
         </span>
         <span className="border-digitalent-blue border-2 py-1 px-3 text-digitalent-blue">
-          Arbeitspensum
-        </span>
-        <span className="border-digitalent-blue border-2 py-1 px-3 text-digitalent-blue">
           Mehr...
         </span>
       </div>

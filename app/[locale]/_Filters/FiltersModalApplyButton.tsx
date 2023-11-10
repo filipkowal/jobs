@@ -8,6 +8,7 @@ import {
 } from "../../../utils";
 import { Button, LoadingEllipsis } from "../../../components";
 import { useRouter } from "next/navigation";
+import { ActiveFiltersURL } from "../../../utils/hooks";
 
 export default function ApplyFiltersButton({
   activeFilters,
@@ -26,27 +27,7 @@ export default function ApplyFiltersButton({
   const [jobsLength, setJobsLength] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const newSearchParams = useMemo(() => {
-    const searchParams = new URLSearchParams();
-
-    if (!activeFilters) return searchParams;
-
-    for (const key in activeFilters) {
-      const value = activeFilters[key as keyof typeof activeFilters];
-
-      if (!value) continue;
-      else if (Array.isArray(value)) {
-        value.forEach((item) => searchParams.append(key, item.toString()));
-      } else {
-        searchParams.append(key, value.toString());
-      }
-    }
-
-    return searchParams;
-  }, [activeFilters]);
-
-  const anyActiveFilters =
-    activeFilters && Object.keys(activeFilters).length > 0;
+  const activeFiltersURL = ActiveFiltersURL(activeFilters, locale);
 
   useEffect(() => {
     setIsLoading(true);
@@ -68,9 +49,7 @@ export default function ApplyFiltersButton({
     <Button
       onClick={() => {
         setIsModalOpen(false);
-        anyActiveFilters
-          ? router.push(`/${locale}/filtered?${newSearchParams.toString()}`)
-          : router.push(`/${locale}`);
+        router.push(activeFiltersURL);
       }}
       disabled={isLoading || jobsLength === 0}
       name="Apply filters"

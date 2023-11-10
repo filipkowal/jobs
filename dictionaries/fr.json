@@ -8,13 +8,12 @@
     "Category": "Catégorie",
     "Regions": "Régions",
     "Work Languages": "Langues de travail",
-    "Technologies": "Technologies",
+    "Technologies": "Technologies & thèmes",
     "Industries": "Branches",
     "Company Sizes": "Taille de l'entreprise",
     "Work language": "Langue de travail",
     "Workload": "Volume de travail",
     "Workload range": "Barème du volume de travail",
-    "% of full time": "% de plein temps",
     "Salary": "Salaire",
     "Min. salary": "Salaire minimum",
     "Techonolgies:": "Technologies",
@@ -48,8 +47,8 @@
   "You have": "Tu as",
   "Responsibilities": "Responsabilités",
   "is hiring a": "embauche un/e",
-  "Provide your email, so we know who gets the money": "Indique ton adresse e-mail, afin que nous sachions qui reçoit l'argent.",
-  "application.basket.placeholder.email": "Votre adresse e-mail",
+  "Provide your email, so we know who gets the money": "Indique ton adresse email, afin que nous sachions qui reçoit l'argent.",
+  "application.basket.placeholder.email": "Votre adresse email",
   "application.basket.placeholder.name": "Comment t'appeler",
   "application.basket.placeholder.message": "Tout ce que tu veux nous dire",
   "Next": "Suivant",
@@ -61,14 +60,14 @@
   "title": {
     "title": "Prêt pour une nouvelle mission?",
     "subtitle.1": "Découvrez des opportunités de carrière sélectionnées dans des entreprises suisses de premier plan!",
-    "subtitle.2": "Avec un retour d'information garanti dans les 2 jours"
+    "subtitle.2": "Avec un retour d'information garanti dans les 2 jours ouvrables"
   },
   "compareJobTable": {
     "Please select a file with a valid type": "Sélectionne un fichier avec un type valide",
-    "E-mail": "E-mail",
+    "Email": "Email",
     "Next": "Suivant",
     "Drop CV files or click to select": "Pour envoyer ton CV, clique ici",
-    "invalidEmail": "Adresse e-mail invalide.",
+    "invalidEmail": "Adresse email invalide.",
     "Workload": "Volume de travail",
     "Home Office": "Home-Office",
     "Go back": "retour",
@@ -93,6 +92,7 @@
     "Apply for": "Postule pour",
     "You are applying for": "Tu postules pour",
     "jobs": "jobs",
+    "job": "job",
     "Add to application basket": "Ajouter au panier d'application",
     "Work location": "Lieu de travail",
     "applyFormFileUpload": "Lettres de motivation et procédures de candidature compliquées ? Oublie ça ! Envoie-nous simplement ton CV (sans lettre de motivation) ou copie le lien vers ton profil LinkedIn et nous te contacterons dans les deux jours ouvrables.",
@@ -107,16 +107,17 @@
     "Apply for another job": "Postuler pour un autre emploi",
     "application.basket.title.0": "Panier d'application",
     "application.basket.title.1": "À propos de vous",
-    "application.basket.title.2": "Nous vous remercions de nous avoir contactés. Nous vous contacterons dans les 48 heures!",
+    "application.basket.title.2": "Nous vous remercions de nous avoir contactés. Nous vous contacterons dans les 2 jours ouvrables!",
     "application.basket.termsAndConditions.accordion.title": "Protection des données et processus de recrutement",
-    "Your e-mail": "Ton e-mail",
+    "Your email": "Ton email",
     "Select CV file": "Sélectionner le fichier CV",
     "fileInput": {
       "drop": "Déposer des fichiers ou cliquer pour les sélectionner",
       "select": "Veuillez sélectionner un fichier avec un type valide",
       "fileReadError": "La lecture du fichier a été interrompue",
       "fileUploadError": "Erreur de téléchargement de fichier"
-    }
+    },
+    "Unpin": "Détacher"
   },
   "Something went wrong": "Quelque chose s'est mal passé",
   "powered by": "powered by",
@@ -132,7 +133,7 @@
     "intro.bullet1": "Crée un lien personnel de recommandation",
     "intro.bullet2": "Envoie le lien à tes connaissances ou partage-le sur tes réseaux",
     "intro.bullet3": "Si le poste est pourvu avec succès grâce à ta recommandation, tu recevras une prime de 500 CHF",
-    "email.info": "Nous avons besoin de ton adresse e-mail pour t'envoyer le lien de recommandation personnelle et pour t'avertir lorsque tu as gagné une prime.",
+    "email.info": "Nous avons besoin de ton adresse email pour t'envoyer le lien de recommandation personnelle et pour t'avertir lorsque tu as gagné une prime.",
     "email.accept": "J'ai lu les <a target='_blank' href='https://www.digitalent.ch/datenschutz'>conditions d'utilisation</a> et je les accepte. *",
     "Create a link": "Créer un lien",
     "Share a job": "Partager un emploi",
@@ -152,7 +153,7 @@
   "saveForLater": {
     "title": "Retenir le poste et postuler plus tard",
     "titleMobile": "Postuler plus tard",
-    "description": "Fais-toi envoyer cette annonce par e-mail pour pouvoir postuler plus tard",
+    "description": "Fais-toi envoyer ce job par email pour pouvoir postuler plus tard",
     "apply": "Envoyer cet emploi à ma boîte mail",
     "success": "Job a été livré à votre boîte mail.",
     "error": "Quelque chose s'est mal passé"
@@ -164,7 +165,7 @@
     "fileUploadError": "Erreur de téléchargement de fichier"
   },
   "compareButtonHint": "Épingle au moins 2 emplois pour les comparer et postuler.",
-  "invalidEmail": "Adresse e-mail invalide.",
-  "termsAndConditions": "<b>Nous tenons à vous informer que les entreprises pour lesquelles vous postulez actuellement ont externalisé une partie du processus de recrutement à un prestataire spécialisé (digitalent ag, ci-après dénommé \"prestataire\"). En soumettant votre candidature, vous en prenez connaissance et acceptez ces conditions.</b><br/><p>Afin de gérer le processus de recrutement, le prestataire (digitalent ag) collecte et traite les données personnelles des candidats intéressés. Le traitement peut être effectué par voie électronique. Cela est notamment le cas lorsque le candidat soumet les documents de candidature pertinents par voie électronique, par exemple par e-mail ou via un formulaire web sur le site. Lors d'une candidature, le prestataire transmet les données suivantes à l'entreprise :</p><br/><ul>    <li>Adresse e-mail</li>    <li>Informations sur la personne de contact</li>    <li>Prénom, nom</li>    <li>éventuellement un CV</li>    <li>éventuellement des attestations</li>    <li>Toutes les données que vous avez fournies à cet effet, telles que les qualifications, expériences professionnelles, préférences, etc. indiquées.</li></ul><br/><p>    Si une entreprise conclut un contrat de travail avec un candidat, les données transmises sont conservées aux fins de traitement de la relation de travail, conformément aux dispositions légales. Si aucun contrat de travail n'est conclu entre l'entreprise et le candidat, les documents de candidature sont supprimés six mois après la notification de la décision de refus, sauf si des intérêts légitimes ou des obligations contractuelles s'y opposent. Par ailleurs, les    <a href=\"https://www.digitalent.ch/datenschutz\">dispositions relatives à la protection des données</a>    du prestataire s'appliquent.</p>",
+  "invalidEmail": "Adresse email invalide.",
+  "termsAndConditions": "<b>Nous tenons à vous informer que les entreprises pour lesquelles vous postulez actuellement ont externalisé une partie du processus de recrutement à un prestataire spécialisé (digitalent ag, ci-après dénommé \"prestataire\"). En soumettant votre candidature, vous en prenez connaissance et acceptez ces conditions.</b><br/><p>Afin de gérer le processus de recrutement, le prestataire (digitalent ag) collecte et traite les données personnelles des candidats intéressés. Le traitement peut être effectué par voie électronique. Cela est notamment le cas lorsque le candidat soumet les documents de candidature pertinents par voie électronique, par exemple par email ou via un formulaire web sur le site. Lors d'une candidature, le prestataire transmet les données suivantes à l'entreprise :</p><br/><ul>    <li>Adresse email</li>    <li>Informations sur la personne de contact</li>    <li>Prénom, nom</li>    <li>éventuellement un CV</li>    <li>éventuellement des attestations</li>    <li>Toutes les données que vous avez fournies à cet effet, telles que les qualifications, expériences professionnelles, préférences, etc. indiquées.</li></ul><br/><p>    Si une entreprise conclut un contrat de travail avec un candidat, les données transmises sont conservées aux fins de traitement de la relation de travail, conformément aux dispositions légales. Si aucun contrat de travail n'est conclu entre l'entreprise et le candidat, les documents de candidature sont supprimés six mois après la notification de la décision de refus, sauf si des intérêts légitimes ou des obligations contractuelles s'y opposent. Par ailleurs, les    <a href=\"https://www.digitalent.ch/datenschutz\">dispositions relatives à la protection des données</a>    du prestataire s'appliquent.</p>",
   "More jobs": "Plus d'emplois"
 }

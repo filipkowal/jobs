@@ -21,11 +21,8 @@ export default function CompareJobTable({
 }) {
   const COLUMN_WIDTH_WITH_MARGIN = 432;
 
-  const { likedJobs: likedJobsIds } = useContext(CompareContext);
+  const { likedJobs: likedJobsIds, setLikedJobs } = useContext(CompareContext);
 
-  const [jobsCompared, setJobsCompared] = useState<string[]>([]);
-  const [applicationBasket, setApplicationBasket] =
-    useState<string[]>(jobsCompared);
   const [isApplicationOpen, setIsApplicationOpen] = useState(false);
   const tableRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -35,9 +32,8 @@ export default function CompareJobTable({
     return jobs.filter((job) => likedJobsIds.includes(job.id as string));
   }, [jobs, likedJobsIds]);
 
-  useEffect(() => {
-    setApplicationBasket(jobsCompared);
-  }, [jobsCompared]);
+  const removeLikedJob = (id: string) =>
+    setLikedJobs(likedJobsIds.filter((jobId) => jobId !== id));
 
   useEffect(() => {
     tableRef.current &&
@@ -46,17 +42,22 @@ export default function CompareJobTable({
       );
   }, [likedJobs, scrollPosition]);
 
+  const [maxRequirementsHeight, setMaxRequirementsHeight] = useState(0);
+  const longestRequirementsLengths = useMemo(() => {
+    return likedJobs.reduce((acc, job) => {
+      const requirementsLength = job.requirements?.length || 0;
+      return requirementsLength > acc ? requirementsLength : acc;
+    }, 0);
+  }, [likedJobs]);
+
   return (
     <>
       <ApplicationFormModal
         isOpen={isApplicationOpen}
         setIsOpen={setIsApplicationOpen}
-        jobIds={applicationBasket}
         locale={locale}
-        jobsCompared={jobsCompared}
-        applicationBasket={applicationBasket}
-        setApplicationBasket={setApplicationBasket}
         likedJobs={likedJobs}
+        removeLikedJob={removeLikedJob}
         dict={dict}
       />
 
@@ -64,11 +65,12 @@ export default function CompareJobTable({
         <Button
           type="primary"
           className="mt-4 w-96 fixed max-sm:bottom-0 sm:top-14 z-10"
-          disabled={jobsCompared.length === 0}
+          disabled={likedJobsIds.length === 0}
           onClick={() => setIsApplicationOpen(true)}
           name="apply for jobs"
         >
-          {dict["Apply for"]} <b>{jobsCompared.length}</b> {dict["jobs"]}
+          {dict["Apply for"]} <b>{likedJobsIds.length}</b>{" "}
+          {likedJobs.length > 1 ? dict["jobs"] : dict["job"]}
         </Button>
       </div>
 
@@ -117,16 +119,16 @@ export default function CompareJobTable({
             </div>
           </button>
         )}
-        {likedJobs &&
-          likedJobs.map((job) => (
-            <JobColumn
-              key={job.id}
-              job={job}
-              applicationBasket={jobsCompared}
-              setApplicationBasket={setJobsCompared}
-              dict={dict}
-            />
-          ))}
+        {likedJobs?.map((job) => (
+          <JobColumn
+            key={job.id}
+            job={job}
+            dict={dict}
+            maxRequirementsHeight={maxRequirementsHeight}
+            setMaxRequirementsHeight={setMaxRequirementsHeight}
+            longestRequirementsLengths={longestRequirementsLengths}
+          />
+        ))}
       </div>
     </>
   );
@@ -157,6 +159,7 @@ export interface CompareJobTableDict {
   "Apply for": string;
   "You are applying for": string;
   jobs: string;
+  job: string;
   "Add to application basket": string;
   "Work location": string;
   applyFormFileUpload: string;
@@ -173,10 +176,10 @@ export interface CompareJobTableDict {
   "application.basket.title.1": string;
   "application.basket.title.2": string;
   "application.basket.termsAndConditions.accordion.title": string;
-  "Your e-mail": string;
+  "Your email": string;
   "Select CV file": string;
   "Please select a file with a valid type": string;
-  "E-mail": string;
+  Email: string;
   Next: string;
   "Drop CV files or click to select": string;
   invalidEmail: string;
@@ -186,4 +189,5 @@ export interface CompareJobTableDict {
     fileReadError: string;
     fileUploadError: string;
   };
+  Unpin: string;
 }

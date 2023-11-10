@@ -8,13 +8,12 @@
     "Category": "Kategorie",
     "Regions": "Regionen",
     "Work Languages": "Arbeitssprachen",
-    "Technologies": "Technologien",
+    "Technologies": "Technologien & Themen",
     "Industries": "Branchen",
     "Company Sizes": "Firmengrösse",
     "Work language": "Arbeitssprache",
     "Workload": "Arbeitspensum",
     "Workload range": " ",
-    "% of full time": "%",
     "Salary": "Gehalt",
     "Min. salary": "Soviel möchte ich mindestens verdienen",
     "Techonolgies:": "Technologien",
@@ -60,10 +59,10 @@
   "title": {
     "title": "Bereit für eine neue Mission?",
     "subtitle.1": "Entdecke ausgewählte Karrieremöglichkeiten in Schweizer Top-Unternehmen!",
-    "subtitle.2": "Mit garantiertem Feedback innert 2 Tagen"
+    "subtitle.2": "Mit garantiertem Feedback innert 2 Werktagen"
   },
   "compareJobTable": {
-    "E-mail": "E-mail",
+    "Email": "Email",
     "Next": "Weiter",
     "Drop CV files or click to select": "Um Deinen Lebenslauf hochzuladen hier klicken",
     "invalidEmail": "Ungültige E-Mail Adresse",
@@ -91,6 +90,7 @@
     "Apply for": "Bewerben für",
     "You are applying for": "Du bewirbst Dich für folgende Stelle",
     "jobs": "Jobs",
+    "job": "Job",
     "Add to application basket": "Zum Bewerbungskorb hinzufügen",
     "Work location": "Arbeitsort",
     "applyFormFileUpload": "Motivationsschreiben und komplizierte Bewerbungsverfahren? Vergiss es! Schick uns einfach Deinen CV (ohne Motiovationsschreiben) oder den Link zu Deinem Linkedin-Profil. Wir melden uns danach innert zwei Arbetstagen bei Dir.",
@@ -105,9 +105,9 @@
     "Apply for another job": "Bewerben Sie sich für eine andere Stelle",
     "application.basket.title.0": "Bewerbungskorb",
     "application.basket.title.1": "Deine Angaben",
-    "application.basket.title.2": "Vielen Dank für die Kontaktaufnahme. Wir werden uns innerhalb von 48 Stunden melden!",
+    "application.basket.title.2": "Vielen Dank für die Kontaktaufnahme. Wir werden uns innerhalb von 2 Werktagen melden!",
     "application.basket.termsAndConditions.accordion.title": "Datenschutz & Rekrutierungsprozess",
-    "Your e-mail": "Deine E-Mail",
+    "Your email": "Deine E-Mail",
     "Select CV file": "CV-Datei auswählen",
     "Please select a file with a valid type": "Bitte wähle eine Datei mit einem gültigen Typ",
     "fileInput": {
@@ -115,7 +115,8 @@
       "select": "Bitte wähle eine Datei mit einem gültigen Typ",
       "fileReadError": "Datei-Lesefehler",
       "fileUploadError": "Fehler beim Hochladen der Datei"
-    }
+    },
+    "Unpin": "Lösen"
   },
   "Something went wrong": "Etwas ist schief gelaufen",
   "powered by": "powered by",
@@ -145,13 +146,13 @@
 
   "cookiePopup": {
     "title": "Cookie-Hinweis",
-    "message": "Diese Website verwendet Cookies, um Ihre Browser-Erfahrung zu verbessern und für Analyse- und Werbezwecke.",
+    "message": "Diese Website verwendet Cookies, um Deine Browser-Erfahrung zu verbessern und für Analyse- und Werbezwecke.",
     "acceptButton": "Akzeptieren"
   },
   "saveForLater": {
     "title": "Job merken und später bewerben",
     "titleMobile": "Später bewerben",
-    "description": "Lass Dir dieses Inserat per E-Mail schicken, damit Du Dich später bewerben kannst",
+    "description": "Lass Dir diesen Job per E-Mail schicken, damit Du Dich später bewerben kannst",
     "apply": "Diesen Auftrag an meine Mailbox senden",
     "error": "Etwas ist schief gelaufen",
     "success": "Der Job wurde an deine Email geschickt."

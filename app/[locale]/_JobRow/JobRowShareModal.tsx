@@ -79,7 +79,7 @@ export default function ShareJob({
           onChange={(e) => setEmail(e.target.value)}
           required
           name="email"
-          label="E-mail"
+          label="Email"
           className="mb-4 mt-8"
           dict={{ invalidEmail: dict["invalidEmail"] }}
         />

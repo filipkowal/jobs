@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { Job, Locale } from "../../../utils";
 import { useRouter } from "next/navigation";
 import ApplicationFormSuccessStep from "./ApplicationFormSuccess";
@@ -11,22 +11,16 @@ const Modal = dynamic(() => import("../../../components/Modal"));
 export default function ApplicationFormModal({
   isOpen,
   setIsOpen,
-  jobIds,
   locale,
-  jobsCompared,
-  applicationBasket,
-  setApplicationBasket,
   likedJobs,
+  removeLikedJob,
   testStepNumber,
   dict,
 }: {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  jobIds: string[];
   locale: Locale;
-  jobsCompared: string[];
-  applicationBasket: string[];
-  setApplicationBasket: Dispatch<SetStateAction<string[]>>;
+  removeLikedJob: (jobId: string) => void;
   likedJobs: Job[];
   testStepNumber?: number;
   dict: ApplicationDict;
@@ -39,17 +33,15 @@ export default function ApplicationFormModal({
       key="applicationFormBasket"
       setStepNumber={setStepNumber}
       stepNumber={stepNumber}
-      jobsCompared={jobsCompared}
       likedJobs={likedJobs}
-      applicationBasket={applicationBasket}
-      setApplicationBasket={setApplicationBasket}
+      removeLikedJob={removeLikedJob}
       dict={dict}
     />,
     <ApplicationFormAboutYou
       key="applicationFormAboutYou"
       setStepNumber={setStepNumber}
       stepNumber={stepNumber}
-      jobIds={jobIds}
+      jobIds={likedJobs.map((job) => job.id as string)}
       dict={dict}
       locale={locale}
     />,
@@ -91,7 +83,7 @@ export interface ApplicationDict {
   Woman: string;
   Man: string;
   Other: string;
-  "E-mail": string;
+  Email: string;
   Name: string;
   Message: string;
   "Link to your LinkedIn profile": string;
@@ -106,6 +98,7 @@ export interface ApplicationDict {
   "application.basket.title.2": string;
   "Apply for": string;
   jobs: string;
+  job: string;
   "Something went wrong": string;
   recruiterInfo: string;
   "Drop CV files or click to select": string;

@@ -6,16 +6,16 @@ import {
   Locale,
   Filters,
   pickActiveFiltersFromSearchParams,
-  ActiveFilters,
   FILTER_NAMES,
 } from "../../../utils";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 import { type FiltersModalDict } from "./FiltersModal";
 import { useSearchParams } from "next/navigation";
-import { Dispatch, SetStateAction, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import FiltersClearButton from "./FiltersClearButton";
 import FilterButton from "./FilterButton";
 import dynamic from "next/dynamic";
+import FiltersNumberLabel from "./FiltersNumberLabel";
 
 const FiltersModal = dynamic(() => import("./FiltersModal"));
 
@@ -70,8 +70,6 @@ export default function FiltersSection({
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFilterName, setOpenFilterName] = useState<OpenFilterName>("none");
-  const [activeFilters, setActiveFilters] =
-    useState<ActiveFilters>(defaultActiveFilters);
 
   return (
     <>
@@ -85,8 +83,6 @@ export default function FiltersSection({
           setIsModalOpen={setIsModalOpen}
           openFilterName={openFilterName}
           setOpenFilterName={setOpenFilterName}
-          activeFilters={activeFilters}
-          setActiveFilters={setActiveFilters}
           defaultActiveFilters={defaultActiveFilters}
         />
       )}
@@ -96,8 +92,8 @@ export default function FiltersSection({
           onClick={() => setIsModalOpen(true)}
           className="text-digitalent-blue pr-2 w-8 h-8 cursor-pointer"
         />
-        <NumberOfFiltersIcon
-          activeFilters={activeFilters}
+        <FiltersNumberLabel
+          activeFilters={defaultActiveFilters}
           setIsModalOpen={setIsModalOpen}
         />
         <>
@@ -109,7 +105,7 @@ export default function FiltersSection({
                 filterName={filterName}
                 setOpenFilterName={setOpenFilterName}
                 setIsModalOpen={setIsModalOpen}
-                activeFilters={activeFilters}
+                activeFilters={defaultActiveFilters}
                 dict={dict}
               />
             ))}
@@ -124,8 +120,7 @@ export default function FiltersSection({
 
         <FiltersClearButton
           locale={locale}
-          activeFilters={activeFilters}
-          setActiveFilters={setActiveFilters}
+          activeFilters={defaultActiveFilters}
           dict={{ Clear: dict["Clear"] }}
         />
       </div>
@@ -140,33 +135,11 @@ export default function FiltersSection({
           {dict["Filters"]}
           <AdjustmentsHorizontalIcon className="ml-2 mb-1 w-6 h-6 inline-block" />
         </span>
-        <NumberOfFiltersIcon
-          activeFilters={activeFilters}
+        <FiltersNumberLabel
+          activeFilters={defaultActiveFilters}
           setIsModalOpen={setIsModalOpen}
         />
       </div>
     </>
   );
-}
-
-function NumberOfFiltersIcon({
-  activeFilters,
-  setIsModalOpen,
-}: {
-  activeFilters: ActiveFilters;
-  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
-}) {
-  if (!activeFilters) return null;
-  if (Object.keys(activeFilters).length === 0) return null;
-
-  return Object.keys(activeFilters).length ? (
-    <span
-      onClick={() => {
-        setIsModalOpen(true);
-      }}
-      className="absolute -top-2 right-0 sm:!-left-2 cursor-pointer bg-digitalent-green text-white font-title w-5 h-5 flex justify-center items-center rounded-full"
-    >
-      {Object.keys(activeFilters).length}
-    </span>
-  ) : null;
 }
