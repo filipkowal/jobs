@@ -27,7 +27,7 @@ export default function Accordion({
                 />
                 <h3 className="text-xl">{title}</h3>
                 {labelTag && (
-                  <span className="cursor-pointer border-2 border-digitalent-green text-digitalent-green font-title px-2 ml-1 flex justify-center items-center rounded-full">
+                  <span className="cursor-pointer border-2 border-digitalent-green bg-digitalent-green text-white font-title px-2 ml-1 flex justify-center items-center rounded-full">
                     {labelTag}
                   </span>
                 )}
