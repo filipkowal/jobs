@@ -77,7 +77,12 @@ export default function Modal({
                   <div className="max-h-[74vh] md:max-h-[64vh] px-1 -mx-1 sm:mx-0 max-w-full overflow-x-hidden overflow-y-auto">
                     {children}
                   </div>
-                  <div className="w-full">{footer}</div>
+                  <div
+                    className="w-full"
+                    style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+                  >
+                    {footer}
+                  </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
