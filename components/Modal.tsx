@@ -51,11 +51,11 @@ export default function Modal({
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel
-                  className={`transform overflow-hidden h-full sm:h-initial bg-digitalent-gray-light text-digitalent-blue px-4 py-7 md:py-10 md:px-16 text-left align-middle shadow-xl transition-all w-[60rem] max-w-full`}
+                  className={`transform overflow-hidden h-full sm:h-initial bg-digitalent-gray-light text-digitalent-blue px-4 pt-4 pb-7 md:py-10 md:px-16 text-left align-middle shadow-xl transition-all w-[60rem] max-w-full`}
                 >
                   <Dialog.Title
                     as="h3"
-                    className="text-2xl font-title font-medium uppercase pb-6 flex justify-between"
+                    className="text-2xl font-title font-medium uppercase pb-2 md:pb-6 flex justify-between"
                   >
                     <span className="pr-10 max-w-[90%]">{title}</span>
 
