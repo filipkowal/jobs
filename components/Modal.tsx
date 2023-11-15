@@ -74,7 +74,7 @@ export default function Modal({
                     </svg>
                   </Dialog.Title>
 
-                  <div className="max-h-[74vh] md:max-h-[64vh] px-1 -mx-1 sm:mx-0 max-w-full overflow-x-hidden overflow-y-auto">
+                  <div className="max-h-[74dvh] md:max-h-[64vh] px-1 -mx-1 sm:mx-0 max-w-full overflow-x-hidden overflow-y-auto">
                     {children}
                   </div>
                   <div
