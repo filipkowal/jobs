@@ -23,6 +23,10 @@ export default async function JobTable({
 
   const jobsResponse = await jobsPromise;
 
+  if (!jobsResponse || !Object.keys(jobsResponse?.jobs || {})?.length) {
+    throw new Error("No jobs response");
+  }
+
   function sortJobsInitOpenFirst(jobs?: Job[]) {
     if (params?.jobTitleId) {
       return jobs?.sort((a, b) => {
