@@ -24,9 +24,6 @@ export default async function FiltersSectionContainer({
 }) {
   const filters = await filtersPromise;
 
-  if (!filters || Object.keys(filters).length === 0)
-    throw new Error("No filters response");
-
   const customBoard = await getCustomBoard();
   const { filtersSection: dict } = await getDictionary(locale);
 
