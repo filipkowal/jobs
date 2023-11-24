@@ -47,9 +47,13 @@ async function getData({
 
     const res = await fetch(url, init);
 
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
     return res.json();
   } catch (e: any) {
-    throw Error("Failed fetching " + endpoint);
+    throw Error("Failed fetching " + endpoint + ": " + e.message);
   }
 }
 
@@ -64,12 +68,20 @@ export async function getJobs({
 }): Promise<Jobs> {
   const { employerName, ...restSearchParams } = searchParams;
 
-  return await getData({
+  const jobsResponse = await getData({
     endpoint: "jobs",
     locale,
     searchParams: employerName?.length > 0 ? searchParams : restSearchParams,
     init,
   });
+
+  if (!jobsResponse) {
+    throw new Error("No jobs response");
+  } else if (!Object.keys(jobsResponse?.jobs || {})?.length) {
+    throw new Error("Jobs of 0 length");
+  }
+
+  return jobsResponse;
 }
 
 export async function getFilters({
@@ -79,7 +91,13 @@ export async function getFilters({
   locale: Locale;
   init?: RequestInit;
 }): Promise<Filters> {
-  return await getData({ endpoint: "filters", locale, init });
+  const filters = await getData({ endpoint: "filters", locale, init });
+
+  if (!filters) throw new Error("No filters response");
+  else if (Object.keys(filters).length === 0)
+    throw new Error("Filters of 0 length");
+
+  return filters;
 }
 
 export async function getCustomUser({
