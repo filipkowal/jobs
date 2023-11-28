@@ -53,7 +53,14 @@ async function getData({
 
     return res.json();
   } catch (e: any) {
-    throw Error("Failed fetching " + endpoint + ": " + e.message);
+    const message = "Failed fetching " + endpoint + ": " + e.message;
+
+    if (typeof document === "undefined") {
+      // throw only on server-side to prevent creating a new build and keep the old one
+      throw Error("Failed fetching " + endpoint + ": " + e.message);
+    }
+
+    console.error(message);
   }
 }
 
@@ -75,11 +82,7 @@ export async function getJobs({
     init,
   });
 
-  if (!jobsResponse) {
-    throw new Error("No jobs response");
-  } else if (!Object.keys(jobsResponse?.jobs || {})?.length) {
-    throw new Error("Jobs of 0 length");
-  }
+  throwOnNoDataWhenBuilding(jobsResponse, jobsResponse?.jobs, "jobs");
 
   return jobsResponse;
 }
@@ -93,16 +96,13 @@ export async function getFilters({
 }): Promise<Filters> {
   const filters = await getData({ endpoint: "filters", locale, init });
 
-  if (!filters) throw new Error("No filters response");
-  else if (Object.keys(filters).length === 0)
-    throw new Error("Filters of 0 length");
+  throwOnNoDataWhenBuilding(filters, filters, "filters");
 
   return filters;
 }
 
 export async function getCustomUser({
   locale,
-  // userId,
   init,
 }: {
   locale: Locale;
@@ -111,8 +111,28 @@ export async function getCustomUser({
   return await getData({
     endpoint: "customBoard",
     locale,
-    // searchParams: { userId: userId || "" },
     mock: true,
     init,
   });
+}
+
+function throwOnNoDataWhenBuilding(
+  reponse: Response,
+  responseContent: any,
+  responseName: string
+) {
+  // Stop server-side building if no data to display. Keep the previous build.
+
+  // Don't throw on client-side
+  if (typeof document !== "undefined") return;
+
+  if (!reponse) {
+    throw new Error("No response when building: " + responseName.toUpperCase());
+  }
+
+  if (!responseContent) {
+    throw new Error(
+      "Response of 0 length when building: " + responseName.toUpperCase()
+    );
+  }
 }
