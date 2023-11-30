@@ -27,7 +27,6 @@ export default async function Home({
   const jobsPromise = getJobs({
     locale: params.locale,
     searchParams: {
-      employerName: customBoard.employerNameFilter,
       limit: JOBS_LIMIT,
       ...searchParams,
     },

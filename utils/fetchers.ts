@@ -76,12 +76,10 @@ export async function getJobs({
   searchParams?: any;
   init?: RequestInit;
 }): Promise<Jobs> {
-  const { employerName, ...restSearchParams } = searchParams;
-
   const jobsResponse = await getData({
     endpoint: "jobs",
     locale,
-    searchParams: employerName?.length > 0 ? searchParams : restSearchParams,
+    searchParams,
     init,
   });
 

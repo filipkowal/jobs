@@ -27,7 +27,6 @@ export default async function Home({
     locale: params.locale,
     searchParams: {
       ...searchParams,
-      employerName: customBoard.employerNameFilter,
       offset: parseInt(params.pageIndex) * JOBS_LIMIT,
       limit: JOBS_LIMIT,
     },

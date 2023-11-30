@@ -1,19 +1,14 @@
 import { GetServerSidePropsContext } from "next";
 import { getJobs, JOBS_REVALIDATE_TIME, Locale } from "../../../utils";
 import CompareJobTable from "./CompareJobTable";
-import { getCustomBoard, getDictionary } from "../../../utils/server";
+import { getDictionary } from "../../../utils/server";
 
 export default async function ComparePage({
   params,
 }: {
   params: GetServerSidePropsContext;
 }) {
-  const customBoard = await getCustomBoard();
-
   const { jobs } = await getJobs({
-    searchParams: {
-      employerName: customBoard.employerNameFilter,
-    },
     locale: params.locale as Locale,
     init: { next: { revalidate: JOBS_REVALIDATE_TIME } },
   });
