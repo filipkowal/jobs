@@ -23,7 +23,7 @@ export default async function Header({
   return (
     <header
       id="top"
-      className="flex flex-row h-16 bg-digitalent-green justify-between items-center py-3 px-4 sm:px-8 sm:fixed top-0 z-10 w-full"
+      className="flex flex-row h-16 bg-digitalent-green justify-between items-center py-3 px-4 sm:px-8 sm:fixed top-0 z-20 w-full"
     >
       <div>
         {customBoard.hideLogo ? (
