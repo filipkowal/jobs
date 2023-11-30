@@ -35,7 +35,6 @@ export default function ApplyFiltersButton({
       const { length } = await getJobs({
         searchParams: {
           ...activeFilters,
-          employerName: customBoard.employerNameFilter,
         },
         locale: locale,
       });
