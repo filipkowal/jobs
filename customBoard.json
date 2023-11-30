@@ -1,5 +1,5 @@
 {
-  "employerNameFilter": "",
+  "employerNameFilters": [""],
   "hideTitle": false,
   "hideSubtitle": false,
   "hideLogo": false,

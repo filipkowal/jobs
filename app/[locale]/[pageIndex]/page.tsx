@@ -11,14 +11,10 @@ import FiltersSkeleton from "../_Filters/FiltersSkeleton";
 
 export async function generateStaticParams() {
   const params: Record<string, string>[] = [];
-  const customBoard = await getCustomBoard();
 
   for (const locale of i18n.locales) {
     const getJobsResponse = await getJobs({
       locale,
-      searchParams: {
-        employerName: customBoard.employerNameFilter,
-      },
     });
     const numOfPages = Math.ceil((getJobsResponse?.length || 1) / JOBS_LIMIT);
 
@@ -44,7 +40,6 @@ export default async function Home({
   const jobsPromise = getJobs({
     locale: params.locale,
     searchParams: {
-      employerName: customBoard.employerNameFilter,
       offset: params.pageIndex * JOBS_LIMIT,
       limit: JOBS_LIMIT,
     },
