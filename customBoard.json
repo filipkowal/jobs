@@ -1,12 +1,16 @@
 {
-  "employerNameFilter": "",
+  "employerNameFilters": [
+    "Schibli Support AG",
+    "Entec AG",
+    "Kellenberger + Huber AG"
+  ],
   "hideTitle": false,
   "hideSubtitle": false,
   "hideLogo": false,
   "hideBackgroundImage": false,
   "hideFooter": false,
   "colors": {
-    "backgroundColor": "",
+    "backgroundColor": "white",
     "textColor": "",
     "white": "white",
     "yellow": { "300": "#E7E248" },
