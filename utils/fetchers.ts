@@ -55,8 +55,11 @@ async function getData({
   } catch (e: any) {
     const message = "Failed fetching " + endpoint + ": " + e.message;
 
-    if (typeof document === "undefined") {
-      // throw only on server-side to prevent creating a new build and keep the old one
+    if (
+      typeof document === "undefined" &&
+      process.env.NODE_ENV === "production"
+    ) {
+      // throw only on server-side on production to prevent creating a new build and keep the old one
       throw Error("Failed fetching " + endpoint + ": " + e.message);
     }
 
@@ -124,7 +127,8 @@ function throwOnNoDataWhenBuilding(
   // Stop server-side building if no data to display. Keep the previous build.
 
   // Don't throw on client-side
-  if (typeof document !== "undefined") return;
+  if (typeof document !== "undefined" || process.env.NODE_ENV !== "production")
+    return;
 
   if (!reponse) {
     throw new Error("No response when building: " + responseName.toUpperCase());
