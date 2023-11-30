@@ -8,10 +8,6 @@ export type CustomBoard = typeof customBoard;
 export type SearchParams = ActiveFilters & { [key: string]: any };
 
 // Response types
-export type CustomUser = paths["/{language}/customBoard"]["get"]["responses"][
-  | "200"
-  | "400"
-  | "404"]["content"]["application/json"];
 export type Jobs = paths["/{language}/jobs"]["get"]["responses"][
   | "200"
   | "404"]["content"]["application/json"];

@@ -3,7 +3,6 @@
  * Do not make direct changes to the file.
  */
 
-
 export interface paths {
   "/{language}/jobs": {
     get: {
@@ -137,31 +136,6 @@ export interface paths {
             "application/json": components["schemas"]["Filters"];
           };
         };
-        /** @description Language not found */
-        404: never;
-      };
-    };
-  };
-  "/{language}/customBoard": {
-    get: {
-      parameters: {
-        query?: {
-          userId?: components["schemas"]["Id"];
-          boardId?: components["schemas"]["Id"];
-        };
-        path: {
-          language: components["schemas"]["Language"];
-        };
-      };
-      responses: {
-        /** @description Get content and styling of a custom board */
-        200: {
-          content: {
-            "application/json": components["schemas"]["CustomBoard"];
-          };
-        };
-        /** @description Invalid request body supplied */
-        400: never;
         /** @description Language not found */
         404: never;
       };
@@ -426,27 +400,6 @@ export interface components {
       /** @example 700 */
       weight?: string;
     };
-    CustomBoard: {
-      /** @example Hi Anna */
-      title?: string;
-      /** @example Here's a selection of jobs for you */
-      subtitle?: string;
-      /** Format: url */
-      logo?: string;
-      fonts?: components["schemas"]["CustomBoard_fonts"];
-      /**
-       * Format: rgb
-       * @example 000000
-       */
-      backgroundColor?: string;
-      /**
-       * Format: rgb
-       * @example ffffff
-       */
-      textColor?: string;
-      /** Format: url */
-      backgroundImage?: string;
-    };
     inline_response_200: {
       jobs?: components["schemas"]["Job"][];
       activeFilters?: components["schemas"]["ActiveFilters"];
@@ -485,11 +438,6 @@ export interface components {
     Filters_regions: {
       name?: string;
       states?: string[];
-    };
-    CustomBoard_fonts: {
-      title?: components["schemas"]["Font"];
-      interface?: components["schemas"]["Font"];
-      body?: components["schemas"]["Font"];
     };
   };
   responses: never;
