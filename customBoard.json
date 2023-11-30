@@ -1,13 +1,13 @@
 {
-  "employerNameFilters": [""],
+  "employerNameFilters": [],
   "hideTitle": false,
   "hideSubtitle": false,
   "hideLogo": false,
   "hideBackgroundImage": false,
   "hideFooter": false,
   "colors": {
-    "backgroundColor": "",
-    "textColor": "",
+    "background": "",
+    "text": "",
     "white": "white",
     "yellow": { "300": "#E7E248" },
     "gray": { "700": "#193B44" },

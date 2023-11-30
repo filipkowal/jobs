@@ -91,9 +91,15 @@ export default async function RootLayout({
       </head>
       <body
         style={{
-          ...(customBoard.colors["digitalent-green"].light && {
-            background: customBoard.colors["digitalent-green"].light,
-          }),
+          ...((customBoard.colors["background"] ||
+            customBoard.colors["digitalent-green"].light) &&
+          customBoard.colors["background"]
+            ? {
+                background: customBoard.colors["digitalent-green"].light,
+              }
+            : {
+                background: customBoard.colors["background"],
+              }),
           ...(customBoard.colors.white && { color: customBoard.colors.white }),
         }}
       >
