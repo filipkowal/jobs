@@ -15,9 +15,11 @@ import CompareButtonHint from "./CompareButtonHint";
 export default function CompareButton({
   params,
   dict,
+  color,
 }: {
   params: { locale: Locale };
   dict: { "Go back": string; Compare: string; compareButtonHint: string };
+  color?: string;
 }) {
   const searchParamsString = new URLSearchParams(
     useSearchParams() || undefined
@@ -40,7 +42,10 @@ export default function CompareButton({
       >
         <Button
           name="Go back"
-          className="!mx-4 sm:!mx-8 !ring-white !border-white !text-white hover:!bg-white hover:!text-digitalent-green"
+          className={`!mx-4 sm:!mx-8 !ring-white !border-white !text-white ${
+            color ? "" : "hover:!bg-white hover:!text-digitalent-green"
+          }`}
+          style={{ borderColor: color, color: color }}
         >
           {dict["Go back"]}
         </Button>
@@ -74,13 +79,14 @@ export default function CompareButton({
     return (
       <Button
         className={`group !mx-4 sm:!mx-8 flex gap-2 relative ${
-          buttonActive
+          buttonActive && !color
             ? "hover:!text-digitalent-green animate-pulse repeat-[2]"
             : ""
-        } `}
+        } ${color ? "hover:!bg-transparent " : ""}`}
         name="Compare"
         disabled={!buttonActive}
         type="invert"
+        style={{ borderColor: color, color: color }}
       >
         {dict.Compare}
 
@@ -110,6 +116,7 @@ export default function CompareButton({
                 ? "group-hover:text-white group-hover:bg-digitalent-green"
                 : ""
             }`}
+            style={color ? { backgroundColor: color, color: "white" } : {}}
           >
             {likedJobs?.length}
           </div>

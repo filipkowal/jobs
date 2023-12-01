@@ -20,10 +20,17 @@ export default async function Header({
   const customBoard = await getCustomBoard();
   const dict = await getDictionary(params.locale);
 
+  const bgColor = customBoard?.colors.headerBackground;
+  const textColor = customBoard?.colors.headerText;
+
   return (
     <header
       id="top"
       className="flex flex-row h-16 bg-digitalent-green justify-between items-center py-3 px-4 sm:px-8 sm:fixed top-0 z-20 w-full"
+      style={{
+        ...(bgColor && { backgroundColor: bgColor }),
+        ...(textColor && { color: textColor }),
+      }}
     >
       <div>
         {customBoard.hideLogo ? (
@@ -62,11 +69,12 @@ export default async function Header({
                 "Go back": dict["Go back"],
                 compareButtonHint: dict.compareButtonHint,
               }}
+              color={textColor}
             />
           </Suspense>
         )}
         <Suspense fallback={<Spinner />}>
-          <LanguageSelector params={params} />
+          <LanguageSelector params={params} color={textColor} />
         </Suspense>
       </div>
     </header>
