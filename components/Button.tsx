@@ -10,6 +10,7 @@ const Button = forwardRef(
       disabled,
       name,
       submitType,
+      style,
     }: {
       children: React.ReactNode;
       type?: "primary" | "default" | "invert";
@@ -18,6 +19,7 @@ const Button = forwardRef(
       className?: string;
       disabled?: boolean;
       submitType?: boolean;
+      style?: React.CSSProperties;
     },
     ref: React.Ref<HTMLButtonElement>
   ) => {
@@ -38,6 +40,7 @@ const Button = forwardRef(
         name={name}
         type={submitType ? "submit" : "button"}
         ref={ref}
+        style={style}
       >
         {children}
       </button>
