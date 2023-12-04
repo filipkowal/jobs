@@ -1,5 +1,4 @@
 import { test, expect } from "@playwright/test";
-import exp from "constants";
 
 test("Titles, filters, jobs and cookie notice are visible", async ({
   page,
