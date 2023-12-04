@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true next build && next analyze",
-    "test": "playwright test",
+    "test:e2e": "playwright test",
     "schema": "npx openapi-typescript openApi.yaml --output schema.ts"
   },
   "dependencies": {
