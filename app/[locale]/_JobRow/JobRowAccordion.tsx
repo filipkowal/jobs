@@ -54,6 +54,7 @@ export default function JobRowAccordion({
       }`}
       key={jobId}
       ref={animationRef}
+      data-testid="job-row-accordion"
     >
       <div
         onClick={() => {
