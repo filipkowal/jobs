@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true next build && next analyze",
-    "test": "vitest",
+    "test:e2e": "playwright test",
     "schema": "npx openapi-typescript openApi.yaml --output schema.ts"
   },
   "dependencies": {
@@ -43,6 +43,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.1",
     "@types/lodash": "^4.14.195",
     "@types/negotiator": "^0.6.1",
     "@types/uuid": "^9.0.2",

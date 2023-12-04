@@ -7,8 +7,10 @@ import { type Locale, i18n } from "../../i18n-config";
 
 export default function LanguageSelector({
   params,
+  color,
 }: {
   params: { locale: Locale };
+  color?: string;
 }) {
   const pathname = usePathname();
   const buttonRef = useRef<HTMLDivElement>(null);
@@ -36,6 +38,7 @@ export default function LanguageSelector({
       <div
         key={params.locale}
         className="font-medium border-digitalent-white border-b-2 translate-y-[1px] m-4 sm:m-0 cursor-pointer"
+        style={{ borderColor: color }}
         onClick={() => setIsOpen(!isOpen)}
         ref={buttonRef}
       >

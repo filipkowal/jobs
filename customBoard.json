@@ -1,5 +1,5 @@
 {
-  "employerNameFilters": [],
+  "employerNameFilters": [""],
   "hideTitle": false,
   "hideSubtitle": false,
   "hideLogo": false,
@@ -8,6 +8,10 @@
   "colors": {
     "background": "",
     "text": "",
+    "headerBackground": "",
+    "headerText": "",
+    "jobRowBackground": "",
+    "jobRowTitle": "",
     "white": "white",
     "yellow": { "300": "#E7E248" },
     "gray": { "700": "#193B44" },

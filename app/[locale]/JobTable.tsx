@@ -40,11 +40,14 @@ export default async function JobTable({
   }
 
   function filterForEmployerName(jobs?: Job[]) {
-    if (customBoard.employerNameFilters.length > 0) {
+    if (
+      customBoard.employerNameFilters.length > 0 &&
+      customBoard.employerNameFilters[0] !== ""
+    ) {
       return jobs?.filter((job) => {
         return (
           job.employer?.name &&
-          customBoard?.employerNameFilters.includes(job.employer?.name)
+          customBoard?.employerNameFilters.includes(job.employer.name)
         );
       });
     }
