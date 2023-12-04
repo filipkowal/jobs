@@ -4,7 +4,7 @@ import exp from "constants";
 test("Titles, filters, jobs and cookie notice are visible", async ({
   page,
 }) => {
-  await page.goto("http://localhost:3000/en");
+  await page.goto("/");
 
   // Check that the page title is correct
   await expect(
@@ -36,7 +36,7 @@ test("Titles, filters, jobs and cookie notice are visible", async ({
 });
 
 test("Job can be opened", async ({ page }) => {
-  await page.goto("http://localhost:3000/en");
+  await page.goto("/");
 
   const jobs = page.getByTestId("job-row-accordion");
   const job = jobs.first();
@@ -65,7 +65,7 @@ test("Job can be opened", async ({ page }) => {
 });
 
 test("Filters can be applied", async ({ page }) => {
-  await page.goto("http://localhost:3000/en");
+  await page.goto("/");
 
   const regionsButton = page.getByText("Regions");
 
