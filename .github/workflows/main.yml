@@ -8,7 +8,7 @@ jobs:
     name: Test setup
     runs-on: ubuntu-latest
     outputs:
-      preview_url: ${{ steps.waitForVercelPreviewDeployment.outputs.url }}
+      preview_url: https://jobs-git-testing-filipkowal.vercel.app
     steps:
       - name: Wait for Vercel preview deployment to be ready
         uses: patrickedqvist/wait-for-vercel-preview@main
