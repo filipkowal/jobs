@@ -55,6 +55,7 @@ export default function JobRowAccordion({
       key={jobId}
       ref={animationRef}
       data-testid="job-row-accordion"
+      style={{ backgroundColor: customBoard?.colors.jobRowBackground }}
     >
       <div
         onClick={() => {

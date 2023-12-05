@@ -49,7 +49,10 @@ export default async function JobRowHeading({
           ""
         )}
         <div className="flex flex-col w-3/4 md:w-full">
-          <h2 className="md:text-xl break-words font-title font-medium text-digitalent-green">
+          <h2
+            className="md:text-xl break-words font-title font-medium text-digitalent-green"
+            style={{ color: customBoard.colors.jobRowTitle }}
+          >
             {title}{" "}
             {workload && workload[0] === workload[1]
               ? `${workload[0]}%`

@@ -32,17 +32,14 @@ export default function LikeButton({
       {likedJobs.includes(jobId) ? (
         <PinIcon
           filled={true}
-          color={customBoard.colors?.jobRowTitle || "white"}
+          color={customBoard.colors?.jobRowTitle || "#66B573"}
         />
       ) : (
         <span className="group">
-          <PinIcon
-            color={customBoard.colors.jobRowTitle || "white"}
-            className="group-hover:hidden"
-          />
+          <PinIcon color={"white"} className="group-hover:hidden" />
           <PinIcon
             filled
-            color={customBoard.colors.jobRowTitle || "white"}
+            color={"white"}
             className="hidden group-hover:block"
           />
         </span>
