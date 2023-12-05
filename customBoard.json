@@ -7,8 +7,8 @@
   "colors": {
     "background": "",
     "text": "",
-    "headerBackground": "blue",
-    "headerText": "red",
+    "headerBackground": "",
+    "headerText": "",
     "jobRowBackground": "",
     "jobRowTitle": "",
     "white": "white",
