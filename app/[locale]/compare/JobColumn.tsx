@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Job } from "../../../utils";
+import { CustomBoard, Job } from "../../../utils";
 import { Tooltip } from "../../../components";
 import LikeButton from "../_JobRow/JobRowLikeButton";
 import { useEffect, useRef } from "react";
@@ -7,11 +7,13 @@ import { useEffect, useRef } from "react";
 export default function JobColumn({
   job,
   dict,
+  customBoard,
   maxRequirementsHeight,
   setMaxRequirementsHeight,
   longestRequirementsLengths,
 }: {
   job: Job;
+  customBoard: CustomBoard;
   maxRequirementsHeight: number;
   setMaxRequirementsHeight: (height: number) => void;
   longestRequirementsLengths: number;
@@ -50,7 +52,7 @@ export default function JobColumn({
         )}
         {job.id && (
           <Tooltip content={dict["Unpin"]} ariaLabel="dict['Unpin']">
-            <LikeButton jobId={job.id} />
+            <LikeButton jobId={job.id} customBoard={customBoard} />
           </Tooltip>
         )}
       </div>

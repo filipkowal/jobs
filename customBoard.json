@@ -1,5 +1,4 @@
 {
-  "employerNameFilters": [""],
   "hideTitle": false,
   "hideSubtitle": false,
   "hideLogo": false,
@@ -22,6 +21,7 @@
     "digitalent-mine": { "DEFAULT": "#363636" }
   },
   "hideAllFilters": false,
+  "employerNameFilters": [""],
   "hiddenFilters": {
     "careerFields": false,
     "workLanguages": true,

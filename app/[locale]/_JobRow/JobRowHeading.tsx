@@ -120,7 +120,7 @@ export default async function JobRowHeading({
                   content={dict["Like 2 or more jobs to compare"]}
                   ariaLabel="Like"
                 >
-                  <LikeButton jobId={jobId} />
+                  <LikeButton jobId={jobId} customBoard={customBoard} />
                 </Tooltip>
               )}
         </div>

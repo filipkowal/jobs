@@ -1,7 +1,7 @@
 "use client";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import Button from "../../../components/Button";
-import { Job, Locale } from "../../../utils";
+import { type CustomBoard, type Job, type Locale } from "../../../utils";
 import { CompareContext } from "../CompareContextProvider";
 import ApplicationFormModal from "./ApplicationFormModal";
 import JobColumn from "./JobColumn";
@@ -14,10 +14,12 @@ export default function CompareJobTable({
   jobs,
   locale,
   dict,
+  customBoard,
 }: {
   jobs: Job[];
   locale: Locale;
   dict: CompareJobTableDict;
+  customBoard: CustomBoard;
 }) {
   const COLUMN_WIDTH_WITH_MARGIN = 432;
 
@@ -124,6 +126,7 @@ export default function CompareJobTable({
             key={job.id}
             job={job}
             dict={dict}
+            customBoard={customBoard}
             maxRequirementsHeight={maxRequirementsHeight}
             setMaxRequirementsHeight={setMaxRequirementsHeight}
             longestRequirementsLengths={longestRequirementsLengths}

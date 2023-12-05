@@ -1,25 +1,25 @@
 "use client";
 
+import { type CustomBoard } from "../../utils";
+
 import { useContext } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useSearchParams, useSelectedLayoutSegment } from "next/navigation";
 
+import PinIcon from "../../components/icons/PinIcon";
 import { CompareContext } from "./CompareContextProvider";
 import Button from "../../components/Button";
-import pinIcon from "../../public/pinIcon.png";
-import pinIconGreen from "../../public/pinIconGreen.png";
 import { Locale } from "../../i18n-config";
 import CompareButtonHint from "./CompareButtonHint";
 
 export default function CompareButton({
   params,
   dict,
-  color,
+  customBoard,
 }: {
   params: { locale: Locale };
   dict: { "Go back": string; Compare: string; compareButtonHint: string };
-  color?: string;
+  customBoard?: CustomBoard;
 }) {
   const searchParamsString = new URLSearchParams(
     useSearchParams() || undefined
@@ -28,6 +28,10 @@ export default function CompareButton({
 
   const { likedJobs } = useContext(CompareContext);
   const buttonActive = likedJobs && likedJobs.length > 1;
+
+  const headerTextC = customBoard?.colors.headerText;
+  const headerBgC = customBoard?.colors.headerBackground;
+  const isCustomColors = customBoard && headerTextC && headerBgC;
 
   if (selectedLayoutSegment?.includes("compare")) {
     return (
@@ -42,10 +46,16 @@ export default function CompareButton({
       >
         <Button
           name="Go back"
-          className={`!mx-4 sm:!mx-8 !ring-white !border-white !text-white ${
-            color ? "" : "hover:!bg-white hover:!text-digitalent-green"
+          className={`!mx-4 sm:!mx-8  ${
+            isCustomColors
+              ? ""
+              : "!ring-white !border-white !text-white hover:!bg-white hover:!text-digitalent-green"
           }`}
-          style={{ borderColor: color, color: color }}
+          style={{
+            borderColor: headerTextC,
+            color: headerTextC,
+            backgroundColor: headerBgC,
+          }}
         >
           {dict["Go back"]}
         </Button>
@@ -79,31 +89,29 @@ export default function CompareButton({
     return (
       <Button
         className={`group !mx-4 sm:!mx-8 flex gap-2 relative ${
-          buttonActive && !color
+          buttonActive && !isCustomColors
             ? "hover:!text-digitalent-green animate-pulse repeat-[2]"
             : ""
-        } ${color ? "hover:!bg-transparent " : ""}`}
+        }`}
         name="Compare"
         disabled={!buttonActive}
         type="invert"
-        style={{ borderColor: color, color: color }}
+        style={{
+          borderColor: headerTextC,
+          backgroundColor: headerBgC,
+          color: headerTextC,
+        }}
       >
         {dict.Compare}
 
-        <Image
-          src={pinIcon}
-          alt="pin icon"
-          width={24}
-          height={24}
+        <PinIcon
+          color={headerTextC || "white"}
           className={`-translate-y-[1px] ${
             buttonActive && `group-hover:hidden`
           }`}
         />
-        <Image
-          src={pinIconGreen}
-          alt="pin icon"
-          width={24}
-          height={24}
+        <PinIcon
+          color={headerTextC || "#66B573"}
           className={`-translate-y-[1px] hidden ${
             buttonActive && `group-hover:block`
           }`}
@@ -116,7 +124,10 @@ export default function CompareButton({
                 ? "group-hover:text-white group-hover:bg-digitalent-green"
                 : ""
             }`}
-            style={color ? { backgroundColor: color, color: "white" } : {}}
+            style={{
+              backgroundColor: headerTextC,
+              color: headerBgC,
+            }}
           >
             {likedJobs?.length}
           </div>

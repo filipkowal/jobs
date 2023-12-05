@@ -1,14 +1,18 @@
 "use client";
 
 import { useContext } from "react";
-import Image from "next/image";
 
 import { CompareContext } from "../CompareContextProvider";
-import pinIcon from "../../../public/pinIcon.png";
-import pinIconFill from "../../../public/pinIconFill.png";
-import pinIconFillWhite from "../../../public/pinIconFillWhite.png";
+import PinIcon from "../../../components/icons/PinIcon";
+import { CustomBoard } from "../../../utils";
 
-export default function LikeButton({ jobId }: { jobId: string }) {
+export default function LikeButton({
+  jobId,
+  customBoard,
+}: {
+  jobId: string;
+  customBoard: CustomBoard;
+}) {
   const { likedJobs, setLikedJobs } = useContext(CompareContext);
 
   return (
@@ -26,21 +30,19 @@ export default function LikeButton({ jobId }: { jobId: string }) {
       className="min-w-[32px] flex items-center absolute right-6 p-1 ml-4 mt-1 sm:mt-0 sm:static bottom-[1.2rem] cursor-pointer"
     >
       {likedJobs.includes(jobId) ? (
-        <Image src={pinIconFill} alt="pin icon" width={24} height={24} />
+        <PinIcon
+          filled={true}
+          color={customBoard.colors?.jobRowTitle || "white"}
+        />
       ) : (
         <span className="group">
-          <Image
-            src={pinIcon}
-            alt="pin icon"
-            width={24}
-            height={24}
+          <PinIcon
+            color={customBoard.colors.jobRowTitle || "white"}
             className="group-hover:hidden"
           />
-          <Image
-            src={pinIconFillWhite}
-            alt="pin icon"
-            width={24}
-            height={24}
+          <PinIcon
+            filled
+            color={customBoard.colors.jobRowTitle || "white"}
             className="hidden group-hover:block"
           />
         </span>
