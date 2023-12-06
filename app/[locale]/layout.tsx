@@ -74,7 +74,7 @@ export default async function RootLayout({
       className={`${merriweather.variable} ${stolzl.variable}`}
     >
       <head>
-        <title>Digitalent Jobs</title>
+        <title>{customBoard.tabTitle || "Digitalent Jobs"}</title>
         <meta name="description" content="Digitalent jobs" />
         <link rel="icon" href="/thumbnail.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
