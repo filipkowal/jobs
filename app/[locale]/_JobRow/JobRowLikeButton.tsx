@@ -32,7 +32,11 @@ export default function LikeButton({
       {likedJobs.includes(jobId) ? (
         <PinIcon
           filled={true}
-          color={customBoard.colors?.jobRowTitle || "#66B573"}
+          color={
+            customBoard.colors?.jobRowTitle ||
+            customBoard.colors?.digitalentGreen.DEFAULT ||
+            "#66B573"
+          }
         />
       ) : (
         <span className="group">

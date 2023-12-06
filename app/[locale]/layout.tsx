@@ -66,6 +66,7 @@ export default async function RootLayout({
 }) {
   const customBoard = await getCustomBoard();
   const dict = await getDictionary(params.locale);
+  const colors = customBoard.colors;
 
   return (
     <html
@@ -88,21 +89,38 @@ export default async function RootLayout({
           gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
         `}
         </Script>
+        <style>
+          {`
+            :root {
+              --digitalent-white: ${colors["digitalentWhite"] || "white"};
+              --digitalent-green: ${
+                colors.digitalentGreen.DEFAULT || "#66B573"
+              };
+              --digitalent-green-light: ${
+                colors.digitalentGreen.light || "#D7E4DD"
+              };
+              --digitalent-gray-light: ${
+                colors.digitalentGray.light || "#F2F2F2"
+              };
+              --digitalent-gray-dark: ${
+                colors.digitalentGray.dark || "#131313"
+              };
+              --digitalent-yellow: ${
+                colors.digitalentYellow.DEFAULT || "#E7E248"
+              };
+              --digitalent-blue: ${colors.digitalentBlue.DEFAULT || "#193B44"};
+              --digitalent-mine: ${colors.digitalentMine.DEFAULT || "#363636"};
+              --body-bg-color: ${
+                colors.background || colors.digitalentGreen.light || "#D7E4DD"
+              };
+              --body-text-color: ${
+                colors.text || colors["digitalentWhite"] || "white"
+              };
+            }
+          `}
+        </style>
       </head>
-      <body
-        style={{
-          ...((customBoard.colors["background"] ||
-            customBoard.colors["digitalent-green"].light) &&
-          customBoard.colors["background"]
-            ? {
-                background: customBoard.colors["digitalent-green"].light,
-              }
-            : {
-                background: customBoard.colors["background"],
-              }),
-          ...(customBoard.colors.white && { color: customBoard.colors.white }),
-        }}
-      >
+      <body>
         <div className="min-h-screen overflow-y-auto flex flex-col overflow-x-hidden justify-between">
           <ToastProvider />
 
