@@ -59,10 +59,12 @@ export default function JobColumn({
       <h1 className="text-3xl font-title font-medium text-digitalent-green sm:h-[100px]">
         {job.title}
       </h1>
-      <h2 className="text-xl font-light">
-        {job.salary?.amount?.[0]} - {job.salary?.amount?.[1]}{" "}
-        {job.salary?.currency}
-      </h2>
+      {!customBoard.hiddenJobData?.salary && (
+        <h2 className="text-xl font-light">
+          {job.salary?.amount?.[0]} - {job.salary?.amount?.[1]}{" "}
+          {job.salary?.currency}
+        </h2>
+      )}
       <div>
         <h3 className="font-light text-xl mb-2">{dict["Workload"]}</h3>
         <p>

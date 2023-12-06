@@ -70,7 +70,7 @@ export default async function JobRowHeading({
 
       <div className="flex flex-row gap-2 xl:gap-6 align-middle w-auto">
         <div className="flex flex-col pl-[95px] md:pl-0 md:flex-row md:gap-1 xl:gap-4 align-middle w-full justify-start md:justify-end md:w-auto">
-          {salary?.amount && (
+          {salary?.amount && !customBoard?.hiddenJobData?.salary && (
             <span
               className={`flex md:h-10 md:py-2 my-auto whitespace-nowrap items-baseline md:items-start ${
                 customBoard?.cards ? "" : "pr-4 md:pl-4 md:w-40"

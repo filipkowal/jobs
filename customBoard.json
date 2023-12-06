@@ -36,6 +36,7 @@
     "jobLevels": false,
     "regions": false
   },
+  "hiddenJobData": { "salary": false },
   "disableCompareView": false,
   "disableDetailView": false,
   "disableSubscription": true,
