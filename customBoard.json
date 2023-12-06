@@ -23,7 +23,11 @@
     "digitalentMine": { "DEFAULT": "" }
   },
   "hideAllFilters": false,
-  "employerNameFilters": [""],
+  "employerNameFilters": [
+    "Schibli Support AG",
+    "Entec AG",
+    "Kellenberger + Huber AG"
+  ],
   "hiddenFilters": {
     "careerFields": false,
     "workLanguages": true,
@@ -32,7 +36,7 @@
     "companySizes": false,
     "workload": false,
     "homeOffice": false,
-    "salary": false,
+    "salary": true,
     "jobLevels": false,
     "regions": false
   },
