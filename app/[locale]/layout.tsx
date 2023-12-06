@@ -5,7 +5,7 @@ import ToastProvider from "../../components/ToastProvider";
 import Link from "next/link";
 import "../globals.css";
 import localFont from "next/font/local";
-import { Inter, Merriweather } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import type { Metadata } from "next";
 import Script from "next/script";
 import CookiePopup from "../../components/CookiePopup";
@@ -37,7 +37,7 @@ const inter = Inter({
   preload: false,
 });
 
-const merriweather = Merriweather({
+const merriweather = Montserrat({
   variable: "--font-merriweather",
   subsets: ["latin"],
   weight: ["300", "400", "700"],
