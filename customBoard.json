@@ -40,7 +40,7 @@
     "jobLevels": false,
     "regions": false
   },
-  "hiddenJobData": { "salary": false },
+  "hiddenJobData": { "salary": true },
   "disableCompareView": false,
   "disableDetailView": false,
   "disableSubscription": true,
