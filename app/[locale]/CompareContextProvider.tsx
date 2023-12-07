@@ -12,31 +12,23 @@ export const CompareContext = createContext<{
 
 export default function CompareContextProvider({
   children,
-  testLikedJobs,
-  testSetLikedJobs,
 }: {
   children: ReactNode;
-  testLikedJobs?: string[];
-  testSetLikedJobs?: Dispatch<any>;
 }) {
-  const [likedJobs, setLikedJobs] = useState(testLikedJobs || []);
+  const [likedJobs, setLikedJobs] = useState([]);
   const sessionStorageSetLikedJobs = (jobs: string[]) =>
     sessionStorage.setItem("likedJobs", JSON.stringify(jobs));
 
   useEffect(() => {
-    setLikedJobs(
-      testLikedJobs ||
-        JSON.parse(sessionStorage.getItem("likedJobs") || "[]") ||
-        []
-    );
-  }, [testLikedJobs]);
+    setLikedJobs(JSON.parse(sessionStorage.getItem("likedJobs") || "[]") || []);
+  }, []);
 
   return (
     <CompareContext.Provider
       value={{
         likedJobs,
         setLikedJobs: (jobs) => {
-          testSetLikedJobs ? testSetLikedJobs(jobs) : setLikedJobs(jobs);
+          setLikedJobs(jobs);
           sessionStorageSetLikedJobs(jobs);
         },
       }}
