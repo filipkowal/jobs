@@ -12,16 +12,16 @@ export default function ApplicationFormModal({
   isOpen,
   setIsOpen,
   locale,
-  likedJobs,
-  removeLikedJob,
+  pinnedJobs,
+  removePinnedJob,
   testStepNumber,
   dict,
 }: {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
   locale: Locale;
-  removeLikedJob: (jobId: string) => void;
-  likedJobs: Job[];
+  removePinnedJob: (jobId: string) => void;
+  pinnedJobs: Job[];
   testStepNumber?: number;
   dict: ApplicationDict;
 }) {
@@ -33,15 +33,15 @@ export default function ApplicationFormModal({
       key="applicationFormBasket"
       setStepNumber={setStepNumber}
       stepNumber={stepNumber}
-      likedJobs={likedJobs}
-      removeLikedJob={removeLikedJob}
+      pinnedJobs={pinnedJobs}
+      removePinnedJob={removePinnedJob}
       dict={dict}
     />,
     <ApplicationFormAboutYou
       key="applicationFormAboutYou"
       setStepNumber={setStepNumber}
       stepNumber={stepNumber}
-      jobIds={likedJobs.map((job) => job.id as string)}
+      jobIds={pinnedJobs.map((job) => job.id as string)}
       dict={dict}
       locale={locale}
     />,

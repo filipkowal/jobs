@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useSearchParams, useSelectedLayoutSegment } from "next/navigation";
 
 import PinIcon from "../../components/icons/PinIcon";
-import { CompareContext } from "./CompareContextProvider";
+import { PinnedJobsContext } from "./PinnedJobsContextProvider";
 import Button from "../../components/Button";
 import { Locale } from "../../i18n-config";
 import CompareButtonHint from "./CompareButtonHint";
@@ -26,8 +26,8 @@ export default function CompareButton({
   ).toString();
   const selectedLayoutSegment = useSelectedLayoutSegment();
 
-  const { likedJobs } = useContext(CompareContext);
-  const buttonActive = likedJobs && likedJobs.length > 1;
+  const { pinnedJobs } = useContext(PinnedJobsContext);
+  const buttonActive = pinnedJobs && pinnedJobs.length > 1;
 
   const headerTextC = customBoard?.colors.headerText;
   const headerBgC = customBoard?.colors.headerBackground;
@@ -79,7 +79,7 @@ export default function CompareButton({
       )}
 
       <CompareButtonHint
-        likedJobs={likedJobs}
+        pinnedJobs={pinnedJobs}
         dict={{ compareButtonHint: dict.compareButtonHint }}
       />
     </div>
@@ -117,7 +117,7 @@ export default function CompareButton({
           }`}
         />
 
-        {likedJobs?.length > 0 && (
+        {pinnedJobs?.length > 0 && (
           <div
             className={`text-digitalent-green bg-white rounded-full w-6 h-6 absolute -bottom-[5px] -right-[5px] ${
               buttonActive
@@ -129,7 +129,7 @@ export default function CompareButton({
               color: headerBgC,
             }}
           >
-            {likedJobs?.length}
+            {pinnedJobs?.length}
           </div>
         )}
       </Button>
