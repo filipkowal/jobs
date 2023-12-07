@@ -10,7 +10,7 @@ export default async function ComparePage({
 }) {
   const { jobs } = await getJobs({
     locale: params.locale as Locale,
-    init: { next: { revalidate: JOBS_REVALIDATE_TIME } },
+    init: { next: { revalidate: 0 } },
   });
 
   const dict = await getDictionary(params.locale as Locale);
