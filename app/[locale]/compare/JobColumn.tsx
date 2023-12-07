@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Job } from "../../../utils";
+import { CustomBoard, Job } from "../../../utils";
 import { Tooltip } from "../../../components";
 import LikeButton from "../_JobRow/JobRowLikeButton";
 import { useEffect, useRef } from "react";
@@ -7,11 +7,13 @@ import { useEffect, useRef } from "react";
 export default function JobColumn({
   job,
   dict,
+  customBoard,
   maxRequirementsHeight,
   setMaxRequirementsHeight,
   longestRequirementsLengths,
 }: {
   job: Job;
+  customBoard: CustomBoard;
   maxRequirementsHeight: number;
   setMaxRequirementsHeight: (height: number) => void;
   longestRequirementsLengths: number;
@@ -50,17 +52,19 @@ export default function JobColumn({
         )}
         {job.id && (
           <Tooltip content={dict["Unpin"]} ariaLabel="dict['Unpin']">
-            <LikeButton jobId={job.id} />
+            <LikeButton jobId={job.id} customBoard={customBoard} />
           </Tooltip>
         )}
       </div>
       <h1 className="text-3xl font-title font-medium text-digitalent-green sm:h-[100px]">
         {job.title}
       </h1>
-      <h2 className="text-xl font-light">
-        {job.salary?.amount?.[0]} - {job.salary?.amount?.[1]}{" "}
-        {job.salary?.currency}
-      </h2>
+      {!customBoard.hiddenJobData?.salary && (
+        <h2 className="text-xl font-light">
+          {job.salary?.amount?.[0]} - {job.salary?.amount?.[1]}{" "}
+          {job.salary?.currency}
+        </h2>
+      )}
       <div>
         <h3 className="font-light text-xl mb-2">{dict["Workload"]}</h3>
         <p>

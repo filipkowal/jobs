@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from "next";
 import { getJobs, JOBS_REVALIDATE_TIME, Locale } from "../../../utils";
 import CompareJobTable from "./CompareJobTable";
-import { getDictionary } from "../../../utils/server";
+import { getCustomBoard, getDictionary } from "../../../utils/server";
 
 export default async function ComparePage({
   params,
@@ -10,10 +10,11 @@ export default async function ComparePage({
 }) {
   const { jobs } = await getJobs({
     locale: params.locale as Locale,
-    init: { next: { revalidate: JOBS_REVALIDATE_TIME } },
+    init: { next: { revalidate: 0 } },
   });
 
   const dict = await getDictionary(params.locale as Locale);
+  const customBoard = await getCustomBoard();
 
   if (!jobs) return null;
 
@@ -22,6 +23,7 @@ export default async function ComparePage({
       jobs={jobs}
       locale={(params.locale as Locale) || "en"}
       dict={dict.compareJobTable}
+      customBoard={customBoard}
     />
   );
 }

@@ -11,16 +11,6 @@
   }
 }
 
-:root {
-  --digitalent-white: #ffffff;
-  --digitalent-gray-light: #f2f2f2;
-  --digitalent-green: #66b573;
-  --digitalent-green-light: #d7e4dd;
-  --digitalent-blue: #193b44;
-  --digitalent-mine: #363636;
-  --digitalent-yellow: #e7e248;
-}
-
 html,
 body {
   padding: 0;
@@ -30,8 +20,8 @@ body {
 }
 
 body {
-  color: white;
-  background: var(--digitalent-green-light);
+  color: var(--body-text-color);
+  background-color: var(--body-bg-color);
 }
 
 a {
