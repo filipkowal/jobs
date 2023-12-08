@@ -63,7 +63,7 @@ test("Job can be opened", async ({ page }) => {
   ).toBeVisible();
 });
 
-test("Filters can be applied", async ({ page }) => {
+test("Region filter can be applied", async ({ page }) => {
   await page.goto("/");
 
   const regionsButton = page.getByText("Regions");
@@ -95,4 +95,8 @@ test("Filters can be applied", async ({ page }) => {
   const job = jobs.first();
 
   await expect(job.getByText("Zürich")).toBeVisible();
+});
+
+test("Pinned jobs appear on the Compare Page", async ({ page }) => {
+  await page.goto("/");
 });
