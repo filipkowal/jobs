@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
 export default function CompareButtonHint({
-  likedJobs,
+  pinnedJobs,
   dict,
 }: {
-  likedJobs: string[];
+  pinnedJobs: string[];
   dict: { compareButtonHint: string };
 }) {
   const [hintHidden, setHintHidden] = useState(false);
@@ -17,7 +17,7 @@ export default function CompareButtonHint({
   return (
     <div
       className={`absolute z-[-1] bottom-16 right-0 bg-white text-digitalent-blue p-4 opacity-0 transition-all duration-300 ${
-        likedJobs?.length === 1 && !hintHidden
+        pinnedJobs?.length === 1 && !hintHidden
           ? "opacity-100 !bottom-[-7rem]"
           : ""
       }`}

@@ -1,6 +1,6 @@
 import { type Locale } from "../../i18n-config";
 import Header from "./Header";
-import CompareContextProvider from "./CompareContextProvider";
+import PinnedJobsContextProvider from "./PinnedJobsContextProvider";
 import ToastProvider from "../../components/ToastProvider";
 import Link from "next/link";
 import "../globals.css";
@@ -124,13 +124,13 @@ export default async function RootLayout({
         <div className="min-h-screen overflow-y-auto flex flex-col overflow-x-hidden justify-between">
           <ToastProvider />
 
-          <CompareContextProvider>
+          <PinnedJobsContextProvider>
             <div>
               <Header params={params} />
 
               {children}
             </div>
-          </CompareContextProvider>
+          </PinnedJobsContextProvider>
 
           {customBoard.hideFooter ? (
             ""
