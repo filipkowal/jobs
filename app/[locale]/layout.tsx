@@ -6,30 +6,36 @@ import Link from "next/link";
 import "../globals.css";
 import localFont from "next/font/local";
 import { Inter, Merriweather } from "next/font/google";
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Script from "next/script";
 import CookiePopup from "../../components/CookiePopup";
 import { getCustomBoard, getDictionary } from "../../utils/server/helpers";
 
-export const metadata: Metadata = {
-  title: "Digitalent Jobs",
-  description: "Finest jobs selection by digitalent.ch",
-  icons: "/thumbnail.png",
-  viewport: "width=device-width, initial-scale=1",
-  robots: {
-    index: true, // Allow search engines to index the page
-    follow: true, // Allow search engines to follow links on the page
-    nocache: false, // Allow search engines to cache the page
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false, // Allow Google to index images on the page
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const dict = await getDictionary(params.locale);
+
+  return {
+    ...dict.meta,
+    icons: "/thumbnail.png",
+    robots: {
+      index: true, // Allow search engines to index the page
+      follow: true, // Allow search engines to follow links on the page
+      nocache: false, // Allow search engines to cache the page
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false, // Allow Google to index images on the page
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-};
+  };
+}
 
 const inter = Inter({
   variable: "--font-inter",
