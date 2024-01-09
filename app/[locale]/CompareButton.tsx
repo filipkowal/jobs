@@ -2,7 +2,7 @@
 
 import { type CustomBoard } from "../../utils";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams, useSelectedLayoutSegment } from "next/navigation";
 
@@ -28,6 +28,10 @@ export default function CompareButton({
 
   const { likedJobs } = useContext(CompareContext);
   const buttonActive = likedJobs && likedJobs.length > 1;
+
+  useEffect(() => {
+    console.log("buttonActive: ", buttonActive);
+  }, [buttonActive]);
 
   const headerTextC = customBoard?.colors.headerText;
   const headerBgC = customBoard?.colors.headerBackground;
