@@ -80,10 +80,7 @@ export default async function RootLayout({
       className={`${merriweather.variable} ${stolzl.variable}`}
     >
       <head>
-        <title>{customBoard.tabTitle || "Digitalent Jobs"}</title>
-        <meta name="description" content="Digitalent jobs" />
         <link rel="icon" href="/thumbnail.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
         />
