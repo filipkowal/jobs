@@ -14,9 +14,10 @@ export default function TextInput({
   pattern,
   rows,
   onChange,
+  autofocus,
 }: {
   name: string;
-  dict: { invalidEmail: string };
+  dict?: { invalidEmail: string };
   type?: string;
   className?: string;
   label?: string;
@@ -28,6 +29,7 @@ export default function TextInput({
   onChange?: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
+  autofocus?: boolean;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -37,7 +39,7 @@ export default function TextInput({
     if (!inputElement || type !== "email") return;
 
     if (inputElement.validity.typeMismatch) {
-      inputElement.setCustomValidity(dict.invalidEmail);
+      inputElement.setCustomValidity(dict?.invalidEmail || "Invalid email");
     } else {
       inputElement.setCustomValidity("");
     }
@@ -59,6 +61,7 @@ export default function TextInput({
           onChange={onChange}
           id={name}
           placeholder=" "
+          autoFocus={autofocus}
         />
       ) : (
         <input
@@ -81,6 +84,7 @@ export default function TextInput({
           ref={inputRef}
           id={name}
           placeholder=" "
+          autoFocus={autofocus}
         />
       )}
       {typeof label !== "undefined" ? (

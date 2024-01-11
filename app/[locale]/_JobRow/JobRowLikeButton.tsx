@@ -2,7 +2,7 @@
 
 import { useContext } from "react";
 
-import { CompareContext } from "../CompareContextProvider";
+import { PinnedJobsContext } from "../PinnedJobsContextProvider";
 import PinIcon from "../../../components/icons/PinIcon";
 import { CustomBoard } from "../../../utils";
 
@@ -13,7 +13,7 @@ export default function LikeButton({
   jobId: string;
   customBoard: CustomBoard;
 }) {
-  const { likedJobs, setLikedJobs } = useContext(CompareContext);
+  const { pinnedJobs, setPinnedJobs } = useContext(PinnedJobsContext);
 
   return (
     <div
@@ -21,16 +21,16 @@ export default function LikeButton({
         e.preventDefault();
         e.stopPropagation();
 
-        if (likedJobs.includes(jobId)) {
-          setLikedJobs(likedJobs.filter((id: string) => id !== jobId));
+        if (pinnedJobs.includes(jobId)) {
+          setPinnedJobs(pinnedJobs.filter((id: string) => id !== jobId));
         } else {
-          setLikedJobs([...likedJobs, jobId]);
+          setPinnedJobs([...pinnedJobs, jobId]);
         }
       }}
       className="min-w-[32px] flex items-center absolute right-6 p-1 ml-4 mt-1 sm:mt-0 sm:static bottom-[1.2rem] cursor-pointer"
       data-testid="pinButton"
     >
-      {likedJobs.includes(jobId) ? (
+      {pinnedJobs.includes(jobId) ? (
         <PinIcon
           filled={true}
           color={

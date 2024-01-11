@@ -63,7 +63,7 @@ test("Job can be opened", async ({ page }) => {
   ).toBeVisible();
 });
 
-test("Filters can be applied", async ({ page }) => {
+test("Region filter can be applied", async ({ page }) => {
   await page.goto("/");
 
   const regionsButton = page.getByText("Regions");

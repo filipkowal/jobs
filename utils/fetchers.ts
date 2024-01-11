@@ -62,8 +62,6 @@ async function getData({
       // throw only on server-side on production to prevent creating a new build and keep the old one
       throw Error("Failed fetching " + endpoint + ": " + e.message);
     }
-
-    console.error(message);
   }
 }
 

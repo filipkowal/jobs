@@ -5,14 +5,14 @@ import { Button, Tooltip } from "../../../components";
 export default function ApplicationFormBasket({
   setStepNumber,
   stepNumber,
-  likedJobs,
-  removeLikedJob,
+  pinnedJobs,
+  removePinnedJob,
   dict,
 }: {
   setStepNumber: Dispatch<SetStateAction<number>>;
   stepNumber: number;
-  likedJobs: Job[];
-  removeLikedJob: (jobId: string) => void;
+  pinnedJobs: Job[];
+  removePinnedJob: (jobId: string) => void;
   dict: {
     "You are applying for": string;
     "Apply for": string;
@@ -31,7 +31,7 @@ export default function ApplicationFormBasket({
     >
       <h3>{dict["You are applying for"]}:</h3>
       <ul>
-        {likedJobs.map((job) => {
+        {pinnedJobs.map((job) => {
           if (!job?.id) return null;
 
           return (
@@ -45,7 +45,7 @@ export default function ApplicationFormBasket({
                     className="w-6 h-6 cursor-pointer fill-digitalent-green"
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
-                    onClick={() => removeLikedJob(job.id as string)}
+                    onClick={() => removePinnedJob(job.id as string)}
                   >
                     <path
                       fillRule="evenodd"
@@ -61,13 +61,13 @@ export default function ApplicationFormBasket({
       </ul>
       <Button
         type="primary"
-        disabled={likedJobs.length === 0}
+        disabled={pinnedJobs.length === 0}
         className="mt-8"
         name="Apply for jobs"
         submitType
       >
-        {dict["Apply for"]} {likedJobs.length}{" "}
-        {likedJobs.length > 1 ? dict["jobs"] : dict["job"]}
+        {dict["Apply for"]} {pinnedJobs.length}{" "}
+        {pinnedJobs.length > 1 ? dict["jobs"] : dict["job"]}
       </Button>
     </form>
   );
