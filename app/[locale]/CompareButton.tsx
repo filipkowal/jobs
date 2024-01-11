@@ -4,7 +4,11 @@ import { type CustomBoard } from "../../utils";
 
 import { useContext, useEffect } from "react";
 import Link from "next/link";
-import { useSearchParams, useSelectedLayoutSegment } from "next/navigation";
+import {
+  useRouter,
+  useSearchParams,
+  useSelectedLayoutSegment,
+} from "next/navigation";
 
 import PinIcon from "../../components/icons/PinIcon";
 import { CompareContext } from "./CompareContextProvider";
@@ -69,18 +73,10 @@ export default function CompareButton({
 
   return (
     <div className="relative hidden sm:block">
-      {!buttonActive ? (
-        <ButtonWithNumberIcon />
-      ) : (
-        <Link
-          href={{
-            pathname: "/" + params.locale + "/compare",
-            search: searchParamsString,
-          }}
-        >
-          <ButtonWithNumberIcon />
-        </Link>
-      )}
+      <ButtonWithNumberIcon
+        buttonActive={buttonActive}
+        searchParamsString={searchParamsString}
+      />
 
       <CompareButtonHint
         likedJobs={likedJobs}
@@ -89,9 +85,30 @@ export default function CompareButton({
     </div>
   );
 
-  function ButtonWithNumberIcon() {
+  function ButtonWithNumberIcon({
+    searchParamsString,
+    buttonActive,
+  }: {
+    searchParamsString?: string;
+    buttonActive: boolean;
+  }) {
+    const router = useRouter();
+
+    function goHome() {
+      console.log("goHome ", buttonActive, " ", searchParamsString);
+
+      if (!buttonActive) return;
+
+      router.push(
+        `/${params.locale}/compare${
+          searchParamsString ? "?" + searchParamsString : ""
+        }`
+      );
+    }
+
     return (
       <Button
+        onClick={goHome}
         className={`group !mx-4 sm:!mx-8 flex gap-2 relative ${
           buttonActive && !isCustomColors
             ? "hover:!text-digitalent-green animate-pulse repeat-[2]"
