@@ -2,7 +2,7 @@
 
 import { type CustomBoard } from "../../utils";
 
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Link from "next/link";
 import {
   useRouter,
@@ -32,10 +32,6 @@ export default function CompareButton({
 
   const { likedJobs } = useContext(CompareContext);
   const buttonActive = likedJobs && likedJobs.length > 1;
-
-  useEffect(() => {
-    console.log("buttonActive: ", buttonActive);
-  }, [buttonActive]);
 
   const headerTextC = customBoard?.colors.headerText;
   const headerBgC = customBoard?.colors.headerBackground;
@@ -95,8 +91,6 @@ export default function CompareButton({
     const router = useRouter();
 
     function goHome() {
-      console.log("goHome ", buttonActive, " ", searchParamsString);
-
       if (!buttonActive) return;
 
       router.push(

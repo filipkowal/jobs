@@ -170,23 +170,36 @@
   "More jobs": "Plus d'emplois",
   "meta": {
     "title": "Digitalent Jobs",
-    "description": "",
-    "keywords": [],
-    "authors": [],
+    "description": "À la recherche d'opportunités de carrière passionnantes ? Vous êtes au bon endroit chez Digitalent Jobs",
+    "keywords": ["Offres d'emploi, Vacances"],
+    "authors": [
+      {
+        "name": "digitalent ag"
+      }
+    ],
     "openGraph": {
-      "title": "",
-      "description": "",
-      "url": "",
-      "images": [],
-      "locale": "",
+      "title": "Digitalent Jobs",
+      "description": "À la recherche d'opportunités de carrière passionnantes ? Vous êtes au bon endroit chez Digitalent Jobs",
+      "url": "https://jobs.digitalent.cloud",
+      "images": [
+        {
+          "url": "https://digitalent.ch/media/1868/share-image.jpg?anchor=center&mode=crop&width=1200&height=630&rnd=132336793270000000",
+          "width": 1200,
+          "height": 630,
+          "alt": "Digitalent Jobs"
+        }
+      ],
+      "locale": "ch_fr",
       "type": "website"
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "",
-      "description": "",
-      "creator": "",
-      "images": []
+      "title": "Digitalent Jobs",
+      "description": "À la recherche d'opportunités de carrière passionnantes ? Vous êtes au bon endroit chez Digitalent Jobs",
+      "creator": "digitalent ag",
+      "images": [
+        "https://digitalent.ch/media/1868/share-image.jpg?anchor=center&mode=crop&width=1200&height=630&rnd=132336793270000000"
+      ]
     }
   }
 }
