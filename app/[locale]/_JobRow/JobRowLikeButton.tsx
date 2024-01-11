@@ -28,6 +28,7 @@ export default function LikeButton({
         }
       }}
       className="min-w-[32px] flex items-center absolute right-6 p-1 ml-4 mt-1 sm:mt-0 sm:static bottom-[1.2rem] cursor-pointer"
+      data-testid="pinButton"
     >
       {pinnedJobs.includes(jobId) ? (
         <PinIcon

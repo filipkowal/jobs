@@ -165,5 +165,39 @@
   "compareButtonHint": "Pin at least 2 jobs to compare and apply.",
   "invalidEmail": "Invalid email address.",
   "termsAndConditions": "<b>We would like to point out that the companies you are now applying to have outsourced parts of the recruitment process to a specialized service provider (digitalent ag, hereinafter referred to as “service provider”). With your application you acknowledge this and agree to it.</b><br/><p>For the purpose of handling the recruitment process, the service provider (digitalent ag) collects and processes the personal data of interested parties and applicants. The processing can take place electronically. This is particularly the case if an interested party submits relevant application documents electronically, for example by email or via a web form on the website. In the case of an application, the service provider transmits the following data to the company:</p><br/><ul>    <li>Email address</li>    <li>Contact details</li>    <li>First Name, Last Name</li>    <li>possibly CV</li>    <li>possibly testimonials</li>    <li>All of the data you have provided yourself for this purpose, such as the specified qualifications, work experience, preferences, etc.</li></ul><br/><p>    If the company concludes an employment contract with an applicant, the transmitted data will be stored for the purpose of processing the employment relationship in compliance with the statutory provisions. If no employment contract is concluded between the company and the applicant, the application documents will be deleted six months after notification of the rejection decision, provided that deletion does not conflict with any other legitimate interests or contractual obligations. In addition, the    <a href=\"https://digitalent.cloud/legal-en/datenschutz-rekrutierungsprozess\">data protection provisions</a>    of the service provider apply. </p>",
-  "More jobs": "More jobs"
+  "More jobs": "More jobs",
+  "meta": {
+    "title": "Digitalent Jobs",
+    "description": "Looking for exciting career opportunities? You're in the right place at Digitalent Jobs!",
+    "keywords": ["Open Positions, Vacancies"],
+    "authors": [
+      {
+        "name": "digitalent ag"
+      }
+    ],
+    "openGraph": {
+      "title": "Digitalent Jobs",
+      "description": "Looking for exciting career opportunities? You're in the right place at Digitalent Jobs!",
+      "url": "https://jobs.digitalent.cloud",
+      "images": [
+        {
+          "url": "https://digitalent.ch/media/1868/share-image.jpg?anchor=center&mode=crop&width=1200&height=630&rnd=132336793270000000",
+          "width": 1200,
+          "height": 630,
+          "alt": "Digitalent Jobs"
+        }
+      ],
+      "locale": "ch_en",
+      "type": "website"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Digitalent Jobs",
+      "description": "Looking for exciting career opportunities? You're in the right place at Digitalent Jobs!",
+      "creator": "digitalent ag",
+      "images": [
+        "https://digitalent.ch/media/1868/share-image.jpg?anchor=center&mode=crop&width=1200&height=630&rnd=132336793270000000"
+      ]
+    }
+  }
 }
