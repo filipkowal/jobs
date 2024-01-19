@@ -51,9 +51,11 @@ export default async function JobRowHeading({
         <div className="flex flex-col w-3/4 md:w-full">
           <h2 className="md:text-xl break-words font-title font-medium text-digitalent-green">
             {title}{" "}
-            {workload && workload[0] === workload[1]
-              ? `${workload[0]}%`
-              : `${workload?.[0]} - ${workload?.[1]}%`}
+            <span className="hidden sm:inline-block">
+              {workload && workload[0] === workload[1]
+                ? `${workload[0]}%`
+                : `${workload?.[0]} - ${workload?.[1]}%`}
+            </span>
           </h2>
           <span className="font-light text-sm hidden md:block">
             {employer?.name}
@@ -73,18 +75,13 @@ export default async function JobRowHeading({
                 customBoard?.cards ? "" : "pr-4 md:pl-4 md:w-40"
               }`}
             >
-              <Tooltip
-                content={dict["Yearly salary in thousands"]}
-                ariaLabel="Salary"
-              >
-                <span className="font-title font-light text-sm md:text-base md:font-medium">
-                  {salary.amount?.[0] === salary?.amount?.[1]
-                    ? k(salary.amount?.[0])
-                    : k(salary.amount?.[0])}
-                  {" -"} {k(salary.amount?.[1])}
-                  {"k " + salary?.currency}
-                </span>
-              </Tooltip>
+              <span className="font-title font-light text-sm md:text-base md:font-medium">
+                {salary.amount?.[0] === salary?.amount?.[1]
+                  ? k(salary.amount?.[0])
+                  : k(salary.amount?.[0])}
+                {" -"} {k(salary.amount?.[1])}
+                {"k " + salary?.currency}
+              </span>
               <span className="md:hidden font-title !font-lighter text-xs pl-3">
                 {workload?.[1] ? ` ${workload[0]}% - ${workload[1]}%` : ""}
               </span>
@@ -104,11 +101,9 @@ export default async function JobRowHeading({
           )}
           {address && (
             <span className="md:px-4 md:pt-2 md:pb-1 md:w-28 md:text-right translate-y-[2px] z-10">
-              <Tooltip content={dict["Location"]} ariaLabel="Location">
-                <span className="font-title text-xs md:text-base md:font-medium inline-block w-[100px] whitespace-nowrap text-ellipsis overflow-hidden">
-                  {`${address?.city || address?.country}`}
-                </span>
-              </Tooltip>
+              <span className="font-title text-xs md:text-base md:font-medium inline-block w-[100px] whitespace-nowrap text-ellipsis overflow-hidden">
+                {`${address?.city || address?.country}`}
+              </span>
             </span>
           )}
         </div>
