@@ -82,16 +82,8 @@ export default async function RootLayout({
       <head>
         <link rel="icon" href="/thumbnail.png" />
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=GTM-PZR49N2Q`}
         />
-        <Script id="googleAnalytics">
-          {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
-        `}
-        </Script>
         <style>
           {`
             :root {
