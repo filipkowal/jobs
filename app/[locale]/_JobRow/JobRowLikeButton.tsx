@@ -1,15 +1,19 @@
 "use client";
 
 import { useContext } from "react";
-import Image from "next/image";
 
-import { CompareContext } from "../CompareContextProvider";
-import pinIcon from "../../../public/pinIcon.png";
-import pinIconFill from "../../../public/pinIconFill.png";
-import pinIconFillWhite from "../../../public/pinIconFillWhite.png";
+import { PinnedJobsContext } from "../PinnedJobsContextProvider";
+import PinIcon from "../../../components/icons/PinIcon";
+import { CustomBoard } from "../../../utils";
 
-export default function LikeButton({ jobId }: { jobId: string }) {
-  const { likedJobs, setLikedJobs } = useContext(CompareContext);
+export default function LikeButton({
+  jobId,
+  customBoard,
+}: {
+  jobId: string;
+  customBoard: CustomBoard;
+}) {
+  const { pinnedJobs, setPinnedJobs } = useContext(PinnedJobsContext);
 
   return (
     <div
@@ -17,30 +21,30 @@ export default function LikeButton({ jobId }: { jobId: string }) {
         e.preventDefault();
         e.stopPropagation();
 
-        if (likedJobs.includes(jobId)) {
-          setLikedJobs(likedJobs.filter((id: string) => id !== jobId));
+        if (pinnedJobs.includes(jobId)) {
+          setPinnedJobs(pinnedJobs.filter((id: string) => id !== jobId));
         } else {
-          setLikedJobs([...likedJobs, jobId]);
+          setPinnedJobs([...pinnedJobs, jobId]);
         }
       }}
       className="min-w-[32px] flex items-center absolute right-6 p-1 ml-4 mt-1 sm:mt-0 sm:static bottom-[1.2rem] cursor-pointer"
+      data-testid="pinButton"
     >
-      {likedJobs.includes(jobId) ? (
-        <Image src={pinIconFill} alt="pin icon" width={24} height={24} />
+      {pinnedJobs.includes(jobId) ? (
+        <PinIcon
+          filled={true}
+          color={
+            customBoard.colors?.jobRowTitle ||
+            customBoard.colors?.digitalentGreen.DEFAULT ||
+            "#66B573"
+          }
+        />
       ) : (
         <span className="group">
-          <Image
-            src={pinIcon}
-            alt="pin icon"
-            width={24}
-            height={24}
-            className="group-hover:hidden"
-          />
-          <Image
-            src={pinIconFillWhite}
-            alt="pin icon"
-            width={24}
-            height={24}
+          <PinIcon color={"white"} className="group-hover:hidden" />
+          <PinIcon
+            filled
+            color={"white"}
             className="hidden group-hover:block"
           />
         </span>

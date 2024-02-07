@@ -69,7 +69,7 @@ export default async function Header({
                 "Go back": dict["Go back"],
                 compareButtonHint: dict.compareButtonHint,
               }}
-              color={textColor}
+              customBoard={customBoard}
             />
           </Suspense>
         )}

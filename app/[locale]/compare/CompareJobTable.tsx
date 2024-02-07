@@ -1,8 +1,8 @@
 "use client";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import Button from "../../../components/Button";
-import { Job, Locale } from "../../../utils";
-import { CompareContext } from "../CompareContextProvider";
+import { type CustomBoard, type Job, type Locale } from "../../../utils";
+import { PinnedJobsContext } from "../PinnedJobsContextProvider";
 import ApplicationFormModal from "./ApplicationFormModal";
 import JobColumn from "./JobColumn";
 import {
@@ -14,41 +14,44 @@ export default function CompareJobTable({
   jobs,
   locale,
   dict,
+  customBoard,
 }: {
   jobs: Job[];
   locale: Locale;
   dict: CompareJobTableDict;
+  customBoard: CustomBoard;
 }) {
   const COLUMN_WIDTH_WITH_MARGIN = 432;
 
-  const { likedJobs: likedJobsIds, setLikedJobs } = useContext(CompareContext);
+  const { pinnedJobs: pinnedJobsIds, setPinnedJobs } =
+    useContext(PinnedJobsContext);
 
   const [isApplicationOpen, setIsApplicationOpen] = useState(false);
   const tableRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [showRightArrowButton, setShowRightArrowButton] = useState(false);
 
-  const likedJobs = useMemo(() => {
-    return jobs.filter((job) => likedJobsIds.includes(job.id as string));
-  }, [jobs, likedJobsIds]);
+  const pinnedJobs = useMemo(() => {
+    return jobs.filter((job) => pinnedJobsIds.includes(job.id as string));
+  }, [jobs, pinnedJobsIds]);
 
-  const removeLikedJob = (id: string) =>
-    setLikedJobs(likedJobsIds.filter((jobId) => jobId !== id));
+  const removePinnedJob = (id: string) =>
+    setPinnedJobs(pinnedJobsIds.filter((jobId) => jobId !== id));
 
   useEffect(() => {
     tableRef.current &&
       setShowRightArrowButton(
         tableRef.current?.scrollWidth > window.innerWidth + scrollPosition
       );
-  }, [likedJobs, scrollPosition]);
+  }, [pinnedJobs, scrollPosition]);
 
   const [maxRequirementsHeight, setMaxRequirementsHeight] = useState(0);
   const longestRequirementsLengths = useMemo(() => {
-    return likedJobs.reduce((acc, job) => {
+    return pinnedJobs.reduce((acc, job) => {
       const requirementsLength = job.requirements?.length || 0;
       return requirementsLength > acc ? requirementsLength : acc;
     }, 0);
-  }, [likedJobs]);
+  }, [pinnedJobs]);
 
   return (
     <>
@@ -56,8 +59,8 @@ export default function CompareJobTable({
         isOpen={isApplicationOpen}
         setIsOpen={setIsApplicationOpen}
         locale={locale}
-        likedJobs={likedJobs}
-        removeLikedJob={removeLikedJob}
+        pinnedJobs={pinnedJobs}
+        removePinnedJob={removePinnedJob}
         dict={dict}
       />
 
@@ -65,12 +68,12 @@ export default function CompareJobTable({
         <Button
           type="primary"
           className="mt-4 w-96 fixed max-sm:bottom-0 sm:top-14 z-10"
-          disabled={likedJobsIds.length === 0}
+          disabled={pinnedJobsIds.length === 0}
           onClick={() => setIsApplicationOpen(true)}
           name="apply for jobs"
         >
-          {dict["Apply for"]} <b>{likedJobsIds.length}</b>{" "}
-          {likedJobs.length > 1 ? dict["jobs"] : dict["job"]}
+          {dict["Apply for"]} <b>{pinnedJobsIds.length}</b>{" "}
+          {pinnedJobs.length > 1 ? dict["jobs"] : dict["job"]}
         </Button>
       </div>
 
@@ -119,11 +122,12 @@ export default function CompareJobTable({
             </div>
           </button>
         )}
-        {likedJobs?.map((job) => (
+        {pinnedJobs?.map((job) => (
           <JobColumn
             key={job.id}
             job={job}
             dict={dict}
+            customBoard={customBoard}
             maxRequirementsHeight={maxRequirementsHeight}
             setMaxRequirementsHeight={setMaxRequirementsHeight}
             longestRequirementsLengths={longestRequirementsLengths}

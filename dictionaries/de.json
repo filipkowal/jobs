@@ -133,7 +133,7 @@
     "intro.bullet2": "Schick den Link Deinen Bekannten oder teile ihn in Deinen Netzwerken",
     "intro.bullet3": "Wird die Stelle aufgrund Deiner Empfehlung erfolgreich besetzt, erhältst Du eine Prämie von 500 CHF",
     "email.info": "Wir benötigen Deine Email-Adresse, um Dir den persönlichen Empfehlungslink zu senden und um Dich zu benachrichtigen, wenn Du eine Prämie verdient hast.",
-    "email.accept": "Ich habe die <a target='_blank' href='https://www.digitalent.cloud/de/referral'>Nutzungsbedingungen</a> gelesen und bin damit einverstanden. *",
+    "email.accept": "Ich habe die <a target='_blank' href='https://digitalent.cloud/legal-de/referral'>Nutzungsbedingungen</a> gelesen und bin damit einverstanden. *",
     "Create a link": "Link erstellen",
     "Share a job": "Job teilen und 500 CHF verdienen",
     "link.instructions": "Teile nun Deinen Empfehlungslink zu der Stelle mit Deinen Bekannten und in Deinen Netzwerken. Wir drücken Dir die Daumen, dass Deine Empfehlung zu einer erfolgreichen Stellenbesetzung führt und wir Dir Deine Prämie auszahlen können.",
@@ -165,6 +165,40 @@
   },
   "compareButtonHint": "Hefte mindestens 2 Positionen an & vergleiche sie",
   "invalidEmail": "Ungültige E-Mail-Adresse.",
-  "termsAndConditions": "<b>Wir möchten Sie darauf hinweisen, dass die Unternehmen, bei denen Sie sich jetzt bewerben, Teile des Rekrutierungsprozesses an einen spezialisierten Dienstleister (digitalent ag, nachfolgend \"Dienstleister\" genannt) ausgelagert haben. Mit Ihrer Bewerbung nehmen Sie dies zur Kenntnis und erklären sich damit einverstanden.</b><br/><p>Zum Zweck der Abwicklung des Rekrutierungsprozesses erhebt und bearbeitet der Dienstleister (digitalent ag) die Personendaten von Interessenten und Bewerbern. Die Bearbeitung kann auf elektronischem Weg erfolgen. Dies ist insbesondere dann der Fall, wenn ein Interessent relevante Bewerbungsunterlagen elektronisch einreicht, zum Beispiel per E-Mail oder über ein Webformular auf der Website. Im Falle einer Bewerbung übermittelt der Diensteanbieter folgende Daten an das Unternehmen:</p><br/><ul>    <li>E-Mail Adresse</li>    <li>Angaben zur Kontaktperson</li>    <li>Vorname, Nachname</li>    <li>eventuell Lebenslauf</li>    <li>eventuell Zeugnisse</li>    <li>Alle Daten, die Sie selbst zu diesem Zweck angegeben haben, wie z.B. die angegebenen Qualifikationen, Berufserfahrungen, Präferenzen usw.</li></ul><br/><p>    Schliesst ein Unternehmen einen Arbeitsvertrag mit einem Bewerber ab, werden die übermittelten Daten zum Zwecke der Abwicklung des Arbeitsverhältnisses unter Beachtung der gesetzlichen Vorschriften gespeichert. Kommt kein Arbeitsvertrag zwischen dem Unternehmen und dem Bewerber zustande, werden die Bewerbungsunterlagen sechs Monate nach Bekanntgabe der Absageentscheidung gelöscht, sofern der Löschung keine sonstigen berechtigten Interessen oder vertraglichen Verpflichtungen entgegenstehen. Im Übrigen gelten die     <a href=\"https://www.digitalent.ch/datenschutz\">datenschutzrechtlichen Bestimmungen</a>    des Dienstanbieters. </p>",
-  "More jobs": "Mehr Jobs"
+  "termsAndConditions": "<b>Wir möchten Sie darauf hinweisen, dass die Unternehmen, bei denen Sie sich jetzt bewerben, Teile des Rekrutierungsprozesses an einen spezialisierten Dienstleister (digitalent ag, nachfolgend \"Dienstleister\" genannt) ausgelagert haben. Mit Ihrer Bewerbung nehmen Sie dies zur Kenntnis und erklären sich damit einverstanden.</b><br/><p>Zum Zweck der Abwicklung des Rekrutierungsprozesses erhebt und bearbeitet der Dienstleister (digitalent ag) die Personendaten von Interessenten und Bewerbern. Die Bearbeitung kann auf elektronischem Weg erfolgen. Dies ist insbesondere dann der Fall, wenn ein Interessent relevante Bewerbungsunterlagen elektronisch einreicht, zum Beispiel per E-Mail oder über ein Webformular auf der Website. Im Falle einer Bewerbung übermittelt der Diensteanbieter folgende Daten an das Unternehmen:</p><br/><ul>    <li>E-Mail Adresse</li>    <li>Angaben zur Kontaktperson</li>    <li>Vorname, Nachname</li>    <li>eventuell Lebenslauf</li>    <li>eventuell Zeugnisse</li>    <li>Alle Daten, die Sie selbst zu diesem Zweck angegeben haben, wie z.B. die angegebenen Qualifikationen, Berufserfahrungen, Präferenzen usw.</li></ul><br/><p>    Schliesst ein Unternehmen einen Arbeitsvertrag mit einem Bewerber ab, werden die übermittelten Daten zum Zwecke der Abwicklung des Arbeitsverhältnisses unter Beachtung der gesetzlichen Vorschriften gespeichert. Kommt kein Arbeitsvertrag zwischen dem Unternehmen und dem Bewerber zustande, werden die Bewerbungsunterlagen sechs Monate nach Bekanntgabe der Absageentscheidung gelöscht, sofern der Löschung keine sonstigen berechtigten Interessen oder vertraglichen Verpflichtungen entgegenstehen. Im Übrigen gelten die     <a href=\"https://digitalent.cloud/legal-de/datenschutz-rekrutierungsprozess\">datenschutzrechtlichen Bestimmungen</a>    des Dienstanbieters. </p>",
+  "More jobs": "Mehr Jobs",
+  "meta": {
+    "title": "Digitalent Jobs",
+    "description": "Du suchst nach spannenden Karrieremöglichkeiten, dann bist du bei Digitalent Jobs genau richtig!",
+    "keywords": ["jobs, freie stellen, vakenzen"],
+    "authors": [
+      {
+        "name": "digitalent ag"
+      }
+    ],
+    "openGraph": {
+      "title": "Digitalent Jobs",
+      "description": "Du suchst nach spannenden Karrieremöglichkeiten, dann bist du bei Digitalent Jobs genau richtig!",
+      "url": "https://jobs.digitalent.cloud",
+      "images": [
+        {
+          "url": "https://digitalent.ch/media/1868/share-image.jpg?anchor=center&mode=crop&width=1200&height=630&rnd=132336793270000000",
+          "width": 1200,
+          "height": 630,
+          "alt": "Digitalent Jobs"
+        }
+      ],
+      "locale": "ch_de",
+      "type": "website"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Digitalent Jobs",
+      "description": "Du suchst nach spannenden Karrieremöglichkeiten, dann bist du bei Digitalent Jobs genau richtig!",
+      "creator": "igitalent ag",
+      "images": [
+        "https://digitalent.ch/media/1868/share-image.jpg?anchor=center&mode=crop&width=1200&height=630&rnd=132336793270000000"
+      ]
+    }
+  }
 }

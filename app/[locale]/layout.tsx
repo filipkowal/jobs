@@ -1,6 +1,6 @@
 import { type Locale } from "../../i18n-config";
 import Header from "./Header";
-import CompareContextProvider from "./CompareContextProvider";
+import PinnedJobsContextProvider from "./PinnedJobsContextProvider";
 import ToastProvider from "../../components/ToastProvider";
 import Link from "next/link";
 import "../globals.css";
@@ -11,25 +11,31 @@ import Script from "next/script";
 import CookiePopup from "../../components/CookiePopup";
 import { getCustomBoard, getDictionary } from "../../utils/server/helpers";
 
-export const metadata: Metadata = {
-  title: "Digitalent Jobs",
-  description: "Finest jobs selection by digitalent.ch",
-  icons: "/thumbnail.png",
-  viewport: "width=device-width, initial-scale=1",
-  robots: {
-    index: true, // Allow search engines to index the page
-    follow: true, // Allow search engines to follow links on the page
-    nocache: false, // Allow search engines to cache the page
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false, // Allow Google to index images on the page
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const dict = await getDictionary(params.locale);
+
+  return {
+    ...dict.meta,
+    icons: "/thumbnail.png",
+    robots: {
+      index: true, // Allow search engines to index the page
+      follow: true, // Allow search engines to follow links on the page
+      nocache: false, // Allow search engines to cache the page
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false, // Allow Google to index images on the page
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-};
+  };
+}
 
 const inter = Inter({
   variable: "--font-inter",
@@ -66,6 +72,7 @@ export default async function RootLayout({
 }) {
   const customBoard = await getCustomBoard();
   const dict = await getDictionary(params.locale);
+  const colors = customBoard.colors;
 
   return (
     <html
@@ -73,38 +80,52 @@ export default async function RootLayout({
       className={`${merriweather.variable} ${stolzl.variable}`}
     >
       <head>
-        <title>Digitalent Jobs</title>
-        <meta name="description" content="Digitalent jobs" />
         <link rel="icon" href="/thumbnail.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=GTM-PZR49N2Q`}
         />
+        <style>
+          {`
+            :root {
+              --digitalent-white: ${colors["digitalentWhite"] || "white"};
+              --digitalent-green: ${
+                colors.digitalentGreen.DEFAULT || "#66B573"
+              };
+              --digitalent-green-light: ${
+                colors.digitalentGreen.light || "#D7E4DD"
+              };
+              --digitalent-gray-light: ${
+                colors.digitalentGray.light || "#F2F2F2"
+              };
+              --digitalent-gray-dark: ${
+                colors.digitalentGray.dark || "#131313"
+              };
+              --digitalent-yellow: ${
+                colors.digitalentYellow.DEFAULT || "#E7E248"
+              };
+              --digitalent-blue: ${colors.digitalentBlue.DEFAULT || "#193B44"};
+              --digitalent-mine: ${colors.digitalentMine.DEFAULT || "#363636"};
+              --body-bg-color: ${
+                colors.background || colors.digitalentGreen.light || "#D7E4DD"
+              };
+              --body-text-color: ${
+                colors.text || colors["digitalentWhite"] || "white"
+              };
+            }
+          `}
+        </style>
       </head>
-      <body
-        style={{
-          ...((customBoard.colors["background"] ||
-            customBoard.colors["digitalent-green"].light) &&
-          customBoard.colors["background"]
-            ? {
-                background: customBoard.colors["digitalent-green"].light,
-              }
-            : {
-                background: customBoard.colors["background"],
-              }),
-          ...(customBoard.colors.white && { color: customBoard.colors.white }),
-        }}
-      >
+      <body>
         <div className="min-h-screen overflow-y-auto flex flex-col overflow-x-hidden justify-between">
           <ToastProvider />
 
-          <CompareContextProvider>
+          <PinnedJobsContextProvider>
             <div>
               <Header params={params} />
 
               {children}
             </div>
-          </CompareContextProvider>
+          </PinnedJobsContextProvider>
 
           {customBoard.hideFooter ? (
             ""
