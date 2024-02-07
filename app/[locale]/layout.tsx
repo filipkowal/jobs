@@ -78,7 +78,7 @@ export default async function RootLayout({
         <link rel="icon" href="/thumbnail.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=GTM-PZR49N2Q`}
         />
       </head>
       <body
