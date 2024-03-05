@@ -34,8 +34,8 @@ export default function Tooltip({
       </span>
 
       <div
-        className={`absolute -z-10 bg-white text-digitalent-blue p-4 opacity-0 transition-all duration-300 ${
-          isVisible ? "opacity-100 !z-10" : ""
+        className={`hidden sm:inline-block absolute -z-10 bg-white text-digitalent-blue p-4 opacity-0 transition-all duration-300 ${
+          isVisible ? "opacity-100 !z-20" : ""
         }`}
         style={{ right: `${right}px`, top: `calc(100% + 24px)` }}
         aria-label={ariaLabel}

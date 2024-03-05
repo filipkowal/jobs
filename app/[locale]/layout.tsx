@@ -1,6 +1,6 @@
 import { type Locale } from "../../i18n-config";
 import Header from "./Header";
-import CompareContextProvider from "./CompareContextProvider";
+import PinnedJobsContextProvider from "./PinnedJobsContextProvider";
 import ToastProvider from "../../components/ToastProvider";
 import Link from "next/link";
 import "../globals.css";
@@ -11,25 +11,31 @@ import Script from "next/script";
 import CookiePopup from "../../components/CookiePopup";
 import { getCustomBoard, getDictionary } from "../../utils/server/helpers";
 
-export const metadata: Metadata = {
-  title: "Digitalent Jobs",
-  description: "Finest jobs selection by digitalent.ch",
-  icons: "/thumbnail.png",
-  viewport: "width=device-width, initial-scale=1",
-  robots: {
-    index: true, // Allow search engines to index the page
-    follow: true, // Allow search engines to follow links on the page
-    nocache: false, // Allow search engines to cache the page
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: false, // Allow Google to index images on the page
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale };
+}): Promise<Metadata> {
+  const dict = await getDictionary(params.locale);
+
+  return {
+    ...dict.meta,
+    icons: "/thumbnail.png",
+    robots: {
+      index: true, // Allow search engines to index the page
+      follow: true, // Allow search engines to follow links on the page
+      nocache: false, // Allow search engines to cache the page
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false, // Allow Google to index images on the page
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-};
+  };
+}
 
 const inter = Inter({
   variable: "--font-inter",
@@ -74,21 +80,10 @@ export default async function RootLayout({
       className={`${merriweather.variable} ${stolzl.variable}`}
     >
       <head>
-        <title>{customBoard.tabTitle || "Digitalent Jobs"}</title>
-        <meta name="description" content="Digitalent jobs" />
         <link rel="icon" href="/thumbnail.png" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=GTM-PZR49N2Q`}
         />
-        <Script id="googleAnalytics">
-          {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
-        `}
-        </Script>
         <style>
           {`
             :root {
@@ -124,13 +119,13 @@ export default async function RootLayout({
         <div className="min-h-screen overflow-y-auto flex flex-col overflow-x-hidden justify-between">
           <ToastProvider />
 
-          <CompareContextProvider>
+          <PinnedJobsContextProvider>
             <div>
               <Header params={params} />
 
               {children}
             </div>
-          </CompareContextProvider>
+          </PinnedJobsContextProvider>
 
           {customBoard.hideFooter ? (
             ""

@@ -6,6 +6,7 @@ import JobRowDetails from "./_JobRow/JobRowDetails";
 import JobTablePagination from "./_JobRow/JobTablePagination";
 import JobRowHeading from "./_JobRow/JobRowHeading";
 import JobActions from "./_JobRow/JobRowActions";
+import { Fragment } from "react";
 
 export default async function JobTable({
   searchParams,
@@ -74,7 +75,7 @@ export default async function JobTable({
       }`}
     >
       {jobs?.map((job) => (
-        <>
+        <Fragment key={job.id}>
           <JobRowAccordion
             job={job}
             initOpenJobTitleId={params?.jobTitleId}
@@ -107,7 +108,7 @@ export default async function JobTable({
               </div>
             )
           }
-        </>
+        </Fragment>
       ))}
 
       <JobTablePagination

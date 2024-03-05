@@ -124,7 +124,7 @@
   "Subscribe for this search": "S'abonner à cette recherche",
   "Share this job and earn 500 CHF": "Partage ce poste et gagne 500 CHF",
   "Yearly salary in thousands": "Salaire annuel en milliers",
-  "Salary slightly below or above this range is possible, depending on your skills": "Le salaire peut être légèrement inférieur ou supérieur à cette fourchette, en fonction de tes compétences.",
+  "Salary slightly below or above this range is possible, depending on your skills": "Le salaire annuel peut être légèrement inférieur ou supérieur à cette fourchette, en fonction de tes compétences.",
   "Pensum": "Pensée",
   "Previous": "Précédent",
   "Like 2 or more jobs to compare": "Épingler 2 ou plus d'emplois pour les comparer",
@@ -134,7 +134,7 @@
     "intro.bullet2": "Envoie le lien à tes connaissances ou partage-le sur tes réseaux",
     "intro.bullet3": "Si le poste est pourvu avec succès grâce à ta recommandation, tu recevras une prime de 500 CHF",
     "email.info": "Nous avons besoin de ton adresse email pour t'envoyer le lien de recommandation personnelle et pour t'avertir lorsque tu as gagné une prime.",
-    "email.accept": "J'ai lu les <a target='_blank' href='https://www.digitalent.cloud/fr/referral'>conditions d'utilisation</a> et je les accepte. *",
+    "email.accept": "J'ai lu les <a target='_blank' href='https://digitalent.cloud/legal-fr/referral'>conditions d'utilisation</a> et je les accepte. *",
     "Create a link": "Créer un lien",
     "Share a job": "Partager un emploi",
     "link.instructions": "Partage maintenant ton lien de recommandation pour le poste avec tes connaissances et dans tes réseaux. Nous croisons les doigts pour que ta recommandation aboutisse à une embauche réussie et que nous puissions te verser ta prime.",
@@ -166,6 +166,40 @@
   },
   "compareButtonHint": "Épingle au moins 2 emplois pour les comparer et postuler.",
   "invalidEmail": "Adresse email invalide.",
-  "termsAndConditions": "<b>Nous tenons à vous informer que les entreprises pour lesquelles vous postulez actuellement ont externalisé une partie du processus de recrutement à un prestataire spécialisé (digitalent ag, ci-après dénommé \"prestataire\"). En soumettant votre candidature, vous en prenez connaissance et acceptez ces conditions.</b><br/><p>Afin de gérer le processus de recrutement, le prestataire (digitalent ag) collecte et traite les données personnelles des candidats intéressés. Le traitement peut être effectué par voie électronique. Cela est notamment le cas lorsque le candidat soumet les documents de candidature pertinents par voie électronique, par exemple par email ou via un formulaire web sur le site. Lors d'une candidature, le prestataire transmet les données suivantes à l'entreprise :</p><br/><ul>    <li>Adresse email</li>    <li>Informations sur la personne de contact</li>    <li>Prénom, nom</li>    <li>éventuellement un CV</li>    <li>éventuellement des attestations</li>    <li>Toutes les données que vous avez fournies à cet effet, telles que les qualifications, expériences professionnelles, préférences, etc. indiquées.</li></ul><br/><p>    Si une entreprise conclut un contrat de travail avec un candidat, les données transmises sont conservées aux fins de traitement de la relation de travail, conformément aux dispositions légales. Si aucun contrat de travail n'est conclu entre l'entreprise et le candidat, les documents de candidature sont supprimés six mois après la notification de la décision de refus, sauf si des intérêts légitimes ou des obligations contractuelles s'y opposent. Par ailleurs, les    <a href=\"https://www.digitalent.ch/datenschutz\">dispositions relatives à la protection des données</a>    du prestataire s'appliquent.</p>",
-  "More jobs": "Plus d'emplois"
+  "termsAndConditions": "<b>Nous tenons à vous informer que les entreprises pour lesquelles vous postulez actuellement ont externalisé une partie du processus de recrutement à un prestataire spécialisé (digitalent ag, ci-après dénommé \"prestataire\"). En soumettant votre candidature, vous en prenez connaissance et acceptez ces conditions.</b><br/><p>Afin de gérer le processus de recrutement, le prestataire (digitalent ag) collecte et traite les données personnelles des candidats intéressés. Le traitement peut être effectué par voie électronique. Cela est notamment le cas lorsque le candidat soumet les documents de candidature pertinents par voie électronique, par exemple par email ou via un formulaire web sur le site. Lors d'une candidature, le prestataire transmet les données suivantes à l'entreprise :</p><br/><ul>    <li>Adresse email</li>    <li>Informations sur la personne de contact</li>    <li>Prénom, nom</li>    <li>éventuellement un CV</li>    <li>éventuellement des attestations</li>    <li>Toutes les données que vous avez fournies à cet effet, telles que les qualifications, expériences professionnelles, préférences, etc. indiquées.</li></ul><br/><p>    Si une entreprise conclut un contrat de travail avec un candidat, les données transmises sont conservées aux fins de traitement de la relation de travail, conformément aux dispositions légales. Si aucun contrat de travail n'est conclu entre l'entreprise et le candidat, les documents de candidature sont supprimés six mois après la notification de la décision de refus, sauf si des intérêts légitimes ou des obligations contractuelles s'y opposent. Par ailleurs, les    <a href=\"https://digitalent.cloud/legal-fr/datenschutz-rekrutierungsprozess\">dispositions relatives à la protection des données</a>    du prestataire s'appliquent.</p>",
+  "More jobs": "Plus d'emplois",
+  "meta": {
+    "title": "Digitalent Jobs",
+    "description": "À la recherche d'opportunités de carrière passionnantes ? Vous êtes au bon endroit chez Digitalent Jobs",
+    "keywords": ["Offres d'emploi, Vacances"],
+    "authors": [
+      {
+        "name": "digitalent ag"
+      }
+    ],
+    "openGraph": {
+      "title": "Digitalent Jobs",
+      "description": "À la recherche d'opportunités de carrière passionnantes ? Vous êtes au bon endroit chez Digitalent Jobs",
+      "url": "https://jobs.digitalent.cloud",
+      "images": [
+        {
+          "url": "https://digitalent.ch/media/1868/share-image.jpg?anchor=center&mode=crop&width=1200&height=630&rnd=132336793270000000",
+          "width": 1200,
+          "height": 630,
+          "alt": "Digitalent Jobs"
+        }
+      ],
+      "locale": "ch_fr",
+      "type": "website"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "title": "Digitalent Jobs",
+      "description": "À la recherche d'opportunités de carrière passionnantes ? Vous êtes au bon endroit chez Digitalent Jobs",
+      "creator": "digitalent ag",
+      "images": [
+        "https://digitalent.ch/media/1868/share-image.jpg?anchor=center&mode=crop&width=1200&height=630&rnd=132336793270000000"
+      ]
+    }
+  }
 }

@@ -10,6 +10,24 @@ import FiltersSkeleton from "../../_Filters/FiltersSkeleton";
 import { ActiveFilters } from "../../../../utils";
 import JobTableSkeleton from "../../JobTableSkeleton";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: Locale; jobTitleId: string };
+}): Promise<Metadata> {
+  const jobsResponse = await getJobs({
+    locale: params.locale,
+    init: { next: { revalidate: 0 } },
+  });
+
+  const job = jobsResponse?.jobs?.find((job) =>
+    job?.id?.includes(getShortId(params.jobTitleId))
+  );
+
+  return job?.metainfo || {};
+}
 
 export default async function Home({
   params,

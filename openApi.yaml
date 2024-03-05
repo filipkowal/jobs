@@ -3,12 +3,16 @@ info:
   title: Jobs
   version: "1.0"
 servers:
-  - url: https://merge.digitalent.cloud/api/vertical/
+  - url: https://jobs.digitalent.cloud/api/vertical
+  - url: https://merge.digitalent.cloud/api/vertical
   - url: https://virtserver.swaggerhub.com/filipkowal/jobs/1.0
     description: SwaggerHub API Auto Mocking
+security: []
 paths:
   /{language}/jobs:
     get:
+      operationId: getJobs
+      summary: Get all or filtered and paginated jobs and active filters
       tags:
         - job
       parameters:
@@ -162,6 +166,8 @@ paths:
           description: Language not found
   /{language}/jobs/{id}:
     get:
+      operationId: getJob
+      summary: Get individual Job data
       tags:
         - job
       parameters:
@@ -191,6 +197,8 @@ paths:
           description: Language or jobId not found
   /{language}/filters:
     get:
+      operationId: getFilters
+      summary: Get all filters' possible values
       tags:
         - filter
       parameters:
@@ -226,6 +234,8 @@ paths:
           description: Language not found
   /{language}/subscribe:
     post:
+      operationId: subscribe
+      summary: Subscribe to job alerts
       tags:
         - filter
       parameters:
@@ -252,6 +262,8 @@ paths:
           description: Invalid request body supplied
   /{language}/save:
     post:
+      operationId: save
+      summary: Save a job
       tags:
         - job
       parameters:
@@ -278,6 +290,8 @@ paths:
           description: Invalid request body supplied
   /{language}/apply:
     post:
+      operationId: apply
+      summary: Apply for a job
       tags:
         - job
       parameters:
@@ -307,6 +321,8 @@ paths:
           description: Invalid request body supplied
   /{language}/refer:
     post:
+      operationId: refer
+      summary: Refer a job to a friend
       tags:
         - job
       parameters:
@@ -371,6 +387,109 @@ components:
     DateTime:
       type: string
       format: date-time
+    Metainfo:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "EN: Linux Systems Engineer"
+        description:
+          type: string
+          example: "EN: Du möchtest Dein Knowhow bei einem führenden IaaS/PaaS-Dienstleister einbringen und vertiefen? Dann sollten wir uns kennenlernen."
+        keywords:
+          type: array
+          items:
+            type: string
+          example:
+            - "Excel"
+            - "Virtualisation"
+            - "VMware EN"
+        authors:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: "Vlada Berozkina | digitalent ag"
+        openGraph:
+          type: object
+          properties:
+            title:
+              type: string
+              example: "EN: Linux Systems Engineer"
+            description:
+              type: string
+              example: "EN: Du möchtest Dein Knowhow bei einem führenden IaaS/PaaS-Dienstleister einbringen und vertiefen? Dann sollten wir uns kennenlernen."
+            url:
+              type: string
+              format: url
+              example: "https://karriere.aspectra.ch/en/linux-systems-engineer"
+            images:
+              type: array
+              items:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    format: url
+                    example: "https://karriere.aspectra.ch/media/3613/aspectra-linux-systems-engineer.jpg"
+                  width:
+                    type: number
+                    example: 1200
+                  height:
+                    type: number
+                    example: 630
+                  alt:
+                    type: string
+                    example: "EN: Linux Systems Engineer"
+                required:
+                  - url
+            locale:
+              type: string
+              example: "ch_en"
+            type:
+              type: string
+              enum:
+                - website
+                - article
+                - book
+                - profile
+                - music.song
+                - music.album
+                - music.playlist
+                - music.radio_station
+                - video.movie
+                - video.episode
+                - video.tv_show
+                - video.other
+              example: "website"
+        twitter:
+          type: object
+          properties:
+            card:
+              type: string
+              enum:
+                - summary
+                - summary_large_image
+                - player
+                - app
+              example: "summary_large_image"
+            title:
+              type: string
+              example: "EN: Linux Systems Engineer"
+            description:
+              type: string
+              example: "EN: Du möchtest Dein Knowhow bei einem führenden IaaS/PaaS-Dienstleister einbringen und vertiefen? Dann sollten wir uns kennenlernen."
+            creator:
+              type: string
+              example: "Vlada Berozkina | digitalent ag"
+            images:
+              type: array
+              items:
+                type: string
+                format: url
+                example: "https://karriere.aspectra.ch/media/3613/aspectra-linux-systems-engineer.jpg"
     Tags:
       type: array
       example:
@@ -476,6 +595,8 @@ components:
         requirements:
           type: string
           format: markup
+        metainfo:
+          $ref: "#/components/schemas/Metainfo"
     ActiveFilters:
       type: object
       properties:
