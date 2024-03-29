@@ -6,7 +6,6 @@
   "hideTitle": false,
   "hideSubtitle": false,
   "hideLogo": false,
-  "hideBackgroundImage": false,
   "hideFooter": false,
   "colors": {
     "background": "",
@@ -39,7 +38,6 @@
   "hiddenJobData": { "salary": false },
   "disableCompareView": false,
   "disableDetailView": false,
-  "disableSubscription": true,
   "openJLPInSameTab": false,
   "cards": false
 }
