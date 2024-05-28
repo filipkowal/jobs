@@ -21,7 +21,7 @@ export async function generateMetadata({
 
   return {
     ...dict.meta,
-    title: customBoard.tabTitle || dict.meta.title,
+    title: customBoard.documentTitle || dict.meta.title,
     icons: "/thumbnail.png",
     robots: {
       index: true, // Allow search engines to index the page
