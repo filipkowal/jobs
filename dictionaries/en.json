@@ -56,10 +56,10 @@
   "Choose this reward": "Choose this reward",
   "Become a member": "Become a member",
   "Share with a friend": "Share with a friend",
-  "title": {
-    "title": "Ready for a new mission?",
-    "subtitle.1": "Discover selected career opportunities in top Swiss companies!",
-    "subtitle.2": "With guaranteed feedback within 2 working days"
+  "header": {
+    "heading": "Ready for a new mission?",
+    "subheading.1": "Discover selected career opportunities in top Swiss companies!",
+    "subheading.2": "With guaranteed feedback within 2 working days"
   },
   "compareJobTable": {
     "Email": "Email",

@@ -1,10 +1,10 @@
 {
   "tabTitle": "",
-  "title": "",
-  "subtitle1": "",
-  "subtitle2": "",
-  "hideTitle": false,
-  "hideSubtitle": false,
+  "heading": "",
+  "subheading1": "",
+  "subheading2": "",
+  "hideHeading": false,
+  "hideSubheading": false,
   "hideLogo": false,
   "hideFooter": false,
   "colors": {

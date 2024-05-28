@@ -4,7 +4,7 @@ import JobTable from "./JobTable";
 import { getFilters, getJobs } from "../../utils";
 import { getCustomBoard } from "../../utils/server";
 import FiltersSectionContainer from "./_Filters/FiltersSectionContainer";
-import Title from "./Title";
+import Heading from "./Heading";
 import { Suspense } from "react";
 import Spinner from "../../components/Spinner";
 import FiltersSkeleton from "./_Filters/FiltersSkeleton";
@@ -32,7 +32,7 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
     <main className="w-full flex justify-center">
       <div className="min-h-[calc(100vh-33.5px)] lg:w-10/12 w-full max-w-[70rem] items-left flex flex-col">
         <Suspense fallback={<Spinner />}>
-          <Title locale={params.locale} />
+          <Heading locale={params.locale} />
         </Suspense>
 
         {customBoard.hideAllFilters ? null : (

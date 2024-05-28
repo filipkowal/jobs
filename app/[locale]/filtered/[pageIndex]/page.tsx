@@ -3,7 +3,7 @@ import { type Locale } from "../../../../i18n-config";
 import JobTable from "../../JobTable";
 import { getFilters, getJobs } from "../../../../utils";
 import FiltersSectionContainer from "../../_Filters/FiltersSectionContainer";
-import Title, { TitleSkeleton } from "../../Title";
+import Heading, { HeadingSkeleton } from "../../Heading";
 import { getCustomBoard } from "../../../../utils/server";
 import { Suspense } from "react";
 import FiltersSkeleton from "../../_Filters/FiltersSkeleton";
@@ -36,8 +36,8 @@ export default async function Home({
   return (
     <main className="w-full flex justify-center">
       <div className="min-h-[calc(100vh-33.5px)] lg:w-10/12 w-full max-w-[70rem] items-left flex flex-col">
-        <Suspense fallback={<TitleSkeleton />}>
-          <Title locale={params.locale} />
+        <Suspense fallback={<HeadingSkeleton />}>
+          <Heading locale={params.locale} />
         </Suspense>
 
         {customBoard.hideAllFilters ? null : (

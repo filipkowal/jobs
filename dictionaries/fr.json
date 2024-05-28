@@ -57,10 +57,10 @@
   "Choose this reward": "Choisis cette récompense",
   "Become a member": "Devenir membre",
   "Share with a friend": "Partager avec un ami",
-  "title": {
-    "title": "Prêt pour une nouvelle mission?",
-    "subtitle.1": "Découvrez des opportunités de carrière sélectionnées dans des entreprises suisses de premier plan!",
-    "subtitle.2": "Avec un retour d'information garanti dans les 2 jours ouvrables"
+  "header": {
+    "heading": "Prêt pour une nouvelle mission?",
+    "subheading.1": "Découvrez des opportunités de carrière sélectionnées dans des entreprises suisses de premier plan!",
+    "subheading.2": "Avec un retour d'information garanti dans les 2 jours ouvrables"
   },
   "compareJobTable": {
     "Please select a file with a valid type": "Sélectionne un fichier avec un type valide",

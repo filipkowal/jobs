@@ -56,10 +56,10 @@
   "Choose this reward": "Diese option wählen",
   "Become a member": "Mitglied werden",
   "Share with a friend": "Job teilen und Geld verdienen",
-  "title": {
-    "title": "Bereit für eine neue Mission?",
-    "subtitle.1": "Entdecke ausgewählte Karrieremöglichkeiten in Schweizer Top-Unternehmen!",
-    "subtitle.2": "Mit garantiertem Feedback innert 2 Werktagen"
+  "header": {
+    "heading": "Bereit für eine neue Mission?",
+    "subheading.1": "Entdecke ausgewählte Karrieremöglichkeiten in Schweizer Top-Unternehmen!",
+    "subheading.2": "Mit garantiertem Feedback innert 2 Werktagen"
   },
   "compareJobTable": {
     "Email": "Email",
