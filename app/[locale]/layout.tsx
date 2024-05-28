@@ -17,9 +17,11 @@ export async function generateMetadata({
   params: { locale: Locale };
 }): Promise<Metadata> {
   const dict = await getDictionary(params.locale);
+  const customBoard = await getCustomBoard();
 
   return {
     ...dict.meta,
+    title: customBoard.tabTitle || dict.meta.title,
     icons: "/thumbnail.png",
     robots: {
       index: true, // Allow search engines to index the page
