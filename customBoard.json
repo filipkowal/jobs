@@ -22,7 +22,6 @@
     "digitalentMine": { "DEFAULT": "" }
   },
   "hideAllFilters": false,
-  "employerNameFilters": [""],
   "hiddenFilters": {
     "careerFields": false,
     "workLanguages": true,
