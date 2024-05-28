@@ -36,7 +36,7 @@
   },
   "hiddenJobData": {
     "salary": false,
-    "location": false,
+    "address": false,
     "homeOffice": false,
     "logo": false,
     "companyName": false

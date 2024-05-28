@@ -102,7 +102,7 @@ export default async function JobRowHeading({
               </Tooltip>
             </span>
           )}
-          {address && (
+          {address && !customBoard.hiddenJobData.address && (
             <span className="md:px-4 md:pt-2 md:pb-1 md:w-28 md:text-right translate-y-[2px] z-10">
               <span className="font-title text-xs md:text-base md:font-medium inline-block w-[100px] whitespace-nowrap text-ellipsis overflow-hidden">
                 {`${address?.city || address?.country}`}
