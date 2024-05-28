@@ -63,7 +63,7 @@ export default async function JobRowHeading({
           <span className="font-light text-sm hidden md:block">
             {employer?.name}
 
-            {homeOffice?.[1]
+            {homeOffice?.[1] && !customBoard?.hiddenJobData?.homeOffice
               ? `, ${homeOffice[1]}% ${dict["Home Office"]}`
               : ""}
           </span>

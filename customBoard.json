@@ -34,7 +34,13 @@
     "jobLevels": false,
     "regions": false
   },
-  "hiddenJobData": { "salary": false },
+  "hiddenJobData": {
+    "salary": false,
+    "location": false,
+    "homeOffice": false,
+    "logo": false,
+    "companyName": false
+  },
   "disableCompareView": false,
   "disableDetailView": false,
   "openJLPInSameTab": false,

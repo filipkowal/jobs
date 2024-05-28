@@ -75,7 +75,9 @@ export default function JobColumn({
         <h3 className="font-light text-xl mb-2">{dict["Work location"]}</h3>
         <p>
           {job.address?.city}
-          {job.homeOffice?.[1] && job.homeOffice[1] > 0
+          {job.homeOffice?.[1] &&
+          job.homeOffice[1] > 0 &&
+          !customBoard.hiddenJobData?.homeOffice
             ? `, ${job.homeOffice?.[1]}% ${dict["Home Office"]}`
             : ""}
         </p>
