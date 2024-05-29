@@ -5,7 +5,7 @@ import ToastProvider from "../../components/ToastProvider";
 import Link from "next/link";
 import "../globals.css";
 import localFont from "next/font/local";
-import { Inter, Merriweather } from "next/font/google";
+import { Merriweather } from "next/font/google";
 import type { Metadata } from "next";
 import Script from "next/script";
 import CookiePopup from "../../components/CookiePopup";
@@ -38,12 +38,6 @@ export async function generateMetadata({
     },
   };
 }
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  preload: false,
-});
 
 const merriweather = Merriweather({
   variable: "--font-merriweather",
@@ -132,9 +126,7 @@ export default async function RootLayout({
           {customBoard.hideFooter ? (
             ""
           ) : (
-            <footer
-              className={`self-bottom w-screen ${loew.variable} ${inter.variable}`}
-            >
+            <footer className={`self-bottom w-screen ${loew.variable}`}>
               <div className="text-center py-2 max-w-screen bg-digitalent-gray-dark font-sans text-[11px]">
                 {dict["powered by"]}
                 <Link href="https://digitalent.community" target="_blank">
