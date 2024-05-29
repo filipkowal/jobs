@@ -29,6 +29,17 @@ export default async function JobRowHeading({
   const customBoard = await getCustomBoard();
   const hidden = customBoard.hiddenJobData;
 
+  function getEmployerNameAndHomeOffice() {
+    let strArr = [];
+    if (!hidden.employerName && employer?.name) {
+      strArr.push(employer.name);
+    }
+    if (homeOffice?.[1] && !hidden.homeOffice) {
+      strArr.push(`${homeOffice[1]}% ${dict["Home Office"]}`);
+    }
+    return strArr.join(", ");
+  }
+
   return (
     <>
       <div
@@ -62,18 +73,14 @@ export default async function JobRowHeading({
             </span>
           </h2>
           <span className="font-light text-sm hidden md:block">
-            {employer?.name}
-
-            {homeOffice?.[1] && !customBoard?.hiddenJobData?.homeOffice
-              ? `, ${homeOffice[1]}% ${dict["Home Office"]}`
-              : ""}
+            {getEmployerNameAndHomeOffice()}
           </span>
         </div>
       </div>
 
       <div className="flex flex-row gap-2 xl:gap-6 align-middle w-auto">
         <div className="flex flex-col pl-[95px] md:pl-0 md:flex-row md:gap-1 xl:gap-4 align-middle w-full justify-start md:justify-end md:w-auto">
-          {salary?.amount && !customBoard?.hiddenJobData?.salary && (
+          {salary?.amount && !hidden.salary && (
             <span
               className={`flex md:h-10 md:py-2 my-auto whitespace-nowrap items-baseline md:items-start ${
                 customBoard?.cards ? "" : "pr-4 md:pl-4 md:w-40"

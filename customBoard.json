@@ -39,7 +39,7 @@
     "address": false,
     "homeOffice": false,
     "logo": false,
-    "companyName": false
+    "employerName": false
   },
   "disableCompareView": false,
   "disableDetailView": false,
