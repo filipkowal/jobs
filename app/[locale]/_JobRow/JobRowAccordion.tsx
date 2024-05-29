@@ -1,5 +1,5 @@
 "use client";
-import { ReactNode, use, useState } from "react";
+import { ReactNode, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
@@ -14,7 +14,7 @@ import JobRowHeadingContainer from "./JobRowHeadingContainer";
 interface JobRowProps {
   job: Job;
   children: ReactNode;
-  customBoard?: CustomBoard;
+  customBoard: CustomBoard;
   initOpenJobTitleId?: string;
   jobRowHeading?: ReactNode;
   locale: Locale;
@@ -38,14 +38,8 @@ export default function JobRowAccordion({
     pathname?.includes(getShortId(job.id)) || false
   );
 
-  const getHref = () => {
-    if (customBoard?.disableDetailView) {
-      return landingPageUrl || "";
-    }
-  };
-
-  const isNotInitOpenJob = () =>
-    getShortId(initOpenJobTitleId) !== getShortId(job.id);
+  const isInitOpenJob = () =>
+    getShortId(initOpenJobTitleId) === getShortId(job.id);
 
   return (
     <article
@@ -59,14 +53,24 @@ export default function JobRowAccordion({
     >
       <div
         onClick={() => {
-          isNotInitOpenJob() && setIsOpen(!isOpen);
-          history && history.pushState(null, "", getHref());
+          if (customBoard?.disableDetailView) {
+            window.open(landingPageUrl, "_blank");
+            return;
+          }
+
+          if (isInitOpenJob()) {
+            return;
+          }
+
+          setIsOpen(!isOpen);
+          return;
         }}
       >
         <JobRowHeadingContainer
           initOpenJobTitleId={initOpenJobTitleId}
           job={job}
           locale={locale}
+          customBoard={customBoard}
         >
           {jobRowHeading}
         </JobRowHeadingContainer>

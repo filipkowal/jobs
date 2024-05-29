@@ -1,18 +1,20 @@
 "use client";
 
 import { ReactNode, useState } from "react";
-import { Job, Locale, getShortId } from "../../../utils";
+import { CustomBoard, Job, Locale, getShortId } from "../../../utils";
 
 export default function JobRowHeadingContainer({
   job,
   locale,
   initOpenJobTitleId,
   children,
+  customBoard,
 }: {
   job: Job;
   locale: Locale;
   initOpenJobTitleId?: string;
   children: ReactNode;
+  customBoard: CustomBoard;
 }) {
   const [lastOpenJobId, setLastOpenJobId] = useState<string | null>(null);
 
@@ -26,6 +28,7 @@ export default function JobRowHeadingContainer({
 
   function updateUrl() {
     if (typeof window === "undefined") return;
+    if (customBoard.disableDetailView) return;
 
     if (!job.id) return;
 
