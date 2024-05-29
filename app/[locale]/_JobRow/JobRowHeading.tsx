@@ -27,6 +27,7 @@ export default async function JobRowHeading({
 
   const dict = await getDictionary(locale);
   const customBoard = await getCustomBoard();
+  const hidden = customBoard.hiddenJobData;
 
   return (
     <>
@@ -35,7 +36,7 @@ export default async function JobRowHeading({
           customBoard?.cards ? "" : "w-full lg:w-[60%] xl:w-[65%]"
         }`}
       >
-        {!customBoard?.cards && employer?.logo ? (
+        {!customBoard?.cards && employer?.logo && !hidden.logo ? (
           <div className="block h-[52px] w-[70px] object-contain md:w-[130px] relative">
             <Image
               src={employer.logo}
@@ -102,7 +103,7 @@ export default async function JobRowHeading({
               </Tooltip>
             </span>
           )}
-          {address && !customBoard.hiddenJobData.address && (
+          {address && !hidden.address && (
             <span className="md:px-4 md:pt-2 md:pb-1 md:w-28 md:text-right translate-y-[2px] z-10">
               <span className="font-title text-xs md:text-base md:font-medium inline-block w-[100px] whitespace-nowrap text-ellipsis overflow-hidden">
                 {`${address?.city || address?.country}`}
