@@ -48,7 +48,7 @@ async function getData({
     const res = await fetch(url, init);
 
     if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
+      throw new Error(`HTTP error! status: ${res.status} in ${url}`);
     }
 
     return res.json();
