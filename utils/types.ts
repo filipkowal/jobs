@@ -7,6 +7,11 @@ export type CustomBoard = typeof customBoard;
 
 export type SearchParams = ActiveFilters & { [key: string]: any };
 
+type LastPart<T extends string> = T extends `${string}/${infer Last}`
+  ? LastPart<Last>
+  : T;
+export type Endpoint = LastPart<keyof paths>;
+
 // Response types
 export type Jobs = paths["/{language}/jobs"]["get"]["responses"][
   | "200"
