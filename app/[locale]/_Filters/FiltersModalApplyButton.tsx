@@ -9,6 +9,8 @@ import {
 import { Button, LoadingEllipsis } from "../../../components";
 import { useRouter } from "next/navigation";
 import { ActiveFiltersURL } from "../../../utils/hooks";
+import toast from "react-hot-toast";
+import { captureException } from "@sentry/browser";
 
 export default function ApplyFiltersButton({
   activeFilters,
@@ -20,7 +22,11 @@ export default function ApplyFiltersButton({
   activeFilters: JobsQuery;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   locale: Locale;
-  dict: { "Apply filters": string; Apply: string };
+  dict: {
+    "Apply filters": string;
+    Apply: string;
+    "Something went wrong": string;
+  };
   customBoard: CustomBoard;
 }) {
   const router = useRouter();
@@ -30,17 +36,25 @@ export default function ApplyFiltersButton({
   const activeFiltersURL = ActiveFiltersURL(activeFilters, locale);
 
   useEffect(() => {
-    setIsLoading(true);
     async function fetchJobs() {
-      const { length } = await getJobs({
-        searchParams: {
-          ...activeFilters,
-        },
-        locale: locale,
-      });
-      setJobsLength(length || 0);
-      setIsLoading(false);
+      setIsLoading(true);
+      try {
+        const { length } = await getJobs({
+          searchParams: {
+            ...activeFilters,
+          },
+          locale: locale,
+        });
+
+        setJobsLength(length || 0);
+      } catch (e) {
+        toast.error(dict["Something went wrong"]);
+        captureException(e, { extra: { activeFilters, locale } });
+      } finally {
+        setIsLoading(false);
+      }
     }
+
     fetchJobs();
   }, [activeFilters, locale, customBoard]);
 

@@ -302,6 +302,7 @@ export default function FiltersModal({
             dict={{
               "Apply filters": dict["Apply filters"],
               Apply: dict["Apply"],
+              "Something went wrong": dict["Something went wrong"],
             }}
             customBoard={customBoard}
           />
@@ -344,4 +345,5 @@ export interface FiltersModalDict {
   "If you're unsure, we recommend choosing a lower amount so you don't miss out on roles that could be great": string;
   "Clear filters": string;
   Clear: string;
+  "Something went wrong": string;
 }

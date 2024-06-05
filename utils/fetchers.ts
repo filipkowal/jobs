@@ -63,14 +63,16 @@ export async function getJobs({
   searchParams?: any;
   init?: RequestInit;
 }): Promise<Jobs> {
-  const jobsResponse = await getData({
-    endpoint: "jobs",
-    locale,
-    searchParams,
-    init,
-  });
-
-  return jobsResponse;
+  try {
+    return await getData({
+      endpoint: "jobs",
+      locale,
+      searchParams,
+      init,
+    });
+  } catch (error) {
+    throw error;
+  }
 }
 
 export async function getFilters({
@@ -80,5 +82,9 @@ export async function getFilters({
   locale: Locale;
   init?: RequestInit;
 }): Promise<Filters> {
-  return await getData({ endpoint: "filters", locale, init });
+  try {
+    return await getData({ endpoint: "filters", locale, init });
+  } catch (error) {
+    throw error;
+  }
 }
