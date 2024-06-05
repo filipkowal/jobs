@@ -164,37 +164,6 @@ paths:
           description: Invalid filters supplied
         "404":
           description: Language not found
-  /{language}/jobs/{id}:
-    get:
-      operationId: getJob
-      summary: Get individual Job data
-      tags:
-        - job
-      parameters:
-        - name: language
-          in: path
-          required: true
-          style: simple
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Language"
-        - name: id
-          in: path
-          description: ID of the job
-          required: true
-          style: simple
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Id"
-      responses:
-        "200":
-          description: Get individual Job data
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Job"
-        "404":
-          description: Language or jobId not found
   /{language}/filters:
     get:
       operationId: getFilters
@@ -659,19 +628,6 @@ components:
                 - Geneva
           items:
             $ref: "#/components/schemas/Filters_regions"
-    Font:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Crimson Pro
-        url:
-          type: string
-          format: url
-          example: https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200..900&display=swap
-        weight:
-          type: string
-          example: "700"
     inline_response_200:
       type: object
       properties:
