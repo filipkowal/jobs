@@ -1,5 +1,5 @@
 import qs from "query-string";
-import { SERVER_URL, MOCK_SERVER_URL } from "./constants";
+import { SERVER_URL } from "./constants";
 import type { Endpoint, Filters, Jobs } from "./types";
 import { type Locale } from "../i18n-config";
 
@@ -27,20 +27,18 @@ async function getData({
   locale,
   param,
   searchParams,
-  mock,
   init = {},
 }: {
   endpoint: Endpoint;
   locale?: Locale;
   param?: string;
   searchParams?: Record<string, any>;
-  mock?: boolean;
   init?: RequestInit;
 }) {
   try {
     const encodedSearchParams =
       searchParams && qs.stringify(searchParams, { arrayFormat: "bracket" });
-    const url = `${mock ? MOCK_SERVER_URL : SERVER_URL}/${locale}/${endpoint}${
+    const url = `${SERVER_URL}/${locale}/${endpoint}${
       param ? `/${param}` : ""
     }${encodedSearchParams?.length ? `?${encodedSearchParams}` : ""}`;
 
