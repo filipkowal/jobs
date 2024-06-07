@@ -31,7 +31,7 @@ export const ACTIVE_FILTER_NAMES: ActiveFilterName[] = [
   "homeOffice",
   "states",
   "salary",
-] as const;
+];
 
 export const ALL_REGIONS = {
   en: [

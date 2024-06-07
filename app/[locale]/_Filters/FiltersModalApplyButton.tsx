@@ -56,7 +56,7 @@ export default function ApplyFiltersButton({
     }
 
     fetchJobs();
-  }, [activeFilters, locale, customBoard]);
+  }, [activeFilters, locale, customBoard, dict]);
 
   return (
     <Button
