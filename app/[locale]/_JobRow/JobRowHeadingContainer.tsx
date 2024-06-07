@@ -9,12 +9,14 @@ export default function JobRowHeadingContainer({
   initOpenJobTitleId,
   children,
   customBoard,
+  isInitOpenJob,
 }: {
   job: Job;
   locale: Locale;
   initOpenJobTitleId?: string;
   children: ReactNode;
   customBoard: CustomBoard;
+  isInitOpenJob: () => boolean;
 }) {
   const [lastOpenJobId, setLastOpenJobId] = useState<string | null>(null);
 
@@ -33,7 +35,7 @@ export default function JobRowHeadingContainer({
     if (!job.id) return;
 
     // Keep the intially open job always open
-    if (getShortId(initOpenJobTitleId) === getShortId(job.id)) return;
+    if (isInitOpenJob()) return;
 
     const initialUrl = initOpenJobTitleId
       ? `/${locale}/jobs/${initOpenJobTitleId}`
@@ -48,6 +50,7 @@ export default function JobRowHeadingContainer({
     const jobTitleId =
       createUrlFriendlyString(job.title) + "-" + getShortId(job.id);
     setLastOpenJobId(job.id);
+
     window.history.pushState({}, "", `/${locale}/jobs/${jobTitleId}`);
   }
 

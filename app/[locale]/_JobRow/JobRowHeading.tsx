@@ -1,4 +1,4 @@
-import { Job } from "../../../utils";
+import { Job, k } from "../../../utils";
 import Image from "next/image";
 import { Tooltip } from "../../../components";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
@@ -9,11 +9,9 @@ import { Locale } from "../../../i18n-config";
 export default async function JobRowHeading({
   job,
   locale,
-  k,
 }: {
   job: Job;
   locale: Locale;
-  k: (s?: string | number) => number | undefined;
 }) {
   const {
     id: jobId,

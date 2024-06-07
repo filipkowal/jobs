@@ -46,3 +46,9 @@ export function getShortId(str?: string) {
 
   return str.slice(-6);
 }
+
+export function k(s: string | number | undefined) {
+  if (s === undefined) return;
+  const n = Number(s) / 1000;
+  return n;
+}

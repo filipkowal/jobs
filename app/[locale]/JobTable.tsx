@@ -44,12 +44,6 @@ export default async function JobTable({
 
   const length = jobsResponse?.length;
 
-  function k(s: string | number | undefined) {
-    if (s === undefined) return;
-    const n = Number(s) / 1000;
-    return n;
-  }
-
   return (
     <div
       className={`mb-48 items-center ${
@@ -66,9 +60,7 @@ export default async function JobTable({
             locale={params.locale}
             key={job.id}
             customBoard={customBoard}
-            jobRowHeading={
-              <JobRowHeading job={job} k={k} locale={params.locale} />
-            }
+            jobRowHeading={<JobRowHeading job={job} locale={params.locale} />}
           >
             {!customBoard?.disableDetailView && (
               <div className="flex flex-row flex-wrap-reverse lg:flex-nowrap justify-center sm:pb-6 bg-digitalent-gray-light sm:bg-inherit">

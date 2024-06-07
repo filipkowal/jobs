@@ -53,11 +53,13 @@ export default function JobRowAccordion({
     >
       <div
         onClick={() => {
+          // If detail view is disabled, open the landing page
           if (customBoard?.disableDetailView) {
             window.open(landingPageUrl, "_blank");
             return;
           }
 
+          // If it's the initially open job, neither close nor open
           if (isInitOpenJob()) {
             return;
           }
@@ -71,6 +73,7 @@ export default function JobRowAccordion({
           job={job}
           locale={locale}
           customBoard={customBoard}
+          isInitOpenJob={isInitOpenJob}
         >
           {jobRowHeading}
         </JobRowHeadingContainer>
