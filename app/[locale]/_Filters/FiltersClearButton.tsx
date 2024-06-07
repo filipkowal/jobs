@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ActiveFilters, Locale } from "../../../utils";
 import { useRouter } from "next/navigation";
-import { ActiveFiltersURL } from "../../../utils/hooks";
+import { useActiveFiltersURL } from "../../../utils/hooks";
 
 export default function FiltersClearButton({
   locale,
@@ -15,7 +15,7 @@ export default function FiltersClearButton({
   className?: string;
 }) {
   const router = useRouter();
-  const activeFiltersURL = ActiveFiltersURL(activeFilters, locale);
+  const activeFiltersURL = useActiveFiltersURL(activeFilters, locale);
 
   return activeFilters && Object.keys(activeFilters).length ? (
     <Link href={`/${locale}`}>

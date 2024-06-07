@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Dropzone, { DropzoneOptions } from "react-dropzone";
 import { v4 as uuidv4 } from "uuid";
-import { IsDraggingOver } from "../utils/hooks";
+import { useIsDraggingOver } from "../utils/hooks";
 
 export type FileWithId = Pick<
   File,
@@ -38,7 +38,7 @@ export default function FileInput({
     "application/pdf": [".pdf"],
   };
 
-  const { isDragging, ...draggingHandlers } = IsDraggingOver();
+  const { isDragging, ...draggingHandlers } = useIsDraggingOver();
 
   return (
     <div className={`flex flex-col justify-between ${className}`}>

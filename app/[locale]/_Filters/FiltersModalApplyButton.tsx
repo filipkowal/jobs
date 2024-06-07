@@ -8,7 +8,7 @@ import {
 } from "../../../utils";
 import { Button, LoadingEllipsis } from "../../../components";
 import { useRouter } from "next/navigation";
-import { ActiveFiltersURL } from "../../../utils/hooks";
+import { useActiveFiltersURL } from "../../../utils/hooks";
 import toast from "react-hot-toast";
 import { captureException } from "@sentry/browser";
 
@@ -33,7 +33,7 @@ export default function ApplyFiltersButton({
   const [jobsLength, setJobsLength] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const activeFiltersURL = ActiveFiltersURL(activeFilters, locale);
+  const activeFiltersURL = useActiveFiltersURL(activeFilters, locale);
 
   useEffect(() => {
     async function fetchJobs() {

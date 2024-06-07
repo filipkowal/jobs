@@ -1,7 +1,7 @@
 import { DragEventHandler, MouseEventHandler, useMemo, useState } from "react";
 import { type JobsQuery, type Locale } from "./types";
 
-export function ActiveFiltersURL(
+export function useActiveFiltersURL(
   activeFilters: JobsQuery,
   locale: Locale
 ): string {
@@ -34,7 +34,7 @@ export function ActiveFiltersURL(
   return `/${locale}`;
 }
 
-export function IsDraggingOver() {
+export function useIsDraggingOver() {
   const [isDragging, setIsDragging] = useState(false);
 
   const onDragEnter: DragEventHandler<HTMLDivElement> = (e) => {
