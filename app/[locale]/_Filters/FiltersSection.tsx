@@ -9,13 +9,13 @@ import {
   FILTER_NAMES,
 } from "../../../utils";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
-import { type FiltersModalDict } from "./FiltersModal";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import FiltersClearButton from "./FiltersClearButton";
 import FilterButton from "./FilterButton";
 import dynamic from "next/dynamic";
 import FiltersNumberLabel from "./FiltersNumberLabel";
+import { Dictionary } from "../../../utils/server";
 
 const FiltersModal = dynamic(() => import("./FiltersModal"));
 
@@ -42,7 +42,7 @@ export default function FiltersSection({
     "Career Fields": string;
     "More...": string;
     Filters: string;
-  } & FiltersModalDict;
+  } & Dictionary["filtersSection"];
   locale: Locale;
   filters: Filters;
   customBoard: CustomBoard;
