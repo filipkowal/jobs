@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { ActiveFilters, allUppercase } from "../../../utils";
+import { ActiveFilters, capitalize } from "../../../utils";
 import { OpenFilterName } from "./FiltersSection";
 import { FiltersModalDict } from "./FiltersModal";
 
@@ -38,7 +38,7 @@ export default function FilterButton({
                   "!bg-digitalent-blue !text-white"
                 }`}
     >
-      {dict[allUppercase(filterName) as keyof typeof dict]}
+      {dict[capitalize(filterName) as keyof typeof dict]}
     </span>
   );
 }
