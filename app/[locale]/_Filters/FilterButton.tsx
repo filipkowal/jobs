@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
-import { ActiveFilters, allUppercase } from "../../../utils";
+import { ActiveFilters, capitalize } from "../../../utils";
 import { OpenFilterName } from "./FiltersSection";
-import { FiltersModalDict } from "./FiltersModal";
+import { Dictionary } from "../../../utils/server";
 
 export default function FilterButton({
   filterName,
@@ -18,7 +18,7 @@ export default function FilterButton({
     "Career Fields": string;
     "More...": string;
     Filters: string;
-  } & FiltersModalDict;
+  } & Dictionary["filtersSection"];
 }) {
   return (
     <span
@@ -38,7 +38,7 @@ export default function FilterButton({
                   "!bg-digitalent-blue !text-white"
                 }`}
     >
-      {dict[allUppercase(filterName) as keyof typeof dict]}
+      {dict[capitalize(filterName) as keyof typeof dict]}
     </span>
   );
 }

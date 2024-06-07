@@ -7,6 +7,11 @@ export type CustomBoard = typeof customBoard;
 
 export type SearchParams = ActiveFilters & { [key: string]: any };
 
+type LastPart<T extends string> = T extends `${string}/${infer Last}`
+  ? LastPart<Last>
+  : T;
+export type Endpoint = LastPart<keyof paths>;
+
 // Response types
 export type Jobs = paths["/{language}/jobs"]["get"]["responses"][
   | "200"
@@ -14,9 +19,7 @@ export type Jobs = paths["/{language}/jobs"]["get"]["responses"][
 export type ActiveFilters = paths["/{language}/jobs"]["get"]["responses"][
   | "200"
   | "404"]["content"]["application/json"]["activeFilters"];
-export type Job = paths["/{language}/jobs/{id}"]["get"]["responses"][
-  | "200"
-  | "404"]["content"]["application/json"];
+export type Job = components["schemas"]["Job"];
 export type Filters = paths["/{language}/filters"]["get"]["responses"][
   | "200"
   | "404"]["content"]["application/json"];

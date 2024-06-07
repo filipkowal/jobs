@@ -9,6 +9,7 @@ import {
   ArrowLeftCircleIcon,
   ArrowRightCircleIcon,
 } from "@heroicons/react/24/solid";
+import { Dictionary } from "../../../utils/server";
 
 export default function CompareJobTable({
   jobs,
@@ -18,7 +19,7 @@ export default function CompareJobTable({
 }: {
   jobs: Job[];
   locale: Locale;
-  dict: CompareJobTableDict;
+  dict: Dictionary["compareJobTable"];
   customBoard: CustomBoard;
 }) {
   const COLUMN_WIDTH_WITH_MARGIN = 432;
@@ -136,62 +137,4 @@ export default function CompareJobTable({
       </div>
     </>
   );
-}
-
-export interface CompareJobTableDict {
-  Workload: string;
-  "Home Office": string;
-  "Go back": string;
-  "You have": string;
-  Responsibilities: string;
-  "I am": string;
-  Man: string;
-  Woman: string;
-  Other: string;
-  Name: string;
-  Message: string;
-  "Upload your CV or paste the link to your LinkedIn profile": string;
-  "Upload your CV": string;
-  "Link to your LinkedIn profile": string;
-  Talent: string;
-  Headhunter: string;
-  "I accept the terms and conditions": string;
-  "Sorry, you cannot apply for the job": string;
-  Apply: string;
-  "Thank you for applying": string;
-  "Application basket": string;
-  "Apply for": string;
-  "You are applying for": string;
-  jobs: string;
-  job: string;
-  "Add to application basket": string;
-  "Work location": string;
-  applyFormFileUpload: string;
-  "I am applying directly": string;
-  "I work for a recruitment agency": string;
-  termsAgreed1: string;
-  termsAgreed2: string;
-  termsAgreed3: string;
-  recruiterInfo: string;
-  "Something went wrong": string;
-  "Please enter a valid LinkedIn profile link": string;
-  "Apply for another job": string;
-  "application.basket.title.0": string;
-  "application.basket.title.1": string;
-  "application.basket.title.2": string;
-  "application.basket.termsAndConditions.accordion.title": string;
-  "Your email": string;
-  "Select CV file": string;
-  "Please select a file with a valid type": string;
-  Email: string;
-  Next: string;
-  "Drop CV files or click to select": string;
-  invalidEmail: string;
-  fileInput: {
-    drop: string;
-    select: string;
-    fileReadError: string;
-    fileUploadError: string;
-  };
-  Unpin: string;
 }

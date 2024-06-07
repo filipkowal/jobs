@@ -20,3 +20,9 @@ const customBoard = import("../../customBoard.json").then(
 export const getDictionary = async (locale: Locale) =>
   dictionaries[i18n.locales.includes(locale) ? locale : i18n.defaultLocale]();
 export const getCustomBoard = async () => customBoard;
+
+export type Dictionary = ReturnType<typeof getDictionary> extends Promise<
+  infer T
+>
+  ? T
+  : never;

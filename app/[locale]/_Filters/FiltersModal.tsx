@@ -20,6 +20,7 @@ import {
 } from "../../../components";
 import FiltersClearButton from "./FiltersClearButton";
 import { OpenFilterName } from "./FiltersSection";
+import { Dictionary } from "../../../utils/server";
 
 export default function FiltersModal({
   filters,
@@ -34,7 +35,7 @@ export default function FiltersModal({
 }: {
   filters: Filters;
   locale: Locale;
-  dict: FiltersModalDict;
+  dict: Dictionary["filtersSection"];
   customBoard: CustomBoard;
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
@@ -302,6 +303,7 @@ export default function FiltersModal({
             dict={{
               "Apply filters": dict["Apply filters"],
               Apply: dict["Apply"],
+              "Something went wrong": dict["Something went wrong"],
             }}
             customBoard={customBoard}
           />
@@ -313,35 +315,4 @@ export default function FiltersModal({
       </div>
     </Modal>
   );
-}
-
-export interface FiltersModalDict {
-  Apply: string;
-  "Apply filters": string;
-  Filters: string;
-  "More...": string;
-  "Career Fields": string;
-  Category: string;
-  Regions: string;
-  "Work Languages": string;
-  Technologies: string;
-  Industries: string;
-  "Company Sizes": string;
-  "Work language": string;
-  Workload: string;
-  "Workload range": string;
-  Salary: string;
-  "Min. salary": string;
-  "Techonolgies:": string;
-  "Work languages": string;
-  "Job Levels": string;
-  "We never share this with companies": string;
-  "We only use this to filter out roles and save you time": string;
-  "Home Office": string;
-  "Min. Home Office": string;
-  Location: string;
-  "Whole Switzerland": string;
-  "If you're unsure, we recommend choosing a lower amount so you don't miss out on roles that could be great": string;
-  "Clear filters": string;
-  Clear: string;
 }

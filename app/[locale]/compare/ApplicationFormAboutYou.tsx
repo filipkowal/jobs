@@ -6,9 +6,9 @@ import {
   LoadingEllipsis,
   TextInput,
 } from "../../../components";
-import { ApplicationDict } from "./ApplicationFormModal";
 import { Locale, postData } from "../../../utils";
 import { toast } from "react-hot-toast";
+import { Dictionary } from "../../../utils/server";
 
 export default function ApplicationFormAboutYou({
   dict,
@@ -17,7 +17,7 @@ export default function ApplicationFormAboutYou({
   setStepNumber,
   jobIds,
 }: {
-  dict: ApplicationDict;
+  dict: Dictionary["compareJobTable"];
   locale: Locale;
   jobIds: string[];
   stepNumber: number;
