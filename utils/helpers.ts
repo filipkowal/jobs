@@ -1,6 +1,6 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { ACTIVE_FILTER_NAMES } from "./constants";
-import { ActiveFilters } from "./types";
+import { ActiveFilters, Job } from "./types";
 
 export const capitalize = (text: string): string => {
   if (!text) return "";
@@ -51,4 +51,53 @@ export function k(s: string | number | undefined) {
   if (s === undefined) return;
   const n = Number(s) / 1000;
   return n;
+}
+
+export function sanitizeUrlString(str?: string) {
+  if (!str) return;
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-") // Replace any sequence of non-alphanumeric characters with a hyphen
+    .replace(/^-+|-+$/g, ""); // Remove leading and trailing hyphens
+}
+
+export function updateUrlToOpenJob({
+  job,
+  locale,
+  customBoard,
+  initOpenJobTitleId,
+  isInitOpenJob,
+  lastOpenJobId,
+  setLastOpenJobId,
+}: {
+  job?: { id?: string; title?: string };
+  locale: string;
+  customBoard: { disableDetailView: boolean };
+  initOpenJobTitleId?: string;
+  isInitOpenJob: () => boolean;
+  lastOpenJobId: string | null;
+  setLastOpenJobId: (id: string | null) => void;
+}) {
+  if (typeof window === "undefined") return;
+  if (customBoard.disableDetailView) return;
+
+  if (!job?.id) return;
+
+  // Keep the initially open job always open
+  if (isInitOpenJob()) return;
+
+  const initialUrl = initOpenJobTitleId
+    ? `/${locale}/jobs/${initOpenJobTitleId}`
+    : `/${locale}`;
+
+  if (lastOpenJobId === job.id) {
+    setLastOpenJobId(null);
+    window.history.pushState({}, "", initialUrl);
+    return;
+  }
+
+  const jobTitleId = sanitizeUrlString(job.title) + "-" + getShortId(job.id);
+  setLastOpenJobId(job.id);
+
+  window.history.pushState({}, "", `/${locale}/jobs/${jobTitleId}`);
 }
