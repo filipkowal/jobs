@@ -9,6 +9,7 @@ import type {
   Filters,
   Locale,
   OpenFilterName,
+  Dictionary,
 } from "../../../utils";
 import { FILTER_NAMES } from "../../../utils";
 import ApplyFiltersButton from "./FiltersModalApplyButton";
@@ -20,7 +21,6 @@ import {
   TagOptionGroup,
 } from "../../../components";
 import FiltersClearButton from "./FiltersClearButton";
-import { Dictionary } from "../../../utils/server";
 
 export default function FiltersModal({
   filters,
@@ -293,18 +293,14 @@ export default function FiltersModal({
           <FiltersClearButton
             locale={locale}
             activeFilters={activeFilters}
-            dict={{ Clear: dict["Clear"] }}
+            dict={dict}
             className="!px-[20px] !py-[10px] !uppercase !mb-0"
           />
           <ApplyFiltersButton
             activeFilters={activeFilters}
             setIsModalOpen={setIsModalOpen}
             locale={locale}
-            dict={{
-              "Apply filters": dict["Apply filters"],
-              Apply: dict["Apply"],
-              "Something went wrong": dict["Something went wrong"],
-            }}
+            dict={dict}
             customBoard={customBoard}
           />
         </div>

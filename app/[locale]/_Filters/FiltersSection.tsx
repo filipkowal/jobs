@@ -1,11 +1,14 @@
 "use client";
 
-import {
+import type {
+  Dictionary,
   CustomBoard,
   Locale,
   Filters,
-  pickActiveFiltersFromSearchParams,
   OpenFilterName,
+} from "../../../utils";
+import {
+  pickActiveFiltersFromSearchParams,
   FILTER_BUTTON_NAMES,
 } from "../../../utils";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
@@ -15,7 +18,6 @@ import FiltersClearButton from "./FiltersClearButton";
 import FilterButton from "./FilterButton";
 import dynamic from "next/dynamic";
 import FiltersNumberLabel from "./FiltersNumberLabel";
-import { Dictionary } from "../../../utils/server";
 
 const FiltersModal = dynamic(() => import("./FiltersModal"));
 
@@ -25,11 +27,7 @@ export default function FiltersSection({
   filters,
   customBoard,
 }: {
-  dict: {
-    "Career Fields": string;
-    "More...": string;
-    Filters: string;
-  } & Dictionary["filtersSection"];
+  dict: Dictionary["filtersSection"];
   locale: Locale;
   filters: Filters;
   customBoard: CustomBoard;
@@ -40,14 +38,15 @@ export default function FiltersSection({
     () => pickActiveFiltersFromSearchParams(searchParams),
     [searchParams]
   );
-  const numOfVisible = useMemo(() => (locale === "fr" ? 6 : 7), [locale]);
+
   const filterButtonNames = useMemo(() => {
     const hidden = customBoard.hiddenFilters;
+    const numOfVisible = locale === "fr" ? 6 : 7;
 
     return FILTER_BUTTON_NAMES.filter(
       (filterName) => !hidden?.[filterName as keyof typeof hidden]
     ).slice(0, numOfVisible - 1);
-  }, [customBoard, numOfVisible]);
+  }, [customBoard, locale]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFilterName, setOpenFilterName] = useState<OpenFilterName>("none");
@@ -100,7 +99,7 @@ export default function FiltersSection({
         <FiltersClearButton
           locale={locale}
           activeFilters={initialActiveFilters}
-          dict={{ Clear: dict["Clear"] }}
+          dict={dict}
         />
       </div>
 

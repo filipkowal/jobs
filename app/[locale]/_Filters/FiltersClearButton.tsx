@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ActiveFilters, Locale } from "../../../utils";
+import type { ActiveFilters, Locale, Dictionary } from "../../../utils";
 import { useRouter } from "next/navigation";
 import { useActiveFiltersURL } from "../../../utils/hooks";
 
@@ -11,7 +11,7 @@ export default function FiltersClearButton({
 }: {
   locale: Locale;
   activeFilters: ActiveFilters;
-  dict: { Clear: string };
+  dict: Dictionary["filtersSection"];
   className?: string;
 }) {
   const router = useRouter();

@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { ActiveFilters, capitalize } from "../../../utils";
-import type { OpenFilterName } from "../../../utils/types";
-import { Dictionary } from "../../../utils/server";
+import { capitalize } from "../../../utils";
+import type { OpenFilterName, Dictionary, ActiveFilters } from "../../../utils";
 
 export default function FilterButton({
   filterName,
@@ -14,11 +13,7 @@ export default function FilterButton({
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   setOpenFilterName: Dispatch<SetStateAction<OpenFilterName>>;
   activeFilters: ActiveFilters;
-  dict: {
-    "Career Fields": string;
-    "More...": string;
-    Filters: string;
-  } & Dictionary["filtersSection"];
+  dict: Dictionary["filtersSection"];
 }) {
   return (
     <span

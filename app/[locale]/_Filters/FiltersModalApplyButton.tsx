@@ -1,11 +1,12 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import {
-  type CustomBoard,
-  type Locale,
-  type JobsQuery,
-  getJobs,
+import type {
+  Dictionary,
+  CustomBoard,
+  Locale,
+  JobsQuery,
 } from "../../../utils";
+import { getJobs } from "../../../utils";
 import { Button, LoadingEllipsis } from "../../../components";
 import { useRouter } from "next/navigation";
 import { useActiveFiltersURL } from "../../../utils/hooks";
@@ -22,11 +23,7 @@ export default function ApplyFiltersButton({
   activeFilters: JobsQuery;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   locale: Locale;
-  dict: {
-    "Apply filters": string;
-    Apply: string;
-    "Something went wrong": string;
-  };
+  dict: Dictionary["filtersSection"];
   customBoard: CustomBoard;
 }) {
   const router = useRouter();
