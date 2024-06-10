@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { Job, Locale } from "../../../utils";
+import { Job, Locale } from "@/utils";
 import { useRouter } from "next/navigation";
 import ApplicationFormSuccessStep from "./ApplicationFormSuccess";
 import ApplicationFormBasket from "./ApplicationFormBasket";
 import ApplicationFormAboutYou from "./ApplicationFormAboutYou";
 import dynamic from "next/dynamic";
-import { Dictionary } from "../../../utils/server";
+import { Dictionary } from "@/utils/server";
 
-const Modal = dynamic(() => import("../../../components/Modal"));
+const Modal = dynamic(() => import("@/components/Modal"));
 
 export default function ApplicationFormModal({
   isOpen,

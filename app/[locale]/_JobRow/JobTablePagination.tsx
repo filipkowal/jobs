@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Button from "../../../components/Button";
-import { Locale, SearchParams } from "../../../utils";
+import Button from "@/components/Button";
+import { Locale, SearchParams } from "@/utils";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
-import { getDictionary } from "../../../utils/server";
+import { getDictionary } from "@/utils/server";
 
 export default async function JobTablePagination({
   limit,

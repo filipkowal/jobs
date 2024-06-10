@@ -1,7 +1,7 @@
 "use client";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
-import Button from "../../../components/Button";
-import { type CustomBoard, type Job, type Locale } from "../../../utils";
+import Button from "@/components/Button";
+import { type CustomBoard, type Job, type Locale } from "@/utils";
 import { PinnedJobsContext } from "../PinnedJobsContextProvider";
 import ApplicationFormModal from "./ApplicationFormModal";
 import JobColumn from "./JobColumn";
@@ -9,7 +9,7 @@ import {
   ArrowLeftCircleIcon,
   ArrowRightCircleIcon,
 } from "@heroicons/react/24/solid";
-import { Dictionary } from "../../../utils/server";
+import { Dictionary } from "@/utils/server";
 
 export default function CompareJobTable({
   jobs,

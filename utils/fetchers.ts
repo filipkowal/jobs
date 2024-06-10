@@ -1,7 +1,7 @@
 import qs from "query-string";
 import { SERVER_URL } from "./constants";
 import type { Endpoint, Filters, Jobs } from "./types";
-import { type Locale } from "../i18n-config";
+import { type Locale } from "@/i18n-config";
 
 export async function postData(endpoint: string, locale: Locale, data: any) {
   const url = `${SERVER_URL}/${locale}/${endpoint}`;

@@ -1,6 +1,6 @@
-import { Accordion, Checkbox } from "../../../components";
-import { components } from "../../../schema";
-import { ALL_REGIONS, Locale } from "../../../utils";
+import { Accordion, Checkbox } from "@/components";
+import { components } from "@/schema";
+import { ALL_REGIONS, Locale } from "@/utils";
 
 export default function RegionsFilter({
   regions,

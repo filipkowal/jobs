@@ -1,8 +1,8 @@
-import { components, paths } from "../schema";
-import customBoard from "../customBoard.json";
+import { components, paths } from "@/schema";
+import customBoard from "@/customBoard.json";
 export type { Dictionary } from "./server";
 
-export { type Locale } from "../i18n-config";
+export { type Locale } from "@/i18n-config";
 
 export type CustomBoard = typeof customBoard;
 

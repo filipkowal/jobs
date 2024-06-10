@@ -6,11 +6,11 @@ import type {
   Locale,
   Filters,
   OpenFilterName,
-} from "../../../utils";
+} from "@/utils";
 import {
   pickActiveFiltersFromSearchParams,
   FILTER_BUTTON_NAMES,
-} from "../../../utils";
+} from "@/utils";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";

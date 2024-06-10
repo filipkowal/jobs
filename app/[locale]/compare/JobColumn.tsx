@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { CustomBoard, Job } from "../../../utils";
-import { Tooltip } from "../../../components";
+import { CustomBoard, Job } from "@/utils";
+import { Tooltip } from "@/components";
 import LikeButton from "../_JobRow/JobRowLikeButton";
 import { useEffect, useRef } from "react";
 

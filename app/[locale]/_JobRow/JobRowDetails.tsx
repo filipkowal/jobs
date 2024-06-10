@@ -1,5 +1,5 @@
-import { Job, Locale } from "../../../utils";
-import { getDictionary } from "../../../utils/server";
+import { Job, Locale } from "@/utils";
+import { getDictionary } from "@/utils/server";
 
 export default async function JobRowDetails({
   locale,

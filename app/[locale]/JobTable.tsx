@@ -1,6 +1,6 @@
-import { Locale } from "../../i18n-config";
-import { getCustomBoard, getDictionary } from "../../utils/server";
-import { Job, Jobs, SearchParams, getShortId } from "../../utils";
+import { Locale } from "@/i18n-config";
+import { getCustomBoard, getDictionary } from "@/utils/server";
+import { Job, Jobs, SearchParams, getShortId } from "@/utils";
 import JobRowAccordion from "./_JobRow/JobRowAccordion";
 import JobRowDetails from "./_JobRow/JobRowDetails";
 import JobTablePagination from "./_JobRow/JobTablePagination";

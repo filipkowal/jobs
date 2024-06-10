@@ -1,6 +1,6 @@
-import { type Filters } from "../../../utils";
-import { type Locale } from "../../../i18n-config";
-import { getCustomBoard, getDictionary } from "../../../utils/server";
+import { type Filters } from "@/utils";
+import { type Locale } from "@/i18n-config";
+import { getCustomBoard, getDictionary } from "@/utils/server";
 import FiltersSection from "./FiltersSection";
 
 export default async function FiltersSectionContainer({

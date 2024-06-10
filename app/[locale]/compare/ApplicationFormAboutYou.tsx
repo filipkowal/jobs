@@ -5,10 +5,10 @@ import {
   FileInput,
   LoadingEllipsis,
   TextInput,
-} from "../../../components";
-import { Locale, postData } from "../../../utils";
+} from "@/components";
+import { Locale, postData } from "@/utils";
 import { toast } from "react-hot-toast";
-import { Dictionary } from "../../../utils/server";
+import { Dictionary } from "@/utils/server";
 
 export default function ApplicationFormAboutYou({
   dict,

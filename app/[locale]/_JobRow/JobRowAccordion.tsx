@@ -3,12 +3,8 @@ import { ReactNode, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-import {
-  getShortId,
-  type CustomBoard,
-  type Job,
-  type Locale,
-} from "../../../utils";
+import { getShortId } from "@/utils";
+import type { CustomBoard, Job, Locale } from "@/utils";
 import JobRowHeadingContainer from "./JobRowHeadingContainer";
 
 interface JobRowProps {

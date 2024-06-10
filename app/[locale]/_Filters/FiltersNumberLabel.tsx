@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { ActiveFilters } from "../../../utils";
+import { ActiveFilters } from "@/utils";
 
 export default function FiltersNumberLabel({
   activeFilters,

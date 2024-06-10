@@ -1,15 +1,15 @@
-import { type Locale } from "../../i18n-config";
+import { type Locale } from "@/i18n-config";
 import Header from "./Header";
 import PinnedJobsContextProvider from "./PinnedJobsContextProvider";
-import ToastProvider from "../../components/ToastProvider";
+import ToastProvider from "@/components/ToastProvider";
 import Link from "next/link";
 import "../globals.css";
 import localFont from "next/font/local";
 import { Merriweather } from "next/font/google";
 import type { Metadata } from "next";
 import Script from "next/script";
-import CookiePopup from "../../components/CookiePopup";
-import { getCustomBoard, getDictionary } from "../../utils/server/helpers";
+import CookiePopup from "@/components/CookiePopup";
+import { getCustomBoard, getDictionary } from "@/utils/server/helpers";
 
 export async function generateMetadata({
   params,

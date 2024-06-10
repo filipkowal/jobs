@@ -1,10 +1,10 @@
-import { Job, k } from "../../../utils";
+import { Job, k } from "@/utils";
 import Image from "next/image";
-import { Tooltip } from "../../../components";
+import { Tooltip } from "@/components";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import LikeButton from "./JobRowLikeButton";
-import { getCustomBoard, getDictionary } from "../../../utils/server";
-import { Locale } from "../../../i18n-config";
+import { getCustomBoard, getDictionary } from "@/utils/server";
+import { Locale } from "@/i18n-config";
 
 export default async function JobRowHeading({
   job,

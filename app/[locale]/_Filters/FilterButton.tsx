@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { capitalize } from "../../../utils";
-import type { OpenFilterName, Dictionary, ActiveFilters } from "../../../utils";
+import { capitalize } from "@/utils";
+import type { OpenFilterName, Dictionary, ActiveFilters } from "@/utils";
 
 export default function FilterButton({
   filterName,

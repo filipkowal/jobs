@@ -1,13 +1,13 @@
-import { JOBS_LIMIT } from "../../../../utils/constants";
-import { type Locale } from "../../../../i18n-config";
+import { JOBS_LIMIT } from "@/utils/constants";
+import { type Locale } from "@/i18n-config";
 import JobTable from "../../JobTable";
-import { getFilters, getJobs, getShortId } from "../../../../utils";
+import { getFilters, getJobs, getShortId } from "@/utils";
 import FiltersSectionContainer from "../../_Filters/FiltersSectionContainer";
 import Heading, { HeadingSkeleton } from "../../Heading";
-import { getCustomBoard } from "../../../../utils/server";
+import { getCustomBoard } from "@/utils/server";
 import { Suspense } from "react";
 import FiltersSkeleton from "../../_Filters/FiltersSkeleton";
-import { ActiveFilters } from "../../../../utils";
+import { ActiveFilters } from "@/utils";
 import JobTableSkeleton from "../../JobTableSkeleton";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";

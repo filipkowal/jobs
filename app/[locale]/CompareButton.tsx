@@ -1,6 +1,6 @@
 "use client";
 
-import { type CustomBoard } from "../../utils";
+import { type CustomBoard } from "@/utils";
 
 import { useContext } from "react";
 import Link from "next/link";
@@ -10,10 +10,10 @@ import {
   useSelectedLayoutSegment,
 } from "next/navigation";
 
-import PinIcon from "../../components/icons/PinIcon";
+import PinIcon from "@/components/icons/PinIcon";
 import { PinnedJobsContext } from "./PinnedJobsContextProvider";
-import Button from "../../components/Button";
-import { Locale } from "../../i18n-config";
+import Button from "@/components/Button";
+import { Locale } from "@/i18n-config";
 import CompareButtonHint from "./CompareButtonHint";
 
 export default function CompareButton({

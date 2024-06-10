@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode, useState } from "react";
-import { CustomBoard, Job, Locale, updateUrlToOpenJob } from "../../../utils";
+import { CustomBoard, Job, Locale, updateUrlToOpenJob } from "@/utils";
 
 export default function JobRowHeadingContainer({
   job,

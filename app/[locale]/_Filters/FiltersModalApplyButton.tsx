@@ -1,15 +1,10 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import type {
-  Dictionary,
-  CustomBoard,
-  Locale,
-  JobsQuery,
-} from "../../../utils";
-import { getJobs } from "../../../utils";
-import { Button, LoadingEllipsis } from "../../../components";
+import type { Dictionary, CustomBoard, Locale, JobsQuery } from "@/utils";
+import { getJobs } from "@/utils";
+import { Button, LoadingEllipsis } from "@/components";
 import { useRouter } from "next/navigation";
-import { useActiveFiltersURL } from "../../../utils/hooks";
+import { useActiveFiltersURL } from "@/utils/hooks";
 import toast from "react-hot-toast";
 import { captureException } from "@sentry/browser";
 

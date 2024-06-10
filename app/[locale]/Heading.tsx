@@ -1,6 +1,6 @@
-import { getCustomBoard, getDictionary } from "../../utils/server";
-import { Locale } from "../../i18n-config";
-import { type CustomBoard } from "../../utils";
+import { getCustomBoard, getDictionary } from "@/utils/server";
+import { Locale } from "@/i18n-config";
+import { type CustomBoard } from "@/utils";
 
 export default async function Heading({ locale }: { locale: Locale }) {
   const customBoard = await getCustomBoard();

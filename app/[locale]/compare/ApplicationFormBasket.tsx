@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { Job } from "../../../utils";
-import { Button, Tooltip } from "../../../components";
+import { Job } from "@/utils";
+import { Button, Tooltip } from "@/components";
 
 export default function ApplicationFormBasket({
   setStepNumber,

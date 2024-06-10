@@ -2,14 +2,14 @@
 
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
-import Button from "../../../components/Button";
-import Checkbox from "../../../components/Checkbox";
-import TextInput from "../../../components/TextInput";
-import { type Locale, postData } from "../../../utils";
+import Button from "@/components/Button";
+import Checkbox from "@/components/Checkbox";
+import TextInput from "@/components/TextInput";
+import { type Locale, postData } from "@/utils";
 import dynamic from "next/dynamic";
-import { Dictionary } from "../../../utils/server";
+import { Dictionary } from "@/utils/server";
 
-const Modal = dynamic(() => import("../../../components/Modal"));
+const Modal = dynamic(() => import("@/components/Modal"));
 
 export default function ShareJob({
   locale,
