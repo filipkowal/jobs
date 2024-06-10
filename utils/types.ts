@@ -29,3 +29,6 @@ export type ActiveFilterName = keyof NonNullable<ActiveFilters>;
 // Query types
 export type JobsQuery = paths["/{language}/jobs"]["get"]["parameters"]["query"];
 export type ApplyQuery = components["schemas"]["apply_body"];
+
+// Filters types
+export type OpenFilterName = ActiveFilterName | "none";
