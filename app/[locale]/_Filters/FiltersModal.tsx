@@ -31,7 +31,7 @@ export default function FiltersModal({
   openFilterName,
   setIsModalOpen,
   setOpenFilterName,
-  defaultActiveFilters,
+  initialActiveFilters,
 }: {
   filters: Filters;
   locale: Locale;
@@ -41,10 +41,10 @@ export default function FiltersModal({
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   openFilterName: OpenFilterName;
   setOpenFilterName: Dispatch<SetStateAction<OpenFilterName>>;
-  defaultActiveFilters: ActiveFilters;
+  initialActiveFilters: ActiveFilters;
 }) {
   const [activeFilters, setActiveFilters] =
-    useState<ActiveFilters>(defaultActiveFilters);
+    useState<ActiveFilters>(initialActiveFilters);
 
   function isAccordionOpen(filterName: ActiveFilterName): boolean {
     return openFilterName === filterName;
@@ -82,7 +82,7 @@ export default function FiltersModal({
   }
 
   function closeModal() {
-    setActiveFilters(defaultActiveFilters);
+    setActiveFilters(initialActiveFilters);
     setOpenFilterName("none");
     setIsModalOpen(false);
   }

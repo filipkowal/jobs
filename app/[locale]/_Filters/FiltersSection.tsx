@@ -36,7 +36,7 @@ export default function FiltersSection({
 }) {
   const searchParams = useSearchParams();
 
-  const defaultActiveFilters = useMemo(
+  const initialActiveFilters = useMemo(
     () => pickActiveFiltersFromSearchParams(searchParams),
     [searchParams]
   );
@@ -64,7 +64,7 @@ export default function FiltersSection({
           setIsModalOpen={setIsModalOpen}
           openFilterName={openFilterName}
           setOpenFilterName={setOpenFilterName}
-          defaultActiveFilters={defaultActiveFilters}
+          initialActiveFilters={initialActiveFilters}
         />
       )}
 
@@ -74,7 +74,7 @@ export default function FiltersSection({
           className="text-digitalent-blue pr-2 w-8 h-8 cursor-pointer"
         />
         <FiltersNumberLabel
-          activeFilters={defaultActiveFilters}
+          activeFilters={initialActiveFilters}
           setIsModalOpen={setIsModalOpen}
         />
         <>
@@ -84,7 +84,7 @@ export default function FiltersSection({
               filterName={filterName}
               setOpenFilterName={setOpenFilterName}
               setIsModalOpen={setIsModalOpen}
-              activeFilters={defaultActiveFilters}
+              activeFilters={initialActiveFilters}
               dict={dict}
             />
           ))}
@@ -99,7 +99,7 @@ export default function FiltersSection({
 
         <FiltersClearButton
           locale={locale}
-          activeFilters={defaultActiveFilters}
+          activeFilters={initialActiveFilters}
           dict={{ Clear: dict["Clear"] }}
         />
       </div>
@@ -115,7 +115,7 @@ export default function FiltersSection({
           <AdjustmentsHorizontalIcon className="ml-2 mb-1 w-6 h-6 inline-block" />
         </span>
         <FiltersNumberLabel
-          activeFilters={defaultActiveFilters}
+          activeFilters={initialActiveFilters}
           setIsModalOpen={setIsModalOpen}
         />
       </div>
