@@ -20,6 +20,16 @@ export const FILTER_NAMES = [
   "workLanguages",
 ] as const;
 
+export const FILTER_BUTTON_NAMES = [
+  "regions",
+  "careerFields",
+  "salary",
+  "workload",
+  "industries",
+  "companySizes",
+  "workLanguages",
+] as const;
+
 export const ACTIVE_FILTER_NAMES: ActiveFilterName[] = [
   "careerFields",
   "workLanguages",

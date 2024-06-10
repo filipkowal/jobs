@@ -3,18 +3,6 @@ import { type Locale } from "../../../i18n-config";
 import { getCustomBoard, getDictionary } from "../../../utils/server";
 import FiltersSection from "./FiltersSection";
 
-interface Salary {
-  amount?: number[] | undefined;
-  currency?: string | undefined;
-  unit?: string | undefined;
-}
-
-export function isOfSalaryType(
-  value: Salary | any[] | undefined
-): value is Salary {
-  return (value as Salary).amount !== undefined;
-}
-
 export default async function FiltersSectionContainer({
   filtersPromise,
   locale,

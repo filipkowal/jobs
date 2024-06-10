@@ -2,14 +2,15 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
-import {
+import type {
   ActiveFilterName,
   ActiveFilters,
   CustomBoard,
-  FILTER_NAMES,
   Filters,
   Locale,
+  OpenFilterName,
 } from "../../../utils";
+import { FILTER_NAMES } from "../../../utils";
 import ApplyFiltersButton from "./FiltersModalApplyButton";
 import RegionsFilter from "./FiltersModalRegionSection";
 import {
@@ -19,7 +20,6 @@ import {
   TagOptionGroup,
 } from "../../../components";
 import FiltersClearButton from "./FiltersClearButton";
-import { OpenFilterName } from "./FiltersSection";
 import { Dictionary } from "../../../utils/server";
 
 export default function FiltersModal({

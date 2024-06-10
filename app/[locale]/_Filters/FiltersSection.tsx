@@ -1,12 +1,12 @@
 "use client";
 
 import {
-  type ActiveFilterName,
   CustomBoard,
   Locale,
   Filters,
   pickActiveFiltersFromSearchParams,
-  FILTER_NAMES,
+  OpenFilterName,
+  FILTER_BUTTON_NAMES,
 } from "../../../utils";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 import { useSearchParams } from "next/navigation";
@@ -18,19 +18,6 @@ import FiltersNumberLabel from "./FiltersNumberLabel";
 import { Dictionary } from "../../../utils/server";
 
 const FiltersModal = dynamic(() => import("./FiltersModal"));
-
-interface Salary {
-  amount?: number[] | undefined;
-  currency?: string | undefined;
-  unit?: string | undefined;
-}
-export type OpenFilterName = ActiveFilterName | "none";
-
-export function isOfSalaryType(
-  value: Salary | any[] | undefined
-): value is Salary {
-  return (value as Salary).amount !== undefined;
-}
 
 export default function FiltersSection({
   dict,
@@ -53,20 +40,14 @@ export default function FiltersSection({
     () => pickActiveFiltersFromSearchParams(searchParams),
     [searchParams]
   );
-  const numberOfVisibleFliterButtons = useMemo(
-    () => (locale === "fr" ? 6 : 7),
-    [locale]
-  );
-  const filtersNotHiddenNames = useMemo(() => {
-    const hiddenButtonNames = ["technologies", "jobLevels", "homeOffice"];
+  const numOfVisible = useMemo(() => (locale === "fr" ? 6 : 7), [locale]);
+  const filterButtonNames = useMemo(() => {
+    const hidden = customBoard.hiddenFilters;
 
-    return FILTER_NAMES.filter(
-      (filterName) =>
-        !customBoard.hiddenFilters?.[
-          filterName as keyof typeof customBoard.hiddenFilters
-        ] && !hiddenButtonNames.includes(filterName)
-    );
-  }, [customBoard]);
+    return FILTER_BUTTON_NAMES.filter(
+      (filterName) => !hidden?.[filterName as keyof typeof hidden]
+    ).slice(0, numOfVisible - 1);
+  }, [customBoard, numOfVisible]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFilterName, setOpenFilterName] = useState<OpenFilterName>("none");
@@ -97,18 +78,16 @@ export default function FiltersSection({
           setIsModalOpen={setIsModalOpen}
         />
         <>
-          {filtersNotHiddenNames
-            .slice(0, numberOfVisibleFliterButtons - 1)
-            .map((filterName) => (
-              <FilterButton
-                key={filterName}
-                filterName={filterName}
-                setOpenFilterName={setOpenFilterName}
-                setIsModalOpen={setIsModalOpen}
-                activeFilters={defaultActiveFilters}
-                dict={dict}
-              />
-            ))}
+          {filterButtonNames.map((filterName) => (
+            <FilterButton
+              key={filterName}
+              filterName={filterName}
+              setOpenFilterName={setOpenFilterName}
+              setIsModalOpen={setIsModalOpen}
+              activeFilters={defaultActiveFilters}
+              dict={dict}
+            />
+          ))}
         </>
 
         <span

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { ActiveFilters, capitalize } from "../../../utils";
-import { OpenFilterName } from "./FiltersSection";
+import type { OpenFilterName } from "../../../utils/types";
 import { Dictionary } from "../../../utils/server";
 
 export default function FilterButton({
