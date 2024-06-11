@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CustomBoard, Job } from "@/utils";
+import { CustomBoard, Dictionary, Job } from "@/utils";
 import { Tooltip } from "@/components";
 import LikeButton from "../_JobRow/JobRowLikeButton";
 import { useEffect, useRef } from "react";
@@ -17,15 +17,7 @@ export default function JobColumn({
   maxRequirementsHeight: number;
   setMaxRequirementsHeight: (height: number) => void;
   longestRequirementsLengths: number;
-  dict: {
-    "Add to application basket": string;
-    Workload: string;
-    "Work location": string;
-    "Home Office": string;
-    "You have": string;
-    Responsibilities: string;
-    Unpin: string;
-  };
+  dict: Dictionary["compareJobTable"];
 }) {
   const requirementsRef = useRef<HTMLHeadingElement>(null);
 
@@ -79,7 +71,7 @@ export default function JobColumn({
         </h2>
       )}
       <div>
-        <h3 className="font-light text-xl mb-2">{dict["Workload"]}</h3>
+        <h3 className="font-light text-xl mb-2">{dict["workload"]}</h3>
         <p>
           {job.workload?.[0]} - {job.workload?.[1]}%
         </p>
