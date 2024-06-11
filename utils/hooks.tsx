@@ -1,5 +1,18 @@
-import { DragEventHandler, MouseEventHandler, useMemo, useState } from "react";
-import { type JobsQuery, type Locale } from "./types";
+import {
+  DragEventHandler,
+  MouseEventHandler,
+  useCallback,
+  useMemo,
+  useState,
+} from "react";
+import type {
+  ActiveFilters,
+  ActiveFilterName,
+  Filters,
+  CustomBoard,
+  JobsQuery,
+  Locale,
+} from "@/utils";
 
 export function useActiveFiltersURL(
   activeFilters: JobsQuery,
@@ -76,4 +89,46 @@ export function useIsDraggingOver() {
     onDragLeave,
     onMouseLeave,
   };
+}
+
+function notEmpty(v: any): boolean {
+  return (
+    ((Array.isArray(v) || typeof v === "string") && !!v.length) ||
+    (typeof v === "number" && v > 0)
+  );
+}
+
+export function useFilters(
+  initialActiveFilters: ActiveFilters,
+  filters: Filters,
+  customBoard: CustomBoard
+) {
+  const [activeFilters, setActiveFilters] =
+    useState<ActiveFilters>(initialActiveFilters);
+
+  const setActiveFilter = (filterName: ActiveFilterName, value: any) => {
+    setActiveFilters((prev) => {
+      const updatedFilters = { ...prev, [filterName]: value };
+
+      if (!notEmpty(value)) {
+        delete updatedFilters[filterName];
+      }
+
+      return updatedFilters;
+    });
+  };
+
+  const isFilterVisible = useCallback(
+    (filterName: keyof typeof filters): boolean => {
+      return (
+        !!filters[filterName] &&
+        !customBoard.hiddenFilters?.[
+          filterName as keyof typeof customBoard.hiddenFilters
+        ]
+      );
+    },
+    [filters, customBoard]
+  );
+
+  return { activeFilters, setActiveFilters, setActiveFilter, isFilterVisible };
 }
