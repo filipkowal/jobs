@@ -201,7 +201,6 @@ export interface components {
       careerFields?: components["schemas"]["Tags"];
       technologies?: components["schemas"]["Tags"];
       industries?: components["schemas"]["Tags"];
-      workLanguages?: components["schemas"]["Tags"];
       jobLevels?: components["schemas"]["Tags"];
       companySizes?: components["schemas"]["Tags"];
       workload?: components["schemas"]["Range"];
@@ -220,7 +219,6 @@ export interface components {
       careerFields?: components["schemas"]["Tags"];
       technologies?: components["schemas"]["Tags"];
       industries?: components["schemas"]["Tags"];
-      workLanguages?: components["schemas"]["Tags"];
       jobLevels?: components["schemas"]["Tags"];
       companySizes?: components["schemas"]["Tags"];
       workload?: components["schemas"]["Range"];
@@ -386,13 +384,6 @@ export interface operations {
          * ]
          */
         companySizes?: components["schemas"]["Tags"];
-        /**
-         * @example [
-         *   "german",
-         *   "english"
-         * ]
-         */
-        workLanguages?: components["schemas"]["Tags"];
         /**
          * @example [
          *   80,

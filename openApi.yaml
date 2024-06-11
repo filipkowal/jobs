@@ -72,16 +72,6 @@ paths:
             $ref: "#/components/schemas/Tags"
           example:
             - StartUp
-        - name: workLanguages
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Tags"
-          example:
-            - german
-            - english
         - name: workload
           in: query
           required: false
@@ -575,8 +565,6 @@ components:
           $ref: "#/components/schemas/Tags"
         industries:
           $ref: "#/components/schemas/Tags"
-        workLanguages:
-          $ref: "#/components/schemas/Tags"
         jobLevels:
           $ref: "#/components/schemas/Tags"
         companySizes:
@@ -603,8 +591,6 @@ components:
         technologies:
           $ref: "#/components/schemas/Tags"
         industries:
-          $ref: "#/components/schemas/Tags"
-        workLanguages:
           $ref: "#/components/schemas/Tags"
         jobLevels:
           $ref: "#/components/schemas/Tags"
