@@ -14,7 +14,7 @@ import type {
 import { FILTER_NAMES } from "@/utils";
 import ApplyFiltersButton from "./FiltersModalApplyButton";
 import RegionsFilter from "./FiltersModalRegionSection";
-import { Modal, Accordion, RangeSlider, TagOptionGroup } from "@/components";
+import { Modal, Accordion, RangeSlider, TagsInput } from "@/components";
 import FiltersClearButton from "./FiltersClearButton";
 
 export default function FiltersModal({
@@ -223,7 +223,7 @@ function getFilterComponent(
           isOpen={isAccordionOpen(filterName)}
           key={filterName}
         >
-          <TagOptionGroup
+          <TagsInput
             selectedTags={activeFilters?.[filterName]}
             tags={filters[filterName]}
             setSelectedTags={(selectedTags) =>

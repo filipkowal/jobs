@@ -1,4 +1,4 @@
-export default function TagOptionGroup({
+export default function TagsInput({
   tags,
   selectedTags = [],
   setSelectedTags,
