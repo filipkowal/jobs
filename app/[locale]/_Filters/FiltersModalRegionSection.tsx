@@ -1,6 +1,6 @@
 import { Accordion, Checkbox } from "@/components";
 import { components } from "@/schema";
-import { ALL_REGIONS, Locale } from "@/utils";
+import { ALL_REGIONS, Dictionary, Locale } from "@/utils";
 
 export default function RegionsFilter({
   regions,
@@ -14,7 +14,7 @@ export default function RegionsFilter({
   selectedStates: string[];
   isOpen: boolean;
   setSelectedStates: (regions: string[]) => void;
-  dict: { Regions: string; "Whole Switzerland": string };
+  dict: Dictionary["filtersSection"];
   locale: Locale;
 }) {
   if (!regions) return null;
@@ -25,7 +25,7 @@ export default function RegionsFilter({
 
   return (
     <Accordion
-      title={dict["Regions"]}
+      title={dict["regions"]}
       isOpen={isOpen}
       labelTag={
         selectedStates.length > 0 ? selectedStates.length.toString() : undefined

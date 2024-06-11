@@ -14,8 +14,7 @@ import type {
 import { FILTER_NAMES } from "@/utils";
 import ApplyFiltersButton from "./FiltersModalApplyButton";
 import RegionsFilter from "./FiltersModalRegionSection";
-import { Modal, Accordion, RangeSlider } from "@/components";
-import TagsFilter from "./FiltersModalTagsFilter";
+import { Modal, Accordion, RangeSlider, TagOptionGroup } from "@/components";
 import FiltersClearButton from "./FiltersClearButton";
 
 export default function FiltersModal({
@@ -128,66 +127,9 @@ function getFilterComponent(
           selectedStates={activeFilters?.states || []}
           isOpen={isAccordionOpen("states")}
           setSelectedStates={(states) => setActiveFilter("states", states)}
-          dict={{
-            Regions: dict["Regions"],
-            "Whole Switzerland": dict["Whole Switzerland"],
-          }}
+          dict={dict}
           locale={locale}
         />
-      );
-
-    case "careerFields":
-      return (
-        <Accordion
-          labelTag={activeFilters?.["careerFields"]?.length}
-          title={dict["Career Fields"]}
-          isOpen={isAccordionOpen("careerFields")}
-          key={"careerFields"}
-        >
-          <TagsFilter
-            filterName="careerFields"
-            key="careerFields"
-            activeFilters={activeFilters}
-            filters={filters}
-            setActiveFilter={setActiveFilter}
-          />
-        </Accordion>
-      );
-
-    case "technologies":
-      return (
-        <Accordion
-          labelTag={activeFilters?.["technologies"]?.length}
-          title={dict["Technologies"]}
-          isOpen={isAccordionOpen("technologies")}
-          key={"technologies"}
-        >
-          <TagsFilter
-            filterName="technologies"
-            key="technologies"
-            activeFilters={activeFilters}
-            filters={filters}
-            setActiveFilter={setActiveFilter}
-          />
-        </Accordion>
-      );
-
-    case "jobLevels":
-      return (
-        <Accordion
-          labelTag={activeFilters?.["jobLevels"]?.length}
-          title={dict["Job Levels"]}
-          isOpen={isAccordionOpen("jobLevels")}
-          key={"jobLevels"}
-        >
-          <TagsFilter
-            filterName="jobLevels"
-            key="jobLevels"
-            activeFilters={activeFilters}
-            filters={filters}
-            setActiveFilter={setActiveFilter}
-          />
-        </Accordion>
       );
 
     case "salary":
@@ -195,7 +137,7 @@ function getFilterComponent(
         <Accordion
           labelTag={activeFilters?.salary && activeFilters?.salary + " CHF"}
           key="salary"
-          title={dict["Salary"]}
+          title={dict["salary"]}
           isOpen={isAccordionOpen("salary")}
         >
           <RangeSlider
@@ -243,7 +185,7 @@ function getFilterComponent(
               " %"
           }
           key="workload"
-          title={dict["Workload"]}
+          title={dict["workload"]}
           isOpen={isAccordionOpen("workload")}
         >
           <RangeSlider
@@ -252,7 +194,6 @@ function getFilterComponent(
             min={0}
             max={100}
             step={10}
-            name={dict["Workload range"]}
             unit="%"
           />
         </Accordion>
@@ -282,43 +223,23 @@ function getFilterComponent(
         </Accordion>
       );
 
-    case "industries":
-      return (
-        <Accordion
-          labelTag={activeFilters?.["industries"]?.length}
-          title={dict["Industries"]}
-          isOpen={isAccordionOpen("industries")}
-          key={"industries"}
-        >
-          <TagsFilter
-            filterName="industries"
-            key="industries"
-            activeFilters={activeFilters}
-            filters={filters}
-            setActiveFilter={setActiveFilter}
-          />
-        </Accordion>
-      );
-
-    case "companySizes":
-      return (
-        <Accordion
-          labelTag={activeFilters?.["companySizes"]?.length}
-          title={dict["Company Sizes"]}
-          isOpen={isAccordionOpen("companySizes")}
-          key={"companySizes"}
-        >
-          <TagsFilter
-            filterName="companySizes"
-            key="companySizes"
-            activeFilters={activeFilters}
-            filters={filters}
-            setActiveFilter={setActiveFilter}
-          />
-        </Accordion>
-      );
-
     default:
-      return null;
+      // All tag filters: "careerFields" | "technologies" | "jobLevels" | "industries" | "companySizes"
+      return (
+        <Accordion
+          labelTag={activeFilters?.[filterName]?.length}
+          title={dict[filterName]}
+          isOpen={isAccordionOpen(filterName)}
+          key={filterName}
+        >
+          <TagOptionGroup
+            selectedTags={activeFilters?.[filterName]}
+            tags={filters[filterName]}
+            setSelectedTags={(selectedTags) =>
+              setActiveFilter(filterName, selectedTags)
+            }
+          />
+        </Accordion>
+      );
   }
 }

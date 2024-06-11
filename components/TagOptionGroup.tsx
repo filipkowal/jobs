@@ -1,14 +1,16 @@
 export default function TagOptionGroup({
   tags,
-  selectedTags,
+  selectedTags = [],
   setSelectedTags,
   singleChoice,
 }: {
-  tags: string[];
-  selectedTags: string[];
+  tags: string[] | undefined;
+  selectedTags: string[] | undefined;
   setSelectedTags: (tags: string[]) => void;
   singleChoice?: boolean;
 }) {
+  if (!tags) return null;
+
   return (
     <div>
       {tags.map((tag) => {

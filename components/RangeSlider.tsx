@@ -18,7 +18,7 @@ const RangeSlider = ({
   max: number;
   min: number;
   step: number;
-  name: string;
+  name?: string;
   unit?: string;
   className?: string;
 }) => {
