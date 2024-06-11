@@ -1,5 +1,5 @@
 "use client";
-import { Dispatch, SetStateAction, useCallback } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import { useFilters } from "@/utils/hooks";
 import type {
@@ -41,23 +41,14 @@ export default function FiltersModal({
   const { activeFilters, setActiveFilters, setActiveFilter, isFilterVisible } =
     useFilters(initialActiveFilters, filters, customBoard);
 
-  const isAccordionOpen = useCallback(
-    (filterName: ActiveFilterName): boolean => {
-      return openFilterName === filterName;
-    },
-    [openFilterName]
-  );
+  const isAccordionOpen = (filterName: ActiveFilterName): boolean =>
+    openFilterName === filterName;
 
-  const closeModal = useCallback(() => {
+  const closeModal = () => {
     setActiveFilters(initialActiveFilters); // Reset active filters
     setOpenFilterName("none");
     setIsModalOpen(false);
-  }, [
-    initialActiveFilters,
-    setOpenFilterName,
-    setIsModalOpen,
-    setActiveFilters,
-  ]);
+  };
 
   return (
     <Modal
