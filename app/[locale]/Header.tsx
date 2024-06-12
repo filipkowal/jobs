@@ -64,11 +64,7 @@ export default async function Header({
           <Suspense fallback={<Spinner />}>
             <CompareButton
               params={params}
-              dict={{
-                Compare: dict.Compare,
-                "Go back": dict["Go back"],
-                compareButtonHint: dict.compareButtonHint,
-              }}
+              dict={dict["compareButton"]}
               customBoard={customBoard}
             />
           </Suspense>

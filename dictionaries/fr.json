@@ -159,7 +159,11 @@
     "fileReadError": "La lecture du fichier a été interrompue",
     "fileUploadError": "Erreur de téléchargement de fichier"
   },
-  "compareButtonHint": "Épingle au moins 2 emplois pour les comparer et postuler.",
+  "compareButton": {
+    "goBack": "retour",
+    "compare": "Comparer",
+    "hint": "Épingle au moins 2 emplois pour les comparer et postuler."
+  },
   "invalidEmail": "Adresse email invalide.",
   "termsAndConditions": "<b>Nous tenons à vous informer que les entreprises pour lesquelles vous postulez actuellement ont externalisé une partie du processus de recrutement à un prestataire spécialisé (digitalent ag, ci-après dénommé \"prestataire\"). En soumettant votre candidature, vous en prenez connaissance et acceptez ces conditions.</b><br/><p>Afin de gérer le processus de recrutement, le prestataire (digitalent ag) collecte et traite les données personnelles des candidats intéressés. Le traitement peut être effectué par voie électronique. Cela est notamment le cas lorsque le candidat soumet les documents de candidature pertinents par voie électronique, par exemple par email ou via un formulaire web sur le site. Lors d'une candidature, le prestataire transmet les données suivantes à l'entreprise :</p><br/><ul>    <li>Adresse email</li>    <li>Informations sur la personne de contact</li>    <li>Prénom, nom</li>    <li>éventuellement un CV</li>    <li>éventuellement des attestations</li>    <li>Toutes les données que vous avez fournies à cet effet, telles que les qualifications, expériences professionnelles, préférences, etc. indiquées.</li></ul><br/><p>    Si une entreprise conclut un contrat de travail avec un candidat, les données transmises sont conservées aux fins de traitement de la relation de travail, conformément aux dispositions légales. Si aucun contrat de travail n'est conclu entre l'entreprise et le candidat, les documents de candidature sont supprimés six mois après la notification de la décision de refus, sauf si des intérêts légitimes ou des obligations contractuelles s'y opposent. Par ailleurs, les    <a href=\"https://digitalent.cloud/legal-fr/datenschutz-rekrutierungsprozess\">dispositions relatives à la protection des données</a>    du prestataire s'appliquent.</p>",
   "More jobs": "Plus d'emplois",

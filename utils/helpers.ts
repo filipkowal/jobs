@@ -1,6 +1,6 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { ACTIVE_FILTER_NAMES } from "./constants";
-import { ActiveFilters, Job } from "./types";
+import { ActiveFilters, CustomBoard } from "./types";
 
 export const capitalize = (text: string): string => {
   if (!text) return "";
@@ -118,4 +118,15 @@ export function stripOfEmptyStringsAndArrays(
   }
 
   return filteredObj;
+}
+
+export function getCustomHeaderColors(customBoard?: CustomBoard) {
+  const textColor = customBoard?.colors.headerText;
+  const bgColor = customBoard?.colors.headerBackground;
+
+  return {
+    textColor,
+    bgColor,
+    isCustom: !!(textColor || bgColor),
+  };
 }
