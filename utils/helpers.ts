@@ -101,3 +101,21 @@ export function updateUrlToOpenJob({
 
   window.history.pushState({}, "", `/${locale}/jobs/${jobTitleId}`);
 }
+
+export function stripOfEmptyStringsAndArrays(
+  obj: Record<string, any>
+): Record<string, any> {
+  // Filters out any empty strings or empty arrays from the object
+  const filteredObj: Record<string, any> = {};
+
+  for (const [key, value] of Object.entries(obj)) {
+    if (
+      (typeof value === "string" || Array.isArray(value)) &&
+      value.length > 0
+    ) {
+      filteredObj[key] = value;
+    }
+  }
+
+  return filteredObj;
+}

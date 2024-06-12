@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { Job } from "@/utils";
+import { Dictionary, Job } from "@/utils";
 import { Button, Tooltip } from "@/components";
 
 export default function ApplicationFormBasket({
@@ -13,12 +13,7 @@ export default function ApplicationFormBasket({
   stepNumber: number;
   pinnedJobs: Job[];
   removePinnedJob: (jobId: string) => void;
-  dict: {
-    "You are applying for": string;
-    "Apply for": string;
-    jobs: string;
-    job: string;
-  };
+  dict: Dictionary["compareJobTable"];
 }) {
   return (
     <form
