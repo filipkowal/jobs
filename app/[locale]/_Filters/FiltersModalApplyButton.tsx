@@ -62,7 +62,7 @@ export default function ApplyFiltersButton({
     >
       <span className="sm:hidden inline">{dict["Apply"]}</span>
       <span className="hidden sm:inline">{dict["Apply filters"]}</span>
-      {` ${isLoading ? "" : `(${jobsLength})`} `}
+      {` ${isLoading ? "" : `(${jobsLength})`}`}
       <LoadingEllipsis isLoading={isLoading} />
     </Button>
   );
