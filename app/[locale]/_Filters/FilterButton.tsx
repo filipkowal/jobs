@@ -1,6 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
-import { capitalize } from "@/utils";
-import type { OpenFilterName, Dictionary, ActiveFilters } from "@/utils";
+import type {
+  OpenFilterName,
+  Dictionary,
+  ActiveFilters,
+  FILTER_NAMES,
+} from "@/utils";
 
 export default function FilterButton({
   filterName,
@@ -9,7 +13,7 @@ export default function FilterButton({
   activeFilters,
   dict,
 }: {
-  filterName: string;
+  filterName: (typeof FILTER_NAMES)[number];
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   setOpenFilterName: Dispatch<SetStateAction<OpenFilterName>>;
   activeFilters: ActiveFilters;
@@ -33,7 +37,7 @@ export default function FilterButton({
                   "!bg-digitalent-blue !text-white"
                 }`}
     >
-      {dict[capitalize(filterName) as keyof typeof dict]}
+      {dict[filterName]}
     </span>
   );
 }

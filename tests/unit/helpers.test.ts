@@ -1,9 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  capitalize,
-  getShortId,
-  pickActiveFiltersFromSearchParams,
-} from "../../utils";
+import { getShortId, pickActiveFiltersFromSearchParams } from "../../utils";
 import { ReadonlyURLSearchParams } from "next/navigation";
 
 describe("getShortId", () => {
@@ -43,32 +39,5 @@ describe("pickActiveFiltersFromSearchParams", () => {
       careerFields: ["foo", "bar"],
       homeOffice: 70,
     });
-  });
-});
-
-describe("capitalize", () => {
-  it("should capitalize the first letter and add spaces before uppercase letters", () => {
-    expect(capitalize("testString")).toBe("Test String");
-  });
-
-  it("should handle strings that start with an uppercase letter correctly", () => {
-    expect(capitalize("TestString")).toBe("Test String");
-  });
-
-  it("should not add extra spaces for consecutive uppercase letters", () => {
-    expect(capitalize("APITest")).toBe("API Test");
-  });
-
-  it("should return an empty string when given an empty string", () => {
-    expect(capitalize("")).toBe("");
-  });
-
-  it("should handle strings with no uppercase letters", () => {
-    expect(capitalize("test")).toBe("Test");
-  });
-
-  it("should handle single-letter strings correctly", () => {
-    expect(capitalize("t")).toBe("T");
-    expect(capitalize("T")).toBe("T");
   });
 });

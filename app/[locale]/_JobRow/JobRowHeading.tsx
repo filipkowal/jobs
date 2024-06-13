@@ -33,7 +33,7 @@ export default async function JobRowHeading({
       strArr.push(employer.name);
     }
     if (homeOffice?.[1] && !hidden.homeOffice) {
-      strArr.push(`${homeOffice[1]}% ${dict["Home Office"]}`);
+      strArr.push(`${homeOffice[1]}% ${dict["homeOffice"]}`);
     }
     return strArr.join(", ");
   }

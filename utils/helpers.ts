@@ -2,16 +2,6 @@ import { ReadonlyURLSearchParams } from "next/navigation";
 import { ACTIVE_FILTER_NAMES } from "./constants";
 import { ActiveFilters, CustomBoard } from "./types";
 
-export const capitalize = (text: string): string => {
-  if (!text) return "";
-  // Split the string into words, considering consecutive uppercase letters as a single word
-  const words = text.match(/[A-Z]?[a-z]+|[A-Z]+(?![a-z])/g) || [];
-  // Capitalize the first letter of each word and join them with spaces
-  return words
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-};
-
 //@fixme how to remove it or make it responsive to activeFilers list
 export function pickActiveFiltersFromSearchParams(
   searchParams: ReadonlyURLSearchParams | null

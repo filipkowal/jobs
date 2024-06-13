@@ -38,7 +38,7 @@ export default function JobColumn({
       cityAndHomeOffice.push(job.address?.city);
     }
     if (job.homeOffice?.[1] && !hidden.homeOffice) {
-      cityAndHomeOffice.push(`${job.homeOffice?.[1]}% ${dict["Home Office"]}`);
+      cityAndHomeOffice.push(`${job.homeOffice?.[1]}% ${dict["homeOffice"]}`);
     }
     return cityAndHomeOffice.join(", ");
   }

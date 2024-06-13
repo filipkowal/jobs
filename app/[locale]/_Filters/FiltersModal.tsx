@@ -197,7 +197,7 @@ function getFilterComponent(
             activeFilters?.homeOffice && activeFilters?.homeOffice + " %"
           }
           key="homeOffice"
-          title={dict["Home Office"]}
+          title={dict["homeOffice"]}
           isOpen={isAccordionOpen("homeOffice")}
         >
           <RangeSlider
