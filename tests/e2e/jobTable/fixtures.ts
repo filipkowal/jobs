@@ -22,6 +22,15 @@ const test = base.extend<{
   },
   shareModalWithLink: async ({ shareModalOpened }, use) => {
     const { page } = shareModalOpened;
+
+    // Mock the POST request to the API
+    await page.route("**/en/refer", (route) => {
+      route.fulfill({
+        status: 200,
+        body: JSON.stringify("https://test.digitalent.cloud/s/test-id"),
+      });
+    });
+
     const emailInput = page.getByLabel(/email.*\**/i);
     await emailInput.fill("test@test.test");
     const termsCheckbox = page.getByRole("checkbox", {

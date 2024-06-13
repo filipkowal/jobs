@@ -38,7 +38,7 @@ test("Creates a share link and copies it", async ({ shareModalWithLink }) => {
   await expect(
     page.getByText(/it's your link\. now you just have to share it\./i)
   ).toBeVisible();
-  await expect(shareLinkInput).toHaveValue(/http/);
+  await expect(shareLinkInput).toHaveValue(/test.digitalent.cloud\/s\/test-id/);
 
   const copyButton = page.getByRole("button", { name: /copy/i });
   await copyButton.click();
