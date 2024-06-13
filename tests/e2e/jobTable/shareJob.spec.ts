@@ -25,7 +25,7 @@ test("Share modal button is only enabled if email is valid and terms are accepte
   await expect(createLinkButton).toBeDisabled();
 
   // enabled if email is valid
-  await emailInput.fill("a@a.de");
+  await emailInput.fill("test@test.test");
   await expect(createLinkButton).toBeEnabled();
 
   // disabled if terms are not accepted

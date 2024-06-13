@@ -23,7 +23,7 @@ const test = base.extend<{
   shareModalWithLink: async ({ shareModalOpened }, use) => {
     const { page } = shareModalOpened;
     const emailInput = page.getByLabel(/email.*\**/i);
-    await emailInput.fill("a@a.de");
+    await emailInput.fill("test@test.test");
     const termsCheckbox = page.getByRole("checkbox", {
       name: /i have read and agree to the terms of use\. \*/i,
     });

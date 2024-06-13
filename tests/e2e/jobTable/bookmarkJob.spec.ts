@@ -13,7 +13,7 @@ test("Bookmark Job button opens a modal with disabled Send button", async ({
 test("Only valid email enters the Send button", async ({ bookmarkModal }) => {
   const { sendButton, emailInput } = bookmarkModal;
   await expect(sendButton).toBeDisabled();
-  await emailInput.fill("a@a.de");
+  await emailInput.fill("test@test.test");
   await expect(sendButton).toBeEnabled();
   await emailInput.fill("invalidEmail");
   await expect(sendButton).toBeDisabled();
