@@ -40,46 +40,23 @@ test("Share modal button is only enabled if email is valid and terms are accepte
 
   await assertShareModalIsOpen(job, page);
 
-  const creatLinkButton = page.getByRole("button", {
-    name: /create a link/i,
-  });
-
-  await expect(creatLinkButton).toBeDisabled();
-
-  const emailInput = page.getByLabel(/email.*\**/i);
-  await emailInput.fill("a@a.de");
-
-  await expect(creatLinkButton).toBeDisabled();
-
-  await page
-    .getByRole("checkbox", {
-      name: /i have read and agree to the terms of use\. \*/i,
-    })
-    .check();
-
-  await expect(creatLinkButton).toBeEnabled();
+  const { emailInput, creatLinkButton } = await assertCreateLinkButtonEnabled(
+    page
+  );
 
   await emailInput.fill("invalidEmail");
   await expect(creatLinkButton).toBeDisabled();
 });
 
-test("Creates a share link", async ({ page }) => {
+test("Creates a share link and copies it", async ({ page }) => {
   const job = await getFirstJob(page);
   await assertJobIsOpen(job);
 
   await assertShareModalIsOpen(job, page);
 
-  const emailInput = page.getByLabel(/email.*\**/i);
-  await emailInput.fill("a@a.de");
-  await page
-    .getByRole("checkbox", {
-      name: /i have read and agree to the terms of use\. \*/i,
-    })
-    .check();
+  // Creates link
 
-  const creatLinkButton = page.getByRole("button", {
-    name: /create a link/i,
-  });
+  const { creatLinkButton } = await assertCreateLinkButtonEnabled(page);
   await creatLinkButton.click();
 
   await expect(
@@ -91,12 +68,13 @@ test("Creates a share link", async ({ page }) => {
   const link = await shareLinkInput.inputValue();
   expect(link).toContain("http");
 
+  // Expect the link to be in the clipboard when clicked copy button
+
   const copyButton = page.getByRole("button", {
     name: /copy/i,
   });
   await copyButton.click();
 
-  // expect the link to be in the clipboard
   let pastedLink = await page.evaluate("navigator.clipboard.readText()");
   expect(pastedLink).toContain(link);
 });
@@ -141,4 +119,27 @@ async function assertShareModalIsOpen(job: Locator, page: Page) {
   await shareButton.click();
 
   await expect(page.getByText(/share a job/i)).toBeVisible();
+}
+
+async function assertCreateLinkButtonEnabled(page: Page) {
+  const creatLinkButton = page.getByRole("button", {
+    name: /create a link/i,
+  });
+
+  await expect(creatLinkButton).toBeDisabled();
+
+  const emailInput = page.getByLabel(/email.*\**/i);
+  await emailInput.fill("a@a.de");
+
+  await expect(creatLinkButton).toBeDisabled();
+
+  await page
+    .getByRole("checkbox", {
+      name: /i have read and agree to the terms of use\. \*/i,
+    })
+    .check();
+
+  await expect(creatLinkButton).toBeEnabled();
+
+  return { emailInput, creatLinkButton };
 }
