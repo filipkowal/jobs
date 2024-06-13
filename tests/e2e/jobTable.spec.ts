@@ -1,20 +1,12 @@
-import { test, expect, Locator } from "@playwright/test";
+import { test, expect, Locator, Page } from "@playwright/test";
 
 test("Job can be opened", async ({ page }) => {
-  await page.goto("/");
-
-  const jobs = page.getByTestId("job-row-accordion");
-  const job = jobs.first();
-
+  const job = await getFirstJob(page);
   await assertJobIsOpen(job);
 });
 
 test("Clicking More Info button has an external link", async ({ page }) => {
-  await page.goto("/");
-
-  const jobs = page.getByTestId("job-row-accordion");
-  const job = jobs.first();
-
+  const job = await getFirstJob(page);
   await assertJobIsOpen(job);
 
   const moreInfoLink = job.getByRole("link", {
@@ -32,6 +24,16 @@ test("Clicking More Info button has an external link", async ({ page }) => {
     /.*jobs.digitalent.cloud.*/
   );
 });
+
+test("Clicking Share & Earn button opens a modal", async ({ page }) => {
+  const job = await getFirstJob(page);
+  await assertJobIsOpen(job);
+});
+
+async function getFirstJob(page: Page) {
+  await page.goto("/");
+  return page.getByTestId("job-row-accordion").first();
+}
 
 async function assertJobIsOpen(job: Locator) {
   await expect(job).toBeVisible();
