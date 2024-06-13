@@ -1,5 +1,4 @@
 import { test, expect, Locator, Page } from "@playwright/test";
-import { assert } from "console";
 
 test("Job can be opened", async ({ page }) => {
   const job = await getFirstJob(page);
@@ -62,6 +61,44 @@ test("Share modal button is only enabled if email is valid and terms are accepte
 
   await emailInput.fill("invalidEmail");
   await expect(creatLinkButton).toBeDisabled();
+});
+
+test("Creates a share link", async ({ page }) => {
+  const job = await getFirstJob(page);
+  await assertJobIsOpen(job);
+
+  await assertShareModalIsOpen(job, page);
+
+  const emailInput = page.getByLabel(/email.*\**/i);
+  await emailInput.fill("a@a.de");
+  await page
+    .getByRole("checkbox", {
+      name: /i have read and agree to the terms of use\. \*/i,
+    })
+    .check();
+
+  const creatLinkButton = page.getByRole("button", {
+    name: /create a link/i,
+  });
+  await creatLinkButton.click();
+
+  await expect(
+    page.getByText(/it's your link\. now you just have to share it\./i)
+  ).toBeVisible();
+
+  const shareLinkInput = page.getByRole("textbox");
+
+  const link = await shareLinkInput.inputValue();
+  expect(link).toContain("http");
+
+  // const copyButton = page.getByRole("button", {
+  //   name: /copy/i,
+  // });
+  // await copyButton.click();
+
+  // // expect the link to be in the clipboard
+  // const pastedLink = await navigator.clipboard.readText();
+  // expect(pastedLink).toContain(link);
 });
 
 // helper functions
