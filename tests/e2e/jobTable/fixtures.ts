@@ -4,6 +4,7 @@ const test = base.extend<{
   pageWithJob: { page: Page; job: Locator };
   shareModalOpened: { page: Page; job: Locator };
   shareModalWithLink: { page: Page; shareLinkInput: Locator };
+  bookmarkModal: { page: Page; sendButton: Locator; emailInput: Locator };
 }>({
   pageWithJob: async ({ page }, use) => {
     await page.goto("/");
@@ -33,6 +34,19 @@ const test = base.extend<{
     await createLinkButton.click();
     const shareLinkInput = page.getByRole("textbox");
     await use({ page, shareLinkInput });
+  },
+  bookmarkModal: async ({ pageWithJob }, use) => {
+    const { page, job } = pageWithJob;
+    const bookmarkButton = job.getByRole("button", {
+      name: /bookmark job and apply later/i,
+    });
+    await bookmarkButton.click();
+    const sendButton = page.getByRole("button", {
+      name: /send this job to my mailbox/i,
+    });
+    const emailInput = page.getByLabel(/email.*\**/i);
+
+    await use({ page, sendButton, emailInput });
   },
 });
 
