@@ -1,4 +1,5 @@
 import { test, expect, Locator, Page } from "@playwright/test";
+import { assert } from "console";
 
 test("Job can be opened", async ({ page }) => {
   const job = await getFirstJob(page);
@@ -28,7 +29,42 @@ test("Clicking More Info button has an external link", async ({ page }) => {
 test("Clicking Share & Earn button opens a modal", async ({ page }) => {
   const job = await getFirstJob(page);
   await assertJobIsOpen(job);
+
+  await assertShareModalIsOpen(job, page);
 });
+
+test("Share modal button is only enabled if email is valid and terms are accepted", async ({
+  page,
+}) => {
+  const job = await getFirstJob(page);
+  await assertJobIsOpen(job);
+
+  await assertShareModalIsOpen(job, page);
+
+  const creatLinkButton = page.getByRole("button", {
+    name: /create a link/i,
+  });
+
+  await expect(creatLinkButton).toBeDisabled();
+
+  const emailInput = page.getByLabel(/email.*\**/i);
+  await emailInput.fill("a@a.de");
+
+  await expect(creatLinkButton).toBeDisabled();
+
+  await page
+    .getByRole("checkbox", {
+      name: /i have read and agree to the terms of use\. \*/i,
+    })
+    .check();
+
+  await expect(creatLinkButton).toBeEnabled();
+
+  await emailInput.fill("invalidEmail");
+  await expect(creatLinkButton).toBeDisabled();
+});
+
+// helper functions
 
 async function getFirstJob(page: Page) {
   await page.goto("/");
@@ -57,4 +93,13 @@ async function assertJobIsOpen(job: Locator) {
       name: /bookmark job and apply later/i,
     })
   ).toBeVisible();
+}
+
+async function assertShareModalIsOpen(job: Locator, page: Page) {
+  const shareButton = job.getByRole("button", {
+    name: /share & earn 500 chf/i,
+  });
+  await shareButton.click();
+
+  await expect(page.getByText(/share a job/i)).toBeVisible();
 }
