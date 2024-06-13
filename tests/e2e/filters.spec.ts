@@ -17,7 +17,6 @@ test("Applying region filter updates job count", async ({ page }) => {
     name: /apply filters/i,
   });
   expect(applyButton).toBeVisible();
-  await expect(applyButton).toBeDisabled();
 
   const initialCount = await getJobCount(applyButton);
 
@@ -28,6 +27,7 @@ test("Applying region filter updates job count", async ({ page }) => {
   await expect(zurichCheckbox).toBeVisible();
   await zurichCheckbox.click();
 
+  await expect(applyButton).toBeDisabled();
   await expect(applyButton).toBeEnabled();
 
   const finalCount = await getJobCount(applyButton);
