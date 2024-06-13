@@ -91,17 +91,19 @@ test("Creates a share link", async ({ page }) => {
   const link = await shareLinkInput.inputValue();
   expect(link).toContain("http");
 
-  // const copyButton = page.getByRole("button", {
-  //   name: /copy/i,
-  // });
-  // await copyButton.click();
+  const copyButton = page.getByRole("button", {
+    name: /copy/i,
+  });
+  await copyButton.click();
 
-  // // expect the link to be in the clipboard
-  // const pastedLink = await navigator.clipboard.readText();
-  // expect(pastedLink).toContain(link);
+  // expect the link to be in the clipboard
+  let pastedLink = await page.evaluate("navigator.clipboard.readText()");
+  expect(pastedLink).toContain(link);
 });
 
-// helper functions
+// ---------------------
+// ---- HELPER FUNCTIONS
+// ---------------------
 
 async function getFirstJob(page: Page) {
   await page.goto("/");
