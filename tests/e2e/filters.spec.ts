@@ -40,6 +40,6 @@ async function getJobCount(applyButton: Locator) {
 
   const regex = /\((\d+)\)/;
   const match = regex.exec(text);
-  if (!match?.[1]) throw new Error("Job count not found");
+  if (!match?.[1]) throw new Error("Job count not found in: " + text);
   return Number(match[1]);
 }
