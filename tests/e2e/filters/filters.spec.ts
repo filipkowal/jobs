@@ -1,9 +1,9 @@
-import { test, expect } from "@playwright/test";
+import { expect } from "@playwright/test";
 import { getJobCount, getDictionary } from "./helpers";
-import { FILTER_BUTTON_NAMES, FILTER_NAMES } from "@/utils/constants";
+import { FILTER_BUTTON_NAMES } from "@/utils/constants";
+import { test } from "./fixtures";
 
 test("Filter buttons are visible", async ({ page }) => {
-  await page.goto("/");
   const dict = await getDictionary("en");
 
   for (const filterName of FILTER_BUTTON_NAMES) {
@@ -13,28 +13,17 @@ test("Filter buttons are visible", async ({ page }) => {
   }
 });
 
-test("Clicking More button shows all filters in modal", async ({ page }) => {
-  await page.goto("/");
-  const dict = await getDictionary("en");
+test("Clicking More button shows all filters in modal", async ({
+  filterModal,
+}) => {
+  const { filterAccordions } = filterModal;
 
-  const moreButton = page.getByRole("button", {
-    name: /more\.\.\./i,
-  });
-
-  moreButton.click();
-
-  for (const filterName of FILTER_NAMES) {
-    await expect(
-      page.getByRole("heading", {
-        name: dict["filtersSection"][filterName],
-      })
-    ).toBeVisible();
+  for (const filter of filterAccordions) {
+    await expect(filter.heading).toBeVisible();
   }
 });
 
 test("Applying region filter updates job count", async ({ page }) => {
-  await page.goto("/");
-
   const regionsButton = page.getByText("Regions");
 
   regionsButton.click();

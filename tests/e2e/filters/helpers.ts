@@ -27,3 +27,9 @@ const dictionaries = {
 };
 export const getDictionary = async (locale: Locale) =>
   dictionaries[i18n.locales.includes(locale) ? locale : i18n.defaultLocale]();
+
+export type Dictionary = ReturnType<typeof getDictionary> extends Promise<
+  infer T
+>
+  ? T
+  : never;
