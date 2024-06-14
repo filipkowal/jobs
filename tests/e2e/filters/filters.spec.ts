@@ -65,6 +65,8 @@ test("Applying all filters updates job count", async ({ filterModal }) => {
   await smallTag.click();
 
   // @fixme: Add range filters
+  // Salary
+  // const minSalary = modal.getByRole("slider", { name: /min\-min\. salary/i });
 
   // Check job count change
   await expect(applyButton).toBeEnabled();
