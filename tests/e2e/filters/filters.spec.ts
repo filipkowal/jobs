@@ -23,33 +23,73 @@ test("Clicking More button shows all filters in modal", async ({
   }
 });
 
-test("Applying region filter updates job count", async ({ page }) => {
-  const regionsButton = page.getByText("Regions");
+test("Applying all filters updates job count", async ({ filterModal }) => {
+  const { filterAccordions, modal } = filterModal;
 
-  regionsButton.click();
-
-  expect(
-    page.getByRole("heading", {
-      name: /filters/i,
-    })
-  ).toBeVisible();
-
-  const applyButton = page.getByRole("button", {
+  const applyButton = modal.getByRole("button", {
     name: /apply filters/i,
   });
   expect(applyButton).toBeVisible();
-
   const initialCount = await getJobCount(applyButton);
 
-  const zurichCheckbox = page.getByRole("checkbox", {
+  for (const filter of filterAccordions) {
+    await filter.heading.click();
+  }
+
+  // Regions
+  const zurichCheckbox = modal.getByRole("checkbox", {
     name: /canton of zurich/i,
   });
 
   await expect(zurichCheckbox).toBeVisible();
   await zurichCheckbox.click();
 
-  await expect(applyButton).toBeEnabled();
+  // Career Fields
+  const engineeringTag = modal.getByText(/system engineering/i);
+  await expect(engineeringTag).toBeVisible();
+  await engineeringTag.click();
 
+  // Technologies
+  const m365Tag = modal.getByText(/m365/i);
+  await expect(m365Tag).toBeVisible();
+  await m365Tag.click();
+
+  // Industries
+  const iTAndTelecomTag = modal.getByText(/it & telecommunications/i);
+  await expect(iTAndTelecomTag).toBeVisible();
+  await iTAndTelecomTag.click();
+
+  // Company Sizes
+  const smallTag = modal.getByText(/small \(≤ 50\)/i);
+  await expect(smallTag).toBeVisible();
+  await smallTag.click();
+
+  // @fixme: Add range filters
+
+  // Check job count change
+  await expect(applyButton).toBeEnabled();
   const finalCount = await getJobCount(applyButton);
   expect(finalCount).toBeLessThan(initialCount);
+  console.log(`Initial: ${initialCount}, Final: ${finalCount}`);
+});
+
+test("Clicking region button opens modal with regions filter", async ({
+  page,
+}) => {
+  const regionsButton = page.getByText("Regions");
+
+  await regionsButton.click();
+
+  await expect(
+    page.getByRole("heading", {
+      name: /filters/i,
+    })
+  ).toBeVisible();
+
+  await expect(page.getByText(/canton of zurich/i)).toBeVisible();
+  await expect(
+    page.getByRole("checkbox", {
+      name: /canton of zurich/i,
+    })
+  ).toBeVisible();
 });

@@ -9,10 +9,8 @@ export const test = base.extend<{
     page: Page;
     filterAccordions: Filter;
     dict: Dictionary["filtersSection"];
+    modal: Locator;
   };
-  shareModalOpened: { page: Page; job: Locator };
-  shareModalWithLink: { page: Page; shareLinkInput: Locator };
-  bookmarkModal: { page: Page; sendButton: Locator; emailInput: Locator };
 }>({
   page: async ({ page }, use) => {
     await page.goto("/");
@@ -20,15 +18,20 @@ export const test = base.extend<{
     await use(page);
   },
   filterModal: async ({ page }, use) => {
-    await page.goto("/");
     const dictionary = await getDictionary("en");
     const dict = dictionary["filtersSection"];
+
+    await page.goto("/");
 
     const moreButton = page.getByRole("button", {
       name: /more\.\.\./i,
     });
 
     moreButton.click();
+
+    const modal = page.getByRole("dialog", {
+      name: /filters/i,
+    });
 
     let filterAccordions: Filter = [];
     for (const filterName of FILTER_NAMES) {
@@ -39,6 +42,6 @@ export const test = base.extend<{
         }),
       });
     }
-    await use({ page, filterAccordions, dict });
+    await use({ page, filterAccordions, dict, modal });
   },
 });
