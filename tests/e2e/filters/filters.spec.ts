@@ -1,4 +1,17 @@
-import { test, expect, Locator } from "@playwright/test";
+import { test, expect } from "@playwright/test";
+import { getJobCount, getDictionary } from "./helpers";
+import { FILTER_BUTTON_NAMES } from "@/utils/constants";
+
+test("Filter buttons are visible", async ({ page }) => {
+  await page.goto("/");
+  const dict = await getDictionary("en");
+
+  for (const filterName of FILTER_BUTTON_NAMES) {
+    await expect(
+      page.getByRole("button", { name: dict["filtersSection"][filterName] })
+    ).toBeVisible();
+  }
+});
 
 test("Applying region filter updates job count", async ({ page }) => {
   await page.goto("/");
@@ -32,13 +45,3 @@ test("Applying region filter updates job count", async ({ page }) => {
   const finalCount = await getJobCount(applyButton);
   expect(finalCount).toBeLessThan(initialCount);
 });
-
-async function getJobCount(applyButton: Locator) {
-  await expect(applyButton).toHaveText(/Apply Filters \(\d+\)/i);
-  const text = await applyButton.innerText();
-
-  const regex = /\((\d+)\)/;
-  const match = regex.exec(text);
-  if (!match?.[1]) throw new Error("Job count not found in: " + text);
-  return Number(match[1]);
-}

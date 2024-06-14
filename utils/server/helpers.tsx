@@ -9,13 +9,12 @@ const dictionaries = {
   de: () => import("@/dictionaries/de.json").then((module) => module.default),
   fr: () => import("@/dictionaries/fr.json").then((module) => module.default),
 };
+export const getDictionary = async (locale: Locale) =>
+  dictionaries[i18n.locales.includes(locale) ? locale : i18n.defaultLocale]();
 
 const customBoard = import("@/customBoard.json").then(
   (module) => module.default
 );
-
-export const getDictionary = async (locale: Locale) =>
-  dictionaries[i18n.locales.includes(locale) ? locale : i18n.defaultLocale]();
 export const getCustomBoard = async () => customBoard;
 
 export type Dictionary = ReturnType<typeof getDictionary> extends Promise<
