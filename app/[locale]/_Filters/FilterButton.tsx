@@ -20,7 +20,7 @@ export default function FilterButton({
   dict: Dictionary["filtersSection"];
 }) {
   return (
-    <span
+    <button
       key={filterName}
       onClick={() => {
         setOpenFilterName(
@@ -29,6 +29,7 @@ export default function FilterButton({
         setIsModalOpen(true);
       }}
       className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1 mr-2 mb-2 break-keep inline-block cursor-pointer
+                focus:!outline-2 focus:!outline-digitalent-blue focus:!ring-2 focus:!ring-digitalent-blue
                 ${
                   activeFilters &&
                   Object.keys(activeFilters).includes(
@@ -38,6 +39,6 @@ export default function FilterButton({
                 }`}
     >
       {dict[filterName]}
-    </span>
+    </button>
   );
 }
