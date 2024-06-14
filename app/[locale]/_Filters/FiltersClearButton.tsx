@@ -19,11 +19,12 @@ export default function FiltersClearButton({
 
   return activeFilters && Object.keys(activeFilters).length ? (
     <Link href={`/${locale}`}>
-      <span
+      <button
         onClick={() => {
           router.push(activeFiltersURL);
         }}
-        className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1 mr-2 mb-2 break-keep inline-block cursor-pointer ${className}`}
+        className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1 mr-2 mb-2 break-keep inline-block cursor-pointer 
+          focus:!outline-2 focus:!outline-digitalent-blue focus:!ring-2 focus:!ring-digitalent-blue ${className}`}
       >
         <svg
           className="hidden sm:inline w-6 h-6 pr-1 pb-1"
@@ -40,7 +41,7 @@ export default function FiltersClearButton({
           ></path>
         </svg>
         {dict["Clear"]}
-      </span>
+      </button>
     </Link>
   ) : null;
 }

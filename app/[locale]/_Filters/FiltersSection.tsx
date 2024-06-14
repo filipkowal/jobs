@@ -89,12 +89,13 @@ export default function FiltersSection({
           ))}
         </>
 
-        <span
+        <button
           onClick={() => setIsModalOpen(true)}
-          className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
+          className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer
+            focus:!outline-2 focus:!outline-digitalent-blue focus:!ring-2 focus:!ring-digitalent-blue`}
         >
           {dict["More..."]}
-        </span>
+        </button>
 
         <FiltersClearButton
           locale={locale}
