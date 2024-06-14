@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { getJobCount, getDictionary } from "./helpers";
-import { FILTER_BUTTON_NAMES } from "@/utils/constants";
+import { FILTER_BUTTON_NAMES, FILTER_NAMES } from "@/utils/constants";
 
 test("Filter buttons are visible", async ({ page }) => {
   await page.goto("/");
@@ -9,6 +9,25 @@ test("Filter buttons are visible", async ({ page }) => {
   for (const filterName of FILTER_BUTTON_NAMES) {
     await expect(
       page.getByRole("button", { name: dict["filtersSection"][filterName] })
+    ).toBeVisible();
+  }
+});
+
+test("Clicking More button shows all filters in modal", async ({ page }) => {
+  await page.goto("/");
+  const dict = await getDictionary("en");
+
+  const moreButton = page.getByRole("button", {
+    name: /more\.\.\./i,
+  });
+
+  moreButton.click();
+
+  for (const filterName of FILTER_NAMES) {
+    await expect(
+      page.getByRole("heading", {
+        name: dict["filtersSection"][filterName],
+      })
     ).toBeVisible();
   }
 });
