@@ -13,17 +13,11 @@ export async function getJobCount(applyButton: Locator) {
 
 const dictionaries = {
   en: () =>
-    import("/home/f/projects/jobs/dictionaries/en.json").then(
-      (module) => module.default
-    ),
+    import("../../../dictionaries/en.json").then((module) => module.default),
   de: () =>
-    import("/home/f/projects/jobs/dictionaries/de.json").then(
-      (module) => module.default
-    ),
+    import("../../../dictionaries/de.json").then((module) => module.default),
   fr: () =>
-    import("/home/f/projects/jobs/dictionaries/fr.json").then(
-      (module) => module.default
-    ),
+    import("../../../dictionaries/fr.json").then((module) => module.default),
 };
 export const getDictionary = async (locale: Locale) =>
   dictionaries[i18n.locales.includes(locale) ? locale : i18n.defaultLocale]();
