@@ -41,6 +41,7 @@ export default function ApplicationFormBasket({
                     viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg"
                     onClick={() => removePinnedJob(job.id as string)}
+                    data-testid="remove-pinned-job"
                   >
                     <path
                       fillRule="evenodd"
