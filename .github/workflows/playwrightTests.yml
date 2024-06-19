@@ -1,4 +1,4 @@
-name: Playwright Tests By Vercel
+name: Playwright Tests
 
 on:
   deployment_status:
