@@ -1,39 +1,16 @@
-name: Playwright Tests After Vercel
+name: Playwright Tests By Vercel
 
 on:
-  check_run:
-    types: [completed]
-
+  deployment_status:
 jobs:
-  test_setup:
-    if: ${{ github.event.check_run.name == 'Vercel' && github.event.check_run.conclusion == 'success' }}
-    name: Test setup
-    runs-on: ubuntu-latest
-    outputs:
-      preview_url: ${{ steps.waitForVercelPreviewDeployment.outputs.url }}
-    steps:
-      - name: Wait for Vercel Preview
-        uses: patrickedqvist/wait-for-vercel-preview@v1.3.1    
-        id: waitForVercelPreviewDeployment
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          max_timeout: 300
-
-  test_e2e:
-    if: ${{ github.event.check_run.name == 'Vercel' && github.event.check_run.conclusion == 'success' }}
-    needs: test_setup
-    name: Playwright tests
-    timeout-minutes: 5
+  run-e2es:
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
-      - name: Prepare testing env
-        uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "14"
-      - run: npm ci
-      - run: npx playwright install --with-deps
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm ci && npx playwright install --with-deps
       - name: Run tests
-        run: npm run test:e2e
+        run: npx playwright test
         env:
-          PLAYWRIGHT_TEST_BASE_URL: ${{ needs.test_setup.outputs.preview_url }}
+          BASE_URL: ${{ github.event.deployment_status.environment_url }}
