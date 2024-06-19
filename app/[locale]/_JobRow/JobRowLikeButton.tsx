@@ -3,8 +3,8 @@
 import { useContext } from "react";
 
 import { PinnedJobsContext } from "../PinnedJobsContextProvider";
-import PinIcon from "../../../components/icons/PinIcon";
-import { CustomBoard } from "../../../utils";
+import PinIcon from "@/components/icons/PinIcon";
+import { CustomBoard } from "@/utils";
 
 export default function LikeButton({
   jobId,

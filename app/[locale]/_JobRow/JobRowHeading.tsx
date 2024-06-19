@@ -1,19 +1,17 @@
-import { Job } from "../../../utils";
+import { Job, k } from "@/utils";
 import Image from "next/image";
-import { Tooltip } from "../../../components";
+import { Tooltip } from "@/components";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import LikeButton from "./JobRowLikeButton";
-import { getCustomBoard, getDictionary } from "../../../utils/server";
-import { Locale } from "../../../i18n-config";
+import { getCustomBoard, getDictionary } from "@/utils/server";
+import { Locale } from "@/i18n-config";
 
 export default async function JobRowHeading({
   job,
   locale,
-  k,
 }: {
   job: Job;
   locale: Locale;
-  k: (s?: string | number) => number | undefined;
 }) {
   const {
     id: jobId,
@@ -27,6 +25,18 @@ export default async function JobRowHeading({
 
   const dict = await getDictionary(locale);
   const customBoard = await getCustomBoard();
+  const hidden = customBoard.hiddenJobData;
+
+  function getEmployerNameAndHomeOffice() {
+    let strArr = [];
+    if (!hidden.employerName && employer?.name) {
+      strArr.push(employer.name);
+    }
+    if (homeOffice?.[1] && !hidden.homeOffice) {
+      strArr.push(`${homeOffice[1]}% ${dict["homeOffice"]}`);
+    }
+    return strArr.join(", ");
+  }
 
   return (
     <>
@@ -35,7 +45,7 @@ export default async function JobRowHeading({
           customBoard?.cards ? "" : "w-full lg:w-[60%] xl:w-[65%]"
         }`}
       >
-        {!customBoard?.cards && employer?.logo ? (
+        {!customBoard?.cards && employer?.logo && !hidden.logo ? (
           <div className="block h-[52px] w-[70px] object-contain md:w-[130px] relative">
             <Image
               src={employer.logo}
@@ -61,18 +71,14 @@ export default async function JobRowHeading({
             </span>
           </h2>
           <span className="font-light text-sm hidden md:block">
-            {employer?.name}
-
-            {homeOffice?.[1]
-              ? `, ${homeOffice[1]}% ${dict["Home Office"]}`
-              : ""}
+            {getEmployerNameAndHomeOffice()}
           </span>
         </div>
       </div>
 
       <div className="flex flex-row gap-2 xl:gap-6 align-middle w-auto">
         <div className="flex flex-col pl-[95px] md:pl-0 md:flex-row md:gap-1 xl:gap-4 align-middle w-full justify-start md:justify-end md:w-auto">
-          {salary?.amount && !customBoard?.hiddenJobData?.salary && (
+          {salary?.amount && !hidden.salary && (
             <span
               className={`flex md:h-10 md:py-2 my-auto whitespace-nowrap items-baseline md:items-start ${
                 customBoard?.cards ? "" : "pr-4 md:pl-4 md:w-40"
@@ -102,7 +108,7 @@ export default async function JobRowHeading({
               </Tooltip>
             </span>
           )}
-          {address && (
+          {address && !hidden.address && (
             <span className="md:px-4 md:pt-2 md:pb-1 md:w-28 md:text-right translate-y-[2px] z-10">
               <span className="font-title text-xs md:text-base md:font-medium inline-block w-[100px] whitespace-nowrap text-ellipsis overflow-hidden">
                 {`${address?.city || address?.country}`}

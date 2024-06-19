@@ -9,7 +9,7 @@ import Modal from "./Modal";
 import RangeSlider from "./RangeSlider";
 import Spinner from "./Spinner";
 import Tag from "./Tag";
-import TagOptionGroup from "./TagOptionGroup";
+import TagsInput from "./TagsInput";
 import TextInput from "./TextInput";
 import ToastProvider from "./ToastProvider";
 import Tooltip from "./Tooltip";
@@ -26,7 +26,7 @@ export {
   RangeSlider,
   Spinner,
   Tag,
-  TagOptionGroup,
+  TagsInput,
   TextInput,
   ToastProvider,
   Tooltip,

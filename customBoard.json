@@ -1,12 +1,11 @@
 {
-  "tabTitle": "",
-  "title": "",
-  "subtitle1": "",
-  "subtitle2": "",
-  "hideTitle": false,
-  "hideSubtitle": false,
+  "documentTitle": "",
+  "heading": "",
+  "subheading1": "",
+  "subheading2": "",
+  "hideHeading": false,
+  "hideSubheading": false,
   "hideLogo": false,
-  "hideBackgroundImage": false,
   "hideFooter": false,
   "colors": {
     "background": "",
@@ -23,7 +22,6 @@
     "digitalentMine": { "DEFAULT": "" }
   },
   "hideAllFilters": false,
-  "employerNameFilters": [""],
   "hiddenFilters": {
     "careerFields": false,
     "workLanguages": true,
@@ -36,10 +34,15 @@
     "jobLevels": false,
     "regions": false
   },
-  "hiddenJobData": { "salary": false },
+  "hiddenJobData": {
+    "salary": false,
+    "address": false,
+    "homeOffice": false,
+    "logo": false,
+    "employerName": false
+  },
   "disableCompareView": false,
   "disableDetailView": false,
-  "disableSubscription": true,
   "openJLPInSameTab": false,
   "cards": false
 }

@@ -1,15 +1,17 @@
 "use client";
 
-import {
-  type ActiveFilterName,
+import type {
+  Dictionary,
   CustomBoard,
   Locale,
   Filters,
+  OpenFilterName,
+} from "@/utils";
+import {
   pickActiveFiltersFromSearchParams,
-  FILTER_NAMES,
-} from "../../../utils";
+  FILTER_BUTTON_NAMES,
+} from "@/utils";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
-import { type FiltersModalDict } from "./FiltersModal";
 import { useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import FiltersClearButton from "./FiltersClearButton";
@@ -19,54 +21,32 @@ import FiltersNumberLabel from "./FiltersNumberLabel";
 
 const FiltersModal = dynamic(() => import("./FiltersModal"));
 
-interface Salary {
-  amount?: number[] | undefined;
-  currency?: string | undefined;
-  unit?: string | undefined;
-}
-export type OpenFilterName = ActiveFilterName | "none";
-
-export function isOfSalaryType(
-  value: Salary | any[] | undefined
-): value is Salary {
-  return (value as Salary).amount !== undefined;
-}
-
 export default function FiltersSection({
   dict,
   locale,
   filters,
   customBoard,
 }: {
-  dict: {
-    "Career Fields": string;
-    "More...": string;
-    Filters: string;
-  } & FiltersModalDict;
+  dict: Dictionary["filtersSection"];
   locale: Locale;
   filters: Filters;
   customBoard: CustomBoard;
 }) {
   const searchParams = useSearchParams();
 
-  const defaultActiveFilters = useMemo(
+  const initialActiveFilters = useMemo(
     () => pickActiveFiltersFromSearchParams(searchParams),
     [searchParams]
   );
-  const numberOfVisibleFliterButtons = useMemo(
-    () => (locale === "fr" ? 6 : 7),
-    [locale]
-  );
-  const filtersNotHiddenNames = useMemo(() => {
-    const hiddenButtonNames = ["technologies", "jobLevels", "homeOffice"];
 
-    return FILTER_NAMES.filter(
-      (filterName) =>
-        !customBoard.hiddenFilters?.[
-          filterName as keyof typeof customBoard.hiddenFilters
-        ] && !hiddenButtonNames.includes(filterName)
-    );
-  }, [customBoard]);
+  const filterButtonNames = useMemo(() => {
+    const hidden = customBoard.hiddenFilters;
+    const numOfVisible = locale === "fr" ? 6 : 7;
+
+    return FILTER_BUTTON_NAMES.filter(
+      (filterName) => !hidden?.[filterName as keyof typeof hidden]
+    ).slice(0, numOfVisible - 1);
+  }, [customBoard, locale]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFilterName, setOpenFilterName] = useState<OpenFilterName>("none");
@@ -83,7 +63,7 @@ export default function FiltersSection({
           setIsModalOpen={setIsModalOpen}
           openFilterName={openFilterName}
           setOpenFilterName={setOpenFilterName}
-          defaultActiveFilters={defaultActiveFilters}
+          initialActiveFilters={initialActiveFilters}
         />
       )}
 
@@ -93,35 +73,34 @@ export default function FiltersSection({
           className="text-digitalent-blue pr-2 w-8 h-8 cursor-pointer"
         />
         <FiltersNumberLabel
-          activeFilters={defaultActiveFilters}
+          activeFilters={initialActiveFilters}
           setIsModalOpen={setIsModalOpen}
         />
         <>
-          {filtersNotHiddenNames
-            .slice(0, numberOfVisibleFliterButtons - 1)
-            .map((filterName) => (
-              <FilterButton
-                key={filterName}
-                filterName={filterName}
-                setOpenFilterName={setOpenFilterName}
-                setIsModalOpen={setIsModalOpen}
-                activeFilters={defaultActiveFilters}
-                dict={dict}
-              />
-            ))}
+          {filterButtonNames.map((filterName) => (
+            <FilterButton
+              key={filterName}
+              filterName={filterName}
+              setOpenFilterName={setOpenFilterName}
+              setIsModalOpen={setIsModalOpen}
+              activeFilters={initialActiveFilters}
+              dict={dict}
+            />
+          ))}
         </>
 
-        <span
+        <button
           onClick={() => setIsModalOpen(true)}
-          className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
+          className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer
+            focus:!outline-2 focus:!outline-digitalent-blue focus:!ring-2 focus:!ring-digitalent-blue`}
         >
           {dict["More..."]}
-        </span>
+        </button>
 
         <FiltersClearButton
           locale={locale}
-          activeFilters={defaultActiveFilters}
-          dict={{ Clear: dict["Clear"] }}
+          activeFilters={initialActiveFilters}
+          dict={dict}
         />
       </div>
 
@@ -136,7 +115,7 @@ export default function FiltersSection({
           <AdjustmentsHorizontalIcon className="ml-2 mb-1 w-6 h-6 inline-block" />
         </span>
         <FiltersNumberLabel
-          activeFilters={defaultActiveFilters}
+          activeFilters={initialActiveFilters}
           setIsModalOpen={setIsModalOpen}
         />
       </div>

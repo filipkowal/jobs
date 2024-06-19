@@ -9,10 +9,6 @@ export interface paths {
     /** Get all or filtered and paginated jobs and active filters */
     get: operations["getJobs"];
   };
-  "/{language}/jobs/{id}": {
-    /** Get individual Job data */
-    get: operations["getJob"];
-  };
   "/{language}/filters": {
     /** Get all filters' possible values */
     get: operations["getFilters"];
@@ -205,7 +201,6 @@ export interface components {
       careerFields?: components["schemas"]["Tags"];
       technologies?: components["schemas"]["Tags"];
       industries?: components["schemas"]["Tags"];
-      workLanguages?: components["schemas"]["Tags"];
       jobLevels?: components["schemas"]["Tags"];
       companySizes?: components["schemas"]["Tags"];
       workload?: components["schemas"]["Range"];
@@ -224,7 +219,6 @@ export interface components {
       careerFields?: components["schemas"]["Tags"];
       technologies?: components["schemas"]["Tags"];
       industries?: components["schemas"]["Tags"];
-      workLanguages?: components["schemas"]["Tags"];
       jobLevels?: components["schemas"]["Tags"];
       companySizes?: components["schemas"]["Tags"];
       workload?: components["schemas"]["Range"];
@@ -248,17 +242,6 @@ export interface components {
        * ]
        */
       regions?: components["schemas"]["Filters_regions"][];
-    };
-    Font: {
-      /** @example Crimson Pro */
-      name?: string;
-      /**
-       * Format: url
-       * @example https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200..900&display=swap
-       */
-      url?: string;
-      /** @example 700 */
-      weight?: string;
     };
     inline_response_200: {
       jobs?: components["schemas"]["Job"][];
@@ -403,13 +386,6 @@ export interface operations {
         companySizes?: components["schemas"]["Tags"];
         /**
          * @example [
-         *   "german",
-         *   "english"
-         * ]
-         */
-        workLanguages?: components["schemas"]["Tags"];
-        /**
-         * @example [
          *   80,
          *   100
          * ]
@@ -454,28 +430,6 @@ export interface operations {
         content: never;
       };
       /** @description Language not found */
-      404: {
-        content: never;
-      };
-    };
-  };
-  /** Get individual Job data */
-  getJob: {
-    parameters: {
-      path: {
-        language: components["schemas"]["Language"];
-        /** @description ID of the job */
-        id: components["schemas"]["Id"];
-      };
-    };
-    responses: {
-      /** @description Get individual Job data */
-      200: {
-        content: {
-          "application/json": components["schemas"]["Job"];
-        };
-      };
-      /** @description Language or jobId not found */
       404: {
         content: never;
       };

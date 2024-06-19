@@ -18,7 +18,7 @@ const RangeSlider = ({
   max: number;
   min: number;
   step: number;
-  name: string;
+  name?: string;
   unit?: string;
   className?: string;
 }) => {
@@ -58,8 +58,8 @@ const RangeSlider = ({
         <Slider.Track className="SliderTrack">
           <Slider.Range className="SliderRange" />
         </Slider.Track>
-        <Slider.Thumb className="SliderThumb" />
-        <Slider.Thumb className="SliderThumb" />
+        <Slider.Thumb className="SliderThumb" aria-label={`min-${name}`} />
+        <Slider.Thumb className="SliderThumb" aria-label={`max-${name}`} />
       </Slider.Root>
     </label>
   );

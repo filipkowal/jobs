@@ -1,9 +1,9 @@
 import Link from "next/link";
-import Button from "../../../components/Button";
-import { type CustomBoard, type Job, type Locale } from "../../../utils";
+import Button from "@/components/Button";
+import { type CustomBoard, type Job, type Locale } from "@/utils";
 import ShareJob from "./JobRowShareModal";
 import SaveJob from "./SaveJob";
-import { getDictionary } from "../../../utils/server";
+import { getDictionary } from "@/utils/server";
 
 export default async function JobActions({
   landingPageUrl,

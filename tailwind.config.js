@@ -36,7 +36,6 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ["var(--font-inter)", "sans-serif"],
       title: ["var(--font-stolzl)", "sans-serif"],
       serif: ["var(--font-merriweather)", "serif"],
       logo: ["var(--font-loew)", "sans-serif"],

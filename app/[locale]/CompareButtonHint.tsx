@@ -1,3 +1,4 @@
+import { Dictionary } from "@/utils";
 import { useEffect, useState } from "react";
 
 export default function CompareButtonHint({
@@ -5,7 +6,7 @@ export default function CompareButtonHint({
   dict,
 }: {
   pinnedJobs: string[];
-  dict: { compareButtonHint: string };
+  dict: Dictionary["compareButton"];
 }) {
   const [hintHidden, setHintHidden] = useState(false);
   useEffect(() => {
@@ -35,7 +36,7 @@ export default function CompareButtonHint({
           }}
         />
 
-        {dict.compareButtonHint}
+        {dict["hint"]}
       </div>
 
       {/* X button */}

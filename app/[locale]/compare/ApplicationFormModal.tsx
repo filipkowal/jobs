@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Job, Locale } from "../../../utils";
+import { Job, Locale } from "@/utils";
 import { useRouter } from "next/navigation";
 import ApplicationFormSuccessStep from "./ApplicationFormSuccess";
 import ApplicationFormBasket from "./ApplicationFormBasket";
 import ApplicationFormAboutYou from "./ApplicationFormAboutYou";
 import dynamic from "next/dynamic";
+import { Dictionary } from "@/utils/server";
 
-const Modal = dynamic(() => import("../../../components/Modal"));
+const Modal = dynamic(() => import("@/components/Modal"));
 
 export default function ApplicationFormModal({
   isOpen,
@@ -23,7 +24,7 @@ export default function ApplicationFormModal({
   removePinnedJob: (jobId: string) => void;
   pinnedJobs: Job[];
   testStepNumber?: number;
-  dict: ApplicationDict;
+  dict: Dictionary["compareJobTable"];
 }) {
   const router = useRouter();
 
@@ -75,38 +76,4 @@ export default function ApplicationFormModal({
       {steps[stepNumber]}
     </Modal>
   );
-}
-
-export interface ApplicationDict {
-  "You are applying for": string;
-  "Go back": string;
-  Woman: string;
-  Man: string;
-  Other: string;
-  Email: string;
-  Name: string;
-  Message: string;
-  "Link to your LinkedIn profile": string;
-  "I am applying directly": string;
-  "I work for a recruitment agency": string;
-  termsAgreed1: string;
-  termsAgreed2: string;
-  termsAgreed3: string;
-  Next: string;
-  "application.basket.title.0": string;
-  "application.basket.title.1": string;
-  "application.basket.title.2": string;
-  "Apply for": string;
-  jobs: string;
-  job: string;
-  "Something went wrong": string;
-  recruiterInfo: string;
-  "Drop CV files or click to select": string;
-  invalidEmail: string;
-  fileInput: {
-    drop: string;
-    select: string;
-    fileReadError: string;
-    fileUploadError: string;
-  };
 }

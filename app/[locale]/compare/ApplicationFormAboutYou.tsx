@@ -5,10 +5,10 @@ import {
   FileInput,
   LoadingEllipsis,
   TextInput,
-} from "../../../components";
-import { ApplicationDict } from "./ApplicationFormModal";
-import { Locale, postData } from "../../../utils";
+} from "@/components";
+import { Locale, postData, stripOfEmptyStringsAndArrays } from "@/utils";
 import { toast } from "react-hot-toast";
+import { Dictionary } from "@/utils/server";
 
 export default function ApplicationFormAboutYou({
   dict,
@@ -17,21 +17,18 @@ export default function ApplicationFormAboutYou({
   setStepNumber,
   jobIds,
 }: {
-  dict: ApplicationDict;
+  dict: Dictionary["compareJobTable"];
   locale: Locale;
   jobIds: string[];
   stepNumber: number;
   setStepNumber: Dispatch<SetStateAction<number>>;
 }) {
-  const linkedInPattern = ".*linkedin.com/in/.+";
-
   const [sex, setSex] = useState<"man" | "woman" | "other" | undefined>();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [files, setFiles] = useState<any[]>([]);
   const [linkedIn, setLinkedIn] = useState("");
-
   const [userType, setUserType] = useState<null | "talent" | "headhunter">(
     null
   );
@@ -40,6 +37,7 @@ export default function ApplicationFormAboutYou({
 
   const formRef = useRef<HTMLFormElement>(null);
 
+  const linkedInPattern = ".*linkedin.com/in/.+";
   const isApplicationInvalid =
     userType === null || (userType === "talent" && !termsAccepted);
 
@@ -54,7 +52,7 @@ export default function ApplicationFormAboutYou({
 
         setIsLoading(true);
 
-        const body = filterObject({
+        const body = stripOfEmptyStringsAndArrays({
           email,
           sex,
           name,
@@ -72,21 +70,6 @@ export default function ApplicationFormAboutYou({
         } catch (e) {
           toast.error((e as Error)?.message || dict["Something went wrong"]);
           setIsLoading(false);
-        }
-
-        function filterObject(obj: Record<string, any>): Record<string, any> {
-          const filteredObj: Record<string, any> = {};
-
-          for (const [key, value] of Object.entries(obj)) {
-            if (
-              (typeof value === "string" || Array.isArray(value)) &&
-              value.length > 0
-            ) {
-              filteredObj[key] = value;
-            }
-          }
-
-          return filteredObj;
         }
       }}
     >

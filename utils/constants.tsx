@@ -1,3 +1,5 @@
+import { ActiveFilterName } from "./types";
+
 export const SERVER_URL = "https://vertical.digitalent.cloud/api/vertical";
 export const MOCK_SERVER_URL =
   "https://virtserver.swaggerhub.com/filipkowal/jobs/1.0";
@@ -15,12 +17,19 @@ export const FILTER_NAMES = [
   "homeOffice",
   "industries",
   "companySizes",
-  "workLanguages",
 ] as const;
 
-export const ACTIVE_FILTER_NAMES = [
+export const FILTER_BUTTON_NAMES = [
+  "regions",
   "careerFields",
-  "workLanguages",
+  "salary",
+  "workload",
+  "industries",
+  "companySizes",
+] as const;
+
+export const ACTIVE_FILTER_NAMES: ActiveFilterName[] = [
+  "careerFields",
   "technologies",
   "industries",
   "companySizes",
@@ -29,7 +38,7 @@ export const ACTIVE_FILTER_NAMES = [
   "homeOffice",
   "states",
   "salary",
-] as const;
+];
 
 export const ALL_REGIONS = {
   en: [

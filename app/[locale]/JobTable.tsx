@@ -1,6 +1,6 @@
-import { Locale } from "../../i18n-config";
-import { getCustomBoard, getDictionary } from "../../utils/server";
-import { Job, Jobs, SearchParams, getShortId } from "../../utils";
+import { Locale } from "@/i18n-config";
+import { getCustomBoard, getDictionary } from "@/utils/server";
+import { Job, Jobs, SearchParams, getShortId } from "@/utils";
 import JobRowAccordion from "./_JobRow/JobRowAccordion";
 import JobRowDetails from "./_JobRow/JobRowDetails";
 import JobTablePagination from "./_JobRow/JobTablePagination";
@@ -40,31 +40,9 @@ export default async function JobTable({
     return jobs;
   }
 
-  function filterForEmployerName(jobs?: Job[]) {
-    if (
-      customBoard.employerNameFilters.length > 0 &&
-      customBoard.employerNameFilters[0] !== ""
-    ) {
-      return jobs?.filter((job) => {
-        return (
-          job.employer?.name &&
-          customBoard?.employerNameFilters.includes(job.employer.name)
-        );
-      });
-    }
-
-    return jobs;
-  }
-
-  const jobs = sortJobsInitOpenFirst(filterForEmployerName(jobsResponse?.jobs));
+  const jobs = sortJobsInitOpenFirst(jobsResponse?.jobs);
 
   const length = jobsResponse?.length;
-
-  function k(s: string | number | undefined) {
-    if (s === undefined) return;
-    const n = Number(s) / 1000;
-    return n;
-  }
 
   return (
     <div
@@ -82,9 +60,7 @@ export default async function JobTable({
             locale={params.locale}
             key={job.id}
             customBoard={customBoard}
-            jobRowHeading={
-              <JobRowHeading job={job} k={k} locale={params.locale} />
-            }
+            jobRowHeading={<JobRowHeading job={job} locale={params.locale} />}
           >
             {!customBoard?.disableDetailView && (
               <div className="flex flex-row flex-wrap-reverse lg:flex-nowrap justify-center sm:pb-6 bg-digitalent-gray-light sm:bg-inherit">

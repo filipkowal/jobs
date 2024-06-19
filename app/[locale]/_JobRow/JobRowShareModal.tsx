@@ -2,13 +2,14 @@
 
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
-import Button from "../../../components/Button";
-import Checkbox from "../../../components/Checkbox";
-import TextInput from "../../../components/TextInput";
-import { type Locale, postData } from "../../../utils";
+import Button from "@/components/Button";
+import Checkbox from "@/components/Checkbox";
+import TextInput from "@/components/TextInput";
+import { type Locale, postData } from "@/utils";
 import dynamic from "next/dynamic";
+import { Dictionary } from "@/utils/server";
 
-const Modal = dynamic(() => import("../../../components/Modal"));
+const Modal = dynamic(() => import("@/components/Modal"));
 
 export default function ShareJob({
   locale,
@@ -16,23 +17,11 @@ export default function ShareJob({
   dict,
 }: {
   locale: Locale;
-  dict: {
-    intro: string;
-    "intro.bullet1": string;
-    "intro.bullet2": string;
-    "intro.bullet3": string;
-    "email.info": string;
-    "email.accept": string;
-    "Create a link": string;
+  dict: Dictionary["shareJob"] & {
     "Something went wrong": string;
-    "It's your link. Now you just have to share it.": string;
-    "Copied the link to clipboard": string;
-    "link.instructions": string;
-    "Go back": string;
     "Share this job and earn 500 CHF": string;
-    "Share a job": string;
     invalidEmail: string;
-    Copy: string;
+    "Go back": string;
   };
   jobId?: string;
 }) {

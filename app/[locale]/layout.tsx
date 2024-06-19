@@ -1,15 +1,15 @@
-import { type Locale } from "../../i18n-config";
+import { type Locale } from "@/i18n-config";
 import Header from "./Header";
 import PinnedJobsContextProvider from "./PinnedJobsContextProvider";
-import ToastProvider from "../../components/ToastProvider";
+import ToastProvider from "@/components/ToastProvider";
 import Link from "next/link";
 import "../globals.css";
 import localFont from "next/font/local";
-import { Inter, Merriweather } from "next/font/google";
+import { Merriweather } from "next/font/google";
 import type { Metadata } from "next";
 import Script from "next/script";
-import CookiePopup from "../../components/CookiePopup";
-import { getCustomBoard, getDictionary } from "../../utils/server/helpers";
+import CookiePopup from "@/components/CookiePopup";
+import { getCustomBoard, getDictionary } from "@/utils/server/helpers";
 
 export async function generateMetadata({
   params,
@@ -17,9 +17,11 @@ export async function generateMetadata({
   params: { locale: Locale };
 }): Promise<Metadata> {
   const dict = await getDictionary(params.locale);
+  const customBoard = await getCustomBoard();
 
   return {
     ...dict.meta,
+    title: customBoard.documentTitle || dict.meta.title,
     icons: "/thumbnail.png",
     robots: {
       index: true, // Allow search engines to index the page
@@ -36,12 +38,6 @@ export async function generateMetadata({
     },
   };
 }
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  preload: false,
-});
 
 const merriweather = Merriweather({
   variable: "--font-merriweather",
@@ -130,9 +126,7 @@ export default async function RootLayout({
           {customBoard.hideFooter ? (
             ""
           ) : (
-            <footer
-              className={`self-bottom w-screen ${loew.variable} ${inter.variable}`}
-            >
+            <footer className={`self-bottom w-screen ${loew.variable}`}>
               <div className="text-center py-2 max-w-screen bg-digitalent-gray-dark font-sans text-[11px]">
                 {dict["powered by"]}
                 <Link href="https://digitalent.community" target="_blank">

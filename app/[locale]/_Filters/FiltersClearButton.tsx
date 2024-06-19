@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { ActiveFilters, Locale } from "../../../utils";
+import type { ActiveFilters, Locale, Dictionary } from "@/utils";
 import { useRouter } from "next/navigation";
-import { ActiveFiltersURL } from "../../../utils/hooks";
+import { useActiveFiltersURL } from "@/utils/hooks";
 
 export default function FiltersClearButton({
   locale,
@@ -11,19 +11,20 @@ export default function FiltersClearButton({
 }: {
   locale: Locale;
   activeFilters: ActiveFilters;
-  dict: { Clear: string };
+  dict: Dictionary["filtersSection"];
   className?: string;
 }) {
   const router = useRouter();
-  const activeFiltersURL = ActiveFiltersURL(activeFilters, locale);
+  const activeFiltersURL = useActiveFiltersURL(activeFilters, locale);
 
   return activeFilters && Object.keys(activeFilters).length ? (
     <Link href={`/${locale}`}>
-      <span
+      <button
         onClick={() => {
           router.push(activeFiltersURL);
         }}
-        className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1 mr-2 mb-2 break-keep inline-block cursor-pointer ${className}`}
+        className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1 mr-2 mb-2 break-keep inline-block cursor-pointer 
+          focus:!outline-2 focus:!outline-digitalent-blue focus:!ring-2 focus:!ring-digitalent-blue ${className}`}
       >
         <svg
           className="hidden sm:inline w-6 h-6 pr-1 pb-1"
@@ -40,7 +41,7 @@ export default function FiltersClearButton({
           ></path>
         </svg>
         {dict["Clear"]}
-      </span>
+      </button>
     </Link>
   ) : null;
 }

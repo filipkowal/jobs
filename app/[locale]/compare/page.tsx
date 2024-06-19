@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from "next";
-import { getJobs, JOBS_REVALIDATE_TIME, Locale } from "../../../utils";
+import { getJobs, Locale } from "@/utils";
 import CompareJobTable from "./CompareJobTable";
-import { getCustomBoard, getDictionary } from "../../../utils/server";
+import { getCustomBoard, getDictionary } from "@/utils/server";
 
 export default async function ComparePage({
   params,
