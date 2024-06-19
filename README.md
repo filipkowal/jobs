@@ -1,6 +1,6 @@
 # Digitalent job board  
 
-[Demo](https://digitalentjobs.netlify.app/) 
+[Demo](https://jobs.digitalent.cloud/) 
 
 ## To run the project:
 
