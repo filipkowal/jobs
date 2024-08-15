@@ -3,560 +3,653 @@
  * Do not make direct changes to the file.
  */
 
-
 export interface paths {
-  "/{language}/jobs": {
-    /** Get all or filtered and paginated jobs and active filters */
-    get: operations["getJobs"];
-  };
-  "/{language}/filters": {
-    /** Get all filters' possible values */
-    get: operations["getFilters"];
-  };
-  "/{language}/subscribe": {
-    /** Subscribe to job alerts */
-    post: operations["subscribe"];
-  };
-  "/{language}/save": {
-    /** Save a job */
-    post: operations["save"];
-  };
-  "/{language}/apply": {
-    /** Apply for a job */
-    post: operations["apply"];
-  };
-  "/{language}/refer": {
-    /** Refer a job to a friend */
-    post: operations["refer"];
-  };
+    "/{language}/jobs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get all or filtered and paginated jobs and active filters */
+        get: operations["getJobs"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/{language}/filters": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get all filters' possible values */
+        get: operations["getFilters"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/{language}/subscribe": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Subscribe to job alerts */
+        post: operations["subscribe"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/{language}/save": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Save a job */
+        post: operations["save"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/{language}/apply": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Apply for a job */
+        post: operations["apply"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/{language}/refer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Refer a job to a friend */
+        post: operations["refer"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
-
 export type webhooks = Record<string, never>;
-
 export interface components {
-  schemas: {
-    /** @example 123 */
-    Id: string;
-    Address: {
-      /** @example Wiener Str. */
-      street?: string;
-      /** @example Bern */
-      city?: string;
-      /** @example Bern */
-      state?: string;
-      /** @example Western Part of Switzerland */
-      region?: string;
-      /** @example Switzerland */
-      country?: string;
-      geoCoordinates?: components["schemas"]["GeoCoordinates"];
-    };
-    /** @example 47.4708538 */
-    GeoCoordinate: string;
-    GeoCoordinates: {
-      latitude?: components["schemas"]["GeoCoordinate"];
-      longitude?: components["schemas"]["GeoCoordinate"];
-    };
-    /** Format: date-time */
-    DateTime: string;
-    Metainfo: {
-      /** @example EN: Linux Systems Engineer */
-      title?: string;
-      /** @example EN: Du möchtest Dein Knowhow bei einem führenden IaaS/PaaS-Dienstleister einbringen und vertiefen? Dann sollten wir uns kennenlernen. */
-      description?: string;
-      /**
-       * @example [
-       *   "Excel",
-       *   "Virtualisation",
-       *   "VMware EN"
-       * ]
-       */
-      keywords?: string[];
-      authors?: ({
-          /** @example Vlada Berozkina | digitalent ag */
-          name?: string;
-        })[];
-      openGraph?: {
-        /** @example EN: Linux Systems Engineer */
-        title?: string;
-        /** @example EN: Du möchtest Dein Knowhow bei einem führenden IaaS/PaaS-Dienstleister einbringen und vertiefen? Dann sollten wir uns kennenlernen. */
-        description?: string;
-        /**
-         * Format: url
-         * @example https://karriere.aspectra.ch/en/linux-systems-engineer
-         */
-        url?: string;
-        images?: {
-            /**
-             * Format: url
-             * @example https://karriere.aspectra.ch/media/3613/aspectra-linux-systems-engineer.jpg
-             */
-            url: string;
-            /** @example 1200 */
-            width?: number;
-            /** @example 630 */
-            height?: number;
+    schemas: {
+        /** @example 123 */
+        Id: string;
+        Address: {
+            /** @example Wiener Str. */
+            street?: string;
+            /** @example Bern */
+            city?: string;
+            /** @example Bern */
+            state?: string;
+            /** @example Western Part of Switzerland */
+            region?: string;
+            /** @example Switzerland */
+            country?: string;
+            geoCoordinates?: components["schemas"]["GeoCoordinates"];
+        };
+        /** @example 47.4708538 */
+        GeoCoordinate: string;
+        GeoCoordinates: {
+            latitude?: components["schemas"]["GeoCoordinate"];
+            longitude?: components["schemas"]["GeoCoordinate"];
+        };
+        /** Format: date-time */
+        DateTime: string;
+        Metainfo: {
             /** @example EN: Linux Systems Engineer */
-            alt?: string;
-          }[];
-        /** @example ch_en */
-        locale?: string;
+            title?: string;
+            /** @example EN: Du möchtest Dein Knowhow bei einem führenden IaaS/PaaS-Dienstleister einbringen und vertiefen? Dann sollten wir uns kennenlernen. */
+            description?: string;
+            /** @example [
+             *       "Excel",
+             *       "Virtualisation",
+             *       "VMware EN"
+             *     ] */
+            keywords?: string[];
+            authors?: {
+                /** @example Vlada Berozkina | digitalent ag */
+                name?: string;
+            }[];
+            openGraph?: {
+                /** @example EN: Linux Systems Engineer */
+                title?: string;
+                /** @example EN: Du möchtest Dein Knowhow bei einem führenden IaaS/PaaS-Dienstleister einbringen und vertiefen? Dann sollten wir uns kennenlernen. */
+                description?: string;
+                /**
+                 * Format: url
+                 * @example https://karriere.aspectra.ch/en/linux-systems-engineer
+                 */
+                url?: string;
+                images?: {
+                    /**
+                     * Format: url
+                     * @example https://karriere.aspectra.ch/media/3613/aspectra-linux-systems-engineer.jpg
+                     */
+                    url: string;
+                    /** @example 1200 */
+                    width?: number;
+                    /** @example 630 */
+                    height?: number;
+                    /** @example EN: Linux Systems Engineer */
+                    alt?: string;
+                }[];
+                /** @example ch_en */
+                locale?: string;
+                /**
+                 * @example website
+                 * @enum {string}
+                 */
+                type?: "website" | "article" | "book" | "profile" | "music.song" | "music.album" | "music.playlist" | "music.radio_station" | "video.movie" | "video.episode" | "video.tv_show" | "video.other";
+            };
+            twitter?: {
+                /**
+                 * @example summary_large_image
+                 * @enum {string}
+                 */
+                card?: "summary" | "summary_large_image" | "player" | "app";
+                /** @example EN: Linux Systems Engineer */
+                title?: string;
+                /** @example EN: Du möchtest Dein Knowhow bei einem führenden IaaS/PaaS-Dienstleister einbringen und vertiefen? Dann sollten wir uns kennenlernen. */
+                description?: string;
+                /** @example Vlada Berozkina | digitalent ag */
+                creator?: string;
+                images?: string[];
+            };
+        };
+        /** @example [
+         *       "tag1",
+         *       "tag2",
+         *       "tag3"
+         *     ] */
+        Tags: string[];
+        File: {
+            /**
+             * Format: base64
+             * @example data:image/webp;base64,UklGRs61AABXRUJQVlA4WAoAAA
+             */
+            content?: string;
+            lastModified?: number;
+            /** @example cv.webp */
+            name?: string;
+            size?: number;
+            /** @example image/webp */
+            type?: string;
+        };
+        /** @example {
+         *       "amount": [
+         *         40000,
+         *         100000
+         *       ],
+         *       "currency": "CHF",
+         *       "unit": "year"
+         *     } */
+        SalaryRange: {
+            amount?: components["schemas"]["Range"];
+            currency?: string;
+            unit?: string;
+        };
+        Employer: {
+            id?: components["schemas"]["Id"];
+            /** @example Baggenstos */
+            name?: string;
+            /** Format: url */
+            logo?: string;
+        };
+        /** @example [
+         *       20,
+         *       80
+         *     ] */
+        Range: number[];
         /**
-         * @example website
+         * @default de
          * @enum {string}
          */
-        type?: "website" | "article" | "book" | "profile" | "music.song" | "music.album" | "music.playlist" | "music.radio_station" | "video.movie" | "video.episode" | "video.tv_show" | "video.other";
-      };
-      twitter?: {
-        /**
-         * @example summary_large_image
-         * @enum {string}
-         */
-        card?: "summary" | "summary_large_image" | "player" | "app";
-        /** @example EN: Linux Systems Engineer */
-        title?: string;
-        /** @example EN: Du möchtest Dein Knowhow bei einem führenden IaaS/PaaS-Dienstleister einbringen und vertiefen? Dann sollten wir uns kennenlernen. */
-        description?: string;
-        /** @example Vlada Berozkina | digitalent ag */
-        creator?: string;
-        images?: string[];
-      };
+        Language: "de" | "en" | "fr";
+        Job: {
+            id?: components["schemas"]["Id"];
+            /** @example React Engineer */
+            title?: string;
+            datePosted?: components["schemas"]["DateTime"];
+            address?: components["schemas"]["Address"];
+            employer?: components["schemas"]["Employer"];
+            salary?: components["schemas"]["SalaryRange"];
+            workload?: components["schemas"]["Range"];
+            homeOffice?: components["schemas"]["Range"];
+            tags?: components["schemas"]["Tags"];
+            /** @enum {string} */
+            jobLevel?: "contributor" | "expert" | "leader";
+            /** Format: url */
+            landingPageUrl?: string;
+            /** Format: markup */
+            responsibilities?: string;
+            /** Format: markup */
+            requirements?: string;
+            metainfo?: components["schemas"]["Metainfo"];
+        };
+        ActiveFilters: {
+            careerFields?: components["schemas"]["Tags"];
+            technologies?: components["schemas"]["Tags"];
+            industries?: components["schemas"]["Tags"];
+            jobLevels?: components["schemas"]["Tags"];
+            companySizes?: components["schemas"]["Tags"];
+            workload?: components["schemas"]["Range"];
+            /** @example 70 */
+            homeOffice?: number;
+            salary?: number;
+            /** @example [
+             *       "Baden",
+             *       "Lugano"
+             *     ] */
+            states?: string[];
+        };
+        Filters: {
+            careerFields?: components["schemas"]["Tags"];
+            technologies?: components["schemas"]["Tags"];
+            industries?: components["schemas"]["Tags"];
+            jobLevels?: components["schemas"]["Tags"];
+            companySizes?: components["schemas"]["Tags"];
+            workload?: components["schemas"]["Range"];
+            homeOffice?: components["schemas"]["Range"];
+            salary?: components["schemas"]["SalaryRange"];
+            /** @example [
+             *       {
+             *         "name": "German part of Switzerland",
+             *         "states": [
+             *           "Zürich",
+             *           "Bern"
+             *         ]
+             *       },
+             *       {
+             *         "name": "Western Part of Switzerland",
+             *         "states": [
+             *           "Geneva"
+             *         ]
+             *       }
+             *     ] */
+            regions?: components["schemas"]["Filters_regions"][];
+        };
+        inline_response_200: {
+            jobs?: components["schemas"]["Job"][];
+            activeFilters?: components["schemas"]["ActiveFilters"];
+            offset?: number;
+            limit?: number;
+            /** @description Length of the collection filtered by ActiveFilters, without pagination */
+            length?: number;
+        };
+        subscribe_body: {
+            /** Format: email */
+            email?: string;
+            activeFilters?: components["schemas"]["ActiveFilters"];
+        };
+        save_body: {
+            /** Format: email */
+            email?: string;
+            jobId?: string;
+        };
+        apply_body: {
+            /** Format: email */
+            email?: string;
+            /** @enum {string} */
+            sex?: "man" | "woman" | "other";
+            name?: string;
+            message?: string;
+            files?: components["schemas"]["File"][];
+            /** Format: url */
+            linkedIn?: string;
+            jobIds?: components["schemas"]["Id"][];
+        };
+        refer_body: {
+            /** Format: email */
+            email?: string;
+            jobId?: components["schemas"]["Id"];
+        };
+        Filters_regions: {
+            name?: string;
+            states?: string[];
+        };
     };
-    /**
-     * @example [
-     *   "tag1",
-     *   "tag2",
-     *   "tag3"
-     * ]
-     */
-    Tags: string[];
-    File: {
-      /**
-       * Format: base64
-       * @example data:image/webp;base64,UklGRs61AABXRUJQVlA4WAoAAA
-       */
-      content?: string;
-      lastModified?: number;
-      /** @example cv.webp */
-      name?: string;
-      size?: number;
-      /** @example image/webp */
-      type?: string;
-    };
-    /**
-     * @example {
-     *   "amount": [
-     *     40000,
-     *     100000
-     *   ],
-     *   "currency": "CHF",
-     *   "unit": "year"
-     * }
-     */
-    SalaryRange: {
-      amount?: components["schemas"]["Range"];
-      currency?: string;
-      unit?: string;
-    };
-    Employer: {
-      id?: components["schemas"]["Id"];
-      /** @example Baggenstos */
-      name?: string;
-      /** Format: url */
-      logo?: string;
-    };
-    /**
-     * @example [
-     *   20,
-     *   80
-     * ]
-     */
-    Range: number[];
-    /**
-     * @default de
-     * @enum {string}
-     */
-    Language: "de" | "en" | "fr";
-    Job: {
-      id?: components["schemas"]["Id"];
-      /** @example React Engineer */
-      title?: string;
-      datePosted?: components["schemas"]["DateTime"];
-      address?: components["schemas"]["Address"];
-      employer?: components["schemas"]["Employer"];
-      salary?: components["schemas"]["SalaryRange"];
-      workload?: components["schemas"]["Range"];
-      homeOffice?: components["schemas"]["Range"];
-      tags?: components["schemas"]["Tags"];
-      /** @enum {string} */
-      jobLevel?: "contributor" | "expert" | "leader";
-      /** Format: url */
-      landingPageUrl?: string;
-      /** Format: markup */
-      responsibilities?: string;
-      /** Format: markup */
-      requirements?: string;
-      metainfo?: components["schemas"]["Metainfo"];
-    };
-    ActiveFilters: {
-      careerFields?: components["schemas"]["Tags"];
-      technologies?: components["schemas"]["Tags"];
-      industries?: components["schemas"]["Tags"];
-      jobLevels?: components["schemas"]["Tags"];
-      companySizes?: components["schemas"]["Tags"];
-      workload?: components["schemas"]["Range"];
-      /** @example 70 */
-      homeOffice?: number;
-      salary?: number;
-      /**
-       * @example [
-       *   "Baden",
-       *   "Lugano"
-       * ]
-       */
-      states?: string[];
-    };
-    Filters: {
-      careerFields?: components["schemas"]["Tags"];
-      technologies?: components["schemas"]["Tags"];
-      industries?: components["schemas"]["Tags"];
-      jobLevels?: components["schemas"]["Tags"];
-      companySizes?: components["schemas"]["Tags"];
-      workload?: components["schemas"]["Range"];
-      homeOffice?: components["schemas"]["Range"];
-      salary?: components["schemas"]["SalaryRange"];
-      /**
-       * @example [
-       *   {
-       *     "name": "German part of Switzerland",
-       *     "states": [
-       *       "Zürich",
-       *       "Bern"
-       *     ]
-       *   },
-       *   {
-       *     "name": "Western Part of Switzerland",
-       *     "states": [
-       *       "Geneva"
-       *     ]
-       *   }
-       * ]
-       */
-      regions?: components["schemas"]["Filters_regions"][];
-    };
-    inline_response_200: {
-      jobs?: components["schemas"]["Job"][];
-      activeFilters?: components["schemas"]["ActiveFilters"];
-      offset?: number;
-      limit?: number;
-      /** @description Length of the collection filtered by ActiveFilters, without pagination */
-      length?: number;
-    };
-    subscribe_body: {
-      /** Format: email */
-      email?: string;
-      activeFilters?: components["schemas"]["ActiveFilters"];
-    };
-    save_body: {
-      /** Format: email */
-      email?: string;
-      jobId?: string;
-    };
-    apply_body: {
-      /** Format: email */
-      email?: string;
-      /** @enum {string} */
-      sex?: "man" | "woman" | "other";
-      name?: string;
-      message?: string;
-      files?: components["schemas"]["File"][];
-      /** Format: url */
-      linkedIn?: string;
-      jobIds?: components["schemas"]["Id"][];
-    };
-    refer_body: {
-      /** Format: email */
-      email?: string;
-      jobId?: components["schemas"]["Id"];
-    };
-    Filters_regions: {
-      name?: string;
-      states?: string[];
-    };
-  };
-  responses: never;
-  parameters: {
-    UserId?: components["schemas"]["Id"];
-    BoardId?: components["schemas"]["Id"];
-    Language: components["schemas"]["Language"];
-    /**
-     * @example [
-     *   "frontend",
-     *   "fullstack"
-     * ]
-     */
-    CareerFields?: components["schemas"]["Tags"];
-    /**
-     * @example [
-     *   "react",
-     *   "nodejs"
-     * ]
-     */
-    Technologies?: components["schemas"]["Tags"];
-    /**
-     * @example [
-     *   "it"
-     * ]
-     */
-    Industries?: components["schemas"]["Tags"];
-    /**
-     * @example [
-     *   "contributor",
-     *   "expert",
-     *   "leader"
-     * ]
-     */
-    JobLevels?: components["schemas"]["Tags"];
-    /**
-     * @example [
-     *   80,
-     *   100
-     * ]
-     */
-    Workload?: components["schemas"]["Range"];
-    /** @example 70 */
-    HomeOffice?: number;
-    /** @example CHF */
-    Currency?: string;
-    /**
-     * @example [
-     *   "Baden",
-     *   "Lugano"
-     * ]
-     */
-    States?: string[];
-  };
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
-}
-
-export type $defs = Record<string, never>;
-
-export type external = Record<string, never>;
-
-export interface operations {
-
-  /** Get all or filtered and paginated jobs and active filters */
-  getJobs: {
+    responses: never;
     parameters: {
-      query?: {
-        /**
-         * @example [
-         *   "frontend",
-         *   "fullstack"
-         * ]
-         */
-        careerFields?: components["schemas"]["Tags"];
-        /**
-         * @example [
-         *   "react",
-         *   "nodejs"
-         * ]
-         */
-        technologies?: components["schemas"]["Tags"];
-        /**
-         * @example [
-         *   "it"
-         * ]
-         */
-        industries?: components["schemas"]["Tags"];
-        /**
-         * @example [
-         *   "contributor",
-         *   "expert",
-         *   "leader"
-         * ]
-         */
-        jobLevels?: components["schemas"]["Tags"];
-        /**
-         * @example [
-         *   "StartUp"
-         * ]
-         */
-        companySizes?: components["schemas"]["Tags"];
-        /**
-         * @example [
-         *   80,
-         *   100
-         * ]
-         */
-        workload?: components["schemas"]["Range"];
+        UserId: components["schemas"]["Id"];
+        BoardId: components["schemas"]["Id"];
+        Language: components["schemas"]["Language"];
+        /** @example [
+         *       "frontend",
+         *       "fullstack"
+         *     ] */
+        CareerFields: components["schemas"]["Tags"];
+        /** @example [
+         *       "react",
+         *       "nodejs"
+         *     ] */
+        Technologies: components["schemas"]["Tags"];
+        /** @example [
+         *       "it"
+         *     ] */
+        Industries: components["schemas"]["Tags"];
+        /** @example [
+         *       "contributor",
+         *       "expert",
+         *       "leader"
+         *     ] */
+        JobLevels: components["schemas"]["Tags"];
+        /** @example [
+         *       80,
+         *       100
+         *     ] */
+        Workload: components["schemas"]["Range"];
         /** @example 70 */
-        homeOffice?: number;
-        /**
-         * @example [
-         *   "Baden",
-         *   "Lugano"
-         * ]
-         */
-        states?: string[];
-        /** @example 80000 */
-        salary?: number;
+        HomeOffice: number;
         /** @example CHF */
-        currency?: string;
-        /**
-         * @description Employer name. Case insensitive.
-         * @example amag group ag
-         */
-        employerName?: string;
-        /** @description For pagination: index of the first job to be sent */
-        offset?: number;
-        /** @description For pagination: limit of jobs to be sent */
-        limit?: number;
-      };
-      path: {
-        language: components["schemas"]["Language"];
-      };
+        Currency: string;
+        /** @example [
+         *       "Baden",
+         *       "Lugano"
+         *     ] */
+        States: string[];
     };
-    responses: {
-      /** @description Get all or filtered and paginated jobs and active filters */
-      200: {
-        content: {
-          "application/json": components["schemas"]["inline_response_200"];
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
+}
+export type $defs = Record<string, never>;
+export interface operations {
+    getJobs: {
+        parameters: {
+            query?: {
+                customBoardId?: string | null;
+                /** @example [
+                 *       "frontend",
+                 *       "fullstack"
+                 *     ] */
+                careerFields?: components["schemas"]["Tags"];
+                /** @example [
+                 *       "react",
+                 *       "nodejs"
+                 *     ] */
+                technologies?: components["schemas"]["Tags"];
+                /** @example [
+                 *       "it"
+                 *     ] */
+                industries?: components["schemas"]["Tags"];
+                /** @example [
+                 *       "contributor",
+                 *       "expert",
+                 *       "leader"
+                 *     ] */
+                jobLevels?: components["schemas"]["Tags"];
+                /** @example [
+                 *       "StartUp"
+                 *     ] */
+                companySizes?: components["schemas"]["Tags"];
+                /** @example [
+                 *       80,
+                 *       100
+                 *     ] */
+                workload?: components["schemas"]["Range"];
+                /** @example 70 */
+                homeOffice?: number;
+                /** @example [
+                 *       "Baden",
+                 *       "Lugano"
+                 *     ] */
+                states?: string[];
+                /** @example 80000 */
+                salary?: number;
+                /** @example CHF */
+                currency?: string;
+                /**
+                 * @description Employer name. Case insensitive.
+                 * @example amag group ag
+                 */
+                employerName?: string;
+                /** @description For pagination: index of the first job to be sent */
+                offset?: number;
+                /** @description For pagination: limit of jobs to be sent */
+                limit?: number;
+            };
+            header?: never;
+            path: {
+                language: components["schemas"]["Language"];
+            };
+            cookie?: never;
         };
-      };
-      /** @description Invalid filters supplied */
-      400: {
-        content: never;
-      };
-      /** @description Language not found */
-      404: {
-        content: never;
-      };
-    };
-  };
-  /** Get all filters' possible values */
-  getFilters: {
-    parameters: {
-      query?: {
-        userId?: components["schemas"]["Id"];
-        boardId?: components["schemas"]["Id"];
-      };
-      path: {
-        language: components["schemas"]["Language"];
-      };
-    };
-    responses: {
-      /** @description Get all filters' possible values */
-      200: {
-        content: {
-          "application/json": components["schemas"]["Filters"];
+        requestBody?: never;
+        responses: {
+            /** @description Get all or filtered and paginated jobs and active filters */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["inline_response_200"];
+                };
+            };
+            /** @description Invalid filters supplied */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Language not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-      };
-      /** @description Language not found */
-      404: {
-        content: never;
-      };
     };
-  };
-  /** Subscribe to job alerts */
-  subscribe: {
-    parameters: {
-      path: {
-        language: components["schemas"]["Language"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["subscribe_body"];
-      };
-    };
-    responses: {
-      /** @description Subscription successful */
-      200: {
-        content: {
-          "application/json": string;
+    getFilters: {
+        parameters: {
+            query?: {
+                customBoardId?: string | null;
+                userId?: components["schemas"]["Id"];
+                boardId?: components["schemas"]["Id"];
+            };
+            header?: never;
+            path: {
+                language: components["schemas"]["Language"];
+            };
+            cookie?: never;
         };
-      };
-      /** @description Invalid request body supplied */
-      400: {
-        content: never;
-      };
-    };
-  };
-  /** Save a job */
-  save: {
-    parameters: {
-      path: {
-        language: components["schemas"]["Language"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["save_body"];
-      };
-    };
-    responses: {
-      /** @description Save successful */
-      200: {
-        content: {
-          "application/json": string;
+        requestBody?: never;
+        responses: {
+            /** @description Get all filters' possible values */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Filters"];
+                };
+            };
+            /** @description Language not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-      };
-      /** @description Invalid request body supplied */
-      400: {
-        content: never;
-      };
     };
-  };
-  /** Apply for a job */
-  apply: {
-    parameters: {
-      path: {
-        language: components["schemas"]["Language"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["apply_body"];
-      };
-    };
-    responses: {
-      /** @description Application successful. */
-      200: {
-        content: {
-          "application/json": string;
+    subscribe: {
+        parameters: {
+            query?: {
+                customBoardId?: string | null;
+            };
+            header?: never;
+            path: {
+                language: components["schemas"]["Language"];
+            };
+            cookie?: never;
         };
-      };
-      /** @description Invalid request body supplied */
-      400: {
-        content: never;
-      };
-    };
-  };
-  /** Refer a job to a friend */
-  refer: {
-    parameters: {
-      path: {
-        language: components["schemas"]["Language"];
-      };
-    };
-    requestBody?: {
-      content: {
-        "application/json": components["schemas"]["refer_body"];
-      };
-    };
-    responses: {
-      /** @description Unique link for job referral */
-      200: {
-        content: {
-          "application/json": string;
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["subscribe_body"];
+            };
         };
-      };
-      /** @description Invalid request body supplied */
-      400: {
-        content: never;
-      };
+        responses: {
+            /** @description Subscription successful */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": string;
+                };
+            };
+            /** @description Invalid request body supplied */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
     };
-  };
+    save: {
+        parameters: {
+            query?: {
+                customBoardId?: string | null;
+            };
+            header?: never;
+            path: {
+                language: components["schemas"]["Language"];
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["save_body"];
+            };
+        };
+        responses: {
+            /** @description Save successful */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": string;
+                };
+            };
+            /** @description Invalid request body supplied */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    apply: {
+        parameters: {
+            query?: {
+                customBoardId?: string | null;
+            };
+            header?: never;
+            path: {
+                language: components["schemas"]["Language"];
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["apply_body"];
+            };
+        };
+        responses: {
+            /** @description Application successful.  */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": string;
+                };
+            };
+            /** @description Invalid request body supplied */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    refer: {
+        parameters: {
+            query?: {
+                customBoardId?: string | null;
+            };
+            header?: never;
+            path: {
+                language: components["schemas"]["Language"];
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["refer_body"];
+            };
+        };
+        responses: {
+            /** @description Unique link for job referral */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": string;
+                };
+            };
+            /** @description Invalid request body supplied */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
 }
