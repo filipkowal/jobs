@@ -60,6 +60,15 @@ export default async function Header({
         {/* <Suspense fallback={<Spinner />}>
           <SubscriptionButton dark />
         </Suspense> */}
+        <Link
+          href="https://www.digitalent.ch/"
+          className="block !mx-4 sm:!mx-8 font-title font-medium border-digitalent-white border-b-2 translate-y-[1px] m-4 sm:m-0 cursor-pointer"
+        >
+          {dict["forEmployers"].toUpperCase()}
+        </Link>
+        <Suspense fallback={<Spinner />}>
+          <LanguageSelector params={params} color={textColor} />
+        </Suspense>
         {customBoard.disableCompareView ? null : (
           <Suspense fallback={<Spinner />}>
             <CompareButton
@@ -69,9 +78,6 @@ export default async function Header({
             />
           </Suspense>
         )}
-        <Suspense fallback={<Spinner />}>
-          <LanguageSelector params={params} color={textColor} />
-        </Suspense>
       </div>
     </header>
   );

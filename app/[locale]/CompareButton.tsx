@@ -96,7 +96,7 @@ function GoBackButton({
     <Link href={homeUrlObj}>
       <Button
         name={dict["goBack"]}
-        className={`!mx-4 sm:!mx-8  ${
+        className={`!ml-4 sm:!ml-8  ${
           isCustom
             ? ""
             : "!ring-white !border-white !text-white hover:!bg-white hover:!text-digitalent-green"
