@@ -6,10 +6,12 @@ export default function Tooltip({
   children,
   content,
   ariaLabel,
+  disabled,
 }: {
   children: React.ReactNode;
   content: string;
   ariaLabel: string;
+  disabled?: boolean;
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const childrenRef = useRef<HTMLSpanElement>(null);
@@ -26,7 +28,7 @@ export default function Tooltip({
   return (
     <span className={`relative w-[${childrenRef.current?.offsetWidth || 0}px]`}>
       <span
-        onMouseEnter={() => setIsVisible(true)}
+        onMouseEnter={() => !disabled && setIsVisible(true)}
         onMouseLeave={() => setIsVisible(false)}
         ref={childrenRef}
       >
