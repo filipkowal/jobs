@@ -1,6 +1,6 @@
 import qs from "query-string";
 import { SERVER_URL } from "./constants";
-import type { Endpoint, Filters, Jobs } from "./types";
+import type { Endpoint, Filters, Jobs, JobsQuery } from "./types";
 import { type Locale } from "@/i18n-config";
 
 export async function postData(endpoint: string, locale: Locale, data: any) {
@@ -60,7 +60,7 @@ export async function getJobs({
   init,
 }: {
   locale: Locale;
-  searchParams?: any;
+  searchParams: JobsQuery;
   init?: RequestInit;
 }): Promise<Jobs> {
   try {

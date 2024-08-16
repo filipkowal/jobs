@@ -1,7 +1,7 @@
 import { JOBS_LIMIT } from "@/utils/constants";
 import { type Locale } from "@/i18n-config";
 import JobTable from "../../JobTable";
-import { getFilters, getJobs, getShortId } from "@/utils";
+import { getFilters, getJobs, getShortId, Job } from "@/utils";
 import FiltersSectionContainer from "../../_Filters/FiltersSectionContainer";
 import Heading, { HeadingSkeleton } from "../../Heading";
 import { getCustomBoard } from "@/utils/server";
@@ -17,12 +17,15 @@ export async function generateMetadata({
 }: {
   params: { locale: Locale; jobTitleId: string };
 }): Promise<Metadata> {
+  const customBoard = await getCustomBoard();
+
   const jobsResponse = await getJobs({
     locale: params.locale,
+    searchParams: { customBoardId: customBoard?.id },
     init: { next: { revalidate: 0 } },
   });
 
-  const job = jobsResponse?.jobs?.find((job) =>
+  const job = jobsResponse?.jobs?.find((job: Job) =>
     job?.id?.includes(getShortId(params.jobTitleId))
   );
 
@@ -46,6 +49,7 @@ export default async function Home({
     locale: params.locale,
     searchParams: {
       limit: JOBS_LIMIT,
+      customBoardId: customBoard?.id,
       ...searchParams,
     },
     init: { next: { revalidate: 0 } },
@@ -54,7 +58,7 @@ export default async function Home({
   const jobs = jobsResponse?.jobs;
 
   const job = jobs?.find(
-    (job) => getShortId(job.id) === getShortId(params.jobTitleId)
+    (job: Job) => getShortId(job.id) === getShortId(params.jobTitleId)
   );
 
   if (!job) {

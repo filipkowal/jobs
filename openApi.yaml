@@ -5,7 +5,7 @@ info:
 servers:
   - url: https://jobs.digitalent.cloud/api/vertical
   - url: https://merge.digitalent.cloud/api/vertical
-  - url: https://virtserver.swaggerhub.com/filipkowal/jobs/1.0
+  - url: https://virtserver.swaggerhub.com/FILIPKOWAL_1/jobs/1.0
     description: SwaggerHub API Auto Mocking
 security: []
 paths:
@@ -23,6 +23,12 @@ paths:
           explode: false
           schema:
             $ref: "#/components/schemas/Language"
+        - name: customBoardId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
         - name: careerFields
           in: query
           required: false
@@ -168,6 +174,12 @@ paths:
           explode: false
           schema:
             $ref: "#/components/schemas/Language"
+        - name: customBoardId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
         - name: userId
           in: query
           required: false
@@ -205,6 +217,12 @@ paths:
           explode: false
           schema:
             $ref: "#/components/schemas/Language"
+        - name: customBoardId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
       requestBody:
         content:
           application/json:
@@ -233,6 +251,12 @@ paths:
           explode: false
           schema:
             $ref: "#/components/schemas/Language"
+        - name: customBoardId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
       requestBody:
         content:
           application/json:
@@ -261,6 +285,12 @@ paths:
           explode: false
           schema:
             $ref: "#/components/schemas/Language"
+        - name: customBoardId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
       requestBody:
         content:
           application/json:
@@ -292,6 +322,12 @@ paths:
           explode: false
           schema:
             $ref: "#/components/schemas/Language"
+        - name: customBoardId
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
       requestBody:
         content:
           application/json:

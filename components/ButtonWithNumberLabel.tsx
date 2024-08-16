@@ -22,7 +22,7 @@ export default function ButtonWithNumberLabel({
   return (
     <Button
       onClick={onClick}
-      className={`group !mx-4 sm:!mx-8 flex gap-2 relative ${
+      className={`group !ml-4 sm:!ml-8 flex gap-2 relative ${
         buttonActive && !isCustom
           ? "hover:!text-digitalent-green animate-pulse repeat-[2]"
           : ""

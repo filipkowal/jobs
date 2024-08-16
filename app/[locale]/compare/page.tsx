@@ -8,13 +8,16 @@ export default async function ComparePage({
 }: {
   params: GetServerSidePropsContext;
 }) {
-  const { jobs } = await getJobs({
-    locale: params.locale as Locale,
-    init: { next: { revalidate: 0 } },
-  });
-
   const dict = await getDictionary(params.locale as Locale);
   const customBoard = await getCustomBoard();
+
+  const { jobs } = await getJobs({
+    locale: params.locale as Locale,
+    searchParams: {
+      customBoardId: customBoard?.id,
+    },
+    init: { next: { revalidate: 0 } },
+  });
 
   if (!jobs) return null;
 

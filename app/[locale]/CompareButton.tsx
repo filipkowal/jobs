@@ -13,6 +13,7 @@ import Button from "@/components/Button";
 import { Locale } from "@/i18n-config";
 import CompareButtonHint from "./CompareButtonHint";
 import ButtonWithNumberLabel from "@/components/ButtonWithNumberLabel";
+import { Tooltip } from "@/components";
 
 export default function CompareButton({
   params,
@@ -53,17 +54,23 @@ export default function CompareButton({
   }
 
   return (
-    <div className="relative hidden sm:block">
-      <ButtonWithNumberLabel
-        onClick={goToComparePage}
-        buttonActive={buttonActive}
-        num={pinnedJobs?.length}
-        customBoard={customBoard}
-        text={dict["compare"]}
-      />
+    <Tooltip
+      content={dict["hint"]}
+      ariaLabel={dict["hint"]}
+      disabled={!!pinnedJobs.length}
+    >
+      <div className="relative hidden sm:block">
+        <ButtonWithNumberLabel
+          onClick={goToComparePage}
+          buttonActive={buttonActive}
+          num={pinnedJobs?.length}
+          customBoard={customBoard}
+          text={dict["compare"]}
+        />
 
-      <CompareButtonHint pinnedJobs={pinnedJobs} dict={dict} />
-    </div>
+        <CompareButtonHint pinnedJobs={pinnedJobs} dict={dict} />
+      </div>
+    </Tooltip>
   );
 }
 
@@ -89,7 +96,7 @@ function GoBackButton({
     <Link href={homeUrlObj}>
       <Button
         name={dict["goBack"]}
-        className={`!mx-4 sm:!mx-8  ${
+        className={`!ml-4 sm:!ml-8  ${
           isCustom
             ? ""
             : "!ring-white !border-white !text-white hover:!bg-white hover:!text-digitalent-green"
