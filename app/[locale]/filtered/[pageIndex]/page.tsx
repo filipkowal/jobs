@@ -29,6 +29,7 @@ export default async function Home({
       ...searchParams,
       offset: parseInt(params.pageIndex) * JOBS_LIMIT,
       limit: JOBS_LIMIT,
+      customBoardId: customBoard?.id,
     },
     init: { next: { revalidate: 0 } },
   });
