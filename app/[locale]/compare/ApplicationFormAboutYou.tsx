@@ -6,7 +6,12 @@ import {
   LoadingEllipsis,
   TextInput,
 } from "@/components";
-import { Locale, postData, stripOfEmptyStringsAndArrays } from "@/utils";
+import {
+  CustomBoard,
+  Locale,
+  postData,
+  stripOfEmptyStringsAndArrays,
+} from "@/utils";
 import { toast } from "react-hot-toast";
 import { Dictionary } from "@/utils/server";
 
@@ -16,12 +21,14 @@ export default function ApplicationFormAboutYou({
   stepNumber,
   setStepNumber,
   jobIds,
+  customBoard,
 }: {
   dict: Dictionary["compareJobTable"];
   locale: Locale;
   jobIds: string[];
   stepNumber: number;
   setStepNumber: Dispatch<SetStateAction<number>>;
+  customBoard: CustomBoard;
 }) {
   const [sex, setSex] = useState<"man" | "woman" | "other" | undefined>();
   const [email, setEmail] = useState("");
@@ -63,7 +70,12 @@ export default function ApplicationFormAboutYou({
         });
 
         try {
-          await postData("apply", locale, body);
+          await postData({
+            endpoint: "apply",
+            locale,
+            data: body,
+            customBoardId: customBoard?.id,
+          });
 
           setStepNumber(stepNumber + 1);
           setIsLoading(false);

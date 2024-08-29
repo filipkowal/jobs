@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Job, Locale } from "@/utils";
+import { CustomBoard, Job, Locale } from "@/utils";
 import { useRouter } from "next/navigation";
 import ApplicationFormSuccessStep from "./ApplicationFormSuccess";
 import ApplicationFormBasket from "./ApplicationFormBasket";
@@ -17,6 +17,7 @@ export default function ApplicationFormModal({
   removePinnedJob,
   testStepNumber,
   dict,
+  customBoard,
 }: {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -25,6 +26,7 @@ export default function ApplicationFormModal({
   pinnedJobs: Job[];
   testStepNumber?: number;
   dict: Dictionary["compareJobTable"];
+  customBoard: CustomBoard;
 }) {
   const router = useRouter();
 
@@ -45,6 +47,7 @@ export default function ApplicationFormModal({
       jobIds={pinnedJobs.map((job) => job.id as string)}
       dict={dict}
       locale={locale}
+      customBoard={customBoard}
     />,
     <ApplicationFormSuccessStep key="applicationFormSuccess" />,
   ];

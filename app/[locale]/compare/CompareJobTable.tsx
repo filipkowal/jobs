@@ -51,6 +51,7 @@ export default function CompareJobTable({
         pinnedJobs={pinnedJobs}
         removePinnedJob={removePinnedJob}
         dict={dict}
+        customBoard={customBoard}
       />
 
       <div className="w-full flex justify-center sm:mt-16">
