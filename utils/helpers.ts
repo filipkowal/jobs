@@ -1,6 +1,8 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { ACTIVE_FILTER_NAMES } from "./constants";
 import { ActiveFilters, CustomBoard } from "./types";
+import qs from "query-string";
+import { SERVER_URL } from "./constants";
 
 //@fixme how to remove it or make it responsive to activeFilers list
 export function pickActiveFiltersFromSearchParams(
@@ -27,6 +29,25 @@ export function pickActiveFiltersFromSearchParams(
   }
 
   return pickedParams;
+}
+
+export function createUrl({
+  endpoint,
+  locale,
+  param,
+  searchParams,
+}: {
+  endpoint: string;
+  locale: string;
+  param?: string;
+  searchParams?: Record<string, any>;
+}): string {
+  const encodedSearchParams =
+    searchParams && qs.stringify(searchParams, { arrayFormat: "bracket" });
+
+  return `${SERVER_URL}/${locale}/${endpoint}${param ? `/${param}` : ""}${
+    encodedSearchParams?.length ? `?${encodedSearchParams}` : ""
+  }`;
 }
 
 export function getShortId(str?: string) {
