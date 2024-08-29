@@ -1,10 +1,24 @@
-import qs from "query-string";
-import { SERVER_URL } from "./constants";
 import type { Endpoint, Filters, Jobs, JobsQuery } from "./types";
 import { type Locale } from "@/i18n-config";
+import { createUrl } from "./helpers";
 
-export async function postData(endpoint: string, locale: Locale, data: any) {
-  const url = `${SERVER_URL}/${locale}/${endpoint}`;
+export async function postData({
+  endpoint,
+  locale,
+  data,
+  customBoardId,
+}: {
+  endpoint: string;
+  locale: Locale;
+  data: any;
+  customBoardId: string;
+}) {
+  const url = createUrl({
+    endpoint,
+    locale,
+    searchParams: { customBoardId },
+  });
+
   const rawResponse = await fetch(url, {
     method: "POST",
     headers: {
@@ -30,17 +44,18 @@ async function getData({
   init = {},
 }: {
   endpoint: Endpoint;
-  locale?: Locale;
+  locale: Locale;
   param?: string;
   searchParams?: Record<string, any>;
   init?: RequestInit;
 }) {
   try {
-    const encodedSearchParams =
-      searchParams && qs.stringify(searchParams, { arrayFormat: "bracket" });
-    const url = `${SERVER_URL}/${locale}/${endpoint}${
-      param ? `/${param}` : ""
-    }${encodedSearchParams?.length ? `?${encodedSearchParams}` : ""}`;
+    const url = createUrl({
+      endpoint,
+      locale,
+      param,
+      searchParams,
+    });
 
     const res = await fetch(url, init);
 
