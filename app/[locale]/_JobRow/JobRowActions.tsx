@@ -49,6 +49,7 @@ export default async function JobActions({
             dict["Share this job and earn 500 CHF"],
           invalidEmail: dict["invalidEmail"],
         }}
+        customBoard={customBoard}
       />
 
       <div className="text-center font-light text-sm hidden sm:block">

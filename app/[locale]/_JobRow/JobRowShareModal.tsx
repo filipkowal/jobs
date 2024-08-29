@@ -5,7 +5,8 @@ import toast from "react-hot-toast";
 import Button from "@/components/Button";
 import Checkbox from "@/components/Checkbox";
 import TextInput from "@/components/TextInput";
-import { type Locale, postData } from "@/utils";
+import type { CustomBoard, Locale } from "@/utils";
+import { postData } from "@/utils";
 import dynamic from "next/dynamic";
 import { Dictionary } from "@/utils/server";
 
@@ -15,6 +16,7 @@ export default function ShareJob({
   locale,
   jobId,
   dict,
+  customBoard,
 }: {
   locale: Locale;
   dict: Dictionary["shareJob"] & {
@@ -24,6 +26,7 @@ export default function ShareJob({
     "Go back": string;
   };
   jobId?: string;
+  customBoard: CustomBoard;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [stepNumber, setStepNumber] = useState(0);
@@ -41,9 +44,14 @@ export default function ShareJob({
         e.preventDefault();
 
         try {
-          const link = await postData("refer", locale, {
-            email,
-            jobId,
+          const link = await postData({
+            endpoint: "refer",
+            locale,
+            data: {
+              email,
+              jobId,
+            },
+            customBoardId: customBoard?.id,
           });
 
           setUniqueLink(link || "");
