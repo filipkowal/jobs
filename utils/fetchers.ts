@@ -77,13 +77,20 @@ export async function getJobs({
 
 export async function getFilters({
   locale,
+  customBoardId,
   init,
 }: {
   locale: Locale;
+  customBoardId: string;
   init?: RequestInit;
 }): Promise<Filters> {
   try {
-    return await getData({ endpoint: "filters", locale, init });
+    return await getData({
+      endpoint: "filters",
+      locale,
+      init,
+      searchParams: { customBoardId },
+    });
   } catch (error) {
     throw error;
   }

@@ -22,6 +22,7 @@ export default async function Home({
   const filtersPromise = getFilters({
     locale: params.locale,
     init: { next: { revalidate: 0 } },
+    customBoardId: customBoard?.id,
   });
   const jobsPromise = getJobs({
     locale: params.locale,
