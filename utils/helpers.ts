@@ -42,8 +42,17 @@ export function createUrl({
   param?: string;
   searchParams?: Record<string, any>;
 }): string {
+  const nonEmptySearchParams = searchParams
+    ? Object.fromEntries(
+        Object.entries(searchParams).filter(
+          ([, value]) => value !== "" && value !== undefined
+        )
+      )
+    : {};
+
   const encodedSearchParams =
-    searchParams && qs.stringify(searchParams, { arrayFormat: "bracket" });
+    nonEmptySearchParams &&
+    qs.stringify(nonEmptySearchParams, { arrayFormat: "bracket" });
 
   return `${SERVER_URL}/${locale}/${endpoint}${param ? `/${param}` : ""}${
     encodedSearchParams?.length ? `?${encodedSearchParams}` : ""
