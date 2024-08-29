@@ -60,6 +60,7 @@ export default async function JobActions({
         locale={locale}
         jobId={jobId}
         dict={{ invalidEmail: dict.invalidEmail, ...dict.saveForLater }}
+        customBoard={customBoard}
       />
     </div>
   );

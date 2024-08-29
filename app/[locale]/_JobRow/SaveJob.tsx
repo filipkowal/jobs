@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import toast from "react-hot-toast";
 import Button from "@/components/Button";
 import TextInput from "@/components/TextInput";
-import { type Locale, postData } from "@/utils";
+import { CustomBoard, type Locale, postData } from "@/utils";
 
 const Modal = dynamic(() => import("@/components/Modal"));
 
@@ -13,9 +13,11 @@ export default function SaveJob({
   jobId,
   locale,
   dict,
+  customBoard,
 }: {
   jobId?: string;
   locale: Locale;
+  customBoard: CustomBoard;
   dict: {
     title: string;
     description: string;
@@ -54,9 +56,14 @@ export default function SaveJob({
             e.preventDefault();
 
             try {
-              await postData("save", locale, {
-                email,
-                jobId,
+              await postData({
+                endpoint: "save",
+                locale,
+                data: {
+                  email,
+                  jobId,
+                },
+                customBoardId: customBoard?.id,
               });
 
               toast.success(dict.success);
