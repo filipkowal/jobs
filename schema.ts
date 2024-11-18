@@ -395,7 +395,6 @@ export interface operations {
     getJobs: {
         parameters: {
             query?: {
-                customBoardId?: string | null;
                 /** @example [
                  *       "frontend",
                  *       "fullstack"
@@ -446,7 +445,9 @@ export interface operations {
                 /** @description For pagination: limit of jobs to be sent */
                 limit?: number;
             };
-            header?: never;
+            header?: {
+                customBoardId?: string | null;
+            };
             path: {
                 language: components["schemas"]["Language"];
             };
@@ -482,11 +483,12 @@ export interface operations {
     getFilters: {
         parameters: {
             query?: {
-                customBoardId?: string | null;
                 userId?: components["schemas"]["Id"];
                 boardId?: components["schemas"]["Id"];
             };
-            header?: never;
+            header?: {
+                customBoardId?: string | null;
+            };
             path: {
                 language: components["schemas"]["Language"];
             };
@@ -514,10 +516,10 @@ export interface operations {
     };
     subscribe: {
         parameters: {
-            query?: {
+            query?: never;
+            header?: {
                 customBoardId?: string | null;
             };
-            header?: never;
             path: {
                 language: components["schemas"]["Language"];
             };
@@ -549,10 +551,10 @@ export interface operations {
     };
     save: {
         parameters: {
-            query?: {
+            query?: never;
+            header?: {
                 customBoardId?: string | null;
             };
-            header?: never;
             path: {
                 language: components["schemas"]["Language"];
             };
@@ -584,10 +586,10 @@ export interface operations {
     };
     apply: {
         parameters: {
-            query?: {
+            query?: never;
+            header?: {
                 customBoardId?: string | null;
             };
-            header?: never;
             path: {
                 language: components["schemas"]["Language"];
             };
@@ -619,10 +621,10 @@ export interface operations {
     };
     refer: {
         parameters: {
-            query?: {
+            query?: never;
+            header?: {
                 customBoardId?: string | null;
             };
-            header?: never;
             path: {
                 language: components["schemas"]["Language"];
             };
