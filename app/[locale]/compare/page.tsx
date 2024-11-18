@@ -13,9 +13,7 @@ export default async function ComparePage({
 
   const { jobs } = await getJobs({
     locale: params.locale as Locale,
-    searchParams: {
-      customBoardId: customBoard?.id,
-    },
+    customBoardId: customBoard?.id,
     init: { next: { revalidate: 0 } },
   });
 

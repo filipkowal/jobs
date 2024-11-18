@@ -28,10 +28,7 @@ export type FiltersUrlParams = Omit<JobsQuery, "customBoardId">;
 // Query types
 
 // Make sure customBoardId is required
-export type JobsQuery =
-  paths["/{language}/jobs"]["get"]["parameters"]["query"] & {
-    customBoardId: string;
-  };
+export type JobsQuery = paths["/{language}/jobs"]["get"]["parameters"]["query"];
 export type ApplyQuery = components["schemas"]["apply_body"];
 
 // Filters types

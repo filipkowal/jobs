@@ -21,7 +21,7 @@ export async function generateMetadata({
 
   const jobsResponse = await getJobs({
     locale: params.locale,
-    searchParams: { customBoardId: customBoard?.id },
+    customBoardId: customBoard?.id,
     init: { next: { revalidate: 0 } },
   });
 
@@ -50,9 +50,9 @@ export default async function Home({
     locale: params.locale,
     searchParams: {
       limit: JOBS_LIMIT,
-      customBoardId: customBoard?.id,
       ...searchParams,
     },
+    customBoardId: customBoard?.id,
     init: { next: { revalidate: 0 } },
   });
   const jobsResponse = await jobsPromise;

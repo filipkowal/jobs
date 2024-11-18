@@ -25,8 +25,8 @@ export default async function Home({ params }: { params: { locale: Locale } }) {
     locale: params.locale,
     searchParams: {
       limit: JOBS_LIMIT,
-      customBoardId: customBoard?.id,
     },
+    customBoardId: customBoard?.id,
     init: { next: { revalidate: JOBS_REVALIDATE_TIME } },
   });
 

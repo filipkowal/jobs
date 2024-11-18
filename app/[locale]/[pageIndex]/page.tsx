@@ -16,7 +16,7 @@ export async function generateStaticParams() {
   for (const locale of i18n.locales) {
     const getJobsResponse = await getJobs({
       locale,
-      searchParams: { customBoardId: customBoard?.id },
+      customBoardId: customBoard?.id,
     });
     const numOfPages = Math.ceil((getJobsResponse?.length || 1) / JOBS_LIMIT);
 
@@ -45,8 +45,8 @@ export default async function Home({
     searchParams: {
       offset: params.pageIndex * JOBS_LIMIT,
       limit: JOBS_LIMIT,
-      customBoardId: customBoard?.id,
     },
+    customBoardId: customBoard?.id,
     init: { next: { revalidate: JOBS_REVALIDATE_TIME } },
   });
 

@@ -40,8 +40,8 @@ export default function ApplyFiltersButton({
         const { length } = await getJobs({
           searchParams: {
             ...activeFilters,
-            customBoardId: customBoard?.id,
           },
+          customBoardId: customBoard?.id,
           locale: locale,
         });
 

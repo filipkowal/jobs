@@ -16,7 +16,6 @@ export async function postData({
   const url = createUrl({
     endpoint,
     locale,
-    searchParams: { customBoardId },
   });
 
   const rawResponse = await fetch(url, {
@@ -24,6 +23,7 @@ export async function postData({
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      customBoardId,
     },
     body: JSON.stringify(data),
   });
@@ -42,12 +42,14 @@ async function getData({
   param,
   searchParams,
   init = {},
+  customBoardId,
 }: {
   endpoint: Endpoint;
   locale: Locale;
   param?: string;
   searchParams?: Record<string, any>;
   init?: RequestInit;
+  customBoardId?: string;
 }) {
   try {
     const url = createUrl({
@@ -57,7 +59,10 @@ async function getData({
       searchParams,
     });
 
-    const res = await fetch(url, init);
+    const res = await fetch(url, {
+      ...init,
+      headers: { ...init.headers, customBoardId: customBoardId || "" },
+    });
 
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status} in ${url}`);
@@ -73,10 +78,12 @@ export async function getJobs({
   locale,
   searchParams,
   init,
+  customBoardId,
 }: {
   locale: Locale;
-  searchParams: JobsQuery;
+  searchParams?: JobsQuery;
   init?: RequestInit;
+  customBoardId?: string;
 }): Promise<Jobs> {
   try {
     return await getData({
@@ -84,6 +91,7 @@ export async function getJobs({
       locale,
       searchParams,
       init,
+      customBoardId,
     });
   } catch (error) {
     throw error;
@@ -104,7 +112,7 @@ export async function getFilters({
       endpoint: "filters",
       locale,
       init,
-      searchParams: { customBoardId },
+      customBoardId,
     });
   } catch (error) {
     throw error;
