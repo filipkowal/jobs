@@ -1,12 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-import type {
-  Dictionary,
-  CustomBoard,
-  Locale,
-  JobsQuery,
-  FiltersUrlParams,
-} from "@/utils";
+import type { Dictionary, CustomBoard, Locale, JobsQuery } from "@/utils";
 import { getJobs } from "@/utils";
 import { Button, LoadingEllipsis } from "@/components";
 import { useRouter } from "next/navigation";
@@ -21,7 +15,7 @@ export default function ApplyFiltersButton({
   dict,
   customBoard,
 }: {
-  activeFilters: FiltersUrlParams | undefined;
+  activeFilters: JobsQuery | undefined;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   locale: Locale;
   dict: Dictionary["filtersSection"];

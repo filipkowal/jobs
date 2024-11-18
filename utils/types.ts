@@ -24,7 +24,6 @@ export type Filters =
 
 export type ActiveFilterName = keyof NonNullable<ActiveFilters>;
 
-export type FiltersUrlParams = Omit<JobsQuery, "customBoardId">;
 // Query types
 
 // Make sure customBoardId is required
