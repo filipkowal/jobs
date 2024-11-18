@@ -23,7 +23,7 @@ export async function postData({
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      customBoardId,
+      "Custom-Board-Id": customBoardId,
     },
     body: JSON.stringify(data),
   });
@@ -61,7 +61,7 @@ async function getData({
 
     const res = await fetch(url, {
       ...init,
-      headers: { ...init.headers, customBoardId: customBoardId || "" },
+      headers: { ...init.headers, "Custom-Board-Id": customBoardId || "" },
     });
 
     if (!res.ok) {
