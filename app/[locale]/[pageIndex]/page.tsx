@@ -1,4 +1,4 @@
-import { JOBS_LIMIT, JOBS_REVALIDATE_TIME } from "@/utils/constants";
+import { JOBS_LIMIT } from "@/utils/constants";
 import { type Locale, i18n } from "@/i18n-config";
 import JobTable from "../JobTable";
 import { getFilters, getJobs } from "@/utils";
@@ -37,7 +37,6 @@ export default async function Home({
 
   const filtersPromise = getFilters({
     locale: params.locale,
-    init: { next: { revalidate: JOBS_REVALIDATE_TIME } },
     customBoardId: customBoard?.id,
   });
   const jobsPromise = getJobs({
@@ -47,7 +46,6 @@ export default async function Home({
       limit: JOBS_LIMIT,
     },
     customBoardId: customBoard?.id,
-    init: { next: { revalidate: JOBS_REVALIDATE_TIME } },
   });
 
   return (
