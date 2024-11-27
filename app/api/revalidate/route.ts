@@ -2,10 +2,10 @@ import { revalidatePath } from "next/cache";
 import { getCustomBoard } from "@/utils/server/helpers";
 
 function revalidateStaticPages() {
-  const staticPathsToRevalidate = ["/", "/[locale]", "/[locale]/[pageIndex]"];
+  const staticPathsToRevalidate = ["/[locale]", "/[locale]/[pageIndex]"];
 
   for (const path of staticPathsToRevalidate) {
-    revalidatePath(path);
+    revalidatePath(path, "page");
   }
 }
 
