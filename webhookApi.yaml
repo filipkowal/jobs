@@ -1,0 +1,29 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/FILIPKOWAL_1/jobs-webhooks/1.0.0
+info:
+  version: "1.0.0"
+  title: jobs-webhooks
+  description: Webhooks api for the job boards. The URL is [boardUrl]/api
+paths:
+  /revalidate:
+    post:
+      tags:
+        - revalidate
+      description: Rebuilds all static pages. Use when job board db changed
+      operationId: revalidate
+      parameters:
+        - in: header
+          name: token
+          description: authentication token
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Revalidation successful
+        "403":
+          description: Invalid token
+        "500":
+          description: Error handling webhook
