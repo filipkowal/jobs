@@ -1,5 +1,4 @@
 import { revalidatePath } from "next/cache";
-import { getCustomBoard } from "@/utils/server/helpers";
 
 function revalidateStaticPages() {
   const staticPathsToRevalidate = ["/[locale]", "/[locale]/[pageIndex]"];
@@ -18,18 +17,6 @@ export async function POST(req: Request) {
       console.warn("Invalid token attempt:", token);
       return new Response(
         JSON.stringify({ success: false, error: "Invalid token" }),
-        { status: 403 }
-      );
-    }
-
-    const { boardId } = await req.json();
-
-    const customBoard = await getCustomBoard();
-
-    // Revalidate only the board with the provided boardId
-    if (customBoard.id !== boardId) {
-      return new Response(
-        JSON.stringify({ success: false, error: "Invalid boardId" }),
         { status: 403 }
       );
     }
