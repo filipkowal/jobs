@@ -13,7 +13,8 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ locale }));
 }
 
-export default async function Home({ params }: { params: { locale: Locale } }) {
+export default async function Home(props: { params: Promise<{ locale: Locale }> }) {
+  const params = await props.params;
   const customBoard = await getCustomBoard();
 
   const filtersPromise = getFilters({

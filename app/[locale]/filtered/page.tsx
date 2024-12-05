@@ -10,13 +10,14 @@ import FiltersSkeleton from "../_Filters/FiltersSkeleton";
 import { ActiveFilters } from "@/utils";
 import JobTableSkeleton from "../JobTableSkeleton";
 
-export default async function Home({
-  params,
-  searchParams,
-}: {
-  params: { locale: Locale };
-  searchParams: ActiveFilters & { [key: string]: any };
-}) {
+export default async function Home(
+  props: {
+    params: Promise<{ locale: Locale }>;
+    searchParams: Promise<ActiveFilters & { [key: string]: any }>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const customBoard = await getCustomBoard();
 
   const filtersPromise = getFilters({

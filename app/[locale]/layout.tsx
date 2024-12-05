@@ -11,11 +11,12 @@ import Script from "next/script";
 import CookiePopup from "@/components/CookiePopup";
 import { getCustomBoard, getDictionary } from "@/utils/server/helpers";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { locale: Locale };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ locale: Locale }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const dict = await getDictionary(params.locale);
   const customBoard = await getCustomBoard();
 
@@ -59,13 +60,18 @@ const loew = localFont({
   preload: false,
 });
 
-export default async function RootLayout({
-  params,
-  children,
-}: {
-  params: { locale: Locale };
-  children: React.ReactNode;
-}) {
+export default async function RootLayout(
+  props: {
+    params: Promise<{ locale: Locale }>;
+    children: React.ReactNode;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const customBoard = await getCustomBoard();
   const dict = await getDictionary(params.locale);
   const colors = customBoard.colors;

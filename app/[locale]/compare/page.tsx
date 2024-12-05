@@ -3,11 +3,12 @@ import { getJobs, Locale } from "@/utils";
 import CompareJobTable from "./CompareJobTable";
 import { getCustomBoard, getDictionary } from "@/utils/server";
 
-export default async function ComparePage({
-  params,
-}: {
-  params: GetServerSidePropsContext;
-}) {
+export default async function ComparePage(
+  props: {
+    params: Promise<GetServerSidePropsContext>;
+  }
+) {
+  const params = await props.params;
   const dict = await getDictionary(params.locale as Locale);
   const customBoard = await getCustomBoard();
 

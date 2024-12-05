@@ -12,11 +12,12 @@ import JobTableSkeleton from "../../JobTableSkeleton";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { locale: Locale; jobTitleId: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ locale: Locale; jobTitleId: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const customBoard = await getCustomBoard();
 
   const jobsResponse = await getJobs({
@@ -32,13 +33,14 @@ export async function generateMetadata({
   return job?.metainfo || {};
 }
 
-export default async function Home({
-  params,
-  searchParams,
-}: {
-  params: { locale: Locale; jobTitleId: string };
-  searchParams: ActiveFilters & { [key: string]: any };
-}) {
+export default async function Home(
+  props: {
+    params: Promise<{ locale: Locale; jobTitleId: string }>;
+    searchParams: Promise<ActiveFilters & { [key: string]: any }>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const customBoard = await getCustomBoard();
 
   const filtersPromise = getFilters({
