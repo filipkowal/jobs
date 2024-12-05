@@ -28,11 +28,9 @@ export async function generateStaticParams() {
   return params;
 }
 
-export default async function Home(
-  props: {
-    params: Promise<{ locale: Locale; pageIndex: number }>;
-  }
-) {
+export default async function Home(props: {
+  params: Promise<{ locale: Locale; pageIndex: number }>;
+}) {
   const params = await props.params;
   const customBoard = await getCustomBoard();
 

@@ -10,13 +10,10 @@ import FiltersSkeleton from "../_Filters/FiltersSkeleton";
 import { ActiveFilters } from "@/utils";
 import JobTableSkeleton from "../JobTableSkeleton";
 
-export default async function Home(
-  props: {
-    params: Promise<{ locale: Locale }>;
-    searchParams: Promise<ActiveFilters & { [key: string]: any }>;
-  }
-) {
-  const searchParams = await props.searchParams;
+export default async function Home(props: {
+  params: Promise<{ locale: Locale }>;
+  searchParams: Promise<ActiveFilters & { [key: string]: any }>;
+}) {
   const params = await props.params;
   const customBoard = await getCustomBoard();
 
@@ -25,6 +22,8 @@ export default async function Home(
     init: { next: { revalidate: 0 } },
     customBoardId: customBoard?.id,
   });
+
+  const searchParams = await props.searchParams;
   const jobsPromise = getJobs({
     locale: params.locale,
     searchParams: {
