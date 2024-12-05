@@ -19,8 +19,8 @@ export default async function Home(props: {
 
   const filtersPromise = getFilters({
     locale: params.locale,
-    init: { next: { revalidate: 0 } },
     customBoardId: customBoard?.id,
+    init: { cache: "force-cache" },
   });
 
   const searchParams = await props.searchParams;
@@ -31,7 +31,6 @@ export default async function Home(props: {
       ...searchParams,
     },
     customBoardId: customBoard?.id,
-    init: { next: { revalidate: 0 } },
   });
 
   return (

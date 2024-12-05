@@ -3,11 +3,9 @@ import { getJobs, Locale } from "@/utils";
 import CompareJobTable from "./CompareJobTable";
 import { getCustomBoard, getDictionary } from "@/utils/server";
 
-export default async function ComparePage(
-  props: {
-    params: Promise<GetServerSidePropsContext>;
-  }
-) {
+export default async function ComparePage(props: {
+  params: Promise<GetServerSidePropsContext>;
+}) {
   const params = await props.params;
   const dict = await getDictionary(params.locale as Locale);
   const customBoard = await getCustomBoard();
@@ -15,7 +13,7 @@ export default async function ComparePage(
   const { jobs } = await getJobs({
     locale: params.locale as Locale,
     customBoardId: customBoard?.id,
-    init: { next: { revalidate: 0 } },
+    init: { cache: "force-cache" },
   });
 
   if (!jobs) return null;
