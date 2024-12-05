@@ -17,6 +17,7 @@ export async function generateStaticParams() {
     const getJobsResponse = await getJobs({
       locale,
       customBoardId: customBoard?.id,
+      init: { cache: "force-cache" },
     });
     const numOfPages = Math.ceil((getJobsResponse?.length || 1) / JOBS_LIMIT);
 
@@ -37,6 +38,7 @@ export default async function Home(props: {
   const filtersPromise = getFilters({
     locale: params.locale,
     customBoardId: customBoard?.id,
+    init: { cache: "force-cache" },
   });
   const jobsPromise = getJobs({
     locale: params.locale,
@@ -45,6 +47,7 @@ export default async function Home(props: {
       limit: JOBS_LIMIT,
     },
     customBoardId: customBoard?.id,
+    init: { cache: "force-cache" },
   });
 
   return (
