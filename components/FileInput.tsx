@@ -68,7 +68,7 @@ export default function FileInput({
         onDropRejected={(reasons) =>
           reasons.map((r) =>
             r.errors.map((e) =>
-              toast.error("file-invalid-type" ? dict.select : e.code)
+              toast.error(e.code === "file-invalid-type" ? dict.select : e.code)
             )
           )
         }
