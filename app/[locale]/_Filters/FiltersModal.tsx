@@ -42,7 +42,7 @@ export default function FiltersModal({
     useFilters(initialActiveFilters, filters, customBoard);
 
   const isAccordionOpen = (filterName: ActiveFilterName): boolean =>
-    openFilterName === filterName;
+    openFilterName === filterName || openFilterName === "all";
 
   const closeModal = () => {
     setActiveFilters(initialActiveFilters); // Reset active filters
