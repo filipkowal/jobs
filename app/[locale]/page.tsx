@@ -21,7 +21,7 @@ export default async function Home(props: {
 
   const filtersPromise = getFilters({
     locale: params.locale,
-    customBoardId: customBoard?.id,
+    boardId: customBoard?.id,
     init: { cache: "force-cache" },
   });
   const jobsPromise = getJobs({
@@ -29,7 +29,7 @@ export default async function Home(props: {
     searchParams: {
       limit: JOBS_LIMIT,
     },
-    customBoardId: customBoard?.id,
+    boardId: customBoard?.id,
     init: { cache: "force-cache" },
   });
 

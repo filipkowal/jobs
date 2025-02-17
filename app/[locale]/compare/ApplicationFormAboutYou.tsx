@@ -74,7 +74,7 @@ export default function ApplicationFormAboutYou({
             endpoint: "apply",
             locale,
             data: body,
-            customBoardId: customBoard?.id,
+            boardId: customBoard?.id,
           });
 
           setStepNumber(stepNumber + 1);

@@ -19,7 +19,7 @@ export default async function Home(props: {
 
   const filtersPromise = getFilters({
     locale: params.locale,
-    customBoardId: customBoard?.id,
+    boardId: customBoard?.id,
     init: { cache: "force-cache" },
   });
 
@@ -31,7 +31,7 @@ export default async function Home(props: {
       offset: parseInt(params.pageIndex) * JOBS_LIMIT,
       limit: JOBS_LIMIT,
     },
-    customBoardId: customBoard?.id,
+    boardId: customBoard?.id,
   });
 
   return (

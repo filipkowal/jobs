@@ -6,12 +6,12 @@ export async function postData({
   endpoint,
   locale,
   data,
-  customBoardId,
+  boardId,
 }: {
   endpoint: string;
   locale: Locale;
   data: any;
-  customBoardId: string;
+  boardId: string;
 }) {
   const url = createUrl({
     endpoint,
@@ -23,7 +23,7 @@ export async function postData({
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      "Custom-Board-Id": customBoardId,
+      "Custom-Board-Id": boardId,
     },
     body: JSON.stringify(data),
   });
@@ -42,14 +42,14 @@ async function getData({
   param,
   searchParams,
   init = {},
-  customBoardId,
+  boardId,
 }: {
   endpoint: Endpoint;
   locale: Locale;
   param?: string;
   searchParams?: Record<string, any>;
   init?: RequestInit;
-  customBoardId?: string;
+  boardId?: string;
 }) {
   try {
     const url = createUrl({
@@ -61,7 +61,7 @@ async function getData({
 
     const res = await fetch(url, {
       ...init,
-      headers: { ...init.headers, "Custom-Board-Id": customBoardId || "" },
+      headers: { ...init.headers, "Custom-Board-Id": boardId || "" },
     });
 
     if (!res.ok) {
@@ -78,12 +78,12 @@ export async function getJobs({
   locale,
   searchParams,
   init,
-  customBoardId,
+  boardId,
 }: {
   locale: Locale;
   searchParams?: JobsQuery;
   init?: RequestInit;
-  customBoardId?: string;
+  boardId?: string;
 }): Promise<Jobs> {
   try {
     return await getData({
@@ -91,7 +91,7 @@ export async function getJobs({
       locale,
       searchParams,
       init,
-      customBoardId,
+      boardId,
     });
   } catch (error) {
     throw error;
@@ -100,11 +100,11 @@ export async function getJobs({
 
 export async function getFilters({
   locale,
-  customBoardId,
+  boardId,
   init,
 }: {
   locale: Locale;
-  customBoardId: string;
+  boardId: string;
   init?: RequestInit;
 }): Promise<Filters> {
   try {
@@ -112,7 +112,7 @@ export async function getFilters({
       endpoint: "filters",
       locale,
       init,
-      customBoardId,
+      boardId,
     });
   } catch (error) {
     throw error;

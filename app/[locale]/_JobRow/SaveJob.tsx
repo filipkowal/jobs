@@ -63,7 +63,7 @@ export default function SaveJob({
                   email,
                   jobId,
                 },
-                customBoardId: customBoard?.id,
+                boardId: customBoard?.id,
               });
 
               toast.success(dict.success);

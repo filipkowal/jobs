@@ -12,7 +12,7 @@ export default async function ComparePage(props: {
 
   const { jobs } = await getJobs({
     locale: params.locale as Locale,
-    customBoardId: customBoard?.id,
+    boardId: customBoard?.id,
     init: { cache: "force-cache" },
   });
 

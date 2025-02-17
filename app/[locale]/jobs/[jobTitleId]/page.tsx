@@ -20,7 +20,7 @@ export async function generateMetadata(props: {
 
   const jobsResponse = await getJobs({
     locale: params.locale,
-    customBoardId: customBoard?.id,
+    boardId: customBoard?.id,
     init: { cache: "force-cache" },
   });
 
@@ -40,7 +40,7 @@ export default async function Home(props: {
 
   const filtersPromise = getFilters({
     locale: params.locale,
-    customBoardId: customBoard?.id,
+    boardId: customBoard?.id,
     init: { cache: "force-cache" },
   });
 
@@ -51,7 +51,7 @@ export default async function Home(props: {
       limit: JOBS_LIMIT,
       ...searchParams,
     },
-    customBoardId: customBoard?.id,
+    boardId: customBoard?.id,
   });
   const jobsResponse = await jobsPromise;
   const jobs = jobsResponse?.jobs;

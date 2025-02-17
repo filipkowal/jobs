@@ -51,7 +51,7 @@ export default function ShareJob({
               email,
               jobId,
             },
-            customBoardId: customBoard?.id,
+            boardId: customBoard?.id,
           });
 
           setUniqueLink(link || "");
