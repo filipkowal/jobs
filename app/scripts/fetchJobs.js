@@ -42,9 +42,15 @@ function generateFilters(jobs) {
       const value = job[key];
 
       if (["jobLevel", "companySizes"].includes(key)) {
-        filters[key] = filters[key] ? [...filters[key], value] : [value];
+        filters[key] = filters[key]
+          ? !filters[key].includes(value)
+            ? [...filters[key], value]
+            : filters[key]
+          : [value];
       } else if (isStringArr(value)) {
-        filters[key] = filters[key] ? [...filters[key], ...value] : [...value];
+        filters[key] = filters[key]
+          ? [...filters[key], ...value.filter((v) => !filters[key].includes(v))]
+          : [...value];
       } else if (isNumberTuple(value)) {
         let v = value;
         if (isSalaryType(value) && isNumberTuple(value.amount)) {
