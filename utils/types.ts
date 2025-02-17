@@ -26,7 +26,7 @@ export type ActiveFilterName = keyof NonNullable<ActiveFilters>;
 
 // Query types
 
-// Make sure customBoardId is required
+// Make sure boardId is required
 export type JobsQuery = paths["/{language}/jobs"]["get"]["parameters"]["query"];
 export type ApplyQuery = components["schemas"]["apply_body"];
 
