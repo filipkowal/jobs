@@ -40,7 +40,8 @@ export function middleware(request: NextRequest) {
   if (
     pathname.includes("/images") ||
     pathname.includes("/fonts") ||
-    pathname.includes("sentry")
+    pathname.includes("sentry") ||
+    pathname.includes("/revalidate")
   )
     return;
 
