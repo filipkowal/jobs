@@ -1,4 +1,5 @@
 import { revalidatePath } from "next/cache";
+import { fetchAndSaveData } from "../../scripts/fetchAndSaveData";
 
 function revalidateStaticPages() {
   const staticPathsToRevalidate = ["/[locale]", "/[locale]/[pageIndex]"];
@@ -21,6 +22,7 @@ export async function POST(req: Request) {
       );
     }
 
+    await fetchAndSaveData();
     revalidateStaticPages();
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });

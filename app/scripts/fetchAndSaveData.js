@@ -65,7 +65,7 @@ function generateFilters(jobs) {
   return filters;
 }
 
-async function saveData() {
+export async function fetchAndSaveData() {
   const customBoard = await loadCustomBoard();
   const boardId = customBoard?.id;
 
@@ -101,4 +101,4 @@ async function saveData() {
   }
 }
 
-saveData().catch((err) => console.error("Error:", err));
+fetchAndSaveData();
