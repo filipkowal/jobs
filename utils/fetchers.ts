@@ -61,7 +61,7 @@ async function getData({
 
     const res = await fetch(url, {
       ...init,
-      headers: { ...init.headers, "Custom-Board-Id": boardId || "" },
+      headers: { ...init.headers, "Board-Id": boardId || "" },
     });
 
     if (!res.ok) {

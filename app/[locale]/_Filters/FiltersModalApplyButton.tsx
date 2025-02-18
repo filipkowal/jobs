@@ -35,7 +35,7 @@ export default function ApplyFiltersButton({
           searchParams: {
             ...activeFilters,
           },
-          customBoardId: customBoard?.id,
+          boardId: customBoard?.id,
           locale: locale,
         });
 
