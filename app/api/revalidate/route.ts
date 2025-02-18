@@ -1,5 +1,5 @@
 import { revalidatePath } from "next/cache";
-import { fetchAndSaveData } from "../../scripts/fetchAndSaveData";
+import { fetchAndSaveData } from "../../scripts/fetchAndSaveData.mjs";
 
 function revalidateStaticPages() {
   const staticPathsToRevalidate = ["/[locale]", "/[locale]/[pageIndex]"];

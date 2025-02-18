@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node ./app/scripts/fetchAndSaveData.js && next build",
+    "build": "node ./app/scripts/fetchAndSaveData.mjs && next build",
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true next build && next analyze",
@@ -39,7 +39,7 @@
     "react-dropzone": "^14.3.5",
     "react-hot-toast": "^2.4.1",
     "sharp": "^0.33.5",
-    "tailwind-scrollbar-hide": "^1.1.7",
+    "tailwind-scrollbar-hide": "^2.0.0",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2",
     "uuid": "^11.0.3"
