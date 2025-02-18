@@ -73,7 +73,7 @@ export async function fetchAndSaveData() {
     console.log(`Fetching jobs for ${locale}...`);
 
     const jobs = await fetch(`${SERVER_URL}/${locale}/jobs`, {
-      headers: { "Custom-Board-Id": boardId || "" },
+      headers: { "Board-Id": boardId || "" },
     }).then((res) => res.json());
 
     const filters = generateFilters(jobs?.jobs);
@@ -97,7 +97,11 @@ export async function fetchAndSaveData() {
       JSON.stringify(filters, null, 2)
     );
 
-    console.log(`Saved jobs and filters for ${locale}`);
+    console.log(
+      `Saved ${jobs?.length} jobs and ${
+        Object.keys(filters)?.length
+      } filters for ${locale}`
+    );
   }
 }
 
