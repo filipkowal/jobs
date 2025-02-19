@@ -1,6 +1,8 @@
 import "server-only";
 import type { Locale } from "@/i18n-config";
 import { i18n } from "@/i18n-config";
+import path from "path";
+import { promises as fs } from "fs";
 
 // We enumerate all dictionaries here for better linting and typescript support
 // We also get the default import for cleaner types
@@ -22,3 +24,15 @@ export type Dictionary = ReturnType<typeof getDictionary> extends Promise<
 >
   ? T
   : never;
+
+export const readJobs = async (locale: Locale) => {
+  const filePath = path.join(process.cwd(), "app/data", locale, "jobs.json");
+  const fileContent = await fs.readFile(filePath, "utf-8");
+  return JSON.parse(fileContent);
+};
+
+export const readFilters = async (locale: Locale) => {
+  const filePath = path.join(process.cwd(), "app/data", locale, "filters.json");
+  const fileContent = await fs.readFile(filePath, "utf-8");
+  return JSON.parse(fileContent);
+};
