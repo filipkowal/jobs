@@ -15,10 +15,6 @@ async function loadCustomBoard() {
   return JSON.parse(data);
 }
 
-const isSalaryType = (filterName) => {
-  return !!filterName?.hasOwnProperty("amount") && filterName === "salary";
-};
-
 const isStringArr = (value) => {
   return (
     Array.isArray(value) && value.length > 0 && typeof value[0] === "string"
@@ -49,7 +45,7 @@ function generateFilters(jobs) {
         let k = key;
         if (key === "address") {
           v = value.state;
-          k = "states";
+          k = "cantons";
         }
         if (key === "jobLevel") {
           k = "jobLevels";
@@ -71,14 +67,14 @@ function generateFilters(jobs) {
         return;
       }
 
-      if (isNumberTuple(value)) {
+      if (isNumberTuple(value) || key === "salary") {
         // Number range filters
         let v = value;
-        if (isSalaryType(value) && isNumberTuple(value.amount)) {
+        if (key === "salary" && isNumberTuple(value?.amount)) {
           v = value.amount;
         }
-        const [min, max] = filters[key] || [Infinity, 0];
-        filters[key] = [Math.min(min, value[0]), Math.max(max, value[1])];
+        const [min, max] = v || [Infinity, 0];
+        filters[key] = [Math.min(min, v[0]), Math.max(max, v[1])];
         return;
       }
     });

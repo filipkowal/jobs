@@ -110,14 +110,14 @@ function getFilterComponent(
   if (!isFilterVisible(filterName)) return null;
 
   switch (filterName) {
-    case "states":
+    case "cantons":
       return (
         <RegionsFilter
           key="regions"
-          states={filters.states}
-          selectedStates={activeFilters?.states || []}
-          isOpen={isAccordionOpen("states")}
-          setSelectedStates={(states) => setActiveFilter("states", states)}
+          cantons={filters.cantons}
+          selectedCantons={activeFilters?.cantons || []}
+          isOpen={isAccordionOpen("cantons")}
+          setSelectedCantons={(cantons) => setActiveFilter("cantons", cantons)}
           dict={dict}
           locale={locale}
         />
@@ -134,8 +134,8 @@ function getFilterComponent(
           <RangeSlider
             value={activeFilters?.salary || 0}
             onValueChange={(salary) => setActiveFilter("salary", salary)}
-            min={filters?.salary?.amount?.[0] || 0}
-            max={filters?.salary?.amount?.[1] || 900000}
+            min={filters?.salary?.[0] || 0}
+            max={filters?.salary?.[1] || 900000}
             step={1000}
             unit="CHF"
             name={dict["Min. salary"]}

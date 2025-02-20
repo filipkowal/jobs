@@ -7,7 +7,7 @@ export const MOCK_SERVER_URL =
 export const JOBS_LIMIT = 20;
 
 export const FILTER_NAMES = [
-  "states",
+  "cantons",
   "careerFields",
   "technologies",
   "jobLevels",
@@ -19,7 +19,7 @@ export const FILTER_NAMES = [
 ] as const;
 
 export const FILTER_BUTTON_NAMES = [
-  "states",
+  "cantons",
   "careerFields",
   "salary",
   "workload",
@@ -35,7 +35,7 @@ export const ACTIVE_FILTER_NAMES: ActiveFilterName[] = [
   "jobLevels",
   "workload",
   "homeOffice",
-  "states",
+  "cantons",
   "salary",
 ];
 
@@ -43,23 +43,23 @@ export const ALL_REGIONS = {
   en: [
     {
       name: "Zurich / Schaffhausen region",
-      states: ["Canton of Zurich", "Canton of Schaffhausen"],
+      cantons: ["Canton of Zurich", "Canton of Schaffhausen"],
     },
     {
       name: "Mittelland region",
-      states: ["Canton of Aargau", "Canton of Solothurn"],
+      cantons: ["Canton of Aargau", "Canton of Solothurn"],
     },
     {
       name: "Bern region",
-      states: ["Canton of Bern"],
+      cantons: ["Canton of Bern"],
     },
     {
       name: "Southern Switzerland region",
-      states: ["Canton of Tessin"],
+      cantons: ["Canton of Tessin"],
     },
     {
       name: "Central Switzerland region",
-      states: [
+      cantons: [
         "Canton of Lucerne",
         "Canton of Nidwalden",
         "Canton of Schwyz",
@@ -69,11 +69,11 @@ export const ALL_REGIONS = {
     },
     {
       name: "Basel region",
-      states: ["Canton of Basel-Stadt", "Canton of Basel-Landschaft"],
+      cantons: ["Canton of Basel-Stadt", "Canton of Basel-Landschaft"],
     },
     {
       name: "Eastern Switzerland region",
-      states: [
+      cantons: [
         "Canton of Appenzell Ausserrhoden",
         "Canton of Appenzell Innerrhoden",
         "Canton of Glarus",
@@ -84,7 +84,7 @@ export const ALL_REGIONS = {
     },
     {
       name: "Region Romandy",
-      states: [
+      cantons: [
         "Canton of Fribourg",
         "Canton of Geneva",
         "Canton of Neuchâtel",
@@ -97,23 +97,23 @@ export const ALL_REGIONS = {
   de: [
     {
       name: "Region Zürich / Schaffhausen",
-      states: ["Kanton Zürich", "Kanton Schaffhausen"],
+      cantons: ["Kanton Zürich", "Kanton Schaffhausen"],
     },
     {
       name: "Region Mittelland",
-      states: ["Kanton Aargau", "Kanton Solothurn"],
+      cantons: ["Kanton Aargau", "Kanton Solothurn"],
     },
     {
       name: "Region Bern",
-      states: ["Kanton Bern"],
+      cantons: ["Kanton Bern"],
     },
     {
       name: "Region Südschweiz",
-      states: ["Kanton Tessin"],
+      cantons: ["Kanton Tessin"],
     },
     {
       name: "Region Zentralschweiz",
-      states: [
+      cantons: [
         "Kanton Luzern",
         "Kanton Obwalden",
         "Kanton Nidwalden",
@@ -124,11 +124,11 @@ export const ALL_REGIONS = {
     },
     {
       name: "Region Basel",
-      states: ["Kanton Basel-Stadt", "Kanton Basel-Landschaft"],
+      cantons: ["Kanton Basel-Stadt", "Kanton Basel-Landschaft"],
     },
     {
       name: "Region Ostschweiz",
-      states: [
+      cantons: [
         "Kanton Appenzell Ausserrhoden",
         "Kanton Appenzell Innerrhoden",
         "Kanton Glarus",
@@ -139,7 +139,7 @@ export const ALL_REGIONS = {
     },
     {
       name: "Region Westschweiz",
-      states: [
+      cantons: [
         "Kanton Freiburg",
         "Kanton Genf",
         "Kanton Neuenburg",
@@ -152,23 +152,23 @@ export const ALL_REGIONS = {
   fr: [
     {
       name: "Région de Zurich / Schaffhausen",
-      states: ["Canton de Zurich", "Canton de Schaffhouse"],
+      cantons: ["Canton de Zurich", "Canton de Schaffhouse"],
     },
     {
       name: "Région du mittelland",
-      states: ["Canton d'Argovie", "Canton de Soleure"],
+      cantons: ["Canton d'Argovie", "Canton de Soleure"],
     },
     {
       name: "Région de Berne",
-      states: ["Canton de Berne"],
+      cantons: ["Canton de Berne"],
     },
     {
       name: "Région Suisse du Sud",
-      states: ["Canton du Tessin"],
+      cantons: ["Canton du Tessin"],
     },
     {
       name: "Région centrale de Suisse",
-      states: [
+      cantons: [
         "Canton de Lucerne",
         "Canton d'Obwald",
         "Canton de Nidwald",
@@ -179,11 +179,11 @@ export const ALL_REGIONS = {
     },
     {
       name: "Région de Bâle",
-      states: ["Canton de Bâle-Ville", "Canton de Bâle-Campagne"],
+      cantons: ["Canton de Bâle-Ville", "Canton de Bâle-Campagne"],
     },
     {
       name: "Région de la Suisse orientale",
-      states: [
+      cantons: [
         "Canton de Appenzell Rhodes-Extérieures",
         "Canton de Appenzell Rhodes-Intérieures",
         "Canton de Glaris",
@@ -194,7 +194,7 @@ export const ALL_REGIONS = {
     },
     {
       name: "Région Suisse romande",
-      states: [
+      cantons: [
         "Canton de Fribourg",
         "Canton de Genève",
         "Canton de Neuchâtel",
