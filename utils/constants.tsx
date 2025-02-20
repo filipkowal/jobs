@@ -7,7 +7,7 @@ export const MOCK_SERVER_URL =
 export const JOBS_LIMIT = 20;
 
 export const FILTER_NAMES = [
-  "regions",
+  "states",
   "careerFields",
   "technologies",
   "jobLevels",
@@ -19,7 +19,7 @@ export const FILTER_NAMES = [
 ] as const;
 
 export const FILTER_BUTTON_NAMES = [
-  "regions",
+  "states",
   "careerFields",
   "salary",
   "workload",

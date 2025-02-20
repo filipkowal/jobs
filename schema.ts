@@ -316,7 +316,7 @@ export interface components {
        *         ]
        *       }
        *     ] */
-      regions?: components["schemas"]["Filters_regions"][];
+      states?: components["schemas"]["Tags"];
     };
     inline_response_200: {
       jobs?: components["schemas"]["Job"][];

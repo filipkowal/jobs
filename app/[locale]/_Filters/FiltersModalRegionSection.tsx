@@ -3,29 +3,25 @@ import { components } from "@/schema";
 import { ALL_REGIONS, Dictionary, Locale } from "@/utils";
 
 export default function RegionsFilter({
-  regions,
+  states,
   selectedStates,
   isOpen,
   setSelectedStates,
   dict,
   locale,
 }: {
-  regions: components["schemas"]["Filters"]["regions"];
+  states: components["schemas"]["Filters"]["states"];
   selectedStates: string[];
   isOpen: boolean;
-  setSelectedStates: (regions: string[]) => void;
+  setSelectedStates: (states: string[]) => void;
   dict: Dictionary["filtersSection"];
   locale: Locale;
 }) {
-  if (!regions) return null;
-
-  const states = regions
-    .map((region) => (region?.states ? [...region.states] : []))
-    .flat();
+  if (!states) return null;
 
   return (
     <Accordion
-      title={dict["regions"]}
+      title={dict["states"]}
       isOpen={isOpen}
       labelTag={
         selectedStates.length > 0 ? selectedStates.length.toString() : undefined

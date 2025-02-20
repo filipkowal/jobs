@@ -41,23 +41,45 @@ function generateFilters(jobs) {
     Object.keys(job).forEach((key) => {
       const value = job[key];
 
-      if (["jobLevel", "companySizes"].includes(key)) {
-        filters[key] = filters[key]
-          ? !filters[key].includes(value)
-            ? [...filters[key], value]
-            : filters[key]
-          : [value];
-      } else if (isStringArr(value)) {
+      if (key === "tags") return;
+
+      if (["jobLevel", "companySizes", "address"].includes(key)) {
+        // String filters
+        let v = value;
+        let k = key;
+        if (key === "address") {
+          v = value.state;
+          k = "states";
+        }
+        if (key === "jobLevel") {
+          k = "jobLevels";
+        }
+
+        filters[k] = filters[k]
+          ? filters[k].includes(v)
+            ? filters[k]
+            : [...filters[k], v]
+          : [v];
+        return;
+      }
+
+      if (isStringArr(value)) {
+        // Array of strings filters
         filters[key] = filters[key]
           ? [...filters[key], ...value.filter((v) => !filters[key].includes(v))]
           : [...value];
-      } else if (isNumberTuple(value)) {
+        return;
+      }
+
+      if (isNumberTuple(value)) {
+        // Number range filters
         let v = value;
         if (isSalaryType(value) && isNumberTuple(value.amount)) {
           v = value.amount;
         }
         const [min, max] = filters[key] || [Infinity, 0];
         filters[key] = [Math.min(min, value[0]), Math.max(max, value[1])];
+        return;
       }
     });
   });

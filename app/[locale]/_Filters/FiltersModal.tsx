@@ -110,11 +110,11 @@ function getFilterComponent(
   if (!isFilterVisible(filterName)) return null;
 
   switch (filterName) {
-    case "regions":
+    case "states":
       return (
         <RegionsFilter
           key="regions"
-          regions={filters.regions}
+          states={filters.states}
           selectedStates={activeFilters?.states || []}
           isOpen={isAccordionOpen("states")}
           setSelectedStates={(states) => setActiveFilter("states", states)}
