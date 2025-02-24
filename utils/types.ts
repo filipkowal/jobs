@@ -19,8 +19,7 @@ export type Jobs =
 export type ActiveFilters =
   paths["/{language}/jobs"]["get"]["responses"]["200"]["content"]["application/json"]["activeFilters"];
 export type Job = components["schemas"]["Job"];
-export type Filters =
-  paths["/{language}/filters"]["get"]["responses"]["200"]["content"]["application/json"];
+export type Filters = components["schemas"]["Filters"];
 
 export type ActiveFilterName = keyof NonNullable<ActiveFilters>;
 

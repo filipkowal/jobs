@@ -97,24 +97,3 @@ export async function getJobs({
     throw error;
   }
 }
-
-export async function getFilters({
-  locale,
-  boardId,
-  init,
-}: {
-  locale: Locale;
-  boardId: string;
-  init?: RequestInit;
-}): Promise<Filters> {
-  try {
-    return await getData({
-      endpoint: "filters",
-      locale,
-      init,
-      boardId,
-    });
-  } catch (error) {
-    throw error;
-  }
-}

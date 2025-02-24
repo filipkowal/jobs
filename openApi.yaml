@@ -160,49 +160,6 @@ paths:
           description: Invalid filters supplied
         "404":
           description: Language not found
-  /{language}/filters:
-    get:
-      operationId: getFilters
-      summary: Get all filters' possible values
-      tags:
-        - filter
-      parameters:
-        - name: language
-          in: path
-          required: true
-          style: simple
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Language"
-        - name: boardId
-          in: header
-          required: false
-          schema:
-            type: string
-            nullable: true
-        - name: userId
-          in: query
-          required: false
-          style: form
-          explode: true
-          schema:
-            $ref: "#/components/schemas/Id"
-        - name: boardId
-          in: query
-          required: false
-          style: form
-          explode: true
-          schema:
-            $ref: "#/components/schemas/Id"
-      responses:
-        "200":
-          description: Get all filters' possible values
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Filters"
-        "404":
-          description: Language not found
   /{language}/subscribe:
     post:
       operationId: subscribe

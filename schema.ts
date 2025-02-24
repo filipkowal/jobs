@@ -21,23 +21,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/{language}/filters": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get all filters' possible values */
-        get: operations["getFilters"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/{language}/subscribe": {
         parameters: {
             query?: never;
@@ -457,40 +440,6 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
-            };
-            /** @description Language not found */
-            404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    getFilters: {
-        parameters: {
-            query?: {
-                userId?: components["schemas"]["Id"];
-                boardId?: components["schemas"]["Id"];
-            };
-            header?: {
-                boardId?: string | null;
-            };
-            path: {
-                language: components["schemas"]["Language"];
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Get all filters' possible values */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Filters"];
-                };
             };
             /** @description Language not found */
             404: {
