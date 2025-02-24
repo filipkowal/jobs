@@ -20,23 +20,21 @@ const isNumberTuple = (value: Job[keyof Job]): value is number[] => {
 const isSalary = (value: Job[keyof Job]): value is NonNullable<Job["salary"]> =>
   !!value?.hasOwnProperty("amount");
 
+// @fixme change to canton when available on job api
 const isAddress = (
   value: Job[keyof Job]
-): value is NonNullable<Job["address"]> => !!value?.hasOwnProperty("canton");
+): value is NonNullable<Job["address"]> => !!value?.hasOwnProperty("state");
 
 const isArrOfStringsKey = (key: string): key is ArrOfStringsFilter =>
   ["careerFields", "technologies", "industries"].includes(key);
 
 const addStringFilter = (
-  filters: Pick<Filters, "cantons" | "jobLevels" | "companySizes">,
-  k: "cantons" | "jobLevels" | "companySizes",
+  filters: string[] | undefined,
   v: string
-): string[] =>
-  filters[k]
-    ? filters[k]?.includes(v)
-      ? filters[k]
-      : [...filters[k], v]
-    : [v];
+): string[] => {
+  const currentFilter = filters || [];
+  return currentFilter.includes(v) ? currentFilter : [...currentFilter, v];
+};
 
 const getMaxRange = (v: number[]): number[] => {
   const [min, max] = v || [Infinity, 0];
@@ -51,20 +49,24 @@ export default function generateFilters(jobs: Jobs["jobs"]): Filters {
       const key = keyUntyped as keyof Job;
       const value = job[key];
 
+      // @fixme: remove this and use canton when available on job api
+      const canton = job?.address?.["state" as keyof Job["address"]];
+
       if (key === "tags") return;
 
-      if (key === "address" && isAddress(value) && value.canton) {
-        filters.cantons = addStringFilter(filters, "cantons", value?.canton);
+      if (key === "address" && isAddress(value) && canton) {
+        console.log("\n\ncanton: ", canton);
+        filters.cantons = addStringFilter(filters.cantons, canton);
         return;
       }
 
       if (key === "companySize" && typeof value === "string") {
-        filters.companySizes = addStringFilter(filters, "companySizes", value);
+        filters.companySizes = addStringFilter(filters.companySizes, value);
         return;
       }
 
       if (key === "jobLevel" && typeof value === "string") {
-        filters.jobLevels = addStringFilter(filters, "jobLevels", value);
+        filters.jobLevels = addStringFilter(filters.jobLevels, value);
         return;
       }
 

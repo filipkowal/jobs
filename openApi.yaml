@@ -96,7 +96,7 @@ paths:
           schema:
             type: number
           example: 70
-        - name: states
+        - name: cantons
           in: query
           required: false
           style: form
@@ -357,7 +357,7 @@ components:
         city:
           type: string
           example: Bern
-        state:
+        canton:
           type: string
           example: Bern
         region:
@@ -575,12 +575,13 @@ components:
           $ref: "#/components/schemas/Range"
         tags:
           $ref: "#/components/schemas/Tags"
+        technologies:
+          $ref: "#/components/schemas/Tags"
+        companySize:
+          type: string
+          example: StartUp
         jobLevel:
           type: string
-          enum:
-            - contributor
-            - expert
-            - leader
         landingPageUrl:
           type: string
           format: url
@@ -612,7 +613,7 @@ components:
           example: 70
         salary:
           type: number
-        states:
+        cantons:
           type: array
           example:
             - Baden
@@ -637,19 +638,9 @@ components:
         homeOffice:
           $ref: "#/components/schemas/Range"
         salary:
-          $ref: "#/components/schemas/SalaryRange"
-        regions:
-          type: array
-          example:
-            - name: German part of Switzerland
-              states:
-                - Zürich
-                - Bern
-            - name: Western Part of Switzerland
-              states:
-                - Geneva
-          items:
-            $ref: "#/components/schemas/Filters_regions"
+          $ref: "#/components/schemas/Range"
+        cantons:
+          $ref: "#/components/schemas/Tags"
     inline_response_200:
       type: object
       properties:
@@ -724,7 +715,7 @@ components:
       properties:
         name:
           type: string
-        states:
+        cantons:
           type: array
           items:
             type: string
@@ -826,8 +817,8 @@ components:
       schema:
         type: string
       example: CHF
-    States:
-      name: states
+    Cantons:
+      name: cantons
       in: query
       required: false
       style: form
