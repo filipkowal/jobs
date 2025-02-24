@@ -1,8 +1,8 @@
 import { JOBS_LIMIT } from "@/utils/constants";
 import { type Locale, i18n } from "@/i18n-config";
 import JobTable from "../JobTable";
-import { getFilters, getJobs } from "@/utils";
-import { getCustomBoard } from "@/utils/server";
+import { getJobs } from "@/utils";
+import { getCustomBoard, readFilters } from "@/utils/server";
 import FiltersSectionContainer from "../_Filters/FiltersSectionContainer";
 import Heading from "../Heading";
 import { Suspense } from "react";
@@ -35,11 +35,7 @@ export default async function Home(props: {
   const params = await props.params;
   const customBoard = await getCustomBoard();
 
-  const filtersPromise = getFilters({
-    locale: params.locale,
-    boardId: customBoard?.id,
-    init: { cache: "force-cache" },
-  });
+  const filtersPromise = readFilters(params.locale);
   const jobsPromise = getJobs({
     locale: params.locale,
     searchParams: {
