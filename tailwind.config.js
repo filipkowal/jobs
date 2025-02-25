@@ -41,9 +41,5 @@ module.exports = {
       logo: ["var(--font-loew)", "sans-serif"],
     },
   },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("tailwind-scrollbar-hide"),
-    require("tailwindcss-animate"),
-  ],
+  plugins: [require("@tailwindcss/forms"), require("tailwindcss-animate")],
 };
