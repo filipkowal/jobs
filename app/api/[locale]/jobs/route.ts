@@ -23,10 +23,18 @@ export async function GET(
     console.log("filters: ", filters);
     console.log("page: ", page);
 
-    const jobsResponse = { ...jobs, jobs: jobs?.jobs?.slice(0, JOBS_LIMIT) };
+    const jobsResponse = {
+      ...jobs,
+      jobs: paginate(jobs.jobs, page, JOBS_LIMIT),
+    };
 
     return Response.json(jobsResponse);
   } catch (e: any) {
     return Response.json(e, { status: 500 });
   }
+}
+
+function paginate(arr: any[] | undefined, page: number, limit: number) {
+  if (!arr) return [];
+  return arr.slice(page * limit, limit * (page + 1));
 }
