@@ -1,7 +1,6 @@
 import { JOBS_LIMIT } from "@/utils/constants";
 import { type Locale, i18n } from "@/i18n-config";
 import JobTable from "./JobTable";
-import { getJobs } from "@/utils";
 import { getCustomBoard, readFilters } from "@/utils/server";
 import FiltersSectionContainer from "./_Filters/FiltersSectionContainer";
 import Heading from "./Heading";
@@ -21,14 +20,10 @@ export default async function Home(props: {
   const customBoard = await getCustomBoard();
 
   const filtersPromise = readFilters(locale);
-  const jobsPromise = getJobs({
-    locale: locale,
-    searchParams: {
-      limit: JOBS_LIMIT,
-    },
-    boardId: customBoard?.id,
-    init: { cache: "force-cache" },
-  });
+
+  const jobsPromise = fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/${locale}/jobs`
+  );
 
   return (
     <main className="w-full flex justify-center">

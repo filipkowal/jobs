@@ -1,6 +1,6 @@
 import { Locale } from "@/i18n-config";
 import { getCustomBoard, getDictionary } from "@/utils/server";
-import { Job, Jobs, SearchParams, getShortId } from "@/utils";
+import { Job, SearchParams, getShortId } from "@/utils";
 import JobRowAccordion from "./_JobRow/JobRowAccordion";
 import JobRowDetails from "./_JobRow/JobRowDetails";
 import JobTablePagination from "./_JobRow/JobTablePagination";
@@ -17,12 +17,19 @@ export default async function JobTable({
   searchParams?: SearchParams;
   params: { locale: Locale; jobTitleId?: string };
   limit: number;
-  jobsPromise?: Promise<Jobs>;
+  jobsPromise?: Promise<Response>;
 }) {
   const customBoard = await getCustomBoard();
   const dict = await getDictionary(params.locale);
 
-  const jobsResponse = await jobsPromise;
+  let jobsResponse;
+
+  try {
+    jobsResponse = await jobsPromise;
+    jobsResponse = await jobsResponse?.json();
+  } catch (error) {
+    console.error(error);
+  }
 
   function sortJobsInitOpenFirst(jobs?: Job[]) {
     if (params?.jobTitleId) {

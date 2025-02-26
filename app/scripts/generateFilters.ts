@@ -55,7 +55,6 @@ export default function generateFilters(jobs: Jobs["jobs"]): Filters {
       if (key === "tags") return;
 
       if (key === "address" && isAddress(value) && canton) {
-        console.log("\n\ncanton: ", canton);
         filters.cantons = addStringFilter(filters.cantons, canton);
         return;
       }
