@@ -6,16 +6,16 @@ export const MOCK_SERVER_URL =
 
 export const JOBS_LIMIT = 20;
 
-export const FILTER_NAMES = [
+export const FILTER_NAMES: ActiveFilterName[] = [
   "cantons",
   "careerFields",
   "technologies",
-  "jobLevels",
-  "salary",
-  "workload",
-  "homeOffice",
   "industries",
   "companySizes",
+  "jobLevels",
+  "workload",
+  "homeOffice",
+  "salary",
 ] as const;
 
 export const FILTER_BUTTON_NAMES = [
@@ -26,18 +26,6 @@ export const FILTER_BUTTON_NAMES = [
   "industries",
   "companySizes",
 ] as const;
-
-export const ACTIVE_FILTER_NAMES: ActiveFilterName[] = [
-  "careerFields",
-  "technologies",
-  "industries",
-  "companySizes",
-  "jobLevels",
-  "workload",
-  "homeOffice",
-  "cantons",
-  "salary",
-];
 
 export const ALL_REGIONS = {
   en: [

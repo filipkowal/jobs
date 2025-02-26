@@ -1,5 +1,5 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
-import { ACTIVE_FILTER_NAMES } from "./constants";
+import { FILTER_NAMES } from "./constants";
 import { ActiveFilters, CustomBoard } from "./types";
 import qs from "query-string";
 import { SERVER_URL } from "./constants";
@@ -14,7 +14,7 @@ export function pickActiveFiltersFromSearchParams(
     return pickedParams;
   }
 
-  for (const name of ACTIVE_FILTER_NAMES) {
+  for (const name of FILTER_NAMES) {
     const values = searchParams.getAll(name);
 
     if (values.length > 0) {
