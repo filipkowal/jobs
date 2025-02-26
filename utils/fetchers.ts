@@ -1,6 +1,6 @@
-import type { Endpoint, Filters, Jobs, JobsQuery } from "./types";
+import type { Endpoint, Jobs, JobsQuery } from "./types";
 import { type Locale } from "@/i18n-config";
-import { createUrl } from "./helpers";
+import { buildQueryString, createUrl } from "./helpers";
 
 export async function postData({
   endpoint,
@@ -96,4 +96,21 @@ export async function getJobs({
   } catch (error) {
     throw error;
   }
+}
+
+export async function getJobsInternal({
+  locale,
+  searchParams,
+  init,
+}: {
+  locale: Locale;
+  searchParams?: JobsQuery & { page?: number | string };
+  init?: RequestInit;
+}): Promise<Response> {
+  return fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/${locale}/jobs/?${buildQueryString(
+      searchParams
+    )}`,
+    init
+  );
 }

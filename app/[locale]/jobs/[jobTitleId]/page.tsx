@@ -1,15 +1,13 @@
 import { JOBS_LIMIT } from "@/utils/constants";
 import { type Locale } from "@/i18n-config";
 import JobTable from "../../JobTable";
-import { getJobs, getShortId, Job } from "@/utils";
+import { getJobs, getJobsInternal, getShortId, Job } from "@/utils";
 import FiltersSectionContainer from "../../_Filters/FiltersSectionContainer";
 import Heading, { HeadingSkeleton } from "../../Heading";
 import { getCustomBoard, readFilters } from "@/utils/server";
 import { Suspense } from "react";
 import FiltersSkeleton from "../../_Filters/FiltersSkeleton";
-import { ActiveFilters } from "@/utils";
 import JobTableSkeleton from "../../JobTableSkeleton";
-import { redirect } from "next/navigation";
 import { Metadata } from "next";
 
 export async function generateMetadata(props: {
@@ -33,32 +31,15 @@ export async function generateMetadata(props: {
 
 export default async function Home(props: {
   params: Promise<{ locale: Locale; jobTitleId: string }>;
-  searchParams: Promise<ActiveFilters & { [key: string]: any }>;
 }) {
   const params = await props.params;
   const customBoard = await getCustomBoard();
 
   const filtersPromise = readFilters(params.locale);
 
-  const searchParams = await props.searchParams;
-  const jobsPromise = getJobs({
+  const jobsPromise = getJobsInternal({
     locale: params.locale,
-    searchParams: {
-      limit: JOBS_LIMIT,
-      ...searchParams,
-    },
-    boardId: customBoard?.id,
   });
-  const jobsResponse = await jobsPromise;
-  const jobs = jobsResponse?.jobs;
-
-  const job = jobs?.find(
-    (job: Job) => getShortId(job.id) === getShortId(params.jobTitleId)
-  );
-
-  if (!job) {
-    redirect(`/${params.locale}`);
-  }
 
   return (
     <main className="w-full flex justify-center">
@@ -81,7 +62,6 @@ export default async function Home(props: {
             params,
             jobsPromise,
             limit: JOBS_LIMIT,
-            searchParams: searchParams,
           })}
         </Suspense>
       </div>

@@ -6,7 +6,7 @@ import { SERVER_URL } from "./constants";
 
 //@fixme how to remove it or make it responsive to activeFilers list
 export function pickActiveFiltersFromSearchParams(
-  searchParams: ReadonlyURLSearchParams | null
+  searchParams: ReadonlyURLSearchParams | URLSearchParams | null
 ): ActiveFilters {
   const pickedParams: ActiveFilters = {};
 
@@ -57,6 +57,26 @@ export function createUrl({
   return `${SERVER_URL}/${locale}/${endpoint}${param ? `/${param}` : ""}${
     encodedSearchParams?.length ? `?${encodedSearchParams}` : ""
   }`;
+}
+
+export function buildQueryString(
+  params?: Record<string, string | number | string[] | number[]>
+): string {
+  if (!params) {
+    return "";
+  }
+
+  return Object.keys(params)
+    .map((key) => {
+      const value = params[key];
+      if (Array.isArray(value)) {
+        return value
+          .map((v) => `${encodeURIComponent(key)}=${encodeURIComponent(v)}`)
+          .join("&");
+      }
+      return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+    })
+    .join("&");
 }
 
 export function getShortId(str?: string) {

@@ -7,6 +7,7 @@ import Heading from "./Heading";
 import { Suspense } from "react";
 import Spinner from "@/components/Spinner";
 import FiltersSkeleton from "./_Filters/FiltersSkeleton";
+import { getJobsInternal } from "@/utils";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ locale }));
@@ -21,9 +22,7 @@ export default async function Home(props: {
 
   const filtersPromise = readFilters(locale);
 
-  const jobsPromise = fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/${locale}/jobs`
-  );
+  const jobsPromise = getJobsInternal({ locale });
 
   return (
     <main className="w-full flex justify-center">
