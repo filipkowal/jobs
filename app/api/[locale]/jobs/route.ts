@@ -2,6 +2,7 @@ import { Locale } from "@/i18n-config";
 import { Jobs, JOBS_LIMIT, pickActiveFiltersFromSearchParams } from "@/utils";
 import { promises as fs } from "fs";
 import path from "path";
+import filterJobs from "./filterJobs";
 
 export async function GET(
   request: Request,
@@ -21,7 +22,13 @@ export async function GET(
       : 0;
 
     console.log("filters: ", filters);
-    console.log("page: ", page);
+    const filteredJobs = filterJobs(jobs.jobs, filters);
+    console.log("jobs: ", jobs?.jobs?.length);
+    console.log(
+      "filteredJobs: ",
+      filteredJobs?.length,
+      filteredJobs?.map((job) => job.salary?.amount?.[1])
+    );
 
     const jobsResponse = {
       ...jobs,

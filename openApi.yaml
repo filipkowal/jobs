@@ -571,12 +571,7 @@ components:
         salary:
           type: number
         cantons:
-          type: array
-          example:
-            - Baden
-            - Lugano
-          items:
-            type: string
+          $ref: "#/components/schemas/Tags"
     Filters:
       type: object
       properties:
