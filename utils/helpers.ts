@@ -1,10 +1,10 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
-import { FILTER_NAMES } from "./constants";
+import { FILTER_NAMES, JOBS_LIMIT } from "./constants";
 import { ActiveFilters, CustomBoard, Jobs } from "./types";
 import qs from "query-string";
 import { SERVER_URL } from "./constants";
 
-export function paginate(arr: any[] | undefined, page: number, limit: number) {
+export function paginate(arr: any[] | undefined, page = 0, limit = JOBS_LIMIT) {
   if (!arr) return [];
   return arr.slice(page * limit, limit * (page + 1));
 }

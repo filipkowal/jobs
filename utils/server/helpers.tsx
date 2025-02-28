@@ -28,15 +28,12 @@ export type Dictionary = ReturnType<typeof getDictionary> extends Promise<
   ? T
   : never;
 
-export const readJobs = async (
-  locale: Locale,
-  page?: number
-): Promise<Jobs> => {
+export const readJobs = async (locale: Locale, page = 0): Promise<Jobs> => {
   const filePath = path.join(process.cwd(), "app/data", locale, "jobs.json");
   const fileContent = await fs.readFile(filePath, "utf-8");
   const jobs = await JSON.parse(fileContent);
 
-  return page ? paginate(jobs.jobs, page, JOBS_LIMIT) : jobs;
+  return { ...jobs, jobs: paginate(jobs.jobs, page, JOBS_LIMIT) };
 };
 
 export const readFilters = async (locale: Locale) => {
