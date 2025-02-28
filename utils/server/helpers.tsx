@@ -3,6 +3,8 @@ import type { Locale } from "@/i18n-config";
 import { i18n } from "@/i18n-config";
 import path from "path";
 import { promises as fs } from "fs";
+import { JOBS_LIMIT } from "../constants";
+import { paginate } from "../helpers";
 
 // We enumerate all dictionaries here for better linting and typescript support
 // We also get the default import for cleaner types
@@ -25,10 +27,12 @@ export type Dictionary = ReturnType<typeof getDictionary> extends Promise<
   ? T
   : never;
 
-export const readJobs = async (locale: Locale) => {
+export const readJobs = async (locale: Locale, page?: number) => {
   const filePath = path.join(process.cwd(), "app/data", locale, "jobs.json");
   const fileContent = await fs.readFile(filePath, "utf-8");
-  return JSON.parse(fileContent);
+  const jobs = await JSON.parse(fileContent);
+
+  return page ? paginate(jobs.jobs, page, JOBS_LIMIT) : jobs;
 };
 
 export const readFilters = async (locale: Locale) => {

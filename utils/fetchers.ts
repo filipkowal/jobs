@@ -98,7 +98,7 @@ export async function getJobs({
   }
 }
 
-export async function getJobsInternal({
+export async function getFilteredJobs({
   locale,
   searchParams,
   init,

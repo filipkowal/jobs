@@ -4,6 +4,11 @@ import { ActiveFilters, CustomBoard } from "./types";
 import qs from "query-string";
 import { SERVER_URL } from "./constants";
 
+export function paginate(arr: any[] | undefined, page: number, limit: number) {
+  if (!arr) return [];
+  return arr.slice(page * limit, limit * (page + 1));
+}
+
 //@fixme how to remove it or make it responsive to activeFilers list
 export function pickActiveFiltersFromSearchParams(
   searchParams: ReadonlyURLSearchParams | URLSearchParams | null
