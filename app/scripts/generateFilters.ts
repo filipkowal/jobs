@@ -20,10 +20,9 @@ const isNumberTuple = (value: Job[keyof Job]): value is number[] => {
 const isSalary = (value: Job[keyof Job]): value is NonNullable<Job["salary"]> =>
   !!value?.hasOwnProperty("amount");
 
-// @fixme change to canton when available on job api
 const isAddress = (
   value: Job[keyof Job]
-): value is NonNullable<Job["address"]> => !!value?.hasOwnProperty("state");
+): value is NonNullable<Job["address"]> => !!value?.hasOwnProperty("canton");
 
 const isArrOfStringsKey = (key: string): key is ArrOfStringsFilter =>
   ["careerFields", "technologies", "industries"].includes(key);
@@ -36,9 +35,10 @@ const addStringFilter = (
   return currentFilter.includes(v) ? currentFilter : [...currentFilter, v];
 };
 
-const getMaxRange = (v: number[]): number[] => {
-  const [min, max] = v || [Infinity, 0];
-  return [Math.min(min, v[0]), Math.max(max, v[1])];
+const getMaxRange = (a: number[], b: number[]): number[] => {
+  const [minA, maxA] = a;
+  const [minB, maxB] = b;
+  return [Math.min(minA, minB), Math.max(maxA, maxB)];
 };
 
 export default function generateFilters(jobs: Jobs["jobs"]): Filters {
@@ -49,13 +49,13 @@ export default function generateFilters(jobs: Jobs["jobs"]): Filters {
       const key = keyUntyped as keyof Job;
       const value = job[key];
 
-      // @fixme: remove this and use canton when available on job api
-      const canton = job?.address?.["state" as keyof Job["address"]];
-
       if (key === "tags") return;
 
-      if (key === "address" && isAddress(value) && canton) {
-        filters.cantons = addStringFilter(filters.cantons, canton);
+      if (key === "address" && isAddress(value) && job?.address?.canton) {
+        filters.cantons = addStringFilter(
+          filters.cantons,
+          job?.address?.canton
+        );
         return;
       }
 
@@ -74,12 +74,15 @@ export default function generateFilters(jobs: Jobs["jobs"]): Filters {
         (key === "workload" || key === "homeOffice")
       ) {
         // Number range filters
-        filters[key] = getMaxRange(value);
+        filters[key] = getMaxRange(value, filters[key] || [Infinity, 0]);
         return;
       }
 
-      if (key === "salary" && isSalary(value) && value.amount) {
-        filters.salary = getMaxRange(value.amount);
+      if (key === "salary" && isSalary(value) && isNumberTuple(value.amount)) {
+        filters.salary = getMaxRange(
+          value.amount,
+          filters.salary || [Infinity, 0]
+        );
         return;
       }
 
