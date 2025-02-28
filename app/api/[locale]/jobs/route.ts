@@ -20,13 +20,14 @@ export async function GET(
       ? parseInt(query.get("page") as string, 10)
       : 0;
 
-    const jobs: Jobs = await readJobs(locale);
+    const jobs: Jobs = await readJobs(locale, 0, true);
 
     const filteredJobs = filterJobs(jobs.jobs, filters);
 
     const jobsResponse = {
       ...jobs,
       jobs: paginate(filteredJobs, page, JOBS_LIMIT),
+      filteredLength: filteredJobs?.length,
     };
 
     return Response.json(jobsResponse);

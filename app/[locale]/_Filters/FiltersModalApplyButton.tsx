@@ -37,9 +37,9 @@ export default function ApplyFiltersButton({
           },
           locale: locale,
         });
-        const { length } = await jobsResponse.json();
+        const { filteredLength } = await jobsResponse.json();
 
-        setJobsLength(length || 0);
+        setJobsLength(filteredLength || 0);
       } catch (e) {
         toast.error(dict["Something went wrong"]);
         captureException(e, { extra: { activeFilters, locale } });
