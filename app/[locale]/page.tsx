@@ -1,13 +1,12 @@
 import { JOBS_LIMIT } from "@/utils/constants";
 import { type Locale, i18n } from "@/i18n-config";
 import JobTable from "./JobTable";
-import { getCustomBoard, readFilters } from "@/utils/server";
+import { getCustomBoard, readFilters, readJobs } from "@/utils/server";
 import FiltersSectionContainer from "./_Filters/FiltersSectionContainer";
 import Heading from "./Heading";
 import { Suspense } from "react";
 import Spinner from "@/components/Spinner";
 import FiltersSkeleton from "./_Filters/FiltersSkeleton";
-import { getJobsInternal } from "@/utils";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ locale }));
@@ -22,7 +21,7 @@ export default async function Home(props: {
 
   const filtersPromise = readFilters(locale);
 
-  const jobsPromise = getJobsInternal({ locale });
+  const jobsPromise = readJobs(locale);
 
   return (
     <main className="w-full flex justify-center">

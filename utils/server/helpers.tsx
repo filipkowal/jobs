@@ -5,6 +5,7 @@ import path from "path";
 import { promises as fs } from "fs";
 import { JOBS_LIMIT } from "../constants";
 import { paginate } from "../helpers";
+import { Jobs } from "../types";
 
 // We enumerate all dictionaries here for better linting and typescript support
 // We also get the default import for cleaner types
@@ -27,7 +28,10 @@ export type Dictionary = ReturnType<typeof getDictionary> extends Promise<
   ? T
   : never;
 
-export const readJobs = async (locale: Locale, page?: number) => {
+export const readJobs = async (
+  locale: Locale,
+  page?: number
+): Promise<Jobs> => {
   const filePath = path.join(process.cwd(), "app/data", locale, "jobs.json");
   const fileContent = await fs.readFile(filePath, "utf-8");
   const jobs = await JSON.parse(fileContent);

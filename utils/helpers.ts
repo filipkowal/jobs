@@ -1,6 +1,6 @@
 import { ReadonlyURLSearchParams } from "next/navigation";
 import { FILTER_NAMES } from "./constants";
-import { ActiveFilters, CustomBoard } from "./types";
+import { ActiveFilters, CustomBoard, Jobs } from "./types";
 import qs from "query-string";
 import { SERVER_URL } from "./constants";
 
@@ -96,6 +96,25 @@ export function k(s: string | number | undefined) {
   if (s === undefined) return;
   const n = Number(s) / 1000;
   return n;
+}
+
+export function sortJobsInitOpenFirst(
+  jobs?: Jobs["jobs"],
+  jobTitleId?: string
+): Jobs["jobs"] {
+  if (jobTitleId) {
+    return jobs?.sort((a, b) => {
+      if (getShortId(a.id) === getShortId(jobTitleId)) {
+        return -1;
+      } else if (getShortId(b.id) === getShortId(jobTitleId)) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+  }
+
+  return jobs;
 }
 
 export function sanitizeUrlString(str?: string) {

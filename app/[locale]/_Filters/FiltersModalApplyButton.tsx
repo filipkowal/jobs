@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import type { Dictionary, CustomBoard, Locale, JobsQuery } from "@/utils";
-import { getJobs } from "@/utils";
+import { getFilteredJobs } from "@/utils";
 import { Button, LoadingEllipsis } from "@/components";
 import { useRouter } from "next/navigation";
 import { useActiveFiltersURL } from "@/utils/hooks";
@@ -31,13 +31,13 @@ export default function ApplyFiltersButton({
     async function fetchJobs() {
       setIsLoading(true);
       try {
-        const { length } = await getJobs({
+        const jobsResponse = await getFilteredJobs({
           searchParams: {
             ...activeFilters,
           },
-          boardId: customBoard?.id,
           locale: locale,
         });
+        const { length } = await jobsResponse.json();
 
         setJobsLength(length || 0);
       } catch (e) {

@@ -1,7 +1,7 @@
 import { JOBS_LIMIT } from "@/utils/constants";
 import { type Locale } from "@/i18n-config";
 import JobTable from "../../JobTable";
-import { getJobs, getJobsInternal } from "@/utils";
+import { getFilteredJobs } from "@/utils";
 import FiltersSectionContainer from "../../_Filters/FiltersSectionContainer";
 import Heading, { HeadingSkeleton } from "../../Heading";
 import { getCustomBoard, readFilters } from "@/utils/server";
@@ -20,7 +20,7 @@ export default async function Home(props: {
   const filtersPromise = readFilters(params.locale);
 
   const searchParams = await props.searchParams;
-  const jobsPromise = getJobsInternal({
+  const jobsPromise = getFilteredJobs({
     locale: params.locale,
     searchParams: {
       ...searchParams,

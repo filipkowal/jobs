@@ -1,10 +1,10 @@
 import { JOBS_LIMIT } from "@/utils/constants";
 import { type Locale } from "@/i18n-config";
 import JobTable from "../../JobTable";
-import { getJobs, getJobsInternal, getShortId, Job } from "@/utils";
+import { getShortId, Job } from "@/utils";
 import FiltersSectionContainer from "../../_Filters/FiltersSectionContainer";
 import Heading, { HeadingSkeleton } from "../../Heading";
-import { getCustomBoard, readFilters } from "@/utils/server";
+import { getCustomBoard, readFilters, readJobs } from "@/utils/server";
 import { Suspense } from "react";
 import FiltersSkeleton from "../../_Filters/FiltersSkeleton";
 import JobTableSkeleton from "../../JobTableSkeleton";
@@ -14,15 +14,10 @@ export async function generateMetadata(props: {
   params: Promise<{ locale: Locale; jobTitleId: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const customBoard = await getCustomBoard();
 
-  const jobsResponse = await getJobs({
-    locale: params.locale,
-    boardId: customBoard?.id,
-    init: { cache: "force-cache" },
-  });
+  const jobsBody = await readJobs(params.locale);
 
-  const job = jobsResponse?.jobs?.find((job: Job) =>
+  const job = jobsBody?.jobs?.find((job: Job) =>
     job?.id?.includes(getShortId(params.jobTitleId))
   );
 
@@ -37,9 +32,7 @@ export default async function Home(props: {
 
   const filtersPromise = readFilters(params.locale);
 
-  const jobsPromise = getJobsInternal({
-    locale: params.locale,
-  });
+  const jobsPromise = readJobs(params.locale);
 
   return (
     <main className="w-full flex justify-center">
