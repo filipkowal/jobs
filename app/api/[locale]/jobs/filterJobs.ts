@@ -23,14 +23,38 @@ export default function filterJobs(
           (filterValue as string[]).includes(v)
         );
       }
+      if (filterName === "careerFields" && job?.careerFields) {
+        return job?.careerFields?.some((v) =>
+          (filterValue as string[]).includes(v)
+        );
+      }
+      if (filterName === "industries" && job?.industries) {
+        return job?.industries?.some((v) =>
+          (filterValue as string[]).includes(v)
+        );
+      }
 
       // array filters, string job values
       if (filterName === "jobLevels" && job?.jobLevel) {
         return filters?.jobLevels?.includes(job?.jobLevel);
       }
+      // @fixme change to cantons only when api is ready
+      type Canton = "canton";
+      if (filterName === "cantons" && job?.address?.["state" as Canton]) {
+        return filters?.cantons?.includes(
+          job?.address?.["state" as Canton] as string
+        );
+      }
 
-      if (filterName === "companySizes" && job?.companySize) {
-        return filters?.companySizes?.includes(job?.companySize);
+      // @fixme: change to companySize when api is ready
+      if (
+        filterName === "companySizes" &&
+        (job?.companySize || (job as any)?.companySizes)
+      ) {
+        return (
+          filters?.companySizes?.includes((job as any)?.companySize) ||
+          filters?.companySizes?.includes((job as any)?.companySizes)
+        );
       }
 
       if (filterName === "cantons" && job?.address?.canton) {
@@ -39,11 +63,13 @@ export default function filterJobs(
 
       // range filters, range job values
       if (filterName === "workload" && job?.workload && filters?.workload) {
-        const [min, max] = filters.workload.map(Number);
-        return (
-          min <= job?.workload[0] ||
-          (job?.workload[1] <= max && job?.workload[1] >= min)
-        );
+        const [filterMin, filterMax] = filters.workload.map(Number);
+        const [min, max] = job?.workload;
+
+        const minInRange = min <= filterMax;
+        const maxInRange = max >= filterMin;
+
+        return minInRange && maxInRange;
       }
 
       // number filters, range job values

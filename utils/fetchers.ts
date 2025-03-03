@@ -1,4 +1,4 @@
-import type { JobsQuery } from "./types";
+import type { ActiveFilters } from "./types";
 import { type Locale } from "@/i18n-config";
 import { buildQueryString, createUrl } from "./helpers";
 
@@ -42,7 +42,7 @@ export async function getFilteredJobs({
   init,
 }: {
   locale: Locale;
-  searchParams?: JobsQuery & { page?: number | string };
+  searchParams?: ActiveFilters & { page?: number | string };
   init?: RequestInit;
 }): Promise<Response> {
   return fetch(

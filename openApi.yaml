@@ -12,7 +12,7 @@ paths:
   /{language}/jobs:
     get:
       operationId: getJobs
-      summary: Get all or filtered and paginated jobs and active filters
+      summary: Get all jobs for a language of a particular board
       tags:
         - job
       parameters:
@@ -29,135 +29,15 @@ paths:
           schema:
             type: string
             nullable: true
-        - name: careerFields
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Tags"
-          example:
-            - frontend
-            - fullstack
-        - name: technologies
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Tags"
-          example:
-            - react
-            - nodejs
-        - name: industries
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Tags"
-          example:
-            - it
-        - name: jobLevels
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Tags"
-          example:
-            - contributor
-            - expert
-            - leader
-        - name: companySizes
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Tags"
-          example:
-            - StartUp
-        - name: workload
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Range"
-          example:
-            - 80
-            - 100
-        - name: homeOffice
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: number
-          example: 70
-        - name: cantons
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: array
-            items:
-              type: string
-          example:
-            - Baden
-            - Lugano
-        - name: salary
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: number
-          example: 80000
-        - name: currency
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: string
-          example: CHF
-        - name: employerName
-          in: query
-          description: Employer name. Case insensitive.
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: string
-          example: amag group ag
-        - name: offset
-          in: query
-          description: "For pagination: index of the first job to be sent"
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: number
-        - name: limit
-          in: query
-          description: "For pagination: limit of jobs to be sent"
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: number
       responses:
         "200":
-          description: Get all or filtered and paginated jobs and active filters
+          description: Get all jobs for a language of a particular board
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/inline_response_200"
+                $ref: "#/components/schemas/jobs_response"
         "400":
-          description: Invalid filters supplied
+          description: Invalid query parameters
         "404":
           description: Language not found
   /{language}/subscribe:
@@ -323,19 +203,6 @@ components:
         country:
           type: string
           example: Switzerland
-        geoCoordinates:
-          $ref: "#/components/schemas/GeoCoordinates"
-    GeoCoordinate:
-      pattern: ^(-?\d+(\.\d+)?)
-      type: string
-      example: "47.4708538"
-    GeoCoordinates:
-      type: object
-      properties:
-        latitude:
-          $ref: "#/components/schemas/GeoCoordinate"
-        longitude:
-          $ref: "#/components/schemas/GeoCoordinate"
     DateTime:
       type: string
       format: date-time
@@ -534,10 +401,13 @@ components:
           $ref: "#/components/schemas/Tags"
         technologies:
           $ref: "#/components/schemas/Tags"
-        companySize:
-          type: string
-          example: StartUp
+        careerFields:
+          $ref: "#/components/schemas/Tags"
+        industries:
+          $ref: "#/components/schemas/Tags"
         jobLevel:
+          type: string
+        companySize:
           type: string
         landingPageUrl:
           type: string
@@ -593,24 +463,16 @@ components:
           $ref: "#/components/schemas/Range"
         cantons:
           $ref: "#/components/schemas/Tags"
-    inline_response_200:
+    jobs_response:
       type: object
       properties:
         jobs:
           type: array
           items:
             $ref: "#/components/schemas/Job"
-        activeFilters:
-          $ref: "#/components/schemas/ActiveFilters"
-        offset:
-          type: integer
-        limit:
-          type: integer
         length:
           type: integer
-          description:
-            "Length of the collection filtered by ActiveFilters, without\
-            \ pagination"
+          description: "Length of the collection of jobs"
     subscribe_body:
       type: object
       properties:
@@ -662,15 +524,6 @@ components:
           format: email
         jobId:
           $ref: "#/components/schemas/Id"
-    Filters_regions:
-      type: object
-      properties:
-        name:
-          type: string
-        cantons:
-          type: array
-          items:
-            type: string
   parameters:
     UserId:
       name: userId

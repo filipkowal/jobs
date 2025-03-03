@@ -6,7 +6,7 @@ export const MOCK_SERVER_URL =
 
 export const JOBS_LIMIT = 20;
 
-export const FILTER_NAMES: ActiveFilterName[] = [
+export const FILTER_NAMES = [
   "cantons",
   "careerFields",
   "technologies",

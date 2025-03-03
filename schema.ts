@@ -11,7 +11,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get all or filtered and paginated jobs and active filters */
+        /** Get all jobs for a language of a particular board */
         get: operations["getJobs"];
         put?: never;
         post?: never;
@@ -106,13 +106,6 @@ export interface components {
             region?: string;
             /** @example Switzerland */
             country?: string;
-            geoCoordinates?: components["schemas"]["GeoCoordinates"];
-        };
-        /** @example 47.4708538 */
-        GeoCoordinate: string;
-        GeoCoordinates: {
-            latitude?: components["schemas"]["GeoCoordinate"];
-            longitude?: components["schemas"]["GeoCoordinate"];
         };
         /** Format: date-time */
         DateTime: string;
@@ -238,9 +231,10 @@ export interface components {
             homeOffice?: components["schemas"]["Range"];
             tags?: components["schemas"]["Tags"];
             technologies?: components["schemas"]["Tags"];
-            /** @example StartUp */
-            companySize?: string;
+            careerFields?: components["schemas"]["Tags"];
+            industries?: components["schemas"]["Tags"];
             jobLevel?: string;
+            companySize?: string;
             /** Format: url */
             landingPageUrl?: string;
             /** Format: markup */
@@ -259,11 +253,7 @@ export interface components {
             /** @example 70 */
             homeOffice?: number;
             salary?: number;
-            /** @example [
-             *       "Baden",
-             *       "Lugano"
-             *     ] */
-            cantons?: string[];
+            cantons?: components["schemas"]["Tags"];
         };
         Filters: {
             careerFields?: components["schemas"]["Tags"];
@@ -276,12 +266,9 @@ export interface components {
             salary?: components["schemas"]["Range"];
             cantons?: components["schemas"]["Tags"];
         };
-        inline_response_200: {
+        jobs_response: {
             jobs?: components["schemas"]["Job"][];
-            activeFilters?: components["schemas"]["ActiveFilters"];
-            offset?: number;
-            limit?: number;
-            /** @description Length of the collection filtered by ActiveFilters, without pagination */
+            /** @description Length of the collection of jobs */
             length?: number;
         };
         subscribe_body: {
@@ -310,10 +297,6 @@ export interface components {
             /** Format: email */
             email?: string;
             jobId?: components["schemas"]["Id"];
-        };
-        Filters_regions: {
-            name?: string;
-            cantons?: string[];
         };
     };
     responses: never;
@@ -364,57 +347,7 @@ export type $defs = Record<string, never>;
 export interface operations {
     getJobs: {
         parameters: {
-            query?: {
-                /** @example [
-                 *       "frontend",
-                 *       "fullstack"
-                 *     ] */
-                careerFields?: components["schemas"]["Tags"];
-                /** @example [
-                 *       "react",
-                 *       "nodejs"
-                 *     ] */
-                technologies?: components["schemas"]["Tags"];
-                /** @example [
-                 *       "it"
-                 *     ] */
-                industries?: components["schemas"]["Tags"];
-                /** @example [
-                 *       "contributor",
-                 *       "expert",
-                 *       "leader"
-                 *     ] */
-                jobLevels?: components["schemas"]["Tags"];
-                /** @example [
-                 *       "StartUp"
-                 *     ] */
-                companySizes?: components["schemas"]["Tags"];
-                /** @example [
-                 *       80,
-                 *       100
-                 *     ] */
-                workload?: components["schemas"]["Range"];
-                /** @example 70 */
-                homeOffice?: number;
-                /** @example [
-                 *       "Baden",
-                 *       "Lugano"
-                 *     ] */
-                cantons?: string[];
-                /** @example 80000 */
-                salary?: number;
-                /** @example CHF */
-                currency?: string;
-                /**
-                 * @description Employer name. Case insensitive.
-                 * @example amag group ag
-                 */
-                employerName?: string;
-                /** @description For pagination: index of the first job to be sent */
-                offset?: number;
-                /** @description For pagination: limit of jobs to be sent */
-                limit?: number;
-            };
+            query?: never;
             header?: {
                 boardId?: string | null;
             };
@@ -425,16 +358,16 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Get all or filtered and paginated jobs and active filters */
+            /** @description Get all jobs for a language of a particular board */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["inline_response_200"];
+                    "application/json": components["schemas"]["jobs_response"];
                 };
             };
-            /** @description Invalid filters supplied */
+            /** @description Invalid query parameters */
             400: {
                 headers: {
                     [name: string]: unknown;

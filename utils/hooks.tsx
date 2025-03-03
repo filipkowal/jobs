@@ -15,12 +15,11 @@ import type {
   CustomBoard,
   Locale,
   Job,
-  JobsQuery,
 } from "@/utils";
 import { PinnedJobsContext } from "@/app/[locale]/PinnedJobsContextProvider";
 
 export function useActiveFiltersURL(
-  activeFilters: JobsQuery | undefined,
+  activeFilters: ActiveFilters | undefined,
   locale: Locale
 ): string {
   const anyActiveFilters =

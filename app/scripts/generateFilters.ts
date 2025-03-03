@@ -20,9 +20,10 @@ const isNumberTuple = (value: Job[keyof Job]): value is number[] => {
 const isSalary = (value: Job[keyof Job]): value is NonNullable<Job["salary"]> =>
   !!value?.hasOwnProperty("amount");
 
+// @fixme: change to just canton when api is ready
 const isAddress = (
   value: Job[keyof Job]
-): value is NonNullable<Job["address"]> => !!value?.hasOwnProperty("canton");
+): value is NonNullable<Job["address"]> => !!value?.hasOwnProperty("canton") || !!value?.hasOwnProperty("state");
 
 const isArrOfStringsKey = (key: string): key is ArrOfStringsFilter =>
   ["careerFields", "technologies", "industries"].includes(key);
@@ -35,7 +36,8 @@ const addStringFilter = (
   return currentFilter.includes(v) ? currentFilter : [...currentFilter, v];
 };
 
-const getMaxRange = (a: number[], b: number[]): number[] => {
+const getMaxRange = (a: number[], b: number[] | undefined): number[] => {
+  if (!b) return a;
   const [minA, maxA] = a;
   const [minB, maxB] = b;
   return [Math.min(minA, minB), Math.max(maxA, maxB)];
@@ -51,15 +53,18 @@ export default function generateFilters(jobs: Jobs["jobs"]): Filters {
 
       if (key === "tags") return;
 
-      if (key === "address" && isAddress(value) && job?.address?.canton) {
+      // @fixme: change to cantons when api is ready
+      if (key === "address" && isAddress(value) && (job?.address?.canton || (job?.address as any)?.state)) {
+        const canton = job?.address?.canton || (job?.address as any)?.state;
         filters.cantons = addStringFilter(
           filters.cantons,
-          job?.address?.canton
+          canton
         );
         return;
       }
 
-      if (key === "companySize" && typeof value === "string") {
+      // @fixme: change to companySize when api is ready
+      if ((key as any === "companySizes" || key === "companySize" ) && typeof value === "string") {
         filters.companySizes = addStringFilter(filters.companySizes, value);
         return;
       }
@@ -69,25 +74,22 @@ export default function generateFilters(jobs: Jobs["jobs"]): Filters {
         return;
       }
 
+      // Number range filters
       if (
         isNumberTuple(value) &&
         (key === "workload" || key === "homeOffice")
       ) {
-        // Number range filters
-        filters[key] = getMaxRange(value, filters[key] || [Infinity, 0]);
+        filters[key] = getMaxRange(value, filters[key]);
         return;
       }
 
       if (key === "salary" && isSalary(value) && isNumberTuple(value.amount)) {
-        filters.salary = getMaxRange(
-          value.amount,
-          filters.salary || [Infinity, 0]
-        );
+        filters.salary = getMaxRange(value.amount, filters.salary);
         return;
       }
 
+      // Array of strings filters eg. careerFields, industries, technologies
       if (isStringArr(value) && isArrOfStringsKey(key)) {
-        // Array of strings filters
         filters[key] = filters[key]
           ? [
               ...filters[key],
