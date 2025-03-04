@@ -20,7 +20,7 @@ export async function GET(
       ? parseInt(query.get("page") as string, 10)
       : 0;
 
-    const jobs: Jobs = await readJobs(locale, 0, true);
+    const jobs: Jobs = await readJobs(locale);
 
     const filteredJobs = filterJobs(jobs.jobs, filters);
 

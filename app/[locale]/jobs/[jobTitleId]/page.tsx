@@ -32,7 +32,7 @@ export default async function Home(props: {
 
   const filtersPromise = readFilters(params.locale);
 
-  const jobsPromise = readJobs(params.locale);
+  const jobsPromise = readJobs(params.locale, true);
 
   return (
     <main className="w-full flex justify-center">

@@ -32,7 +32,7 @@ export default async function Home(props: {
   const customBoard = await getCustomBoard();
 
   const filtersPromise = readFilters(params.locale);
-  const jobsPromise = readJobs(locale, pageIndex);
+  const jobsPromise = readJobs(locale, true, pageIndex);
 
   return (
     <main className="w-full flex justify-center">

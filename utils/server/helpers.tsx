@@ -30,8 +30,8 @@ export type Dictionary = ReturnType<typeof getDictionary> extends Promise<
 
 export const readJobs = async (
   locale: Locale,
+  pagination = false,
   page = 0,
-  noPagination = false
 ): Promise<Jobs> => {
   // Use path.resolve to get absolute path from project root
   const filePath = path.resolve(process.cwd(), "app", "data", locale, "jobs.json");
@@ -40,9 +40,9 @@ export const readJobs = async (
     const fileContent = await fs.readFile(filePath, "utf-8");
     const jobs = await JSON.parse(fileContent);
 
-    return noPagination
-      ? jobs
-      : { ...jobs, jobs: paginate(jobs.jobs, page, JOBS_LIMIT) };
+    return pagination
+    ? { ...jobs, jobs: paginate(jobs.jobs, page, JOBS_LIMIT) }
+    : jobs
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
       console.error(`File not found: ${filePath}`);
