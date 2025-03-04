@@ -2,7 +2,7 @@ import fs from "fs/promises"; // Use fs.promises for async/await
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import generateFilters from "./generateFilters";
+import generateFilters from "./generateFilters.mjs";
 
 const SERVER_URL = "https://vertical.digitalent.cloud/api/vertical";
 const LOCALES = ["en", "de", "fr"];
