@@ -45,10 +45,15 @@ export async function getFilteredJobs({
   searchParams?: ActiveFilters & { page?: number | string };
   init?: RequestInit;
 }): Promise<Response> {
+  // In the browser, we can use relative URLs
+  const baseUrl = typeof window !== 'undefined' 
+    ? '' // Use relative URL in the browser
+    : process.env.VERCEL_URL 
+      ? `https://${process.env.VERCEL_URL}`
+      : `http://${process.env.NEXT_PUBLIC_VERCEL_URL || "localhost:3000"}`;
+
   return fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/${locale}/jobs/?${buildQueryString(
-      searchParams
-    )}`,
+    `${baseUrl}/api/${locale}/jobs?${buildQueryString(searchParams)}`,
     init
   );
 }
