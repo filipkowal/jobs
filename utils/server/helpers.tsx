@@ -33,17 +33,38 @@ export const readJobs = async (
   page = 0,
   noPagination = false
 ): Promise<Jobs> => {
-  const filePath = path.join(process.cwd(), "app/data", locale, "jobs.json");
-  const fileContent = await fs.readFile(filePath, "utf-8");
-  const jobs = await JSON.parse(fileContent);
+  // Use path.resolve to get absolute path from project root
+  const filePath = path.resolve(process.cwd(), "app", "data", locale, "jobs.json");
+  
+  try {
+    const fileContent = await fs.readFile(filePath, "utf-8");
+    const jobs = await JSON.parse(fileContent);
 
-  return noPagination
-    ? jobs
-    : { ...jobs, jobs: paginate(jobs.jobs, page, JOBS_LIMIT) };
+    return noPagination
+      ? jobs
+      : { ...jobs, jobs: paginate(jobs.jobs, page, JOBS_LIMIT) };
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      console.error(`File not found: ${filePath}`);
+      console.error('Current working directory:', process.cwd());
+      console.error('Directory contents:', await fs.readdir(process.cwd()));
+    }
+    throw error;
+  }
 };
 
 export const readFilters = async (locale: Locale) => {
-  const filePath = path.join(process.cwd(), "app/data", locale, "filters.json");
-  const fileContent = await fs.readFile(filePath, "utf-8");
-  return JSON.parse(fileContent);
+  const filePath = path.resolve(process.cwd(), "app", "data", locale, "filters.json");
+  
+  try {
+    const fileContent = await fs.readFile(filePath, "utf-8");
+    return JSON.parse(fileContent);
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      console.error(`File not found: ${filePath}`);
+      console.error('Current working directory:', process.cwd());
+      console.error('Directory contents:', await fs.readdir(process.cwd()));
+    }
+    throw error;
+  }
 };
