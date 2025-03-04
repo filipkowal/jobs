@@ -36,6 +36,9 @@ export default async function JobTable({
   const jobs = isJobsBody(jobsBody) ? jobsBody.jobs : undefined;
   const sortedJobs = sortJobsInitOpenFirst(jobs, jobTitleId);
 
+  const length = isJobsBody(jobsBody) ? jobsBody.length : undefined;
+  const filteredLength = hasFilteredLength(jobsBody) ? jobsBody.filteredLength : undefined;
+
   return (
     <div
       className={`mb-48 items-center ${
@@ -82,7 +85,7 @@ export default async function JobTable({
       <JobTablePagination
         limit={limit}
         locale={locale}
-        length={isJobsBody(jobsBody) ? jobsBody.length : undefined}
+        length={filteredLength || length}
         searchParams={searchParams}
         params={params}
       />
@@ -93,4 +96,9 @@ export default async function JobTable({
 function isJobsBody(v?: Response | Jobs): v is Jobs {
   if (!v) return false;
   return v?.hasOwnProperty("jobs") && v?.hasOwnProperty("length");
+}
+
+function hasFilteredLength(v?: Response | Jobs): v is Jobs & { filteredLength: number } {
+  if (!v) return false;
+  return v?.hasOwnProperty("jobs") && v?.hasOwnProperty("filteredLength");
 }
