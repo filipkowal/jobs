@@ -18,16 +18,13 @@ describe("filterJobs", () => {
       const filters: ActiveFilters = { technologies: ["react", "python"] };
       const result = filterJobs(jobs, filters)!;
       expect(result).toHaveLength(3);
-      expect(result[0].id).toBe("1");
-      expect(result[1].id).toBe("3");
-      expect(result[2].id).toBe("5");
+      expect(result.map(job => job.id)).toEqual(["1", "3", "5"]);
     });
 
     it("should handle jobs with empty technologies array", () => {
-      const filters: ActiveFilters = { technologies: ["java"] };
+      const filters: ActiveFilters = { technologies: [] };
       const result = filterJobs(jobs, filters)!;
-      expect(result).toHaveLength(1);
-      expect(result[0].id).toBe("2");
+      expect(result).toHaveLength(5);
     });
   });
 
@@ -55,11 +52,11 @@ describe("filterJobs", () => {
       expect(result.map(job => job.id)).toEqual(["1", "4"]);
     });
 
-    it("should handle startup company size", () => {
-      const filters: ActiveFilters = { companySizes: ["startup"] };
+    it("should handle multiple company sizes", () => {
+      const filters: ActiveFilters = { companySizes: ["startup", "medium"] };
       const result = filterJobs(jobs, filters)!;
-      expect(result).toHaveLength(1);
-      expect(result[0].id).toBe("5");
+      expect(result).toHaveLength(2);
+      expect(result.map(job => job.id)).toEqual(["3", "5"]);
     });
   });
 
@@ -91,24 +88,42 @@ describe("filterJobs", () => {
       const filters: ActiveFilters = { workload: [100, 100] };
       const result = filterJobs(jobs, filters)!;
       expect(result).toHaveLength(3);
-      expect(result[0].id).toBe("1");
-      expect(result[1].id).toBe("4");
-      expect(result[2].id).toBe("5");
+      expect(result.map(job => job.id)).toEqual(["1", "4", "5"]);
     });
   });
 
   describe("Salary filters", () => {
-    it("should filter jobs by minimum salary", () => {
+    it("should filter jobs by salary in range", () => {
       const filters: ActiveFilters = { salary: 90000 };
       const result = filterJobs(jobs, filters)!;
       expect(result).toHaveLength(2);
       expect(result.map(job => job.id)).toEqual(["1", "4"]);
     });
 
-    it("should handle edge case salaries", () => {
+    it("should handle salary smaller than any job's salary range", () => {
       const filters: ActiveFilters = { salary: 25000 };
       const result = filterJobs(jobs, filters)!;
       expect(result).toHaveLength(5); // All jobs have max salary above 25000
+    });
+
+    it("should handle salary larger than any job's salary range", () => {
+      const filters: ActiveFilters = { salary: 160000 };
+      const result = filterJobs(jobs, filters)!;
+      expect(result).toHaveLength(0);
+    });
+
+    it("should handle maximum salary in range", () => {
+      const filters: ActiveFilters = { salary: 150000 };
+      const result = filterJobs(jobs, filters)!;
+      expect(result).toHaveLength(1);
+      expect(result[0].id).toBe("4");
+    });
+
+    it("should handle minimum salary in range", () => {
+      const filters: ActiveFilters = { salary: 120000 };
+      const result = filterJobs(jobs, filters)!;
+      expect(result).toHaveLength(1);
+      expect(result[0].id).toBe("4");
     });
   });
 
@@ -121,7 +136,7 @@ describe("filterJobs", () => {
     });
 
     it("should handle full remote jobs", () => {
-      const filters: ActiveFilters = { homeOffice: 80 };
+      const filters: ActiveFilters = { homeOffice: 100 };
       const result = filterJobs(jobs, filters)!;
       expect(result).toHaveLength(1);
       expect(result[0].id).toBe("5");
@@ -135,6 +150,14 @@ describe("filterJobs", () => {
       expect(result).toHaveLength(2);
       expect(result.map(job => job.id)).toEqual(["3", "5"]);
     });
+
+    it("should handle multiple career fields", () => {
+      const filters: ActiveFilters = { careerFields: ["Data Science", "Management"] };
+      const result = filterJobs(jobs, filters)!;
+      expect(result).toHaveLength(3);
+      expect(result.map(job => job.id)).toEqual(["3", "4", "5"]);
+    });
+    
   });
 
   describe("Industry filters", () => {
@@ -143,6 +166,13 @@ describe("filterJobs", () => {
       const result = filterJobs(jobs, filters)!;
       expect(result).toHaveLength(2);
       expect(result.map(job => job.id)).toEqual(["2", "4"]);
+    });
+
+    it("should handle multiple industries", () => {
+      const filters: ActiveFilters = { industries: ["Banking & Financial Services", "Research & Development"] };
+      const result = filterJobs(jobs, filters)!;
+      expect(result).toHaveLength(3);
+      expect(result.map(job => job.id)).toEqual(["2", "4", "5"]);
     });
   });
 
