@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node app/scripts/fetchAndSaveData.mjs",
+    "prebuild": "npm run test && node app/scripts/fetchAndSaveData.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

@@ -1,7 +1,14 @@
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   test: {
-    exclude: ["**/node_modules/**", "**/tests/e2e/**"],
+    globals: true,
+    environment: "node",
+    exclude: [
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/tests/e2e/**',  // Exclude all E2E tests
+      '**/.{idea,git,cache,output,temp}/**',
+    ],
   },
 });

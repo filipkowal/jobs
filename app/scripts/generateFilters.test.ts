@@ -1,5 +1,5 @@
-import generateFilters from "./generateFilters";
-import { Jobs } from "@/utils";
+import generateFilters from "./generateFilters.mjs";
+import { Jobs, Filters } from "@/utils";
 import { describe, it, expect } from "vitest";
 
 describe("generateFilters", () => {
@@ -37,7 +37,7 @@ describe("generateFilters", () => {
   ];
 
   it("should generate filters for technologies", () => {
-    const filters = generateFilters(jobs);
+    const filters = generateFilters(jobs) as Filters;
     expect(filters.technologies).toEqual([
       "react",
       "nodejs",
@@ -49,32 +49,32 @@ describe("generateFilters", () => {
   });
 
   it("should generate filters for job levels", () => {
-    const filters = generateFilters(jobs);
+    const filters = generateFilters(jobs) as Filters;
     expect(filters.jobLevels).toEqual(["senior", "junior", "mid"]);
   });
 
   it("should generate filters for company sizes", () => {
-    const filters = generateFilters(jobs);
+    const filters = generateFilters(jobs) as Filters;
     expect(filters.companySizes).toEqual(["large", "small", "medium"]);
   });
 
   it("should generate filters for cantons", () => {
-    const filters = generateFilters(jobs);
+    const filters = generateFilters(jobs) as Filters;
     expect(filters.cantons).toEqual(["Zurich", "Bern"]);
   });
 
   it("should generate filters for workload", () => {
-    const filters = generateFilters(jobs);
+    const filters = generateFilters(jobs) as Filters;
     expect(filters.workload).toEqual([40, 100]);
   });
 
   it("should generate filters for salary", () => {
-    const filters = generateFilters(jobs);
+    const filters = generateFilters(jobs) as Filters;
     expect(filters.salary).toEqual([50000, 100000]);
   });
 
   it("should generate filters for home office", () => {
-    const filters = generateFilters(jobs);
+    const filters = generateFilters(jobs) as Filters;
     expect(filters.homeOffice).toEqual([10, 60]);
   });
 
@@ -97,7 +97,7 @@ describe("generateFilters", () => {
       },
       { id: "5", homeOffice: [10, 30] },
     ];
-    const filters = generateFilters(incompleteJobs);
+    const filters = generateFilters(incompleteJobs) as Filters;
     expect(filters.technologies).toEqual(undefined);
     expect(filters.jobLevels).toEqual(["senior"]);
     expect(filters.companySizes).toEqual(["large"]);
