@@ -34,7 +34,11 @@ export const test = base.extend<{
     });
 
     let filterAccordions: Filter = [];
-    for (const filterName of FILTER_NAMES) {
+    // @fixme: use this to skip the "Technologies & Topics" filter
+    // until api is ready
+    const filteredFilterNames = FILTER_NAMES.filter(name => name !== 'technologies');
+   
+    for (const filterName of filteredFilterNames) {
       filterAccordions.push({
         name: filterName,
         heading: page.getByRole("heading", {
