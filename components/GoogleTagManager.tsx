@@ -1,8 +1,13 @@
 'use client';
 
 import Script from 'next/script';
+import { useCookieConsent } from '@/contexts/CookieConsentContext';
 
 export default function GoogleTagManager() {
+  const { hasConsent } = useCookieConsent();
+
+  if (!hasConsent) return null;
+
   return (
     <Script
       strategy="lazyOnload"

@@ -10,6 +10,7 @@ import type { Metadata } from "next";
 import CookiePopup from "@/components/CookiePopup";
 import { getCustomBoard, getDictionary } from "@/utils/server/helpers";
 import GoogleTagManager from '@/components/GoogleTagManager';
+import { CookieConsentProvider } from '@/contexts/CookieConsentContext';
 
 declare global {
   interface Window {
@@ -90,7 +91,6 @@ export default async function RootLayout(
     >
       <head>
         <link rel="icon" href="/thumbnail.png" />
-        <GoogleTagManager />
         <style>
           {`
             :root {
@@ -124,33 +124,36 @@ export default async function RootLayout(
       </head>
       <body>
         <div className="min-h-screen overflow-y-auto flex flex-col overflow-x-hidden justify-between">
-          <ToastProvider />
+            <ToastProvider />
 
-          <PinnedJobsContextProvider>
-            <div>
-              <Header params={params} />
+            <PinnedJobsContextProvider>
+              <div>
+                <Header params={params} />
 
-              {children}
-            </div>
-          </PinnedJobsContextProvider>
-
-          {customBoard.hideFooter ? (
-            ""
-          ) : (
-            <footer className={`self-bottom w-screen ${loew.variable}`}>
-              <div className="text-center py-2 max-w-screen bg-digitalent-gray-dark font-sans text-[11px]">
-                {dict["powered by"]}
-                <Link href="https://digitalent.community" target="_blank">
-                  <span className="font-logo"> DIGITALENT </span>
-                </Link>
-                © 2023
+                {children}
               </div>
-            </footer>
-          )}
+            </PinnedJobsContextProvider>
+
+            {customBoard.hideFooter ? (
+              ""
+            ) : (
+              <footer className={`self-bottom w-screen ${loew.variable}`}>
+                <div className="text-center py-2 max-w-screen bg-digitalent-gray-dark font-sans text-[11px]">
+                  {dict["powered by"]}
+                  <Link href="https://digitalent.community" target="_blank">
+                    <span className="font-logo"> DIGITALENT </span>
+                  </Link>
+                  © 2023
+                </div>
+              </footer>
+            )}
         </div>
 
-        <CookiePopup dict={dict.cookiePopup} />
-      </body>
+          <CookieConsentProvider>
+              <CookiePopup dict={dict.cookiePopup} />
+              <GoogleTagManager />
+          </CookieConsentProvider>
+        </body>
     </html>
   );
 }
