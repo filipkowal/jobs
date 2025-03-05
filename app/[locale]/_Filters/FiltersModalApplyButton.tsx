@@ -39,9 +39,11 @@ export default function ApplyFiltersButton({
     if (now - lastRequestTime < THROTTLE_MS) {
       return;
     }
+    console.log(now - lastRequestTime)
 
     // Check cache only for empty filters
     if (isEmptyFilters && emptyFiltersCache[locale] !== undefined) {
+      console.log("Cache: ", emptyFiltersCache[locale]);
       setJobsLength(emptyFiltersCache[locale]);
       return;
     }
@@ -75,7 +77,7 @@ export default function ApplyFiltersButton({
       .finally(() => {
         setIsLoading(false);
       });
-  }, [activeFilters, locale, dict, isEmptyFilters, lastRequestTime]);
+  }, [activeFilters, locale, dict, isEmptyFilters, lastRequestTime, emptyFiltersCache]);
 
   return (
     <Button

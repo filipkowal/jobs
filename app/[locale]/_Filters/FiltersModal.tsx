@@ -136,7 +136,7 @@ function getFilterComponent(
             onValueChange={(salary) => setActiveFilter("salary", salary)}
             min={filters?.salary?.[0] || 0}
             max={filters?.salary?.[1] || 900000}
-            step={1000}
+            step={10000}
             unit="CHF"
             name={dict["Min. salary"]}
           />
