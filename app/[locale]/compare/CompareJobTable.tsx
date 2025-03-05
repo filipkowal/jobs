@@ -28,9 +28,6 @@ export default function CompareJobTable({
 }) {
   const { pinnedJobs, removePinnedJob, pinnedJobsIds } = usePinnedJobs(jobs);
 
-  console.log('jobs:', jobs.map(job => job.id?.slice(0, 8)))
-  console.log('pinnedJobs:', pinnedJobs.map(job => job.id?.slice(0, 8)))
-
   const {
     showLeftArrowButton,
     showRightArrowButton,

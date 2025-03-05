@@ -39,11 +39,9 @@ export default function ApplyFiltersButton({
     if (now - lastRequestTime < THROTTLE_MS) {
       return;
     }
-    console.log(now - lastRequestTime)
 
     // Check cache only for empty filters
     if (isEmptyFilters && emptyFiltersCache[locale] !== undefined) {
-      console.log("Cache: ", emptyFiltersCache[locale]);
       setJobsLength(emptyFiltersCache[locale]);
       return;
     }
