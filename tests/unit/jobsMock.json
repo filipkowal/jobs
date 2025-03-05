@@ -1,0 +1,124 @@
+{
+  "jobs": [
+    {
+      "id": "1",
+      "jobLevel": "senior",
+      "companySize": "large",
+      "address": {
+        "street": "Test Street 1",
+        "city": "Zurich",
+        "state": "Zurich",
+        "canton": "Zurich",
+        "region": "Zurich region",
+        "country": "Switzerland"
+      },
+      "technologies": ["react", "nodejs", "typescript"],
+      "workload": [80, 100],
+      "salary": {
+        "amount": [80000, 100000],
+        "currency": "CHF",
+        "unit": "yearly"
+      },
+      "homeOffice": [40, 60],
+      "careerFields": ["Software Development"],
+      "industries": ["IT & Telecommunications"],
+      "tags": ["Remote Work", "Senior Position"]
+    },
+    {
+      "id": "2",
+      "jobLevel": "junior",
+      "companySize": "small",
+      "address": {
+        "street": "Test Street 2",
+        "city": "Bern",
+        "state": "Bern",
+        "canton": "Bern",
+        "region": "Bern region",
+        "country": "Switzerland"
+      },
+      "technologies": ["angular", "java"],
+      "workload": [60, 80],
+      "salary": {
+        "amount": [50000, 70000],
+        "currency": "CHF",
+        "unit": "yearly"
+      },
+      "homeOffice": [10, 30],
+      "careerFields": ["Software Development"],
+      "industries": ["Banking & Financial Services"],
+      "tags": ["Entry Level", "Training Provided"]
+    },
+    {
+      "id": "3",
+      "jobLevel": "mid",
+      "companySize": "medium",
+      "address": {
+        "street": "Test Street 3",
+        "city": "Zurich",
+        "state": "Zurich",
+        "canton": "Zurich",
+        "region": "Zurich region",
+        "country": "Switzerland"
+      },
+      "technologies": ["vue", "python", "react"],
+      "workload": [40, 60],
+      "salary": {
+        "amount": [60000, 80000],
+        "currency": "CHF",
+        "unit": "yearly"
+      },
+      "homeOffice": [20, 40],
+      "careerFields": ["Software Development", "Data Science"],
+      "industries": ["IT & Telecommunications"],
+      "tags": ["Hybrid Work"]
+    },
+    {
+      "id": "4",
+      "jobLevel": "senior",
+      "companySize": "large",
+      "address": {
+        "street": "Test Street 4",
+        "city": "Geneva",
+        "state": "Geneva",
+        "canton": "Geneva",
+        "region": "Geneva region",
+        "country": "Switzerland"
+      },
+      "technologies": [],
+      "workload": [100, 100],
+      "salary": {
+        "amount": [120000, 150000],
+        "currency": "CHF",
+        "unit": "yearly"
+      },
+      "homeOffice": [0, 20],
+      "careerFields": ["Management"],
+      "industries": ["Banking & Financial Services"],
+      "tags": ["Executive", "On-site"]
+    },
+    {
+      "id": "5",
+      "jobLevel": "internship",
+      "companySize": "startup",
+      "address": {
+        "street": "Test Street 5",
+        "city": "Lausanne",
+        "state": "Vaud",
+        "canton": "Vaud",
+        "region": "Lake Geneva region",
+        "country": "Switzerland"
+      },
+      "technologies": ["python", "javascript"],
+      "workload": [80, 100],
+      "salary": {
+        "amount": [30000, 40000],
+        "currency": "CHF",
+        "unit": "yearly"
+      },
+      "homeOffice": [60, 100],
+      "careerFields": ["Data Science"],
+      "industries": ["Research & Development"],
+      "tags": ["Internship", "Full Remote"]
+    }
+  ]
+} 
