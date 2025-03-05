@@ -8,11 +8,13 @@ export default function FiltersClearButton({
   activeFilters,
   dict,
   className,
+  clearFilters,
 }: {
   locale: Locale;
   activeFilters: ActiveFilters;
   dict: Dictionary["filtersSection"];
-  className?: string;
+  className?: string; 
+  clearFilters?: () => void;
 }) {
   const router = useRouter();
   const activeFiltersURL = useActiveFiltersURL(activeFilters, locale);
@@ -21,6 +23,7 @@ export default function FiltersClearButton({
     <Link href={`/${locale}`}>
       <button
         onClick={() => {
+          clearFilters?.();
           router.push(activeFiltersURL);
         }}
         className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1 mr-2 mb-2 break-keep inline-block cursor-pointer 

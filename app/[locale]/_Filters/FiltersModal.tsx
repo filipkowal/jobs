@@ -50,6 +50,10 @@ export default function FiltersModal({
     setIsModalOpen(false);
   };
 
+  const clearFilters = () => {
+    setActiveFilters({}); // Reset active filters
+  };
+
   return (
     <Modal
       isOpen={isModalOpen}
@@ -68,6 +72,7 @@ export default function FiltersModal({
             activeFilters={activeFilters}
             dict={dict}
             className="!px-[20px] !py-[10px] !uppercase !mb-0"
+            clearFilters={clearFilters}
           />
           <ApplyFiltersButton
             activeFilters={activeFilters}
