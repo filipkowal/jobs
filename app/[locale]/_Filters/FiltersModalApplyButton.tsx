@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState, useCallback, useMemo } from "react";
 
 import type { Dictionary, CustomBoard, Locale, ActiveFilters } from "@/utils";
 import { getFilteredJobs } from "@/utils";
@@ -24,32 +24,58 @@ export default function ApplyFiltersButton({
   const router = useRouter();
   const [jobsLength, setJobsLength] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [emptyFiltersCache, setEmptyFiltersCache] = useState<Record<string, number>>({});
+  const [lastRequestTime, setLastRequestTime] = useState(0);
+  const THROTTLE_MS = 200;
 
   const activeFiltersURL = useActiveFiltersURL(activeFilters, locale);
+  
+  const isEmptyFilters = useMemo(() => {
+    return !activeFilters || Object.keys(activeFilters).length === 0;
+  }, [activeFilters]);
 
   useEffect(() => {
-    async function fetchJobs() {
-      setIsLoading(true);
-      try {
-        const jobsResponse = await getFilteredJobs({
-          searchParams: {
-            ...activeFilters,
-          },
-          locale: locale,
-        });
-        const { filteredLength } = await jobsResponse.json();
-
-        setJobsLength(filteredLength || 0);
-      } catch (e) {
-        toast.error(dict["Something went wrong"]);
-        captureException(e, { extra: { activeFilters, locale } });
-      } finally {
-        setIsLoading(false);
-      }
+    const now = Date.now();
+    if (now - lastRequestTime < THROTTLE_MS) {
+      return;
     }
 
-    fetchJobs();
-  }, [activeFilters, locale, customBoard, dict]);
+    // Check cache only for empty filters
+    if (isEmptyFilters && emptyFiltersCache[locale] !== undefined) {
+      setJobsLength(emptyFiltersCache[locale]);
+      return;
+    }
+
+    setLastRequestTime(now);
+    setIsLoading(true);
+
+    getFilteredJobs({
+      searchParams: {
+        ...activeFilters,
+      },
+      locale: locale,
+    })
+      .then(async (jobsResponse) => {
+        const { filteredLength } = await jobsResponse.json();
+        const length = filteredLength || 0;
+        
+        // Cache the result only for empty filters
+        if (isEmptyFilters) {
+          setEmptyFiltersCache(prev => ({
+            ...prev,
+            [locale]: length
+          }));
+        }
+        setJobsLength(length);
+      })
+      .catch((e) => {
+        toast.error(dict["Something went wrong"]);
+        captureException(e, { extra: { activeFilters, locale } });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [activeFilters, locale, dict, isEmptyFilters, lastRequestTime]);
 
   return (
     <Button
