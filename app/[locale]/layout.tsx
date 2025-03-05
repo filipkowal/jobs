@@ -7,9 +7,16 @@ import "../globals.css";
 import localFont from "next/font/local";
 import { Merriweather } from "next/font/google";
 import type { Metadata } from "next";
-import Script from "next/script";
 import CookiePopup from "@/components/CookiePopup";
 import { getCustomBoard, getDictionary } from "@/utils/server/helpers";
+import GoogleTagManager from '@/components/GoogleTagManager';
+
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
+}
 
 export async function generateMetadata(
   props: {
@@ -83,9 +90,7 @@ export default async function RootLayout(
     >
       <head>
         <link rel="icon" href="/thumbnail.png" />
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=GTM-PZR49N2Q`}
-        />
+        <GoogleTagManager />
         <style>
           {`
             :root {
