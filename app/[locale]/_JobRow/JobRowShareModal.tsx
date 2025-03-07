@@ -48,10 +48,10 @@ export default function ShareJob({
             boardId: customBoard?.id,
           }).then((res) => {
             link = res.link;
+            setUniqueLink(link || "");
+            setStepNumber(stepNumber + 1);
           });
 
-          setUniqueLink(link || "");
-          setStepNumber(stepNumber + 1);
         } catch (e) {
           toast.error(dict["Something went wrong"]);
         }
