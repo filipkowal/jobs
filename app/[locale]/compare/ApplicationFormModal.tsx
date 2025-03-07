@@ -4,10 +4,9 @@ import { useRouter } from "next/navigation";
 import ApplicationFormSuccessStep from "./ApplicationFormSuccess";
 import ApplicationFormBasket from "./ApplicationFormBasket";
 import ApplicationFormAboutYou from "./ApplicationFormAboutYou";
-import dynamic from "next/dynamic";
 import { Dictionary } from "@/utils/server";
+import Modal from "@/components/Modal";
 
-const Modal = dynamic(() => import("@/components/Modal"));
 
 export default function ApplicationFormModal({
   isOpen,
