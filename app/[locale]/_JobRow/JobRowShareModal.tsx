@@ -7,10 +7,8 @@ import Checkbox from "@/components/Checkbox";
 import TextInput from "@/components/TextInput";
 import type { CustomBoard, Locale } from "@/utils";
 import { postData } from "@/utils";
-import dynamic from "next/dynamic";
 import { Dictionary } from "@/utils/server";
-
-const Modal = dynamic(() => import("@/components/Modal"));
+import Modal from "@/components/Modal";
 
 export default function ShareJob({
   locale,
@@ -19,12 +17,7 @@ export default function ShareJob({
   customBoard,
 }: {
   locale: Locale;
-  dict: Dictionary["shareJob"] & {
-    "Something went wrong": string;
-    "Share this job and earn 500 CHF": string;
-    invalidEmail: string;
-    "Go back": string;
-  };
+  dict: Dictionary["shareJob"] & Dictionary["JobRow"];
   jobId?: string;
   customBoard: CustomBoard;
 }) {
@@ -40,11 +33,12 @@ export default function ShareJob({
       ref={formRef}
       role="form"
       key="0"
-      onSubmit={async (e) => {
+      onSubmit={ (e) => {
         e.preventDefault();
 
         try {
-          const link = await postData({
+          let link;
+            postData({
             endpoint: "refer",
             locale,
             data: {
@@ -52,6 +46,8 @@ export default function ShareJob({
               jobId,
             },
             boardId: customBoard?.id,
+          }).then((res) => {
+            link = res.link;
           });
 
           setUniqueLink(link || "");
@@ -121,11 +117,12 @@ export default function ShareJob({
           dict={{ invalidEmail: dict["invalidEmail"] }}
         />
         <Button
-          onClick={async (e) => {
+          onClick={ (e) => {
             e.preventDefault();
             try {
-              await navigator.clipboard.writeText(uniqueLink);
-              toast.success(dict["Copied the link to clipboard"]);
+               navigator.clipboard.writeText(uniqueLink).then(() => {
+                toast.success(dict["Copied the link to clipboard"]);
+               })
             } catch {
               toast.error(dict["Something went wrong"]);
             }

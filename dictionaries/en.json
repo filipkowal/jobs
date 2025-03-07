@@ -137,7 +137,20 @@
     "Copied the link to clipboard": "Copied the link to clipboard",
     "Copy": "Copy",
     "Choose your reward!": "Choose your reward!",
-    "when your friend gets the job": "when your friend gets the job"
+    "when your friend gets the job": "when your friend gets the job",
+    "Share this job and earn 500 CHF": "Share & earn 500 CHF",
+    "Earn 1000 CHF": "Earn 1000 CHF",
+    "by sharing this job": "by sharing this job" 
+  },
+  "JobRow": {
+    "Responsibilities": "Responsibilities",
+    "More info & apply": "More info & apply",
+    "or": "or",
+    "You have": "You have",
+    "More jobs": "More jobs",
+    "Go back": "Go back",
+    "Something went wrong": "Something went wrong",
+    "invalidEmail": "Invalid email address."
   },
   "cookiePopup": {
     "title": "Cookie notice",

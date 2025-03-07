@@ -2,10 +2,8 @@ import { Locale } from "@/i18n-config";
 import { getCustomBoard, getDictionary } from "@/utils/server";
 import { Jobs, SearchParams, getShortId, sortJobsInitOpenFirst } from "@/utils";
 import JobRowAccordion from "./_JobRow/JobRowAccordion";
-import JobRowDetails from "./_JobRow/JobRowDetails";
 import JobTablePagination from "./_JobRow/JobTablePagination";
 import JobRowHeading from "./_JobRow/JobRowHeading";
-import JobActions from "./_JobRow/JobRowActions";
 import { Fragment } from "react";
 
 export default async function JobTable({
@@ -56,20 +54,8 @@ export default async function JobTable({
             key={job.id}
             customBoard={customBoard}
             jobRowHeading={<JobRowHeading job={job} locale={locale} />}
-          >
-            {!customBoard?.disableDetailView && (
-              <div className="flex flex-row flex-wrap-reverse lg:flex-nowrap justify-center sm:pb-6 bg-digitalent-gray-light sm:bg-inherit">
-                <JobRowDetails locale={locale} job={job} />
-
-                <JobActions
-                  landingPageUrl={job.landingPageUrl}
-                  locale={locale}
-                  jobId={job.id}
-                  customBoard={customBoard}
-                />
-              </div>
-            )}
-          </JobRowAccordion>
+            dict={{...dict['JobRow'], ...dict['shareJob'], ...dict['saveForLater']}}
+          />
 
           {
             // Separator after initially open job

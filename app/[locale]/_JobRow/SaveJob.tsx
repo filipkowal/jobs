@@ -1,13 +1,12 @@
 "use client";
 
 import { useRef, useState } from "react";
-import dynamic from "next/dynamic";
 import toast from "react-hot-toast";
 import Button from "@/components/Button";
 import TextInput from "@/components/TextInput";
 import { CustomBoard, type Locale, postData } from "@/utils";
 
-const Modal = dynamic(() => import("@/components/Modal"));
+import Modal from "@/components/Modal";
 
 export default function SaveJob({
   jobId,

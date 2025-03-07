@@ -137,9 +137,21 @@
     "Copied the link to clipboard": "Der Link ist in der Zwischenablage kopiert",
     "Copy": "Kopieren",
     "Choose your reward!": "Wähle Deine Belohnung aus!",
-    "when your friend gets the job": "wenn Deine Empfehlung zur Anstellung führt"
+    "when your friend gets the job": "wenn Deine Empfehlung zur Anstellung führt",
+    "Share this job and earn 500 CHF": "Job teilen und 500 CHF verdienen",
+    "Earn 1000 CHF": "1'000 CHF verdienen",
+    "by sharing this job": "Teile diesen Job"
   },
-
+  "JobRow": {
+    "Responsibilities": "Das sind Deine Aufgaben",
+    "More info & apply": "Alle Infos und Bewerben",
+    "or": "oder",
+    "You have": "Das bringst Du mit",
+    "More jobs": "Mehr Jobs",
+    "Go back": "Zurück",
+    "Something went wrong": "Etwas ist schief gelaufen",
+    "invalidEmail": "Ungültige E-Mail Adresse"
+  },
   "cookiePopup": {
     "title": "Cookie-Hinweis",
     "message": "Diese Website verwendet Cookies, um Deine Browser-Erfahrung zu verbessern und für Analyse- und Werbezwecke.",

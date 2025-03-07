@@ -1,19 +1,19 @@
-import { Job, Locale } from "@/utils";
-import { getDictionary } from "@/utils/server";
+'use client'
+import { Job } from "@/utils";
+import { Dictionary} from "@/utils";
 
-export default async function JobRowDetails({
-  locale,
+export default function JobRowDetails({
   job,
+  dict,
 }: {
-  locale: Locale;
   job: Job;
+  dict: Dictionary['Responsibilities'];
 }) {
-  const dict = await getDictionary(locale);
 
   const responsibilitiesSection = job?.responsibilities && (
     <div>
       <h3 className="text-xl py-4 font-medium font-title">
-        {dict["Responsibilities"]}
+        {dict}
       </h3>
       <div
         dangerouslySetInnerHTML={{ __html: job?.responsibilities || "" }}
