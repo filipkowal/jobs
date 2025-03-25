@@ -37,7 +37,6 @@ export default function filterJobs(
         return filters?.jobLevels?.includes(job?.jobLevel);
       }
 
-      // @fixme: change to companySize when api is ready
       if (filterName === "companySizes" && job?.companySize) {
         return filters?.companySizes?.includes((job as any)?.companySize);
       }

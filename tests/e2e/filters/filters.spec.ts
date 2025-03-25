@@ -2,12 +2,16 @@ import { expect } from "@playwright/test";
 import { getJobCount } from "./helpers";
 import { FILTER_BUTTON_NAMES } from "@/utils/constants";
 import { test } from "./fixtures";
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import { readFileSync } from "fs";
+import { join } from "path";
 import { Job } from "@/utils";
 
-const dict = JSON.parse(readFileSync(join(__dirname, '../../../dictionaries/en.json'), 'utf8'));
-const jobsData = JSON.parse(readFileSync(join(__dirname, '../../../app/data/en/jobs.json'), 'utf8'));
+const dict = JSON.parse(
+  readFileSync(join(__dirname, "../../../dictionaries/en.json"), "utf8")
+);
+const jobsData = JSON.parse(
+  readFileSync(join(__dirname, "../../../app/data/en/jobs.json"), "utf8")
+);
 
 test("Filter buttons are visible", async ({ page }) => {
   for (const filterName of FILTER_BUTTON_NAMES) {
@@ -38,16 +42,16 @@ test("Applying all filters updates job count", async ({ filterModal }) => {
   const initialCount = await getJobCount(applyButton);
 
   // Get first available values from jobs data
-  const canton = jobs?.[0]?.address?.canton || 'Canton of Zurich';
-  const careerField = jobs?.[0]?.careerFields?.[0] || 'Software Development';
-  const technology = jobs?.[0]?.technologies?.[0] || 'C#';
-  const industry = jobs?.[0]?.industries?.[0] || 'IT & Telecommunications';
-  const companySize = jobs?.[0]?.companySize || 'Small (≤ 50)';
+  const canton = jobs?.[0]?.address?.canton || "Canton of Zurich";
+  const careerField = jobs?.[0]?.careerFields?.[0] || "Software Development";
+  const technology = jobs?.[0]?.technologies?.[0] || "C#";
+  const industry = jobs?.[0]?.industries?.[0] || "IT & Telecommunications";
+  const companySize = jobs?.[0]?.companySize || "Small (≤ 50)";
 
   // Regions
-  const cantonCheckbox = modal.getByRole("checkbox", { 
+  const cantonCheckbox = modal.getByRole("checkbox", {
     name: canton,
-    exact: true 
+    exact: true,
   });
   await expect(cantonCheckbox).toBeVisible();
   await cantonCheckbox.click();
@@ -58,14 +62,13 @@ test("Applying all filters updates job count", async ({ filterModal }) => {
   await expect(careerFieldTag).toBeVisible();
   await careerFieldTag.click();
 
-  // @fixme: wait for the api to return the technologies
-  // // Technologies
-  // const technologyTag = modal.getByRole("button", { 
-  //   name: technology,
-  //   exact: true 
-  // });
-  // await expect(technologyTag).toBeVisible();
-  // await technologyTag.click();
+  // Technologies
+  const technologyTag = modal.getByRole("button", {
+    name: technology,
+    exact: true,
+  });
+  await expect(technologyTag).toBeVisible();
+  await technologyTag.click();
 
   // Industries
   const industryTag = modal.getByText(industry, { exact: true });
