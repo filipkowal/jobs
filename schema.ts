@@ -302,7 +302,6 @@ export interface components {
     responses: never;
     parameters: {
         UserId: components["schemas"]["Id"];
-        BoardId: components["schemas"]["Id"];
         Language: components["schemas"]["Language"];
         /** @example [
          *       "frontend",
@@ -349,7 +348,8 @@ export interface operations {
         parameters: {
             query?: never;
             header?: {
-                boardId?: string | null;
+                "Board-Id"?: string | null;
+                "API-Version"?: string | null;
             };
             path: {
                 language: components["schemas"]["Language"];
@@ -387,7 +387,8 @@ export interface operations {
         parameters: {
             query?: never;
             header?: {
-                boardId?: string | null;
+                "Board-Id"?: string | null;
+                "API-Version"?: string | null;
             };
             path: {
                 language: components["schemas"]["Language"];
@@ -422,7 +423,8 @@ export interface operations {
         parameters: {
             query?: never;
             header?: {
-                boardId?: string | null;
+                "Board-Id"?: string | null;
+                "API-Version"?: string | null;
             };
             path: {
                 language: components["schemas"]["Language"];
@@ -457,7 +459,8 @@ export interface operations {
         parameters: {
             query?: never;
             header?: {
-                boardId?: string | null;
+                "Board-Id"?: string | null;
+                "API-Version"?: string | null;
             };
             path: {
                 language: components["schemas"]["Language"];
@@ -492,7 +495,8 @@ export interface operations {
         parameters: {
             query?: never;
             header?: {
-                boardId?: string | null;
+                "Board-Id"?: string | null;
+                "API-Version"?: string | null;
             };
             path: {
                 language: components["schemas"]["Language"];

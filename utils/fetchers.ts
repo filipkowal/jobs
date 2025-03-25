@@ -23,7 +23,8 @@ export async function postData({
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      "Custom-Board-Id": boardId,
+      "Board-Id": boardId,
+      "API-Version": "2.0",
     },
     body: JSON.stringify(data),
   });
@@ -46,9 +47,10 @@ export async function getFilteredJobs({
   init?: RequestInit;
 }): Promise<Response> {
   // In the browser, we can use relative URLs
-  const baseUrl = typeof window !== 'undefined' 
-    ? '' // Use relative URL in the browser
-    : process.env.VERCEL_URL 
+  const baseUrl =
+    typeof window !== "undefined"
+      ? "" // Use relative URL in the browser
+      : process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
       : `http://${process.env.NEXT_PUBLIC_VERCEL_URL || "localhost:3000"}`;
 
