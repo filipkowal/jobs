@@ -15,8 +15,6 @@ export default function filterJobs(
       )
         return true;
 
-      // @fixme: add industries and careerFields when api is ready
-
       // array filters, array job values
       if (filterName === "technologies" && job?.technologies) {
         return job?.technologies?.some((v) =>
@@ -38,23 +36,10 @@ export default function filterJobs(
       if (filterName === "jobLevels" && job?.jobLevel) {
         return filters?.jobLevels?.includes(job?.jobLevel);
       }
-      // @fixme change to cantons only when api is ready
-      type Canton = "canton";
-      if (filterName === "cantons" && job?.address?.["state" as Canton]) {
-        return filters?.cantons?.includes(
-          job?.address?.["state" as Canton] as string
-        );
-      }
 
       // @fixme: change to companySize when api is ready
-      if (
-        filterName === "companySizes" &&
-        (job?.companySize || (job as any)?.companySizes)
-      ) {
-        return (
-          filters?.companySizes?.includes((job as any)?.companySize) ||
-          filters?.companySizes?.includes((job as any)?.companySizes)
-        );
+      if (filterName === "companySizes" && job?.companySize) {
+        return filters?.companySizes?.includes((job as any)?.companySize);
       }
 
       if (filterName === "cantons" && job?.address?.canton) {

@@ -20,10 +20,10 @@ const isNumberTuple = (value: Job[keyof Job]): value is number[] => {
 const isSalary = (value: Job[keyof Job]): value is NonNullable<Job["salary"]> =>
   !!value?.hasOwnProperty("amount");
 
-// @fixme: change to just canton when api is ready
 const isAddress = (
   value: Job[keyof Job]
-): value is NonNullable<Job["address"]> => !!value?.hasOwnProperty("canton") || !!value?.hasOwnProperty("state");
+): value is NonNullable<Job["address"]> & { canton: string } =>
+  !!value?.hasOwnProperty("canton");
 
 const isArrOfStringsKey = (key: string): key is ArrOfStringsFilter =>
   ["careerFields", "technologies", "industries"].includes(key);
@@ -53,18 +53,12 @@ export default function generateFilters(jobs: Jobs["jobs"]): Filters {
 
       if (key === "tags") return;
 
-      // @fixme: change to cantons when api is ready
-      if (key === "address" && isAddress(value) && (job?.address?.canton || (job?.address as any)?.state)) {
-        const canton = job?.address?.canton || (job?.address as any)?.state;
-        filters.cantons = addStringFilter(
-          filters.cantons,
-          canton
-        );
+      if (key === "address" && isAddress(value)) {
+        filters.cantons = addStringFilter(filters.cantons, value.canton);
         return;
       }
 
-      // @fixme: change to companySize when api is ready
-      if ((key as any === "companySizes" || key === "companySize" ) && typeof value === "string") {
+      if (key === "companySize" && typeof value === "string") {
         filters.companySizes = addStringFilter(filters.companySizes, value);
         return;
       }

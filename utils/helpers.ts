@@ -9,7 +9,6 @@ export function paginate(arr: any[] | undefined, page = 0, limit = JOBS_LIMIT) {
   return arr.slice(page * limit, limit * (page + 1));
 }
 
-//@fixme how to remove it or make it responsive to activeFilers list
 export function pickActiveFiltersFromSearchParams(
   searchParams: ReadonlyURLSearchParams | URLSearchParams | null
 ): ActiveFilters {

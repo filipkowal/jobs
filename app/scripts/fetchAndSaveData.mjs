@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 import generateFilters from "./generateFilters.mjs";
 
-const SERVER_URL = "https://vertical.digitalent.cloud/api/vertical";
+const SERVER_URL = "https://merge.digitalent.cloud/api/vertical";
 const LOCALES = ["en", "de", "fr"];
 
 const __filename = fileURLToPath(import.meta.url);
@@ -24,7 +24,7 @@ export async function fetchAndSaveData() {
     console.log(`Fetching jobs for ${locale}...`);
 
     const jobs = await fetch(`${SERVER_URL}/${locale}/jobs`, {
-      headers: { "Board-Id": boardId || "" },
+      headers: { "Board-Id": boardId || "", "API-Version": "2.0" },
     }).then((res) => res.json());
 
     const filters = generateFilters(jobs?.jobs);

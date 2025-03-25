@@ -13,10 +13,9 @@ const isNumberTuple = (value) => {
   );
 };
 
-const isSalary = (value) =>
-  !!value?.hasOwnProperty("amount");
+const isSalary = (value) => !!value?.hasOwnProperty("amount");
 
-const isAddress = (value) => 
+const isAddress = (value) =>
   !!value?.hasOwnProperty("canton") || !!value?.hasOwnProperty("state");
 
 const isArrOfStringsKey = (key) =>
@@ -43,18 +42,13 @@ export default function generateFilters(jobs) {
 
       if (key === "tags") return;
 
-      // @fixme: change to cantons when api is ready
-      if (key === "address" && isAddress(value) && (job?.address?.canton || job?.address?.state)) {
-        const canton = job?.address?.canton || job?.address?.state;
-        filters.cantons = addStringFilter(
-          filters.cantons,
-          canton
-        );
+      if (key === "address" && isAddress(value) && job?.address?.canton) {
+        const canton = job?.address?.canton;
+        filters.cantons = addStringFilter(filters.cantons, canton);
         return;
       }
 
-      // @fixme: change to companySize when api is ready
-      if ((key === "companySizes" || key === "companySize") && typeof value === "string") {
+      if (key === "companySize" && typeof value === "string") {
         filters.companySizes = addStringFilter(filters.companySizes, value);
         return;
       }
@@ -92,4 +86,4 @@ export default function generateFilters(jobs) {
   });
 
   return filters;
-} 
+}

@@ -56,12 +56,7 @@ export default function LanguageSelector({
             }
 
             return (
-              <Link
-                key={locale}
-                //@fixme: add searchParams when server is ready to handle french filters for displaying english jobs
-                href={localePath}
-                className="block p-4"
-              >
+              <Link key={locale} href={localePath} className="block p-4">
                 {locale.toUpperCase()}
               </Link>
             );
