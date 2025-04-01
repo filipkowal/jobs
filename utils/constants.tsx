@@ -1,6 +1,6 @@
 import { ActiveFilterName } from "./types";
 
-export const SERVER_URL = "https://vertical.digitalent.cloud/api/vertical";
+export const SERVER_URL = "https://merge.digitalent.cloud/api/vertical";
 export const MOCK_SERVER_URL =
   "https://virtserver.swaggerhub.com/filipkowal/jobs/1.0";
 

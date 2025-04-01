@@ -33,12 +33,11 @@ export default function ShareJob({
       ref={formRef}
       role="form"
       key="0"
-      onSubmit={ (e) => {
+      onSubmit={(e) => {
         e.preventDefault();
 
         try {
-          let link;
-            postData({
+          postData({
             endpoint: "refer",
             locale,
             data: {
@@ -47,11 +46,9 @@ export default function ShareJob({
             },
             boardId: customBoard?.id,
           }).then((res) => {
-            link = res.link;
-            setUniqueLink(link || "");
+            setUniqueLink(res || "");
             setStepNumber(stepNumber + 1);
           });
-
         } catch (e) {
           toast.error(dict["Something went wrong"]);
         }
@@ -117,12 +114,12 @@ export default function ShareJob({
           dict={{ invalidEmail: dict["invalidEmail"] }}
         />
         <Button
-          onClick={ (e) => {
+          onClick={(e) => {
             e.preventDefault();
             try {
-               navigator.clipboard.writeText(uniqueLink).then(() => {
+              navigator.clipboard.writeText(uniqueLink).then(() => {
                 toast.success(dict["Copied the link to clipboard"]);
-               })
+              });
             } catch {
               toast.error(dict["Something went wrong"]);
             }
