@@ -16,3 +16,4 @@
 4. Host the project (f.e. with netlify.com)
 
 [The Open API specification](https://app.swaggerhub.com/apis-docs/filipkowal/jobs/1.0)
+.
