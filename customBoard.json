@@ -16,10 +16,10 @@
     "jobRowBackground": "green",
     "jobRowTitle": "white",
     "digitalentWhite": "",
-    "digitalentGreen": { "green": "green", "dark": "blue" },
-    "digitalentGray": { "light": "white", "light": "black" },
+    "digitalentGreen": { "DEFAULT": "green", "light": "blue" },
+    "digitalentGray": { "light": "white", "dark": "black" },
     "digitalentYellow": { "DEFAULT": "orange" },
-    "digitalentBlue": { "blue": "navy" },
+    "digitalentBlue": { "DEFAULT": "navy" },
     "digitalentMine": { "DEFAULT": "black" }
   },
   "hideAllFilters": false,
