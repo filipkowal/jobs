@@ -5,8 +5,8 @@
   "subheading1": "Just testing how it will look",
   "subheading2": "Test2 TRA, this should be not vsible",
   "hideHeading": false,
-  "hideSubheading": true,
-  "hideLogo": true,
+  "hideSubheading": false,
+  "hideLogo": false,
   "hideFooter": false,
   "colors": {
     "background": "purple",
