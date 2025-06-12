@@ -45,5 +45,5 @@
   "disableCompareView": true,
   "disableDetailView": true,
   "openJLPInSameTab": false,
-  "cards": true
+  "cards": false
 }
