@@ -84,7 +84,7 @@ export default function FiltersModal({
         </div>
       }
     >
-      <div className="sm:pr-[37px] sm:-mr-[37px]">
+      <div className="sm:pr-[37px] sm:-mr-[37px]  max-h-[72dvh] md:max-h-[64vh] overflow-x-hidden overflow-y-auto">
         {FILTER_NAMES.map((name) =>
           getFilterComponent(
             name,
