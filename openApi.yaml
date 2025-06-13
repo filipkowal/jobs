@@ -3,7 +3,7 @@ info:
   title: Jobs
   version: "1.0"
 servers:
-  - url: https://jobs.digitalent.cloud/api/vertical
+  - url: https://vertical.digitalent.cloud/api/vertical
   - url: https://merge.digitalent.cloud/api/vertical
   - url: https://virtserver.swaggerhub.com/FILIPKOWAL_1/jobs/1.0
     description: SwaggerHub API Auto Mocking

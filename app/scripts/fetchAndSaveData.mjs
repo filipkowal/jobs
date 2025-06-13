@@ -4,7 +4,7 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 import generateFilters from "./generateFilters.mjs";
 
-const SERVER_URL = "https://merge.digitalent.cloud/api/vertical";
+const SERVER_URL = "https://vertical.digitalent.cloud/api/vertical";
 const LOCALES = ["en", "de", "fr"];
 
 const __filename = fileURLToPath(import.meta.url);
