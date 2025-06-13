@@ -148,7 +148,7 @@ export default function ShareJob({
       <Button
         type="invert"
         onClick={() => setIsOpen(true)}
-        className="relative w-full bg-white !text-digitalent-blue hover:!border-white"
+        className="relative w-full bg-white text-digitalent-blue! hover:border-white!"
         name="Share with a friend"
       >
         {dict["Share this job and earn 500 CHF"]}

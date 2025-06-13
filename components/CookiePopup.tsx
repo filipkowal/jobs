@@ -37,7 +37,7 @@ export default function CookiePopup({
       </div>
       <Button
         onClick={handleClose}
-        className="m-6 w-[calc(100%-36px)] bg-digitalent-green-light ring-digitalent-green-light hover:ring-digitalent-green-light hover:bg-digitalent-green-light hover:!text-digitalent-blue"
+        className="m-6 w-[calc(100%-36px)] bg-digitalent-green-light ring-digitalent-green-light hover:ring-digitalent-green-light hover:bg-digitalent-green-light hover:text-digitalent-blue!"
       >
         {dict.acceptButton}
       </Button>

@@ -50,7 +50,7 @@ export default async function JobRowHeading({
             <Image
               src={employer.logo}
               alt={`${dict["Logo of"]} ${employer?.name}`}
-              className="absolute !top-[22px] md:!top-0 md:static block object-contain"
+              className="absolute top-[22px]! md:top-0! md:static block object-contain"
               fill
               sizes="70px, (min-width: 768px) 130px"
             />

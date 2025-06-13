@@ -27,7 +27,7 @@ export default async function Home(props: {
 
   return (
     <main className="w-full flex justify-center">
-      <div className="min-h-[calc(100vh-33.5px)] lg:w-10/12 w-full max-w-[70rem] items-left flex flex-col">
+      <div className="min-h-[calc(100vh-33.5px)] lg:w-10/12 w-full max-w-280 items-left flex flex-col">
         <Suspense fallback={<HeadingSkeleton />}>
           <Heading locale={params.locale} />
         </Suspense>

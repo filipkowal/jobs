@@ -19,7 +19,7 @@ export default function JobActions({
   customBoard: CustomBoard;
 }) {
   return (
-    <div className="flex flex-row sm:flex-col gap-4 px-4 xl:px-10 sm:items-center sm:justify-start min-w-fit xl:min-w-[29rem]">
+    <div className="flex flex-row sm:flex-col gap-4 px-4 xl:px-10 sm:items-center sm:justify-start min-w-fit xl:min-w-116">
       <Link
         href={landingPageUrl || ""}
         target={customBoard.openJLPInSameTab ? "" : "_blank"}

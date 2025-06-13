@@ -98,7 +98,7 @@ export default function FiltersSection({
             setOpenFilterName("all");
           }}
           className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer
-            focus:!outline-2 focus:!outline-digitalent-blue focus:!ring-2 focus:!ring-digitalent-blue`}
+            focus:outline-2! focus:outline-digitalent-blue! focus:ring-2! focus:ring-digitalent-blue!`}
         >
           {dict["More..."]}
         </button>
@@ -112,7 +112,7 @@ export default function FiltersSection({
 
       {/* Mobile */}
 
-      <div className="relative lg:hidden w-[fit-content] mx-3">
+      <div className="relative lg:hidden w-fit mx-3">
         <span
           onClick={() => {
             setIsModalOpen(true);

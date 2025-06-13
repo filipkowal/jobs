@@ -1,6 +1,59 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/forms';
+@plugin 'tailwindcss-animate';
+
+@theme {
+  --font-*: initial;
+  --font-title: var(--font-stolzl), sans-serif;
+  --font-serif: var(--font-merriweather), serif;
+  --font-logo: var(--font-loew), sans-serif;
+
+  --color-digitalent-green: #66b573;
+  --color-digitalent-green-light: #d7e4dd;
+
+  --color-digitalent-gray-light: #f2f2f2;
+  --color-digitalent-gray-dark: #131313;
+
+  --color-digitalent-yellow: #e7e248;
+
+  --color-digitalent-blue: #193b44;
+
+  --color-digitalent-mine: #363636;
+
+  --breakpoint-2xl: 1536px;
+  --breakpoint-3xl: 1920px;
+
+  --height-initial: initial;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility scrollbar-hide {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 
 @layer base {
   ul,
@@ -8,18 +61,6 @@
     list-style: revert;
     padding-left: 1.2rem;
     padding-top: 0.5rem;
-  }
-}
-
-@layer utilities {
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  /* Hide scrollbar for IE, Edge and Firefox */
-  .scrollbar-hide {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
   }
 }
 

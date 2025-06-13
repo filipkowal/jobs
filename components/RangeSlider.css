@@ -45,6 +45,7 @@
   height: 20px;
   background-color: var(--digitalent-green);
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .SliderThumb:hover {

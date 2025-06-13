@@ -42,11 +42,11 @@ export default function Modal({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            <div className="fixed inset-0 bg-black/25" />
           </TransitionChild>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex justify-center h-screen text-center items-center">
+            <div className="flex min-h-screen items-center justify-center p-4 text-center">
               <TransitionChild
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -57,7 +57,7 @@ export default function Modal({
                 leaveTo="opacity-0 scale-95"
               >
                 <DialogPanel
-                  className={`transform overflow-hidden h-full sm:h-initial bg-digitalent-gray-light text-digitalent-blue px-4 pt-4 pb-7 md:py-10 md:px-16 text-left align-middle shadow-xl transition-all w-[60rem] max-w-full`}
+                  className={`transform overflow-hidden bg-digitalent-gray-light text-digitalent-blue px-4 pt-4 pb-7 md:py-10 md:px-16 text-left align-middle shadow-xl transition-all w-240 max-w-full`}
                 >
                   <DialogTitle
                     as="h3"
@@ -80,7 +80,7 @@ export default function Modal({
                     </svg>
                   </DialogTitle>
 
-                  <div className="max-h-[72dvh] md:max-h-[64vh] px-1 -mx-1 sm:mx-0 max-w-full overflow-x-hidden overflow-y-auto">
+                  <div className="px-1 -mx-1 sm:mx-0 max-w-full">
                     {children}
                   </div>
                   <div

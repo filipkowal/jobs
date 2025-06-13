@@ -19,7 +19,7 @@ export default function CompareButtonHint({
     <div
       className={`absolute z-[-1] bottom-16 right-0 bg-white text-digitalent-blue p-4 opacity-0 transition-all duration-300 ${
         pinnedJobs?.length === 1 && !hintHidden
-          ? "opacity-100 !bottom-[-7rem]"
+          ? "opacity-100 -bottom-28!"
           : ""
       }`}
     >

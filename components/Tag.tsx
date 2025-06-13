@@ -18,7 +18,7 @@ function Tag({
       {...props}
       className={`font-title ring-2 ${colors} 
                   px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer ${
-                    isActive ? "!bg-digitalent-blue !text-white" : ""
+                    isActive ? "bg-digitalent-blue! text-white!" : ""
                   }`}
     >
       {children}

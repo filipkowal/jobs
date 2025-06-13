@@ -29,7 +29,7 @@ export default function RegionsFilter({
           : undefined
       }
     >
-      <label className="text-digitalent-blue text-xl mb">
+      <label className="text-digitalent-blue text-xl mb cursor-pointer">
         <Checkbox
           name="allRegions"
           checked={selectedCantons.length === cantons.length}

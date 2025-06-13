@@ -27,7 +27,7 @@ export default function FiltersClearButton({
           router.push(activeFiltersURL);
         }}
         className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1 mr-2 mb-2 break-keep inline-block cursor-pointer 
-          focus:!outline-2 focus:!outline-digitalent-blue focus:!ring-2 focus:!ring-digitalent-blue ${className}`}
+          focus:outline-2! focus:outline-digitalent-blue! focus:ring-2! focus:ring-digitalent-blue! ${className}`}
       >
         <svg
           className="hidden sm:inline w-6 h-6 pr-1 pb-1"

@@ -17,7 +17,7 @@ export default function FiltersNumberLabel({
       onClick={() => {
         setIsModalOpen?.(true);
       }}
-      className="absolute -top-2 right-0 sm:!-left-2 cursor-pointer bg-digitalent-green text-white border-1 border-digitalent-green font-title px-[8px] w-fit rounded-full"
+      className="absolute -top-2 right-0 sm:-left-2! cursor-pointer bg-digitalent-green text-white border border-digitalent-green font-title px-[8px] w-fit rounded-full"
     >
       {Object.keys(activeFilters).length}
     </span>

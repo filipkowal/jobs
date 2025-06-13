@@ -44,7 +44,7 @@ export default function JobColumn({
   }
 
   return (
-    <div className="flex flex-col gap-8 sm:px-8 px-4 sm:py-16 py-6 bg-digitalent-blue h-auto sm:min-w-[25rem] max-w-xl">
+    <div className="flex flex-col gap-8 sm:px-8 px-4 sm:py-16 py-6 bg-digitalent-blue h-auto sm:min-w-100 max-w-xl">
       <div className="flex justify-between">
         {job?.employer?.logo && !hidden.logo && (
           <Image

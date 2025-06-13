@@ -200,7 +200,7 @@ export default function ApplicationFormAboutYou({
         <label className="flex gap-1 mt-4 mb-8">
           <Checkbox
             name="termsAccepted"
-            className="!mt-0"
+            className="mt-0!"
             checked={termsAccepted}
             onChange={(e) => {
               setTermsAccepted(e.target.checked);

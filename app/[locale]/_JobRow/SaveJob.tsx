@@ -35,7 +35,7 @@ export default function SaveJob({
     <>
       <Button
         type="invert"
-        className="hidden sm:block relative w-full mb-10 hover:!bg-digitalent-blue hover:!text-white hover:!border-white"
+        className="hidden sm:block relative w-full mb-10 hover:bg-digitalent-blue! hover:text-white! hover:border-white!"
         name="Save job"
         onClick={() => setIsOpen(true)}
       >
@@ -43,7 +43,7 @@ export default function SaveJob({
       </Button>
       <Button
         type="invert"
-        className="block sm:hidden text-sm relative w-full mt-4 !border-digitalent-green !text-digitalent-green hover:!bg-digitalent-blue hover:!text-white hover:!border-white"
+        className="block sm:hidden text-sm relative w-full mt-4 border-digitalent-green! text-digitalent-green! hover:bg-digitalent-blue! hover:text-white! hover:border-white!"
         name="Save job"
         onClick={() => setIsOpen(true)}
       >

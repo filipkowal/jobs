@@ -63,7 +63,7 @@ export default function FiltersModal({
         <div
           className={`mt-6 sm:mt-16 flex justify-between ${
             activeFilters && Object.keys(activeFilters).length === 0
-              ? "!justify-end"
+              ? "justify-end!"
               : ""
           }`}
         >
@@ -71,7 +71,7 @@ export default function FiltersModal({
             locale={locale}
             activeFilters={activeFilters}
             dict={dict}
-            className="!px-[20px] !py-[10px] !uppercase !mb-0"
+            className="px-[20px]! py-[10px]! uppercase! mb-0!"
             clearFilters={clearFilters}
           />
           <ApplyFiltersButton
