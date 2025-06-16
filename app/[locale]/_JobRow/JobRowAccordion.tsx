@@ -15,7 +15,9 @@ interface JobRowProps {
   initOpenJobTitleId?: string;
   jobRowHeading?: ReactNode;
   locale: Locale;
-  dict: Dictionary['JobRow'] & Dictionary['shareJob'] & Dictionary['saveForLater'];
+  dict: Dictionary["JobRow"] &
+    Dictionary["shareJob"] &
+    Dictionary["saveForLater"];
 }
 
 export default function JobRowAccordion({
@@ -68,7 +70,6 @@ export default function JobRowAccordion({
         }}
       >
         <JobRowHeadingContainer
-          initOpenJobTitleId={initOpenJobTitleId}
           job={job}
           locale={locale}
           customBoard={customBoard}
@@ -79,18 +80,18 @@ export default function JobRowAccordion({
       </div>
 
       {!customBoard?.disableDetailView && isOpen ? (
-          <div className="flex flex-row flex-wrap-reverse lg:flex-nowrap justify-center sm:pb-6 bg-digitalent-gray-light sm:bg-inherit">
-            <JobRowDetails dict={dict['Responsibilities']} job={job} />
+        <div className="flex flex-row flex-wrap-reverse lg:flex-nowrap justify-center sm:pb-6 bg-digitalent-gray-light sm:bg-inherit">
+          <JobRowDetails dict={dict["Responsibilities"]} job={job} />
 
-            <JobActions
-              landingPageUrl={job.landingPageUrl}
-              locale={locale}
-              jobId={job.id}
-              dict={dict}
-              customBoard={customBoard}
-            />
-          </div>
-        ) : null}
+          <JobActions
+            landingPageUrl={job.landingPageUrl}
+            locale={locale}
+            jobId={job.id}
+            dict={dict}
+            customBoard={customBoard}
+          />
+        </div>
+      ) : null}
     </article>
   );
 }

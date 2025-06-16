@@ -128,41 +128,40 @@ export function updateUrlToOpenJob({
   job,
   locale,
   customBoard,
-  initOpenJobTitleId,
   isInitOpenJob,
-  lastOpenJobId,
-  setLastOpenJobId,
+  pathname,
+  searchParams,
 }: {
   job?: { id?: string; title?: string };
   locale: string;
   customBoard: { disableDetailView: boolean };
-  initOpenJobTitleId?: string;
   isInitOpenJob: () => boolean;
-  lastOpenJobId: string | null;
-  setLastOpenJobId: (id: string | null) => void;
+  pathname: string | null;
+  searchParams: ReadonlyURLSearchParams | null;
 }) {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || !job?.id) return;
   if (customBoard.disableDetailView) return;
-
-  if (!job?.id) return;
 
   // Keep the initially open job always open
   if (isInitOpenJob()) return;
 
-  const initialUrl = initOpenJobTitleId
-    ? `/${locale}/jobs/${initOpenJobTitleId}`
-    : `/${locale}`;
+  const jobTitleId = sanitizeUrlString(job.title) + "-" + getShortId(job.id);
+  const searchParamsString = searchParams?.toString()
+    ? `?${searchParams.toString()}`
+    : "";
 
-  if (lastOpenJobId === job.id) {
-    setLastOpenJobId(null);
-    window.history.pushState({}, "", initialUrl);
+  // Remove the jobTitleId from the pathname if it's already open
+  if (pathname?.includes(jobTitleId)) {
+    window.history.pushState({}, "", `/${locale}${searchParamsString}`);
     return;
   }
 
-  const jobTitleId = sanitizeUrlString(job.title) + "-" + getShortId(job.id);
-  setLastOpenJobId(job.id);
-
-  window.history.pushState({}, "", `/${locale}/jobs/${jobTitleId}`);
+  // Add the jobTitleId to the pathname if it's not closed
+  window.history.pushState(
+    {},
+    "",
+    `/${locale}/jobs/${jobTitleId}${searchParamsString}`
+  );
 }
 
 export function stripOfEmptyStringsAndArrays(

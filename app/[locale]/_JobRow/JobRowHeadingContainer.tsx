@@ -1,24 +1,24 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { CustomBoard, Job, Locale, updateUrlToOpenJob } from "@/utils";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export default function JobRowHeadingContainer({
   job,
   locale,
-  initOpenJobTitleId,
   children,
   customBoard,
   isInitOpenJob,
 }: {
   job: Job;
   locale: Locale;
-  initOpenJobTitleId?: string;
   children: ReactNode;
   customBoard: CustomBoard;
   isInitOpenJob: () => boolean;
 }) {
-  const [lastOpenJobId, setLastOpenJobId] = useState<string | null>(null);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   return (
     <div
@@ -27,11 +27,10 @@ export default function JobRowHeadingContainer({
         updateUrlToOpenJob({
           job: { title: job?.title, id: job?.id },
           locale,
-          initOpenJobTitleId,
-          lastOpenJobId,
-          setLastOpenJobId,
           customBoard,
           isInitOpenJob,
+          pathname,
+          searchParams,
         })
       }
     >
