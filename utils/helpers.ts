@@ -101,8 +101,18 @@ export function sortJobsInitOpenFirst(
   jobs?: Jobs["jobs"],
   jobTitleId?: string
 ): Jobs["jobs"] {
+  if (!jobs) return [];
+
+  // First sort by date in descending order (newest first)
+  const dateSortedJobs = [...jobs].sort((a, b) => {
+    const dateA = new Date(a.datePosted || 0).getTime();
+    const dateB = new Date(b.datePosted || 0).getTime();
+    return dateB - dateA;
+  });
+
+  // If there's a specific job to show first, move it to the front
   if (jobTitleId) {
-    return jobs?.sort((a, b) => {
+    return dateSortedJobs.sort((a, b) => {
       if (getShortId(a.id) === getShortId(jobTitleId)) {
         return -1;
       } else if (getShortId(b.id) === getShortId(jobTitleId)) {
@@ -113,7 +123,7 @@ export function sortJobsInitOpenFirst(
     });
   }
 
-  return jobs;
+  return dateSortedJobs;
 }
 
 export function sanitizeUrlString(str?: string) {
