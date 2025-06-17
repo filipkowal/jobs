@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState, useContext } from "react";
 import {
   Button,
   Checkbox,
@@ -14,6 +14,7 @@ import {
 } from "@/utils";
 import { toast } from "react-hot-toast";
 import { Dictionary } from "@/utils/server";
+import { PinnedJobsContext } from "@/app/[locale]/PinnedJobsContextProvider";
 
 export default function ApplicationFormAboutYou({
   dict,
@@ -30,6 +31,7 @@ export default function ApplicationFormAboutYou({
   setStepNumber: Dispatch<SetStateAction<number>>;
   customBoard: CustomBoard;
 }) {
+  const { setPinnedJobs } = useContext(PinnedJobsContext);
   const [sex, setSex] = useState<"man" | "woman" | "other" | undefined>();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -79,6 +81,9 @@ export default function ApplicationFormAboutYou({
 
           setStepNumber(stepNumber + 1);
           setIsLoading(false);
+
+          // Remove all pinned jobs
+          setPinnedJobs([]);
         } catch (e) {
           toast.error((e as Error)?.message || dict["Something went wrong"]);
           setIsLoading(false);
