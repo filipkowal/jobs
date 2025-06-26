@@ -3,43 +3,41 @@ import { components } from "@/schema";
 import { ALL_REGIONS, Dictionary, Locale } from "@/utils";
 
 export default function RegionsFilter({
-  regions,
-  selectedStates,
+  cantons,
+  selectedCantons,
   isOpen,
-  setSelectedStates,
+  setSelectedCantons,
   dict,
   locale,
 }: {
-  regions: components["schemas"]["Filters"]["regions"];
-  selectedStates: string[];
+  cantons: components["schemas"]["Filters"]["cantons"];
+  selectedCantons: string[];
   isOpen: boolean;
-  setSelectedStates: (regions: string[]) => void;
+  setSelectedCantons: (cantons: string[]) => void;
   dict: Dictionary["filtersSection"];
   locale: Locale;
 }) {
-  if (!regions) return null;
-
-  const states = regions
-    .map((region) => (region?.states ? [...region.states] : []))
-    .flat();
+  if (!cantons) return null;
 
   return (
     <Accordion
-      title={dict["regions"]}
+      title={dict["cantons"]}
       isOpen={isOpen}
       labelTag={
-        selectedStates.length > 0 ? selectedStates.length.toString() : undefined
+        selectedCantons.length > 0
+          ? selectedCantons.length.toString()
+          : undefined
       }
     >
-      <label className="text-digitalent-blue text-xl mb">
+      <label className="text-digitalent-blue text-xl mb cursor-pointer">
         <Checkbox
           name="allRegions"
-          checked={selectedStates.length === states.length}
+          checked={selectedCantons.length === cantons.length}
           onChange={(e) => {
             if (e.target.checked) {
-              setSelectedStates(states);
+              setSelectedCantons(cantons);
             } else {
-              setSelectedStates([]);
+              setSelectedCantons([]);
             }
           }}
         />
@@ -52,26 +50,26 @@ export default function RegionsFilter({
               {region.name}
             </h2>
             <div className="flex flex-col ml-4">
-              {region.states?.map((state) => (
+              {region.cantons?.map((canton) => (
                 <Checkbox
-                  key={state}
-                  name={state}
-                  checked={selectedStates.includes(state)}
+                  key={canton}
+                  name={canton}
+                  checked={selectedCantons.includes(canton)}
                   onChange={(e) => {
                     if (e.target.checked) {
-                      setSelectedStates([...selectedStates, e.target.value]);
+                      setSelectedCantons([...selectedCantons, e.target.value]);
                     } else {
-                      setSelectedStates(
-                        selectedStates.filter(
+                      setSelectedCantons(
+                        selectedCantons.filter(
                           (region) => region !== e.target.value
                         )
                       );
                     }
                   }}
-                  value={state}
-                  disabled={!states.includes(state)}
+                  value={canton}
+                  disabled={!cantons.includes(canton)}
                 >
-                  <span className="text-xl">{state}</span>
+                  <span className="text-xl">{canton}</span>
                 </Checkbox>
               ))}
             </div>

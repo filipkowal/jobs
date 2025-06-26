@@ -5,7 +5,7 @@
     "Filters": "Filtres",
     "More...": "Plus...",
     "careerFields": "Domaines de carrière",
-    "regions": "Régions",
+    "cantons": "Régions",
     "technologies": "Technologies & thèmes",
     "industries": "Branches",
     "companySizes": "Taille de l'entreprise",
@@ -138,9 +138,21 @@
     "Copied the link to clipboard": "Le lien a été copié dans le presse-papiers",
     "Copy": "Copié",
     "Choose your reward!": "Choisis ta récompense",
-    "when your friend gets the job": "quand ton ami/e obtient le poste"
+    "when your friend gets the job": "quand ton ami/e obtient le poste",
+    "Share this job and earn 500 CHF": "Partage ce poste et gagne 500 CHF",
+    "Earn 1000 CHF": "Gagne 1'000 CHF",
+    "by sharing this job": "en partageant ce poste"
   },
-
+  "JobRow": {
+    "Responsibilities": "Responsabilités",
+    "More info & apply": "Plus d'informations et candidature",
+    "or": "ou",
+    "You have": "Tu as",
+    "More jobs": "Plus d'emplois",
+    "Go back": "retour",
+    "Something went wrong": "Quelque chose s'est mal passé",
+    "invalidEmail": "Adresse email invalide."
+  },
   "cookiePopup": {
     "title": "Avis sur les cookies",
     "message": "Ce site utilise des cookies pour améliorer votre expérience de navigation et à des fins d'analyse et de publicité.",

@@ -5,7 +5,7 @@
     "Filters": "Filters",
     "More...": "More...",
     "careerFields": "Career Fields",
-    "regions": "Regions",
+    "cantons": "Regions",
     "technologies": "Technologies & Topics",
     "industries": "Industries",
     "companySizes": "Company Sizes",
@@ -16,7 +16,7 @@
     "We never share this with companies": "We never share this with companies",
     "We only use this to filter out roles and save you time": "We only use this to filter out roles and save you time",
     "homeOffice": "Work from Home",
-    "Min. Home Office": "Min. Work from Home",
+    "Min. Home Office": "Min. work from home",
     "Location": "Location",
     "Whole Switzerland": "Whole Switzerland",
     "If you're unsure, we recommend choosing a lower amount so you don't miss out on roles that could be great": "If you're unsure, we recommend choosing a lower amount so you don't miss out on roles that could be great",
@@ -25,7 +25,7 @@
     "Something went wrong": "Something went wrong"
   },
   "homeOffice": "Work from Home",
-  "Min. Home Office": "Min. Work from Home",
+  "Min. Home Office": "Min. work from home",
   "Location": "Location",
   "Go back": "Go back",
   "some jobs to compare": "to compare jobs",
@@ -137,7 +137,20 @@
     "Copied the link to clipboard": "Copied the link to clipboard",
     "Copy": "Copy",
     "Choose your reward!": "Choose your reward!",
-    "when your friend gets the job": "when your friend gets the job"
+    "when your friend gets the job": "when your friend gets the job",
+    "Share this job and earn 500 CHF": "Share & earn 500 CHF",
+    "Earn 1000 CHF": "Earn 1000 CHF",
+    "by sharing this job": "by sharing this job"
+  },
+  "JobRow": {
+    "Responsibilities": "Responsibilities",
+    "More info & apply": "More info & apply",
+    "or": "or",
+    "You have": "You have",
+    "More jobs": "More jobs",
+    "Go back": "Go back",
+    "Something went wrong": "Something went wrong",
+    "invalidEmail": "Invalid email address."
   },
   "cookiePopup": {
     "title": "Cookie notice",

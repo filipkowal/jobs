@@ -34,6 +34,7 @@ export const test = base.extend<{
     });
 
     let filterAccordions: Filter = [];
+
     for (const filterName of FILTER_NAMES) {
       filterAccordions.push({
         name: filterName,

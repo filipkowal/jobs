@@ -7,15 +7,24 @@ import "../globals.css";
 import localFont from "next/font/local";
 import { Merriweather } from "next/font/google";
 import type { Metadata } from "next";
-import Script from "next/script";
 import CookiePopup from "@/components/CookiePopup";
 import { getCustomBoard, getDictionary } from "@/utils/server/helpers";
+import GoogleTagManager from '@/components/GoogleTagManager';
+import { CookieConsentProvider } from '@/contexts/CookieConsentContext';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { locale: Locale };
-}): Promise<Metadata> {
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
+}
+
+export async function generateMetadata(
+  props: {
+    params: Promise<{ locale: Locale }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const dict = await getDictionary(params.locale);
   const customBoard = await getCustomBoard();
 
@@ -59,13 +68,18 @@ const loew = localFont({
   preload: false,
 });
 
-export default async function RootLayout({
-  params,
-  children,
-}: {
-  params: { locale: Locale };
-  children: React.ReactNode;
-}) {
+export default async function RootLayout(
+  props: {
+    params: Promise<{ locale: Locale }>;
+    children: React.ReactNode;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
   const customBoard = await getCustomBoard();
   const dict = await getDictionary(params.locale);
   const colors = customBoard.colors;
@@ -77,9 +91,6 @@ export default async function RootLayout({
     >
       <head>
         <link rel="icon" href="/thumbnail.png" />
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=GTM-PZR49N2Q`}
-        />
         <style>
           {`
             :root {
@@ -113,33 +124,36 @@ export default async function RootLayout({
       </head>
       <body>
         <div className="min-h-screen overflow-y-auto flex flex-col overflow-x-hidden justify-between">
-          <ToastProvider />
+            <ToastProvider />
 
-          <PinnedJobsContextProvider>
-            <div>
-              <Header params={params} />
+            <PinnedJobsContextProvider>
+              <div>
+                <Header params={params} />
 
-              {children}
-            </div>
-          </PinnedJobsContextProvider>
-
-          {customBoard.hideFooter ? (
-            ""
-          ) : (
-            <footer className={`self-bottom w-screen ${loew.variable}`}>
-              <div className="text-center py-2 max-w-screen bg-digitalent-gray-dark font-sans text-[11px]">
-                {dict["powered by"]}
-                <Link href="https://digitalent.community" target="_blank">
-                  <span className="font-logo"> DIGITALENT </span>
-                </Link>
-                © 2023
+                {children}
               </div>
-            </footer>
-          )}
+            </PinnedJobsContextProvider>
+
+            {customBoard.hideFooter ? (
+              ""
+            ) : (
+              <footer className={`self-bottom w-screen ${loew.variable}`}>
+                <div className="text-center py-2 max-w-screen bg-digitalent-gray-dark font-sans text-[11px]">
+                  {dict["powered by"]}
+                  <Link href="https://digitalent.community" target="_blank">
+                    <span className="font-logo"> DIGITALENT </span>
+                  </Link>
+                  © 2023
+                </div>
+              </footer>
+            )}
         </div>
 
-        <CookiePopup dict={dict.cookiePopup} />
-      </body>
+          <CookieConsentProvider>
+              <CookiePopup dict={dict.cookiePopup} />
+              <GoogleTagManager />
+          </CookieConsentProvider>
+        </body>
     </html>
   );
 }

@@ -1,25 +1,25 @@
+'use client'
 import Link from "next/link";
 import Button from "@/components/Button";
-import { type CustomBoard, type Job, type Locale } from "@/utils";
+import { type CustomBoard, type Job, type Locale, Dictionary } from "@/utils";
 import ShareJob from "./JobRowShareModal";
 import SaveJob from "./SaveJob";
-import { getDictionary } from "@/utils/server";
 
-export default async function JobActions({
+export default function JobActions({
   landingPageUrl,
   locale,
   jobId,
+  dict,
   customBoard,
 }: {
   landingPageUrl: Job["landingPageUrl"];
   locale: Locale;
   jobId?: string;
+  dict: Dictionary['shareJob'] & Dictionary['JobRow'] & Dictionary['saveForLater'];
   customBoard: CustomBoard;
 }) {
-  const { shareJob, ...dict } = await getDictionary(locale);
-
   return (
-    <div className="flex flex-row sm:flex-col gap-4 px-4 xl:px-10 sm:items-center sm:justify-start min-w-fit xl:min-w-[29rem]">
+    <div className="flex flex-row sm:flex-col gap-4 px-4 xl:px-10 sm:items-center sm:justify-start min-w-fit xl:min-w-116">
       <Link
         href={landingPageUrl || ""}
         target={customBoard.openJLPInSameTab ? "" : "_blank"}
@@ -41,14 +41,8 @@ export default async function JobActions({
       <ShareJob
         locale={locale}
         jobId={jobId}
-        dict={{
-          ...shareJob,
-          "Something went wrong": dict["Something went wrong"],
-          "Go back": dict["Go back"],
-          "Share this job and earn 500 CHF":
-            dict["Share this job and earn 500 CHF"],
-          invalidEmail: dict["invalidEmail"],
-        }}
+        dict={dict}
+        customBoard={customBoard}
       />
 
       <div className="text-center font-light text-sm hidden sm:block">
@@ -58,7 +52,8 @@ export default async function JobActions({
       <SaveJob
         locale={locale}
         jobId={jobId}
-        dict={{ invalidEmail: dict.invalidEmail, ...dict.saveForLater }}
+        dict={dict}
+        customBoard={customBoard}
       />
     </div>
   );

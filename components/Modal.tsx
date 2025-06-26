@@ -1,6 +1,12 @@
 "use client";
 
-import { Dialog, Transition } from "@headlessui/react";
+import {
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  Transition,
+  TransitionChild,
+} from "@headlessui/react";
 import { Fragment } from "react";
 
 export default function Modal({
@@ -27,7 +33,7 @@ export default function Modal({
     <>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-40" onClose={closeModal}>
-          <Transition.Child
+          <TransitionChild
             as={Fragment}
             enter="ease-out duration-300"
             enterFrom="opacity-0"
@@ -36,12 +42,12 @@ export default function Modal({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
+            <div className="fixed inset-0 bg-black/25" />
+          </TransitionChild>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex justify-center h-screen text-center items-center">
-              <Transition.Child
+            <div className="flex min-h-screen items-center justify-center p-4 text-center">
+              <TransitionChild
                 as={Fragment}
                 enter="ease-out duration-300"
                 enterFrom="opacity-0 scale-95"
@@ -50,10 +56,10 @@ export default function Modal({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel
-                  className={`transform overflow-hidden h-full sm:h-initial bg-digitalent-gray-light text-digitalent-blue px-4 pt-4 pb-7 md:py-10 md:px-16 text-left align-middle shadow-xl transition-all w-[60rem] max-w-full`}
+                <DialogPanel
+                  className={`transform overflow-hidden bg-digitalent-gray-light text-digitalent-blue px-4 pt-4 pb-7 md:py-10 md:px-16 text-left align-middle shadow-xl transition-all w-240 max-w-full`}
                 >
-                  <Dialog.Title
+                  <DialogTitle
                     as="h3"
                     className="text-2xl font-title font-medium uppercase pb-2 md:pb-6 flex justify-between"
                   >
@@ -72,9 +78,9 @@ export default function Modal({
                         clipRule="evenodd"
                       />
                     </svg>
-                  </Dialog.Title>
+                  </DialogTitle>
 
-                  <div className="max-h-[72dvh] md:max-h-[64vh] px-1 -mx-1 sm:mx-0 max-w-full overflow-x-hidden overflow-y-auto">
+                  <div className="px-1 -mx-1 sm:mx-0 max-w-full">
                     {children}
                   </div>
                   <div
@@ -83,8 +89,8 @@ export default function Modal({
                   >
                     {footer}
                   </div>
-                </Dialog.Panel>
-              </Transition.Child>
+                </DialogPanel>
+              </TransitionChild>
             </div>
           </div>
         </Dialog>

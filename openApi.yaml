@@ -3,7 +3,7 @@ info:
   title: Jobs
   version: "1.0"
 servers:
-  - url: https://jobs.digitalent.cloud/api/vertical
+  - url: https://vertical.digitalent.cloud/api/vertical
   - url: https://merge.digitalent.cloud/api/vertical
   - url: https://virtserver.swaggerhub.com/FILIPKOWAL_1/jobs/1.0
     description: SwaggerHub API Auto Mocking
@@ -12,7 +12,7 @@ paths:
   /{language}/jobs:
     get:
       operationId: getJobs
-      summary: Get all or filtered and paginated jobs and active filters
+      summary: Get all jobs for a language of a particular board
       tags:
         - job
       parameters:
@@ -23,184 +23,28 @@ paths:
           explode: false
           schema:
             $ref: "#/components/schemas/Language"
-        - name: customBoardId
-          in: query
+        - name: Board-Id
+          in: header
           required: false
           schema:
             type: string
             nullable: true
-        - name: careerFields
-          in: query
+        - name: API-Version
+          in: header
           required: false
-          style: form
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Tags"
-          example:
-            - frontend
-            - fullstack
-        - name: technologies
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Tags"
-          example:
-            - react
-            - nodejs
-        - name: industries
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Tags"
-          example:
-            - it
-        - name: jobLevels
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Tags"
-          example:
-            - contributor
-            - expert
-            - leader
-        - name: companySizes
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Tags"
-          example:
-            - StartUp
-        - name: workload
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Range"
-          example:
-            - 80
-            - 100
-        - name: homeOffice
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: number
-          example: 70
-        - name: states
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: array
-            items:
-              type: string
-          example:
-            - Baden
-            - Lugano
-        - name: salary
-          in: query
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: number
-          example: 80000
-        - name: currency
-          in: query
-          required: false
-          style: form
-          explode: false
           schema:
             type: string
-          example: CHF
-        - name: employerName
-          in: query
-          description: Employer name. Case insensitive.
-          required: false
-          style: form
-          explode: false
-          schema:
-            type: string
-          example: amag group ag
-        - name: offset
-          in: query
-          description: "For pagination: index of the first job to be sent"
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: number
-        - name: limit
-          in: query
-          description: "For pagination: limit of jobs to be sent"
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: number
+            nullable: true
+            example: "2.0"
       responses:
         "200":
-          description: Get all or filtered and paginated jobs and active filters
+          description: Get all jobs for a language of a particular board
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/inline_response_200"
+                $ref: "#/components/schemas/jobs_response"
         "400":
-          description: Invalid filters supplied
-        "404":
-          description: Language not found
-  /{language}/filters:
-    get:
-      operationId: getFilters
-      summary: Get all filters' possible values
-      tags:
-        - filter
-      parameters:
-        - name: language
-          in: path
-          required: true
-          style: simple
-          explode: false
-          schema:
-            $ref: "#/components/schemas/Language"
-        - name: customBoardId
-          in: query
-          required: false
-          schema:
-            type: string
-            nullable: true
-        - name: userId
-          in: query
-          required: false
-          style: form
-          explode: true
-          schema:
-            $ref: "#/components/schemas/Id"
-        - name: boardId
-          in: query
-          required: false
-          style: form
-          explode: true
-          schema:
-            $ref: "#/components/schemas/Id"
-      responses:
-        "200":
-          description: Get all filters' possible values
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Filters"
+          description: Invalid query parameters
         "404":
           description: Language not found
   /{language}/subscribe:
@@ -217,12 +61,19 @@ paths:
           explode: false
           schema:
             $ref: "#/components/schemas/Language"
-        - name: customBoardId
-          in: query
+        - name: Board-Id
+          in: header
           required: false
           schema:
             type: string
             nullable: true
+        - name: API-Version
+          in: header
+          required: false
+          schema:
+            type: string
+            nullable: true
+            example: "2.0"
       requestBody:
         content:
           application/json:
@@ -251,8 +102,14 @@ paths:
           explode: false
           schema:
             $ref: "#/components/schemas/Language"
-        - name: customBoardId
-          in: query
+        - name: Board-Id
+          in: header
+          required: false
+          schema:
+            type: string
+            nullable: true
+        - name: API-Version
+          in: header
           required: false
           schema:
             type: string
@@ -285,8 +142,14 @@ paths:
           explode: false
           schema:
             $ref: "#/components/schemas/Language"
-        - name: customBoardId
-          in: query
+        - name: Board-Id
+          in: header
+          required: false
+          schema:
+            type: string
+            nullable: true
+        - name: API-Version
+          in: header
           required: false
           schema:
             type: string
@@ -322,8 +185,14 @@ paths:
           explode: false
           schema:
             $ref: "#/components/schemas/Language"
-        - name: customBoardId
-          in: query
+        - name: Board-Id
+          in: header
+          required: false
+          schema:
+            type: string
+            nullable: true
+        - name: API-Version
+          in: header
           required: false
           schema:
             type: string
@@ -357,7 +226,7 @@ components:
         city:
           type: string
           example: Bern
-        state:
+        canton:
           type: string
           example: Bern
         region:
@@ -366,19 +235,6 @@ components:
         country:
           type: string
           example: Switzerland
-        geoCoordinates:
-          $ref: "#/components/schemas/GeoCoordinates"
-    GeoCoordinate:
-      pattern: ^(-?\d+(\.\d+)?)
-      type: string
-      example: "47.4708538"
-    GeoCoordinates:
-      type: object
-      properties:
-        latitude:
-          $ref: "#/components/schemas/GeoCoordinate"
-        longitude:
-          $ref: "#/components/schemas/GeoCoordinate"
     DateTime:
       type: string
       format: date-time
@@ -575,12 +431,16 @@ components:
           $ref: "#/components/schemas/Range"
         tags:
           $ref: "#/components/schemas/Tags"
+        technologies:
+          $ref: "#/components/schemas/Tags"
+        careerFields:
+          $ref: "#/components/schemas/Tags"
+        industries:
+          $ref: "#/components/schemas/Tags"
         jobLevel:
           type: string
-          enum:
-            - contributor
-            - expert
-            - leader
+        companySize:
+          type: string
         landingPageUrl:
           type: string
           format: url
@@ -612,13 +472,8 @@ components:
           example: 70
         salary:
           type: number
-        states:
-          type: array
-          example:
-            - Baden
-            - Lugano
-          items:
-            type: string
+        cantons:
+          $ref: "#/components/schemas/Tags"
     Filters:
       type: object
       properties:
@@ -637,37 +492,19 @@ components:
         homeOffice:
           $ref: "#/components/schemas/Range"
         salary:
-          $ref: "#/components/schemas/SalaryRange"
-        regions:
-          type: array
-          example:
-            - name: German part of Switzerland
-              states:
-                - Zürich
-                - Bern
-            - name: Western Part of Switzerland
-              states:
-                - Geneva
-          items:
-            $ref: "#/components/schemas/Filters_regions"
-    inline_response_200:
+          $ref: "#/components/schemas/Range"
+        cantons:
+          $ref: "#/components/schemas/Tags"
+    jobs_response:
       type: object
       properties:
         jobs:
           type: array
           items:
             $ref: "#/components/schemas/Job"
-        activeFilters:
-          $ref: "#/components/schemas/ActiveFilters"
-        offset:
-          type: integer
-        limit:
-          type: integer
         length:
           type: integer
-          description:
-            "Length of the collection filtered by ActiveFilters, without\
-            \ pagination"
+          description: "Length of the collection of jobs"
     subscribe_body:
       type: object
       properties:
@@ -719,26 +556,9 @@ components:
           format: email
         jobId:
           $ref: "#/components/schemas/Id"
-    Filters_regions:
-      type: object
-      properties:
-        name:
-          type: string
-        states:
-          type: array
-          items:
-            type: string
   parameters:
     UserId:
       name: userId
-      in: query
-      required: false
-      style: form
-      explode: true
-      schema:
-        $ref: "#/components/schemas/Id"
-    BoardId:
-      name: boardId
       in: query
       required: false
       style: form
@@ -826,8 +646,8 @@ components:
       schema:
         type: string
       example: CHF
-    States:
-      name: states
+    Cantons:
+      name: cantons
       in: query
       required: false
       style: form

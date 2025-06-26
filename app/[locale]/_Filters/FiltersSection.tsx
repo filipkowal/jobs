@@ -51,6 +51,12 @@ export default function FiltersSection({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [openFilterName, setOpenFilterName] = useState<OpenFilterName>("none");
 
+  const openFiltersModal = () => {
+    setOpenFilterName("all");
+    setIsModalOpen(true);
+    console.log("open all");
+  };
+
   return (
     <>
       {isModalOpen && (
@@ -69,12 +75,12 @@ export default function FiltersSection({
 
       <div className="hidden lg:flex flex-row mb-2 gap-2 flex-wrap relative">
         <AdjustmentsHorizontalIcon
-          onClick={() => setIsModalOpen(true)}
+          onClick={openFiltersModal}
           className="text-digitalent-blue pr-2 w-8 h-8 cursor-pointer"
         />
         <FiltersNumberLabel
           activeFilters={initialActiveFilters}
-          setIsModalOpen={setIsModalOpen}
+          onClick={openFiltersModal}
         />
         <>
           {filterButtonNames.map((filterName) => (
@@ -90,9 +96,12 @@ export default function FiltersSection({
         </>
 
         <button
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => {
+            setIsModalOpen(true);
+            setOpenFilterName("all");
+          }}
           className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer
-            focus:!outline-2 focus:!outline-digitalent-blue focus:!ring-2 focus:!ring-digitalent-blue`}
+            focus:outline-2! focus:outline-digitalent-blue! focus:ring-2! focus:ring-digitalent-blue!`}
         >
           {dict["More..."]}
         </button>
@@ -106,9 +115,9 @@ export default function FiltersSection({
 
       {/* Mobile */}
 
-      <div className="relative lg:hidden w-[fit-content] mx-3">
+      <div className="relative lg:hidden w-fit mx-3">
         <span
-          onClick={() => setIsModalOpen(true)}
+          onClick={openFiltersModal}
           className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1  mr-2 mb-2 break-keep inline-block cursor-pointer`}
         >
           {dict["Filters"]}
@@ -116,7 +125,7 @@ export default function FiltersSection({
         </span>
         <FiltersNumberLabel
           activeFilters={initialActiveFilters}
-          setIsModalOpen={setIsModalOpen}
+          onClick={openFiltersModal}
         />
       </div>
     </>

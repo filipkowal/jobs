@@ -1,8 +1,7 @@
-import { JOBS_LIMIT, JOBS_REVALIDATE_TIME } from "@/utils/constants";
+import { JOBS_LIMIT } from "@/utils/constants";
 import { type Locale, i18n } from "@/i18n-config";
 import JobTable from "../JobTable";
-import { getFilters, getJobs } from "@/utils";
-import { getCustomBoard } from "@/utils/server";
+import { getCustomBoard, readFilters, readJobs } from "@/utils/server";
 import FiltersSectionContainer from "../_Filters/FiltersSectionContainer";
 import Heading from "../Heading";
 import { Suspense } from "react";
@@ -14,11 +13,8 @@ export async function generateStaticParams() {
   const customBoard = await getCustomBoard();
 
   for (const locale of i18n.locales) {
-    const getJobsResponse = await getJobs({
-      locale,
-      searchParams: { customBoardId: customBoard?.id },
-    });
-    const numOfPages = Math.ceil((getJobsResponse?.length || 1) / JOBS_LIMIT);
+    const jobsBody = await readJobs(locale);
+    const numOfPages = Math.ceil((jobsBody?.length || 1) / JOBS_LIMIT);
 
     for (let i = 0; i < numOfPages; i++) {
       params.push({ locale, pageIndex: i.toString() });
@@ -28,39 +24,28 @@ export async function generateStaticParams() {
   return params;
 }
 
-export default async function Home({
-  params,
-}: {
-  params: { locale: Locale; pageIndex: number };
+export default async function Home(props: {
+  params: Promise<{ locale: Locale; pageIndex: number }>;
 }) {
+  const params = await props.params;
+  const { locale, pageIndex } = params;
   const customBoard = await getCustomBoard();
 
-  const filtersPromise = getFilters({
-    locale: params.locale,
-    init: { next: { revalidate: JOBS_REVALIDATE_TIME } },
-  });
-  const jobsPromise = getJobs({
-    locale: params.locale,
-    searchParams: {
-      offset: params.pageIndex * JOBS_LIMIT,
-      limit: JOBS_LIMIT,
-      customBoardId: customBoard?.id,
-    },
-    init: { next: { revalidate: JOBS_REVALIDATE_TIME } },
-  });
+  const filtersPromise = readFilters(params.locale);
+  const jobsPromise = readJobs(locale, true, pageIndex);
 
   return (
     <main className="w-full flex justify-center">
-      <div className="min-h-[calc(100vh-33.5px)] lg:w-10/12 w-full max-w-[70rem] items-left flex flex-col">
+      <div className="min-h-[calc(100vh-33.5px)] lg:w-10/12 w-full max-w-280 items-left flex flex-col">
         <Suspense fallback={<Spinner />}>
-          <Heading locale={params.locale} />
+          <Heading locale={locale} />
         </Suspense>
 
         {customBoard.hideAllFilters ? null : (
           <Suspense fallback={<FiltersSkeleton />}>
             <FiltersSectionContainer
               filtersPromise={filtersPromise}
-              locale={params.locale}
+              locale={locale}
             />
           </Suspense>
         )}

@@ -8,7 +8,11 @@ const { withSentryConfig } = require("@sentry/nextjs");
 const nextConfig = {
   webpack: (config) => {
     config.resolve.alias.canvas = false;
-
+    config.externals.push(
+      '@opentelemetry/instrumentation',
+      '@opentelemetry/instrumentation-http',
+      '@prisma/instrumentation'
+    );
     return config;
   },
   images: {
@@ -43,7 +47,6 @@ module.exports = withBundleAnalyzer(nextConfig);
 module.exports = process.env.ENABLE_SENTRY
   ? withSentryConfig(
       module.exports,
-      { silent: true },
-      { hideSourcemaps: false }
+      { silent: true, sourcemaps: { deleteSourcemapsAfterUpload: true } }
     )
   : nextConfig;

@@ -42,12 +42,16 @@ export default function FiltersModal({
     useFilters(initialActiveFilters, filters, customBoard);
 
   const isAccordionOpen = (filterName: ActiveFilterName): boolean =>
-    openFilterName === filterName;
+    openFilterName === filterName || openFilterName === "all";
 
   const closeModal = () => {
     setActiveFilters(initialActiveFilters); // Reset active filters
     setOpenFilterName("none");
     setIsModalOpen(false);
+  };
+
+  const clearFilters = () => {
+    setActiveFilters({}); // Reset active filters
   };
 
   return (
@@ -59,7 +63,7 @@ export default function FiltersModal({
         <div
           className={`mt-6 sm:mt-16 flex justify-between ${
             activeFilters && Object.keys(activeFilters).length === 0
-              ? "!justify-end"
+              ? "justify-end!"
               : ""
           }`}
         >
@@ -67,7 +71,8 @@ export default function FiltersModal({
             locale={locale}
             activeFilters={activeFilters}
             dict={dict}
-            className="!px-[20px] !py-[10px] !uppercase !mb-0"
+            className="px-[20px]! py-[10px]! uppercase! mb-0!"
+            clearFilters={clearFilters}
           />
           <ApplyFiltersButton
             activeFilters={activeFilters}
@@ -79,7 +84,7 @@ export default function FiltersModal({
         </div>
       }
     >
-      <div className="sm:pr-[37px] sm:-mr-[37px]">
+      <div className="sm:pr-[37px] sm:-mr-[37px]  max-h-[72dvh] md:max-h-[64vh] overflow-x-hidden overflow-y-auto">
         {FILTER_NAMES.map((name) =>
           getFilterComponent(
             name,
@@ -110,14 +115,14 @@ function getFilterComponent(
   if (!isFilterVisible(filterName)) return null;
 
   switch (filterName) {
-    case "regions":
+    case "cantons":
       return (
         <RegionsFilter
           key="regions"
-          regions={filters.regions}
-          selectedStates={activeFilters?.states || []}
-          isOpen={isAccordionOpen("states")}
-          setSelectedStates={(states) => setActiveFilter("states", states)}
+          cantons={filters.cantons}
+          selectedCantons={activeFilters?.cantons || []}
+          isOpen={isAccordionOpen("cantons")}
+          setSelectedCantons={(cantons) => setActiveFilter("cantons", cantons)}
           dict={dict}
           locale={locale}
         />
@@ -134,9 +139,9 @@ function getFilterComponent(
           <RangeSlider
             value={activeFilters?.salary || 0}
             onValueChange={(salary) => setActiveFilter("salary", salary)}
-            min={filters?.salary?.amount?.[0] || 0}
-            max={filters?.salary?.amount?.[1] || 900000}
-            step={1000}
+            min={filters?.salary?.[0] || 0}
+            max={filters?.salary?.[1] || 900000}
+            step={10000}
             unit="CHF"
             name={dict["Min. salary"]}
           />

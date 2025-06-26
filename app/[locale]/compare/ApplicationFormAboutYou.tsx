@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState, useContext } from "react";
 import {
   Button,
   Checkbox,
@@ -6,9 +6,15 @@ import {
   LoadingEllipsis,
   TextInput,
 } from "@/components";
-import { Locale, postData, stripOfEmptyStringsAndArrays } from "@/utils";
+import {
+  CustomBoard,
+  Locale,
+  postData,
+  stripOfEmptyStringsAndArrays,
+} from "@/utils";
 import { toast } from "react-hot-toast";
 import { Dictionary } from "@/utils/server";
+import { PinnedJobsContext } from "@/app/[locale]/PinnedJobsContextProvider";
 
 export default function ApplicationFormAboutYou({
   dict,
@@ -16,13 +22,16 @@ export default function ApplicationFormAboutYou({
   stepNumber,
   setStepNumber,
   jobIds,
+  customBoard,
 }: {
   dict: Dictionary["compareJobTable"];
   locale: Locale;
   jobIds: string[];
   stepNumber: number;
   setStepNumber: Dispatch<SetStateAction<number>>;
+  customBoard: CustomBoard;
 }) {
+  const { setPinnedJobs } = useContext(PinnedJobsContext);
   const [sex, setSex] = useState<"man" | "woman" | "other" | undefined>();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -63,10 +72,18 @@ export default function ApplicationFormAboutYou({
         });
 
         try {
-          await postData("apply", locale, body);
+          await postData({
+            endpoint: "apply",
+            locale,
+            data: body,
+            boardId: customBoard?.id,
+          });
 
           setStepNumber(stepNumber + 1);
           setIsLoading(false);
+
+          // Remove all pinned jobs
+          setPinnedJobs([]);
         } catch (e) {
           toast.error((e as Error)?.message || dict["Something went wrong"]);
           setIsLoading(false);
@@ -188,7 +205,7 @@ export default function ApplicationFormAboutYou({
         <label className="flex gap-1 mt-4 mb-8">
           <Checkbox
             name="termsAccepted"
-            className="!mt-0"
+            className="mt-0!"
             checked={termsAccepted}
             onChange={(e) => {
               setTermsAccepted(e.target.checked);

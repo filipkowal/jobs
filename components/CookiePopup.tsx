@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Button from "./Button";
+import { useCookieConsent } from "@/contexts/CookieConsentContext";
 
 export default function CookiePopup({
   dict,
@@ -9,18 +10,19 @@ export default function CookiePopup({
   dict: { title: string; message: string; acceptButton: string };
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { setHasConsent } = useCookieConsent();
 
   useEffect(() => {
     if (typeof localStorage === "undefined") return;
-
     if (!localStorage?.getItem("cookieConsent")) setIsOpen(true);
   }, []);
 
   function handleClose() {
     setIsOpen(false);
-
-    if (typeof localStorage !== "undefined")
+    setHasConsent(true);
+    if (typeof localStorage !== "undefined") {
       localStorage?.setItem("cookieConsent", "true");
+    }
   }
 
   if (!isOpen) return null;
@@ -35,7 +37,7 @@ export default function CookiePopup({
       </div>
       <Button
         onClick={handleClose}
-        className="m-6 w-[calc(100%-36px)] bg-digitalent-green-light ring-digitalent-green-light hover:ring-digitalent-green-light hover:bg-digitalent-green-light hover:!text-digitalent-blue"
+        className="m-6 w-[calc(100%-36px)] bg-digitalent-green-light ring-digitalent-green-light hover:ring-digitalent-green-light hover:bg-digitalent-green-light hover:text-digitalent-blue!"
       >
         {dict.acceptButton}
       </Button>

@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import type {
   OpenFilterName,
   Dictionary,
@@ -23,19 +23,27 @@ export default function FilterButton({
     <button
       key={filterName}
       onClick={() => {
-        setOpenFilterName(
-          filterName === "regions" ? "states" : (filterName as OpenFilterName)
-        );
+        setOpenFilterName(filterName);
         setIsModalOpen(true);
+
+        if (filterName === "salary") {
+          // Scroll to the salary slider
+          setTimeout(() => {
+            const slider = document.querySelector(
+              `[aria-label="${dict["Min. salary"]}"]`
+            );
+            if (slider) {
+              slider.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          }, 500);
+        }
       }}
       className={`font-title text-digitalent-blue ring-2 ring-digitalent-blue px-3 py-1 mr-2 mb-2 break-keep inline-block cursor-pointer
-                focus:!outline-2 focus:!outline-digitalent-blue focus:!ring-2 focus:!ring-digitalent-blue
+                focus:outline-2! focus:outline-digitalent-blue! focus:ring-2! focus:ring-digitalent-blue!
                 ${
                   activeFilters &&
-                  Object.keys(activeFilters).includes(
-                    filterName === "regions" ? "states" : filterName
-                  ) &&
-                  "!bg-digitalent-blue !text-white"
+                  Object.keys(activeFilters).includes(filterName) &&
+                  "bg-digitalent-blue! text-white!"
                 }`}
     >
       {dict[filterName]}

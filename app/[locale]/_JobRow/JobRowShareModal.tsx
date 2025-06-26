@@ -5,25 +5,21 @@ import toast from "react-hot-toast";
 import Button from "@/components/Button";
 import Checkbox from "@/components/Checkbox";
 import TextInput from "@/components/TextInput";
-import { type Locale, postData } from "@/utils";
-import dynamic from "next/dynamic";
+import type { CustomBoard, Locale } from "@/utils";
+import { postData } from "@/utils";
 import { Dictionary } from "@/utils/server";
-
-const Modal = dynamic(() => import("@/components/Modal"));
+import Modal from "@/components/Modal";
 
 export default function ShareJob({
   locale,
   jobId,
   dict,
+  customBoard,
 }: {
   locale: Locale;
-  dict: Dictionary["shareJob"] & {
-    "Something went wrong": string;
-    "Share this job and earn 500 CHF": string;
-    invalidEmail: string;
-    "Go back": string;
-  };
+  dict: Dictionary["shareJob"] & Dictionary["JobRow"];
   jobId?: string;
+  customBoard: CustomBoard;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [stepNumber, setStepNumber] = useState(0);
@@ -37,17 +33,22 @@ export default function ShareJob({
       ref={formRef}
       role="form"
       key="0"
-      onSubmit={async (e) => {
+      onSubmit={(e) => {
         e.preventDefault();
 
         try {
-          const link = await postData("refer", locale, {
-            email,
-            jobId,
+          postData({
+            endpoint: "refer",
+            locale,
+            data: {
+              email,
+              jobId,
+            },
+            boardId: customBoard?.id,
+          }).then((res) => {
+            setUniqueLink(res || "");
+            setStepNumber(stepNumber + 1);
           });
-
-          setUniqueLink(link || "");
-          setStepNumber(stepNumber + 1);
         } catch (e) {
           toast.error(dict["Something went wrong"]);
         }
@@ -113,11 +114,12 @@ export default function ShareJob({
           dict={{ invalidEmail: dict["invalidEmail"] }}
         />
         <Button
-          onClick={async (e) => {
+          onClick={(e) => {
             e.preventDefault();
             try {
-              await navigator.clipboard.writeText(uniqueLink);
-              toast.success(dict["Copied the link to clipboard"]);
+              navigator.clipboard.writeText(uniqueLink).then(() => {
+                toast.success(dict["Copied the link to clipboard"]);
+              });
             } catch {
               toast.error(dict["Something went wrong"]);
             }
@@ -146,7 +148,7 @@ export default function ShareJob({
       <Button
         type="invert"
         onClick={() => setIsOpen(true)}
-        className="relative w-full bg-white !text-digitalent-blue hover:!border-white"
+        className="relative w-full bg-white text-digitalent-blue! hover:border-white!"
         name="Share with a friend"
       >
         {dict["Share this job and earn 500 CHF"]}

@@ -1,32 +1,37 @@
 "use client";
 import { ReactNode, useState } from "react";
 import { usePathname } from "next/navigation";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
+// import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 import { getShortId } from "@/utils";
-import type { CustomBoard, Job, Locale } from "@/utils";
+import type { CustomBoard, Dictionary, Job, Locale } from "@/utils";
 import JobRowHeadingContainer from "./JobRowHeadingContainer";
+import JobRowDetails from "./JobRowDetails";
+import JobActions from "./JobRowActions";
 
 interface JobRowProps {
   job: Job;
-  children: ReactNode;
   customBoard: CustomBoard;
   initOpenJobTitleId?: string;
   jobRowHeading?: ReactNode;
   locale: Locale;
+  dict: Dictionary["JobRow"] &
+    Dictionary["shareJob"] &
+    Dictionary["saveForLater"];
 }
 
 export default function JobRowAccordion({
   job,
-  children,
   customBoard,
   initOpenJobTitleId,
   jobRowHeading,
   locale,
+  dict,
 }: JobRowProps) {
   const { id: jobId, landingPageUrl } = job;
 
-  const [animationRef] = useAutoAnimate();
+  // @fixme: the animation is causing a scroll to top on close
+  // const [animationRef] = useAutoAnimate();
 
   const pathname = usePathname();
 
@@ -43,7 +48,7 @@ export default function JobRowAccordion({
         customBoard?.cards ? `h-96 justify-end` : ``
       }`}
       key={jobId}
-      ref={animationRef}
+      // ref={animationRef}
       data-testid="job-row-accordion"
       style={{ backgroundColor: customBoard?.colors.jobRowBackground }}
     >
@@ -65,7 +70,6 @@ export default function JobRowAccordion({
         }}
       >
         <JobRowHeadingContainer
-          initOpenJobTitleId={initOpenJobTitleId}
           job={job}
           locale={locale}
           customBoard={customBoard}
@@ -75,7 +79,19 @@ export default function JobRowAccordion({
         </JobRowHeadingContainer>
       </div>
 
-      {isOpen ? children : null}
+      {!customBoard?.disableDetailView && isOpen ? (
+        <div className="flex flex-row flex-wrap-reverse lg:flex-nowrap justify-center sm:pb-6 bg-digitalent-gray-light sm:bg-inherit">
+          <JobRowDetails dict={dict["Responsibilities"]} job={job} />
+
+          <JobActions
+            landingPageUrl={job.landingPageUrl}
+            locale={locale}
+            jobId={job.id}
+            dict={dict}
+            customBoard={customBoard}
+          />
+        </div>
+      ) : null}
     </article>
   );
 }

@@ -1,21 +1,22 @@
 "use client";
 
 import { useRef, useState } from "react";
-import dynamic from "next/dynamic";
 import toast from "react-hot-toast";
 import Button from "@/components/Button";
 import TextInput from "@/components/TextInput";
-import { type Locale, postData } from "@/utils";
+import { CustomBoard, type Locale, postData } from "@/utils";
 
-const Modal = dynamic(() => import("@/components/Modal"));
+import Modal from "@/components/Modal";
 
 export default function SaveJob({
   jobId,
   locale,
   dict,
+  customBoard,
 }: {
   jobId?: string;
   locale: Locale;
+  customBoard: CustomBoard;
   dict: {
     title: string;
     description: string;
@@ -34,7 +35,7 @@ export default function SaveJob({
     <>
       <Button
         type="invert"
-        className="hidden sm:block relative w-full mb-10 hover:!bg-digitalent-blue hover:!text-white hover:!border-white"
+        className="hidden sm:block relative w-full mb-10 hover:bg-digitalent-blue! hover:text-white! hover:border-white!"
         name="Save job"
         onClick={() => setIsOpen(true)}
       >
@@ -42,7 +43,7 @@ export default function SaveJob({
       </Button>
       <Button
         type="invert"
-        className="block sm:hidden text-sm relative w-full mt-4 !border-digitalent-green !text-digitalent-green hover:!bg-digitalent-blue hover:!text-white hover:!border-white"
+        className="block sm:hidden text-sm relative w-full mt-4 border-digitalent-green! text-digitalent-green! hover:bg-digitalent-blue! hover:text-white! hover:border-white!"
         name="Save job"
         onClick={() => setIsOpen(true)}
       >
@@ -54,9 +55,14 @@ export default function SaveJob({
             e.preventDefault();
 
             try {
-              await postData("save", locale, {
-                email,
-                jobId,
+              await postData({
+                endpoint: "save",
+                locale,
+                data: {
+                  email,
+                  jobId,
+                },
+                boardId: customBoard?.id,
               });
 
               toast.success(dict.success);

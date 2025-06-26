@@ -1,11 +1,9 @@
 import { Locale } from "@/i18n-config";
 import { getCustomBoard, getDictionary } from "@/utils/server";
-import { Job, Jobs, SearchParams, getShortId } from "@/utils";
+import { Jobs, SearchParams, getShortId, sortJobsInitOpenFirst } from "@/utils";
 import JobRowAccordion from "./_JobRow/JobRowAccordion";
-import JobRowDetails from "./_JobRow/JobRowDetails";
 import JobTablePagination from "./_JobRow/JobTablePagination";
 import JobRowHeading from "./_JobRow/JobRowHeading";
-import JobActions from "./_JobRow/JobRowActions";
 import { Fragment } from "react";
 
 export default async function JobTable({
@@ -17,32 +15,27 @@ export default async function JobTable({
   searchParams?: SearchParams;
   params: { locale: Locale; jobTitleId?: string };
   limit: number;
-  jobsPromise?: Promise<Jobs>;
+  jobsPromise?: Promise<Response | Jobs>;
 }) {
   const customBoard = await getCustomBoard();
-  const dict = await getDictionary(params.locale);
+  const { locale, jobTitleId } = params;
+  const dict = await getDictionary(locale);
 
-  const jobsResponse = await jobsPromise;
+  let jobsBody = await jobsPromise;
 
-  function sortJobsInitOpenFirst(jobs?: Job[]) {
-    if (params?.jobTitleId) {
-      return jobs?.sort((a, b) => {
-        if (getShortId(a.id) === getShortId(params?.jobTitleId)) {
-          return -1;
-        } else if (getShortId(b.id) === getShortId(params?.jobTitleId)) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
+  if (jobsBody instanceof Response) {
+    try {
+      jobsBody = await jobsBody?.json();
+    } catch (error) {
+      console.error(error);
     }
-
-    return jobs;
   }
 
-  const jobs = sortJobsInitOpenFirst(jobsResponse?.jobs);
+  const jobs = isJobsBody(jobsBody) ? jobsBody.jobs : undefined;
+  const sortedJobs = sortJobsInitOpenFirst(jobs, jobTitleId);
 
-  const length = jobsResponse?.length;
+  const length = isJobsBody(jobsBody) ? jobsBody.length : undefined;
+  const filteredLength = hasFilteredLength(jobsBody) ? jobsBody.filteredLength : undefined;
 
   return (
     <div
@@ -52,29 +45,17 @@ export default async function JobTable({
           : `flex flex-col`
       }`}
     >
-      {jobs?.map((job) => (
+      {sortedJobs?.map((job) => (
         <Fragment key={job.id}>
           <JobRowAccordion
             job={job}
             initOpenJobTitleId={params?.jobTitleId}
-            locale={params.locale}
+            locale={locale}
             key={job.id}
             customBoard={customBoard}
-            jobRowHeading={<JobRowHeading job={job} locale={params.locale} />}
-          >
-            {!customBoard?.disableDetailView && (
-              <div className="flex flex-row flex-wrap-reverse lg:flex-nowrap justify-center sm:pb-6 bg-digitalent-gray-light sm:bg-inherit">
-                <JobRowDetails locale={params.locale} job={job} />
-
-                <JobActions
-                  landingPageUrl={job.landingPageUrl}
-                  locale={params.locale}
-                  jobId={job.id}
-                  customBoard={customBoard}
-                />
-              </div>
-            )}
-          </JobRowAccordion>
+            jobRowHeading={<JobRowHeading job={job} locale={locale} />}
+            dict={{...dict['JobRow'], ...dict['shareJob'], ...dict['saveForLater']}}
+          />
 
           {
             // Separator after initially open job
@@ -89,11 +70,21 @@ export default async function JobTable({
 
       <JobTablePagination
         limit={limit}
-        locale={params.locale}
-        length={length}
+        locale={locale}
+        length={filteredLength || length}
         searchParams={searchParams}
         params={params}
       />
     </div>
   );
+}
+
+function isJobsBody(v?: Response | Jobs): v is Jobs {
+  if (!v) return false;
+  return v?.hasOwnProperty("jobs") && v?.hasOwnProperty("length");
+}
+
+function hasFilteredLength(v?: Response | Jobs): v is Jobs & { filteredLength: number } {
+  if (!v) return false;
+  return v?.hasOwnProperty("jobs") && v?.hasOwnProperty("filteredLength");
 }

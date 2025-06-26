@@ -22,9 +22,9 @@ export default function ButtonWithNumberLabel({
   return (
     <Button
       onClick={onClick}
-      className={`group !ml-4 sm:!ml-8 flex gap-2 relative ${
+      className={`group ml-4! sm:ml-8! flex gap-2 relative ${
         buttonActive && !isCustom
-          ? "hover:!text-digitalent-green animate-pulse repeat-[2]"
+          ? "hover:text-digitalent-green! animate-pulse repeat-[2]"
           : ""
       }`}
       name="Compare"
@@ -40,11 +40,11 @@ export default function ButtonWithNumberLabel({
 
       <PinIcon
         color={textColor || "white"}
-        className={`-translate-y-[1px] ${buttonActive && `group-hover:hidden`}`}
+        className={`-translate-y-px ${buttonActive && `group-hover:hidden`}`}
       />
       <PinIcon
         color={textColor || "#66B573"}
-        className={`-translate-y-[1px] hidden ${
+        className={`-translate-y-px hidden ${
           buttonActive && `group-hover:block`
         }`}
       />

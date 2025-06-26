@@ -1,12 +1,11 @@
-import { Dispatch, SetStateAction } from "react";
 import { ActiveFilters } from "@/utils";
 
 export default function FiltersNumberLabel({
   activeFilters,
-  setIsModalOpen,
+  onClick,
 }: {
   activeFilters: ActiveFilters;
-  setIsModalOpen?: Dispatch<SetStateAction<boolean>>;
+  onClick?: () => void;
   className?: string;
 }) {
   if (!activeFilters) return null;
@@ -14,10 +13,8 @@ export default function FiltersNumberLabel({
 
   return Object.keys(activeFilters).length ? (
     <span
-      onClick={() => {
-        setIsModalOpen?.(true);
-      }}
-      className="absolute -top-2 right-0 sm:!-left-2 cursor-pointer bg-digitalent-green text-white border-1 border-digitalent-green font-title px-[8px] w-fit rounded-full"
+      onClick={onClick}
+      className="absolute -top-2 right-0 sm:-left-2! cursor-pointer bg-digitalent-green text-white border border-digitalent-green font-title px-[8px] w-fit rounded-full"
     >
       {Object.keys(activeFilters).length}
     </span>
