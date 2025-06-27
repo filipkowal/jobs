@@ -103,7 +103,7 @@ export default async function JobRowHeading({
                 ariaLabel="Salary Range Info"
               >
                 <span className="h-[1.2rem] w-[1.2rem]">
-                  <InformationCircleIcon className="hidden md:block h-[1.2rem] w-[1.2rem] text-white ml-2 translate-y-1" />
+                  <InformationCircleIcon className="hidden md:block h-[1.2rem] w-[1.2rem] text-white ml-2 translate-y-[2.5px]" />
                 </span>
               </Tooltip>
             </span>
