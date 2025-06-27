@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin '@tailwindcss/forms';
 @plugin 'tailwindcss-animate';
@@ -120,6 +120,7 @@ select:-webkit-autofill:focus {
   -webkit-text-fill-color: var(--digitalent-blue);
   -webkit-box-shadow: 0 0 0px 1000px var(--digitalent-gray-light) inset;
   --tw-ring-offset-width: 2px;
+  caret-color: var(--digitalent-blue);
 }
 
 input:focus,
