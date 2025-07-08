@@ -132,7 +132,7 @@ export default async function RootLayout(props: {
             ""
           ) : (
             <footer className={`self-bottom w-screen ${loew.variable}`}>
-              <div className="text-center py-2 max-w-screen bg-digitalent-gray-dark font-sans text-[11px]">
+              <div className="text-center py-2 max-w-screen bg-digitalent-gray-dark font-title text-[11px]">
                 {dict["powered by"]}
                 <Link href="https://digitalent.community" target="_blank">
                   <span className="font-logo"> DIGITALENT </span>
