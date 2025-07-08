@@ -10,7 +10,6 @@ import FiltersSkeleton from "../_Filters/FiltersSkeleton";
 
 export async function generateStaticParams() {
   const params: Record<string, string>[] = [];
-  const customBoard = await getCustomBoard();
 
   for (const locale of i18n.locales) {
     const jobsBody = await readJobs(locale);

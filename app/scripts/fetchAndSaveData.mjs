@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 async function loadCustomBoard() {
-  const filePath = path.join(__dirname, "../../customBoard.json");
+  const filePath = path.join(process.cwd(), "public", "customBoard.json");
   const data = await fs.readFile(filePath, "utf-8"); // Read file asynchronously
   return JSON.parse(data);
 }
