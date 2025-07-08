@@ -29,7 +29,7 @@ export async function fetchAndSaveData() {
 
     const filters = generateFilters(jobs?.jobs);
 
-    const localeDir = path.join("/tmp", "data", locale);
+    const localeDir = path.join(process.cwd(), "public", "data", locale);
 
     // Use fs.access to check if the directory exists
     try {

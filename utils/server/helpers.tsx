@@ -35,8 +35,14 @@ export const readJobs = async (
   pagination = false,
   page = 0
 ): Promise<Jobs> => {
-  // Use path.resolve to get absolute path from /tmp/data/{locale}/jobs.json
-  const filePath = path.join("/tmp", "data", locale, "jobs.json");
+  // Use path.resolve to get absolute path from public/data/{locale}/jobs.json
+  const filePath = path.join(
+    process.cwd(),
+    "public",
+    "data",
+    locale,
+    "jobs.json"
+  );
 
   try {
     const fileContent = await fs.readFile(filePath, "utf-8");
@@ -56,7 +62,13 @@ export const readJobs = async (
 };
 
 export const readFilters = async (locale: Locale) => {
-  const filePath = path.join("/tmp", "data", locale, "filters.json");
+  const filePath = path.join(
+    process.cwd(),
+    "public",
+    "data",
+    locale,
+    "filters.json"
+  );
 
   try {
     const fileContent = await fs.readFile(filePath, "utf-8");
