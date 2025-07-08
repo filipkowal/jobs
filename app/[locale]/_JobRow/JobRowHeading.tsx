@@ -52,7 +52,7 @@ export default async function JobRowHeading({
               alt={`${dict["Logo of"]} ${employer?.name}`}
               className="absolute top-[22px]! md:top-0! md:static block object-contain"
               fill
-              sizes="70px, (min-width: 768px) 130px"
+              sizes="(min-width: 768px) 130px, 70px"
             />
           </div>
         ) : (

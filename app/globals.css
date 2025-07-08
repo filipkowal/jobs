@@ -105,6 +105,10 @@ a {
   background: #555;
 }
 
+.font-logo {
+  font-family: var(--font-loew), sans-serif;
+}
+
 /* Change Autocomplete styles in Chrome*/
 
 input:-webkit-autofill,

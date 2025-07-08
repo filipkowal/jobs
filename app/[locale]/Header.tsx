@@ -60,15 +60,23 @@ export default async function Header({
         {/* <Suspense fallback={<Spinner />}>
           <SubscriptionButton dark />
         </Suspense> */}
-        <Link
-          href="https://www.digitalent.ch/"
-          className="block mx-4! sm:mx-8! font-title font-medium border-digitalent-white border-b-2 translate-y-px m-4 sm:m-0 cursor-pointer"
-        >
-          {dict["forEmployers"].toUpperCase()}
-        </Link>
-        <Suspense fallback={<Spinner />}>
-          <LanguageSelector params={params} color={textColor} />
-        </Suspense>
+        {customBoard.hideForEmployersLink ? (
+          ""
+        ) : (
+          <Link
+            href="https://www.digitalent.ch/"
+            className="block mx-4! sm:mx-8! font-title font-medium border-digitalent-white border-b-2 translate-y-px m-4 sm:m-0 cursor-pointer"
+          >
+            {dict["forEmployers"].toUpperCase()}
+          </Link>
+        )}
+        {customBoard.hideLanguageSelector ? (
+          ""
+        ) : (
+          <Suspense fallback={<Spinner />}>
+            <LanguageSelector params={params} color={textColor} />
+          </Suspense>
+        )}
         {customBoard.disableCompareView ? null : (
           <Suspense fallback={<Spinner />}>
             <CompareButton

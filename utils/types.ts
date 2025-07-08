@@ -1,10 +1,7 @@
 import { components, paths } from "@/schema";
-import customBoard from "@/customBoard.json";
 export type { Dictionary } from "./server";
 
 export { type Locale } from "@/i18n-config";
-
-export type CustomBoard = typeof customBoard;
 
 export type SearchParams = ActiveFilters & { [key: string]: any };
 
@@ -24,3 +21,5 @@ export type ApplyQuery = components["schemas"]["apply_body"];
 
 // Filters types
 export type OpenFilterName = ActiveFilterName | "none" | "all";
+
+export type CustomBoard = typeof import("../public/customBoard.json");

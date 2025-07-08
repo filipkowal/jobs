@@ -17,10 +17,12 @@ const dictionaries = {
 export const getDictionary = async (locale: Locale) =>
   dictionaries[i18n.locales.includes(locale) ? locale : i18n.defaultLocale]();
 
-const customBoard = import("@/customBoard.json").then(
-  (module) => module.default
-);
-export const getCustomBoard = async () => customBoard;
+// Fetch customBoard.json from the public folder at runtime
+export async function getCustomBoard() {
+  const filePath = path.join(process.cwd(), "public", "customBoard.json");
+  const data = await fs.readFile(filePath, "utf-8");
+  return JSON.parse(data);
+}
 
 export type Dictionary = ReturnType<typeof getDictionary> extends Promise<
   infer T
@@ -31,39 +33,51 @@ export type Dictionary = ReturnType<typeof getDictionary> extends Promise<
 export const readJobs = async (
   locale: Locale,
   pagination = false,
-  page = 0,
+  page = 0
 ): Promise<Jobs> => {
-  // Use path.resolve to get absolute path from project root
-  const filePath = path.resolve(process.cwd(), "app", "data", locale, "jobs.json");
-  
+  // Use path.resolve to get absolute path from public/data/{locale}/jobs.json
+  const filePath = path.join(
+    process.cwd(),
+    "public",
+    "data",
+    locale,
+    "jobs.json"
+  );
+
   try {
     const fileContent = await fs.readFile(filePath, "utf-8");
     const jobs = await JSON.parse(fileContent);
 
     return pagination
-    ? { ...jobs, jobs: paginate(jobs.jobs, page, JOBS_LIMIT) }
-    : jobs
+      ? { ...jobs, jobs: paginate(jobs.jobs, page, JOBS_LIMIT) }
+      : jobs;
   } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
       console.error(`File not found: ${filePath}`);
-      console.error('Current working directory:', process.cwd());
-      console.error('Directory contents:', await fs.readdir(process.cwd()));
+      console.error("Current working directory:", process.cwd());
+      console.error("Directory contents:", await fs.readdir(process.cwd()));
     }
     throw error;
   }
 };
 
 export const readFilters = async (locale: Locale) => {
-  const filePath = path.resolve(process.cwd(), "app", "data", locale, "filters.json");
-  
+  const filePath = path.join(
+    process.cwd(),
+    "public",
+    "data",
+    locale,
+    "filters.json"
+  );
+
   try {
     const fileContent = await fs.readFile(filePath, "utf-8");
     return JSON.parse(fileContent);
   } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
       console.error(`File not found: ${filePath}`);
-      console.error('Current working directory:', process.cwd());
-      console.error('Directory contents:', await fs.readdir(process.cwd()));
+      console.error("Current working directory:", process.cwd());
+      console.error("Directory contents:", await fs.readdir(process.cwd()));
     }
     throw error;
   }

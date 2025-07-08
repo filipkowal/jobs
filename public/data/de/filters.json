@@ -1,0 +1,79 @@
+{
+  "cantons": [
+    "Kanton Zürich",
+    "Kanton Aargau",
+    "Kanton Solothurn"
+  ],
+  "salary": [
+    60000,
+    170000
+  ],
+  "workload": [
+    60,
+    100
+  ],
+  "homeOffice": [
+    0,
+    100
+  ],
+  "technologies": [
+    "Azure",
+    "Linux",
+    "Kubernetes",
+    "Docker",
+    "Windows Server",
+    "M365",
+    "Active Directory",
+    "Virtualisierung",
+    "HLK",
+    "Gebäudeautomation",
+    "Cloud Computing",
+    "IaC",
+    "Network & Security",
+    "WAN",
+    "Network Design & Architektur",
+    "Projektmanagement",
+    "Information Security",
+    "DevOps",
+    "ERP",
+    "SQL",
+    "Java",
+    "Spring Framework",
+    "JavaScript",
+    "MS Teams",
+    "HR",
+    "HR Strategy",
+    "VMware",
+    "Citrix",
+    "PowerShell",
+    "VMware vSAN",
+    "VMware vSphere"
+  ],
+  "careerFields": [
+    "IT Consulting & Architecture Infrastructure",
+    "System Engineering",
+    "System Operation & Support",
+    "Project Management  IT Infrastructure",
+    "Engineering & Gebäudeautomation",
+    "Applikations Management",
+    "Business Consulting & Business Analysis",
+    "Netzwerk Engineering",
+    "Software Consulting & Architecture",
+    "Human Resources"
+  ],
+  "industries": [
+    "IT & Telekommunikation",
+    "Gebäudetechnik & Gebäudeautomation",
+    "Gastgewerbe, Sport & Tourismus"
+  ],
+  "jobLevels": [
+    "Mitarbeiter",
+    "Führungsposition",
+    "Fachverantwortung"
+  ],
+  "companySizes": [
+    "Mittlere Unternehmen (51-250 MA)",
+    "Kleine Unternehmen (≤ 50 MA)",
+    "Grössere Unternehmen (> 250 MA)"
+  ]
+}

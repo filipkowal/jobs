@@ -66,7 +66,7 @@ export function useIsDraggingOver() {
     e.preventDefault();
     e.stopPropagation();
 
-    if (e.relatedTarget && e.currentTarget.contains(e.relatedTarget as Node)) {
+    if (e.relatedTarget && e.currentTarget?.contains(e.relatedTarget as Node)) {
       // Ignore the event if the mouse pointer is entering a child element.
       return;
     }
@@ -79,7 +79,7 @@ export function useIsDraggingOver() {
     e.preventDefault();
     e.stopPropagation();
 
-    if (e.relatedTarget && e.currentTarget.contains(e.relatedTarget as Node)) {
+    if (e.relatedTarget && e.currentTarget?.contains(e.relatedTarget as Node)) {
       return;
     }
 

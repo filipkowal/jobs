@@ -1,4 +1,4 @@
-# Digitalent job board  
+# Digitalent job board
 
 [Demo](https://jobs.digitalent.cloud/) 
 
@@ -12,7 +12,7 @@
 
 1. Fork the repository
 2. Replace the graphics and fonts in `/public` folder, leaving the names of the files intact.
-3. Edit the `/customBoard.json`
+3. Edit the `public/customBoard.json`
 4. Host the project (f.e. with netlify.com)
 
 [The Open API specification](https://app.swaggerhub.com/apis-docs/filipkowal/jobs/1.0)
