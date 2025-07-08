@@ -1,5 +1,4 @@
 import { revalidatePath } from "next/cache";
-import { fetchAndSaveData } from "../../scripts/fetchAndSaveData.mjs";
 
 function revalidateStaticPages() {
   const staticPathsToRevalidate = ["/[locale]", "/[locale]/[pageIndex]"];
@@ -22,8 +21,16 @@ export async function POST(req: Request) {
       );
     }
 
-    await fetchAndSaveData();
-    revalidateStaticPages();
+    // Trigger Vercel deploy hook
+    const hookUrl = process.env.VERCEL_REDEPLOY_HOOK_URL;
+    if (hookUrl) {
+      const res = await fetch(hookUrl, { method: "POST" });
+      if (!res.ok) {
+        throw new Error("Failed to trigger Vercel redeploy hook");
+      }
+    } else {
+      throw new Error("Vercel redeploy hook not provided. Unable to redeploy.");
+    }
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
