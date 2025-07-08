@@ -8,6 +8,8 @@
   "hideSubheading": false,
   "hideLogo": false,
   "hideFooter": false,
+  "hideLanguageSelector": false,
+  "hideForEmployersLink": false,
   "colors": {
     "background": "",
     "text": "",
