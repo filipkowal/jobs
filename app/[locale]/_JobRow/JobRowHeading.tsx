@@ -114,10 +114,7 @@ export default async function JobRowHeading({
                 content={address?.city || address?.country || ""}
                 ariaLabel="address"
               >
-                <span
-                  className="font-title text-xs md:text-base md:font-medium inline-block w-[100px] whitespace-nowrap text-ellipsis overflow-hidden"
-                  title={address.city}
-                >
+                <span className="font-title text-xs md:text-base md:font-medium inline-block w-[100px] whitespace-nowrap text-ellipsis overflow-hidden">
                   {`${address?.city || address?.country}`}
                 </span>
               </Tooltip>
