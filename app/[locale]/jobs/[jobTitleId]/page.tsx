@@ -1,28 +1,12 @@
 import { JOBS_LIMIT } from "@/utils/constants";
 import { type Locale } from "@/i18n-config";
 import JobTable from "../../JobTable";
-import { getShortId, Job } from "@/utils";
 import FiltersSectionContainer from "../../_Filters/FiltersSectionContainer";
 import Heading, { HeadingSkeleton } from "../../Heading";
 import { getCustomBoard, readFilters, readJobs } from "@/utils/server";
 import { Suspense } from "react";
 import FiltersSkeleton from "../../_Filters/FiltersSkeleton";
 import JobTableSkeleton from "../../JobTableSkeleton";
-import { Metadata } from "next";
-
-export async function generateMetadata(props: {
-  params: Promise<{ locale: Locale; jobTitleId: string }>;
-}): Promise<Metadata> {
-  const params = await props.params;
-
-  const jobsBody = await readJobs(params.locale);
-
-  const job = jobsBody?.jobs?.find((job: Job) =>
-    job?.id?.includes(getShortId(params.jobTitleId))
-  );
-
-  return job?.metainfo || {};
-}
 
 export default async function Home(props: {
   params: Promise<{ locale: Locale; jobTitleId: string }>;
