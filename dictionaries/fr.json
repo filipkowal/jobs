@@ -181,8 +181,8 @@
   "termsAndConditions": "<b>Nous tenons à vous informer que les entreprises pour lesquelles vous postulez actuellement ont externalisé une partie du processus de recrutement à un prestataire spécialisé (digitalent ag, ci-après dénommé \"prestataire\"). En soumettant votre candidature, vous en prenez connaissance et acceptez ces conditions.</b><br/><p>Afin de gérer le processus de recrutement, le prestataire (digitalent ag) collecte et traite les données personnelles des candidats intéressés. Le traitement peut être effectué par voie électronique. Cela est notamment le cas lorsque le candidat soumet les documents de candidature pertinents par voie électronique, par exemple par email ou via un formulaire web sur le site. Lors d'une candidature, le prestataire transmet les données suivantes à l'entreprise :</p><br/><ul>    <li>Adresse email</li>    <li>Informations sur la personne de contact</li>    <li>Prénom, nom</li>    <li>éventuellement un CV</li>    <li>éventuellement des attestations</li>    <li>Toutes les données que vous avez fournies à cet effet, telles que les qualifications, expériences professionnelles, préférences, etc. indiquées.</li></ul><br/><p>    Si une entreprise conclut un contrat de travail avec un candidat, les données transmises sont conservées aux fins de traitement de la relation de travail, conformément aux dispositions légales. Si aucun contrat de travail n'est conclu entre l'entreprise et le candidat, les documents de candidature sont supprimés six mois après la notification de la décision de refus, sauf si des intérêts légitimes ou des obligations contractuelles s'y opposent. Par ailleurs, les    <a href=\"https://digitalent.cloud/legal-fr/datenschutz-rekrutierungsprozess\">dispositions relatives à la protection des données</a>    du prestataire s'appliquent.</p>",
   "More jobs": "Plus d'emplois",
   "meta": {
-    "title": "Digitalent Jobs",
-    "description": "À la recherche d'opportunités de carrière passionnantes ? Vous êtes au bon endroit chez Digitalent Jobs",
+    "title": "Des emplois qui te correspondent - découvre maintenant les meilleures offres d'emploi",
+    "description": "Tu cherches de nouveaux défis, des employeurs passionnants et des opportunités de carrière? Chez nous, tu trouveras des emplois actuels dans les domaines du recrutement, des RH, de l'informatique, du marketing et de nombreux autres secteurs. Parcours nos offres d'emploi, postule simplement en ligne et démarre - avec le soutien personnel de digitalent!",
     "keywords": ["Offres d'emploi, Vacances"],
     "authors": [
       {
@@ -190,8 +190,8 @@
       }
     ],
     "openGraph": {
-      "title": "Digitalent Jobs",
-      "description": "À la recherche d'opportunités de carrière passionnantes ? Vous êtes au bon endroit chez Digitalent Jobs",
+      "title": "Des emplois qui te correspondent - découvre maintenant les meilleures offres d'emploi",
+      "description": "Tu cherches de nouveaux défis, des employeurs passionnants et des opportunités de carrière? Chez nous, tu trouveras des emplois actuels dans les domaines du recrutement, des RH, de l'informatique, du marketing et de nombreux autres secteurs. Parcours nos offres d'emploi, postule simplement en ligne et démarre - avec le soutien personnel de digitalent!",
       "url": "https://jobs.digitalent.cloud",
       "images": [
         {
@@ -206,8 +206,8 @@
     },
     "twitter": {
       "card": "summary_large_image",
-      "title": "Digitalent Jobs",
-      "description": "À la recherche d'opportunités de carrière passionnantes ? Vous êtes au bon endroit chez Digitalent Jobs",
+      "title": "Des emplois qui te correspondent - découvre maintenant les meilleures offres d'emploi",
+      "description": "Tu cherches de nouveaux défis, des employeurs passionnants et des opportunités de carrière? Chez nous, tu trouveras des emplois actuels dans les domaines du recrutement, des RH, de l'informatique, du marketing et de nombreux autres secteurs. Parcours nos offres d'emploi, postule simplement en ligne et démarre - avec le soutien personnel de digitalent!",
       "creator": "digitalent ag",
       "images": [
         "https://digitalent.ch/media/1868/share-image.jpg?anchor=center&mode=crop&width=1200&height=630&rnd=132336793270000000"

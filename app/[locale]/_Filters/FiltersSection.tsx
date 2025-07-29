@@ -54,7 +54,6 @@ export default function FiltersSection({
   const openFiltersModal = () => {
     setOpenFilterName("all");
     setIsModalOpen(true);
-    console.log("open all");
   };
 
   return (
