@@ -24,11 +24,9 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const params = await props.params;
   const dict = await getDictionary(params.locale);
-  const customBoard = await getCustomBoard();
 
   return {
     ...dict.meta,
-    title: customBoard.documentTitle || dict.meta.title,
     icons: "/thumbnail.png",
     robots: {
       index: true, // Allow search engines to index the page
