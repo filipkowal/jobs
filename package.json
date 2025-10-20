@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.6.0",
-    "@formkit/auto-animate": "^0.8.2",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@next/bundle-analyzer": "^15.0.4",
@@ -42,7 +41,7 @@
     "sharp": "^0.34.2",
     "tailwindcss": "^4.1.10",
     "typescript": "^5.7.2",
-    "uuid": "^11.0.3"
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.13",
