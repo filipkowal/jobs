@@ -1,7 +1,6 @@
 "use client";
 import { ReactNode, useState } from "react";
 import { usePathname } from "next/navigation";
-// import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 import { getShortId } from "@/utils";
 import type { CustomBoard, Dictionary, Job, Locale } from "@/utils";
