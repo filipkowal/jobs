@@ -20,10 +20,13 @@ declare global {
 }
 
 export async function generateMetadata(props: {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const params = await props.params;
-  const dict = await getDictionary(params.locale);
+  const isLocale = (value: string): value is Locale =>
+    value === "en" || value === "de" || value === "fr";
+  const locale: Locale = isLocale(params.locale) ? params.locale : "en";
+  const dict = await getDictionary(locale);
 
   return {
     ...dict.meta,
@@ -65,20 +68,23 @@ const loew = localFont({
 });
 
 export default async function RootLayout(props: {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
   children: React.ReactNode;
 }) {
   const params = await props.params;
+  const isLocale = (value: string): value is Locale =>
+    value === "en" || value === "de" || value === "fr";
+  const locale: Locale = isLocale(params.locale) ? params.locale : "en";
 
   const { children } = props;
 
   const customBoard = await getCustomBoard();
-  const dict = await getDictionary(params.locale);
+  const dict = await getDictionary(locale);
   const colors = customBoard.colors;
 
   return (
     <html
-      lang={params.locale || "en"}
+      lang={locale || "en"}
       className={`${merriweather.variable} ${stolzl.variable}`}
     >
       <head>
@@ -120,7 +126,7 @@ export default async function RootLayout(props: {
 
           <PinnedJobsContextProvider>
             <div>
-              <Header params={params} />
+              <Header params={{ locale }} />
 
               {children}
             </div>

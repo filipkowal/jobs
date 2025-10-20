@@ -1,4 +1,5 @@
-import { Locale } from "@/i18n-config";
+import { NextRequest } from "next/server";
+import type { Locale } from "@/i18n-config";
 import {
   Jobs,
   JOBS_LIMIT,
@@ -9,11 +10,16 @@ import filterJobs from "./filterJobs";
 import { readJobs } from "@/utils/server";
 
 export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ locale: Locale }> }
+  request: NextRequest,
+  { params }: { params: Promise<{ locale: string }> }
 ) {
   const { locale } = await params;
+  const isLocale = (value: string): value is Locale =>
+    value === "en" || value === "de" || value === "fr";
   try {
+    if (!isLocale(locale)) {
+      return Response.json({ error: "Invalid locale" }, { status: 400 });
+    }
     const query = new URL(request.url).searchParams;
     const filters = pickActiveFiltersFromSearchParams(query);
     const page = query.get("page")
