@@ -89,10 +89,6 @@ export default async function RootLayout(props: {
     >
       <head>
         <link rel="icon" href="/thumbnail.png" />
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: https://digitalent.ch https://*.digitalent.cloud; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.sentry.io https://sentry.io https://*.vercel-insights.com https://vercel-insights.com; frame-src 'none'; object-src 'none'; base-uri 'self';"
-        />
         <style>
           {`
             :root {
