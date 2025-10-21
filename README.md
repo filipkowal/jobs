@@ -1,6 +1,6 @@
 # Digitalent job board
 
-[Demo](https://jobs.digitalent.cloud/) 
+[Demo](https://jobs.digitalent.cloud/)
 
 ## To run the project:
 
