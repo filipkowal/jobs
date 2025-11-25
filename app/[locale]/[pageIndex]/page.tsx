@@ -7,6 +7,7 @@ import Heading from "../Heading";
 import { Suspense } from "react";
 import Spinner from "@/components/Spinner";
 import FiltersSkeleton from "../_Filters/FiltersSkeleton";
+import { redirect } from "next/navigation";
 
 export async function generateStaticParams() {
   const params: Record<string, string>[] = [];
@@ -24,14 +25,20 @@ export async function generateStaticParams() {
 }
 
 export default async function Home(props: {
-  params: Promise<{ locale: Locale; pageIndex: number }>;
+  params: Promise<{ locale: Locale; pageIndex: string }>;
 }) {
   const params = await props.params;
   const { locale, pageIndex } = params;
+
+  const parsedPageIndex = Number(pageIndex);
+  if (!Number.isInteger(parsedPageIndex) || parsedPageIndex < 0) {
+    redirect(`/${locale}`);
+  }
+
   const customBoard = await getCustomBoard();
 
   const filtersPromise = readFilters(params.locale);
-  const jobsPromise = readJobs(locale, true, pageIndex);
+  const jobsPromise = readJobs(locale, true, parsedPageIndex);
 
   return (
     <main className="w-full flex justify-center">
