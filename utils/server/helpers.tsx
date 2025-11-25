@@ -7,6 +7,18 @@ import { JOBS_LIMIT } from "../constants";
 import { paginate } from "../helpers";
 import { Jobs } from "../types";
 
+// Helper function to validate and normalize locale
+function validateLocale(locale: string): Locale {
+  const isLocale = (value: string): value is Locale =>
+    value === "en" || value === "de" || value === "fr";
+  if (!isLocale(locale)) {
+    console.warn(
+      `Invalid locale "${locale}" provided, falling back to default locale "${i18n.defaultLocale}"`
+    );
+  }
+  return isLocale(locale) ? locale : i18n.defaultLocale;
+}
+
 // We enumerate all dictionaries here for better linting and typescript support
 // We also get the default import for cleaner types
 const dictionaries = {
@@ -31,16 +43,19 @@ export type Dictionary = ReturnType<typeof getDictionary> extends Promise<
   : never;
 
 export const readJobs = async (
-  locale: Locale,
+  locale: Locale | string,
   pagination = false,
   page = 0
 ): Promise<Jobs> => {
+  // Validate and normalize locale to prevent path traversal and invalid locales
+  const validLocale = validateLocale(locale);
+
   // Use path.resolve to get absolute path from public/data/{locale}/jobs.json
   const filePath = path.join(
     process.cwd(),
     "public",
     "data",
-    locale,
+    validLocale,
     "jobs.json"
   );
 
@@ -61,12 +76,15 @@ export const readJobs = async (
   }
 };
 
-export const readFilters = async (locale: Locale) => {
+export const readFilters = async (locale: Locale | string) => {
+  // Validate and normalize locale to prevent path traversal and invalid locales
+  const validLocale = validateLocale(locale);
+
   const filePath = path.join(
     process.cwd(),
     "public",
     "data",
-    locale,
+    validLocale,
     "filters.json"
   );
 

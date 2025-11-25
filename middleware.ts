@@ -45,6 +45,24 @@ export function middleware(request: NextRequest) {
   )
     return;
 
+  // Extract the first segment as potential locale
+  const pathSegments = pathname.split("/").filter(Boolean);
+  const firstSegment = pathSegments[0];
+
+  // Check if first segment is a valid locale
+  const isValidLocale =
+    firstSegment && i18n.locales.includes(firstSegment as any);
+
+  // If first segment exists but is not a valid locale, redirect to default locale
+  if (firstSegment && !isValidLocale) {
+    // Redirect invalid locale paths (e.g., /pes.php/jobs) to default locale
+    const restOfPath = pathSegments.slice(1).join("/");
+    const redirectPath = restOfPath
+      ? `/${i18n.defaultLocale}/${restOfPath}`
+      : `/${i18n.defaultLocale}`;
+    return NextResponse.redirect(new URL(redirectPath, request.url));
+  }
+
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
