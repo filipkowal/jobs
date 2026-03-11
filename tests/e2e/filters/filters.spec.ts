@@ -9,7 +9,7 @@ import { Job } from "@/utils";
 const dict = JSON.parse(
   readFileSync(join(__dirname, "../../../dictionaries/en.json"), "utf8")
 );
-const jobsData = JSON.parse(readFileSync("/tmp/data/en/jobs.json", "utf8"));
+const jobsData = JSON.parse(readFileSync(join(__dirname, "../../../public/data/en/jobs.json"), "utf8"));
 
 test("Filter buttons are visible", async ({ page }) => {
   for (const filterName of FILTER_BUTTON_NAMES) {

@@ -7,7 +7,7 @@ const config: PlaywrightTestConfig = {
   },
   testDir: "./tests/e2e",
   webServer: {
-    command: 'node --experimental-json-modules node_modules/next/dist/bin/next dev',
+    command: 'npm run dev',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
   },
