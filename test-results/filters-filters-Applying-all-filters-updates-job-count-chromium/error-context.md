@@ -1,0 +1,645 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - banner [ref=e4]:
+        - link [ref=e6] [cursor=pointer]:
+          - /url: /en
+          - img [ref=e7]
+        - generic [ref=e8]:
+          - link [ref=e9] [cursor=pointer]:
+            - /url: https://www.digitalent.ch/
+            - text: FOR EMPLOYERS
+          - generic [ref=e11] [cursor=pointer]: EN
+          - generic [ref=e12]:
+            - generic [ref=e14]:
+              - button [disabled] [ref=e15]:
+                - text: Compare
+                - img [ref=e16]
+              - generic [ref=e19]:
+                - generic [ref=e20]: Pin at least 2 jobs to compare and apply.
+                - img [ref=e22] [cursor=pointer]
+            - generic:
+              - generic:
+                - generic: Pin at least 2 jobs to compare and apply.
+      - main [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - heading [level=1] [ref=e27]: Ready for a new mission?
+            - heading [level=2] [ref=e28]: Discover selected career opportunities in top Swiss companies!
+            - heading [level=2] [ref=e29]: With guaranteed feedback within 2 working days
+          - generic [ref=e31]:
+            - img [ref=e32] [cursor=pointer]
+            - button [ref=e34] [cursor=pointer]: Regions
+            - button [ref=e35] [cursor=pointer]: Career Fields
+            - button [ref=e36] [cursor=pointer]: Salary
+            - button [ref=e37] [cursor=pointer]: Workload
+            - button [ref=e38] [cursor=pointer]: Industries
+            - button [ref=e39] [cursor=pointer]: Company Sizes
+            - button [ref=e40] [cursor=pointer]: More...
+          - generic [ref=e41]:
+            - article [ref=e42]:
+              - generic [ref=e44] [cursor=pointer]:
+                - generic [ref=e45]:
+                  - img [ref=e47]
+                  - generic [ref=e48]:
+                    - heading [level=2] [ref=e49]:
+                      - text: DevOps Engineer
+                      - generic [ref=e50]: 80 - 100%
+                    - generic [ref=e51]: dynasoft AG, 60% Work from Home
+                - generic [ref=e52]:
+                  - generic [ref=e53]:
+                    - generic [ref=e54]:
+                      - generic [ref=e55]: 80 - 120k CHF
+                      - generic [ref=e56]:
+                        - img [ref=e59]
+                        - generic:
+                          - generic:
+                            - generic: Yearly salary slightly below or above this range is possible, depending on your skills
+                    - generic [ref=e62]:
+                      - generic [ref=e64]: Solothurn
+                      - generic:
+                        - generic:
+                          - generic: Solothurn
+                  - generic [ref=e66]:
+                    - img [ref=e70]
+                    - generic:
+                      - generic:
+                        - generic: Pin 2 or more jobs to compare
+            - article [ref=e73]:
+              - generic [ref=e75] [cursor=pointer]:
+                - generic [ref=e76]:
+                  - img [ref=e78]
+                  - generic [ref=e79]:
+                    - heading [level=2] [ref=e80]:
+                      - text: System Engineer SecOps (Bülach → Vancouver)
+                      - generic [ref=e81]: 80 - 100%
+                    - generic [ref=e82]: Beltronic IT AG, 60% Work from Home
+                - generic [ref=e83]:
+                  - generic [ref=e84]:
+                    - generic [ref=e85]:
+                      - generic [ref=e86]: 90 - 120k CHF
+                      - generic [ref=e87]:
+                        - img [ref=e90]
+                        - generic:
+                          - generic:
+                            - generic: Yearly salary slightly below or above this range is possible, depending on your skills
+                    - generic [ref=e93]:
+                      - generic [ref=e95]: Bülach
+                      - generic:
+                        - generic:
+                          - generic: Bülach
+                  - generic [ref=e97]:
+                    - img [ref=e101]
+                    - generic:
+                      - generic:
+                        - generic: Pin 2 or more jobs to compare
+            - article [ref=e104]:
+              - generic [ref=e106] [cursor=pointer]:
+                - generic [ref=e107]:
+                  - img [ref=e109]
+                  - generic [ref=e110]:
+                    - heading [level=2] [ref=e111]:
+                      - text: System Engineer / Projektleiter
+                      - generic [ref=e112]: 80 - 100%
+                    - generic [ref=e113]: Zubler & Partner AG, 60% Work from Home
+                - generic [ref=e114]:
+                  - generic [ref=e115]:
+                    - generic [ref=e116]:
+                      - generic [ref=e117]: 90 - 120k CHF
+                      - generic [ref=e118]:
+                        - img [ref=e121]
+                        - generic:
+                          - generic:
+                            - generic: Yearly salary slightly below or above this range is possible, depending on your skills
+                    - generic [ref=e124]:
+                      - generic [ref=e126]: Würenlos
+                      - generic:
+                        - generic:
+                          - generic: Würenlos
+                  - generic [ref=e128]:
+                    - img [ref=e132]
+                    - generic:
+                      - generic:
+                        - generic: Pin 2 or more jobs to compare
+            - article [ref=e135]:
+              - generic [ref=e137] [cursor=pointer]:
+                - generic [ref=e138]:
+                  - img [ref=e140]
+                  - generic [ref=e141]:
+                    - heading [level=2] [ref=e142]:
+                      - text: BVG Spezialist Vorsorgepläne und Tarife
+                      - generic [ref=e143]: 80 - 100%
+                    - generic [ref=e144]: aXenta AG
+                - generic [ref=e145]:
+                  - generic [ref=e146]:
+                    - generic [ref=e147]:
+                      - generic [ref=e148]: 140 - 150k CHF
+                      - generic [ref=e149]:
+                        - img [ref=e152]
+                        - generic:
+                          - generic:
+                            - generic: Yearly salary slightly below or above this range is possible, depending on your skills
+                    - generic [ref=e155]:
+                      - generic [ref=e157]: Dättwil AG
+                      - generic:
+                        - generic:
+                          - generic: Dättwil AG
+                  - generic [ref=e159]:
+                    - img [ref=e163]
+                    - generic:
+                      - generic:
+                        - generic: Pin 2 or more jobs to compare
+            - article [ref=e166]:
+              - generic [ref=e168] [cursor=pointer]:
+                - generic [ref=e169]:
+                  - img [ref=e171]
+                  - generic [ref=e172]:
+                    - heading [level=2] [ref=e173]:
+                      - text: ICT Workplace Engineer
+                      - generic [ref=e174]: 80 - 100%
+                    - generic [ref=e175]: Axians GNS AG, 60% Work from Home
+                - generic [ref=e176]:
+                  - generic [ref=e177]:
+                    - generic [ref=e178]:
+                      - generic [ref=e179]: 104 - 130k CHF
+                      - generic [ref=e180]:
+                        - img [ref=e183]
+                        - generic:
+                          - generic:
+                            - generic: Yearly salary slightly below or above this range is possible, depending on your skills
+                    - generic [ref=e186]:
+                      - generic [ref=e188]: Winterthur
+                      - generic:
+                        - generic:
+                          - generic: Winterthur
+                  - generic [ref=e190]:
+                    - img [ref=e194]
+                    - generic:
+                      - generic:
+                        - generic: Pin 2 or more jobs to compare
+            - article [ref=e197]:
+              - generic [ref=e199] [cursor=pointer]:
+                - generic [ref=e200]:
+                  - img [ref=e202]
+                  - generic [ref=e203]:
+                    - heading [level=2] [ref=e204]:
+                      - text: ICT System Plattform Engineer
+                      - generic [ref=e205]: 80 - 100%
+                    - generic [ref=e206]: Axians GNS AG, 60% Work from Home
+                - generic [ref=e207]:
+                  - generic [ref=e208]:
+                    - generic [ref=e209]:
+                      - generic [ref=e210]: 104 - 130k CHF
+                      - generic [ref=e211]:
+                        - img [ref=e214]
+                        - generic:
+                          - generic:
+                            - generic: Yearly salary slightly below or above this range is possible, depending on your skills
+                    - generic [ref=e217]:
+                      - generic [ref=e219]: Winterthur
+                      - generic:
+                        - generic:
+                          - generic: Winterthur
+                  - generic [ref=e221]:
+                    - img [ref=e225]
+                    - generic:
+                      - generic:
+                        - generic: Pin 2 or more jobs to compare
+            - article [ref=e228]:
+              - generic [ref=e230] [cursor=pointer]:
+                - generic [ref=e231]:
+                  - img [ref=e233]
+                  - generic [ref=e234]:
+                    - heading [level=2] [ref=e235]:
+                      - text: Projektingenieur Gebäudeautomation
+                      - generic [ref=e236]: 80 - 100%
+                    - generic [ref=e237]: Viscom Engineering AG, 40% Work from Home
+                - generic [ref=e238]:
+                  - generic [ref=e239]:
+                    - generic [ref=e240]:
+                      - generic [ref=e241]: 70 - 95k CHF
+                      - generic [ref=e242]:
+                        - img [ref=e245]
+                        - generic:
+                          - generic:
+                            - generic: Yearly salary slightly below or above this range is possible, depending on your skills
+                    - generic [ref=e248]:
+                      - generic [ref=e250]: Affoltern am Albis
+                      - generic:
+                        - generic:
+                          - generic: Affoltern am Albis
+                  - generic [ref=e252]:
+                    - img [ref=e256]
+                    - generic:
+                      - generic:
+                        - generic: Pin 2 or more jobs to compare
+            - article [ref=e259]:
+              - generic [ref=e261] [cursor=pointer]:
+                - generic [ref=e262]:
+                  - img [ref=e264]
+                  - generic [ref=e265]:
+                    - heading [level=2] [ref=e266]:
+                      - text: Linux & Kubernetes System Engineer
+                      - generic [ref=e267]: 100%
+                    - generic [ref=e268]: EveryWare AG, 40% Work from Home
+                - generic [ref=e269]:
+                  - generic [ref=e270]:
+                    - generic [ref=e271]:
+                      - generic [ref=e272]: 100 - 140k CHF
+                      - generic [ref=e273]:
+                        - img [ref=e276]
+                        - generic:
+                          - generic:
+                            - generic: Yearly salary slightly below or above this range is possible, depending on your skills
+                    - generic [ref=e279]:
+                      - generic [ref=e281]: Zürich
+                      - generic:
+                        - generic:
+                          - generic: Zürich
+                  - generic [ref=e283]:
+                    - img [ref=e287]
+                    - generic:
+                      - generic:
+                        - generic: Pin 2 or more jobs to compare
+            - article [ref=e290]:
+              - generic [ref=e292] [cursor=pointer]:
+                - generic [ref=e293]:
+                  - img [ref=e295]
+                  - generic [ref=e296]:
+                    - heading [level=2] [ref=e297]:
+                      - text: Service Manager
+                      - generic [ref=e298]: 70 - 100%
+                    - generic [ref=e299]: Beltronic IT AG, 60% Work from Home
+                - generic [ref=e300]:
+                  - generic [ref=e301]:
+                    - generic [ref=e302]:
+                      - generic [ref=e303]: 100 - 120k CHF
+                      - generic [ref=e304]:
+                        - img [ref=e307]
+                        - generic:
+                          - generic:
+                            - generic: Yearly salary slightly below or above this range is possible, depending on your skills
+                    - generic [ref=e310]:
+                      - generic [ref=e312]: Bülach
+                      - generic:
+                        - generic:
+                          - generic: Bülach
+                  - generic [ref=e314]:
+                    - img [ref=e318]
+                    - generic:
+                      - generic:
+                        - generic: Pin 2 or more jobs to compare
+            - article [ref=e321]:
+              - generic [ref=e323] [cursor=pointer]:
+                - generic [ref=e324]:
+                  - img [ref=e326]
+                  - generic [ref=e327]:
+                    - heading [level=2] [ref=e328]:
+                      - text: Telematiker
+                      - generic [ref=e329]: 60 - 100%
+                    - generic [ref=e330]: Dreikom AG, 50% Work from Home
+                - generic [ref=e331]:
+                  - generic [ref=e332]:
+                    - generic [ref=e333]:
+                      - generic [ref=e334]: 80 - 100k CHF
+                      - generic [ref=e335]:
+                        - img [ref=e338]
+                        - generic:
+                          - generic:
+                            - generic: Yearly salary slightly below or above this range is possible, depending on your skills
+                    - generic [ref=e341]:
+                      - generic [ref=e343]: Wohlen AG
+                      - generic:
+                        - generic:
+                          - generic: Wohlen AG
+                  - generic [ref=e345]:
+                    - img [ref=e349]
+                    - generic:
+                      - generic:
+                        - generic: Pin 2 or more jobs to compare
+            - article [ref=e352]:
+              - generic [ref=e354] [cursor=pointer]:
+                - generic [ref=e355]:
+                  - img [ref=e357]
+                  - generic [ref=e358]:
+                    - heading [level=2] [ref=e359]:
+                      - text: (Senior) Cyber Security Consultant
+                      - generic [ref=e360]: 80 - 100%
+                    - generic [ref=e361]: at rete ag, 60% Work from Home
+                - generic [ref=e362]:
+                  - generic [ref=e363]:
+                    - generic [ref=e364]:
+                      - generic [ref=e365]: 140 - 170k CHF
+                      - generic [ref=e366]:
+                        - img [ref=e369]
+                        - generic:
+                          - generic:
+                            - generic: Yearly salary slightly below or above this range is possible, depending on your skills
+                    - generic [ref=e372]:
+                      - generic [ref=e374]: Zürich
+                      - generic:
+                        - generic:
+                          - generic: Zürich
+                  - generic [ref=e376]:
+                    - img [ref=e380]
+                    - generic:
+                      - generic:
+                        - generic: Pin 2 or more jobs to compare
+            - article [ref=e383]:
+              - generic [ref=e385] [cursor=pointer]:
+                - generic [ref=e386]:
+                  - img [ref=e388]
+                  - generic [ref=e389]:
+                    - heading [level=2] [ref=e390]:
+                      - text: System Engineer
+                      - generic [ref=e391]: 60 - 100%
+                    - generic [ref=e392]: Beltronic IT AG, 60% Work from Home
+                - generic [ref=e393]:
+                  - generic [ref=e394]:
+                    - generic [ref=e395]:
+                      - generic [ref=e396]: 80 - 110k CHF
+                      - generic [ref=e397]:
+                        - img [ref=e400]
+                        - generic:
+                          - generic:
+                            - generic: Yearly salary slightly below or above this range is possible, depending on your skills
+                    - generic [ref=e403]:
+                      - generic [ref=e405]: St. Gallen
+                      - generic:
+                        - generic:
+                          - generic: St. Gallen
+                  - generic [ref=e407]:
+                    - img [ref=e411]
+                    - generic:
+                      - generic:
+                        - generic: Pin 2 or more jobs to compare
+            - article [ref=e414]:
+              - generic [ref=e416] [cursor=pointer]:
+                - generic [ref=e417]:
+                  - img [ref=e419]
+                  - generic [ref=e420]:
+                    - heading [level=2] [ref=e421]:
+                      - text: IT Solution Engineer
+                      - generic [ref=e422]: 80 - 100%
+                    - generic [ref=e423]: Novacore AG, 60% Work from Home
+                - generic [ref=e424]:
+                  - generic [ref=e425]:
+                    - generic [ref=e426]:
+                      - generic [ref=e427]: 120 - 150k CHF
+                      - generic [ref=e428]:
+                        - img [ref=e431]
+                        - generic:
+                          - generic:
+                            - generic: Yearly salary slightly below or above this range is possible, depending on your skills
+                    - generic [ref=e434]:
+                      - generic [ref=e436]: Dietikon
+                      - generic:
+                        - generic:
+                          - generic: Dietikon
+                  - generic [ref=e438]:
+                    - img [ref=e442]
+                    - generic:
+                      - generic:
+                        - generic: Pin 2 or more jobs to compare
+    - contentinfo [ref=e445]:
+      - generic [ref=e446]:
+        - text: powered by
+        - link [ref=e447] [cursor=pointer]:
+          - /url: https://digitalent.community
+          - text: DIGITALENT
+        - text: © 2026
+  - button "Open Next.js Dev Tools" [ref=e453] [cursor=pointer]:
+    - img [ref=e454]
+  - alert [ref=e457]
+  - generic [ref=e458]:
+    - generic [ref=e459]:
+      - heading "Cookie notice" [level=2] [ref=e460]
+      - paragraph [ref=e461]: This website uses cookies to improve your browsing experience and for analytics and advertising purposes.
+    - button "Accept" [ref=e462] [cursor=pointer]
+  - generic:
+    - generic:
+      - generic:
+        - dialog "Filters" [active]:
+          - generic [ref=e466]:
+            - heading "Filters" [level=3] [ref=e467]:
+              - generic [ref=e468]: Filters
+              - img [ref=e469] [cursor=pointer]
+            - generic [ref=e472]:
+              - generic [ref=e474]:
+                - button "Regions 1" [expanded] [ref=e476]:
+                  - img [ref=e477]
+                  - heading "Regions" [level=3] [ref=e479]
+                  - generic [ref=e480] [cursor=pointer]: "1"
+                - generic [ref=e481]:
+                  - generic [ref=e482] [cursor=pointer]:
+                    - checkbox "Whole Switzerland" [ref=e484]
+                    - text: Whole Switzerland
+                  - generic [ref=e485]:
+                    - generic [ref=e486]:
+                      - heading "Zurich / Schaffhausen region" [level=2] [ref=e487]
+                      - generic [ref=e488]:
+                        - generic [ref=e489] [cursor=pointer]:
+                          - checkbox "Canton of Zurich" [checked] [ref=e490]
+                          - generic [ref=e491]: Canton of Zurich
+                        - generic [ref=e492]:
+                          - checkbox "Canton of Schaffhausen" [disabled] [ref=e493]
+                          - generic [ref=e494]: Canton of Schaffhausen
+                    - generic [ref=e495]:
+                      - heading "Mittelland region" [level=2] [ref=e496]
+                      - generic [ref=e497]:
+                        - generic [ref=e498] [cursor=pointer]:
+                          - checkbox "Canton of Aargau" [ref=e499]
+                          - generic [ref=e500]: Canton of Aargau
+                        - generic [ref=e501] [cursor=pointer]:
+                          - checkbox "Canton of Solothurn" [ref=e502]
+                          - generic [ref=e503]: Canton of Solothurn
+                    - generic [ref=e504]:
+                      - heading "Bern region" [level=2] [ref=e505]
+                      - generic [ref=e507]:
+                        - checkbox "Canton of Bern" [disabled] [ref=e508]
+                        - generic [ref=e509]: Canton of Bern
+                    - generic [ref=e510]:
+                      - heading "Southern Switzerland region" [level=2] [ref=e511]
+                      - generic [ref=e513]:
+                        - checkbox "Canton of Tessin" [disabled] [ref=e514]
+                        - generic [ref=e515]: Canton of Tessin
+                    - generic [ref=e516]:
+                      - heading "Central Switzerland region" [level=2] [ref=e517]
+                      - generic [ref=e518]:
+                        - generic [ref=e519]:
+                          - checkbox "Canton of Lucerne" [disabled] [ref=e520]
+                          - generic [ref=e521]: Canton of Lucerne
+                        - generic [ref=e522]:
+                          - checkbox "Canton of Nidwalden" [disabled] [ref=e523]
+                          - generic [ref=e524]: Canton of Nidwalden
+                        - generic [ref=e525]:
+                          - checkbox "Canton of Schwyz" [disabled] [ref=e526]
+                          - generic [ref=e527]: Canton of Schwyz
+                        - generic [ref=e528]:
+                          - checkbox "Canton of Uri" [disabled] [ref=e529]
+                          - generic [ref=e530]: Canton of Uri
+                        - generic [ref=e531]:
+                          - checkbox "Canton of Zug" [disabled] [ref=e532]
+                          - generic [ref=e533]: Canton of Zug
+                    - generic [ref=e534]:
+                      - heading "Basel region" [level=2] [ref=e535]
+                      - generic [ref=e536]:
+                        - generic [ref=e537]:
+                          - checkbox "Canton of Basel-Stadt" [disabled] [ref=e538]
+                          - generic [ref=e539]: Canton of Basel-Stadt
+                        - generic [ref=e540]:
+                          - checkbox "Canton of Basel-Landschaft" [disabled] [ref=e541]
+                          - generic [ref=e542]: Canton of Basel-Landschaft
+                    - generic [ref=e543]:
+                      - heading "Eastern Switzerland region" [level=2] [ref=e544]
+                      - generic [ref=e545]:
+                        - generic [ref=e546]:
+                          - checkbox "Canton of Appenzell Ausserrhoden" [disabled] [ref=e547]
+                          - generic [ref=e548]: Canton of Appenzell Ausserrhoden
+                        - generic [ref=e549]:
+                          - checkbox "Canton of Appenzell Innerrhoden" [disabled] [ref=e550]
+                          - generic [ref=e551]: Canton of Appenzell Innerrhoden
+                        - generic [ref=e552]:
+                          - checkbox "Canton of Glarus" [disabled] [ref=e553]
+                          - generic [ref=e554]: Canton of Glarus
+                        - generic [ref=e555]:
+                          - checkbox "Canton of Grisons" [disabled] [ref=e556]
+                          - generic [ref=e557]: Canton of Grisons
+                        - generic [ref=e558] [cursor=pointer]:
+                          - checkbox "Canton of St. Gallen" [ref=e559]
+                          - generic [ref=e560]: Canton of St. Gallen
+                        - generic [ref=e561]:
+                          - checkbox "Canton of Thurgau" [disabled] [ref=e562]
+                          - generic [ref=e563]: Canton of Thurgau
+                    - generic [ref=e564]:
+                      - heading "Region Romandy" [level=2] [ref=e565]
+                      - generic [ref=e566]:
+                        - generic [ref=e567]:
+                          - checkbox "Canton of Fribourg" [disabled] [ref=e568]
+                          - generic [ref=e569]: Canton of Fribourg
+                        - generic [ref=e570]:
+                          - checkbox "Canton of Geneva" [disabled] [ref=e571]
+                          - generic [ref=e572]: Canton of Geneva
+                        - generic [ref=e573]:
+                          - checkbox "Canton of Neuchâtel" [disabled] [ref=e574]
+                          - generic [ref=e575]: Canton of Neuchâtel
+                        - generic [ref=e576]:
+                          - checkbox "Canton of Vaud" [disabled] [ref=e577]
+                          - generic [ref=e578]: Canton of Vaud
+                        - generic [ref=e579]:
+                          - checkbox "Canton of Valais" [disabled] [ref=e580]
+                          - generic [ref=e581]: Canton of Valais
+                        - generic [ref=e582]:
+                          - checkbox "Canton of Jura" [disabled] [ref=e583]
+                          - generic [ref=e584]: Canton of Jura
+              - generic [ref=e586]:
+                - button "Career Fields 1" [expanded] [ref=e588]:
+                  - img [ref=e589]
+                  - heading "Career Fields" [level=3] [ref=e591]
+                  - generic [ref=e592] [cursor=pointer]: "1"
+                - generic [ref=e594]:
+                  - generic [ref=e595] [cursor=pointer]: System Engineering
+                  - generic [ref=e596] [cursor=pointer]: ICT Service Manager
+                  - generic [ref=e597] [cursor=pointer]: ICT Security Specialist
+                  - generic [ref=e598] [cursor=pointer]: Engineering & Building Automation
+                  - generic [ref=e599] [cursor=pointer]: IT Consulting & Architecture Infrastructure
+                  - generic [ref=e600] [cursor=pointer]: DevOps
+                  - generic [ref=e601] [cursor=pointer]: Netzwerk Engineering
+                  - generic [ref=e602] [cursor=pointer]: Business Consulting & Business Analysis
+              - generic [ref=e604]:
+                - button "Technologies & Topics" [expanded] [ref=e606]:
+                  - img [ref=e607]
+                  - heading "Technologies & Topics" [level=3] [ref=e609]
+                - generic [ref=e611]:
+                  - generic [ref=e612] [cursor=pointer]: Linux
+                  - generic [ref=e613] [cursor=pointer]: Kubernetes
+                  - generic [ref=e614] [cursor=pointer]: Docker
+                  - generic [ref=e615] [cursor=pointer]: Windows Server
+                  - generic [ref=e616] [cursor=pointer]: ITSM
+                  - generic [ref=e617] [cursor=pointer]: Information Security
+                  - generic [ref=e618] [cursor=pointer]: Building automation
+                  - generic [ref=e619] [cursor=pointer]: Network & Security
+                  - generic [ref=e620] [cursor=pointer]: DevOps
+                  - generic [ref=e621] [cursor=pointer]: M365
+                  - generic [ref=e622] [cursor=pointer]: Microsoft SQL Server
+                  - generic [ref=e623] [cursor=pointer]: Azure
+                  - generic [ref=e624] [cursor=pointer]: Exchange Server
+                  - generic [ref=e625] [cursor=pointer]: Active Directory
+                  - generic [ref=e626] [cursor=pointer]: MS Teams
+                  - generic [ref=e627] [cursor=pointer]: Cloud Computing
+                  - generic [ref=e628] [cursor=pointer]: Microsoft Intune
+                  - generic [ref=e629] [cursor=pointer]: GPO
+                  - generic [ref=e630] [cursor=pointer]: PowerShell
+                  - generic [ref=e631] [cursor=pointer]: VMware
+                  - generic [ref=e632] [cursor=pointer]: Business Intelligence & Analytics Platforms
+              - generic [ref=e634]:
+                - button "Industries" [expanded] [ref=e636]:
+                  - img [ref=e637]
+                  - heading "Industries" [level=3] [ref=e639]
+                - generic [ref=e641]:
+                  - generic [ref=e642] [cursor=pointer]: IT & Telecommunications
+                  - generic [ref=e643] [cursor=pointer]: Building Technology & Building Automation
+              - generic [ref=e645]:
+                - button "Company Sizes" [expanded] [ref=e647]:
+                  - img [ref=e648]
+                  - heading "Company Sizes" [level=3] [ref=e650]
+                - generic [ref=e652]:
+                  - generic [ref=e653] [cursor=pointer]: Medium (51-250)
+                  - generic [ref=e654] [cursor=pointer]: Small (≤ 50)
+              - generic [ref=e656]:
+                - button "Job Levels" [expanded] [ref=e658]:
+                  - img [ref=e659]
+                  - heading "Job Levels" [level=3] [ref=e661]
+                - generic [ref=e663]:
+                  - generic [ref=e664] [cursor=pointer]: Employee
+                  - generic [ref=e665] [cursor=pointer]: Functional responsibility
+              - generic [ref=e667]:
+                - button "Workload" [expanded] [ref=e669]:
+                  - img [ref=e670]
+                  - heading "Workload" [level=3] [ref=e672]
+                - generic [ref=e674]:
+                  - generic [ref=e676]: 0 - 100 %
+                  - generic [ref=e677]:
+                    - slider "min-undefined" [ref=e681] [cursor=pointer]
+                    - slider "max-undefined" [ref=e683] [cursor=pointer]
+              - generic [ref=e685]:
+                - button "Work from Home" [expanded] [ref=e687]:
+                  - img [ref=e688]
+                  - heading "Work from Home" [level=3] [ref=e690]
+                - generic [ref=e692]:
+                  - generic [ref=e693]:
+                    - generic [ref=e694]: Min. work from home
+                    - generic [ref=e695]: 0 %
+                  - generic "Min. work from home" [ref=e696]:
+                    - slider "min-Min. work from home" [ref=e699] [cursor=pointer]
+              - generic [ref=e701]:
+                - button "Salary" [expanded] [ref=e703]:
+                  - img [ref=e704]
+                  - heading "Salary" [level=3] [ref=e706]
+                - generic [ref=e707]:
+                  - generic [ref=e708]:
+                    - generic [ref=e709]:
+                      - generic [ref=e710]: Min. salary
+                      - generic [ref=e711]: 0 CHF
+                    - generic "Min. salary" [ref=e712]:
+                      - slider "min-Min. salary" [ref=e715] [cursor=pointer]
+                  - generic [ref=e716]:
+                    - img [ref=e717]
+                    - generic [ref=e719]: We never share this with companies
+                  - generic [ref=e720]:
+                    - img [ref=e721]
+                    - generic [ref=e723]: We only use this to filter out roles and save you time
+                  - generic [ref=e724]:
+                    - img [ref=e725]
+                    - generic [ref=e727]: If you're unsure, we recommend choosing a lower amount so you don't miss out on roles that could be great
+            - generic [ref=e729]:
+              - link "Clear" [ref=e730] [cursor=pointer]:
+                - /url: /en
+                - button "Clear" [ref=e731]:
+                  - img [ref=e732]
+                  - text: Clear
+              - button "Apply filters (8)" [ref=e734] [cursor=pointer]: Apply filters (8)
+```

@@ -1,0 +1,170 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - banner [ref=e4]:
+        - link [ref=e6] [cursor=pointer]:
+          - /url: /en
+          - img [ref=e7]
+        - generic [ref=e8]:
+          - link [ref=e9] [cursor=pointer]:
+            - /url: https://www.digitalent.ch/
+            - text: FOR EMPLOYERS
+          - generic [ref=e11] [cursor=pointer]: EN
+          - link [ref=e12] [cursor=pointer]:
+            - /url: /en
+            - button [ref=e13]: Go back
+      - button [ref=e14] [cursor=pointer]: Apply for 2 jobs
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - img [ref=e18]
+            - generic [ref=e19]:
+              - img [ref=e22] [cursor=pointer]
+              - generic:
+                - generic:
+                  - generic: Unpin
+          - heading [level=1] [ref=e25]: System Engineer SecOps (Bülach → Vancouver)
+          - heading [level=2] [ref=e26]: 90000 - 120000 CHF
+          - generic [ref=e27]:
+            - heading [level=3] [ref=e28]: Workload
+            - paragraph [ref=e29]: 80 - 100%
+          - generic [ref=e30]:
+            - heading [level=3] [ref=e31]: Work location
+            - paragraph [ref=e32]: Bülach, 60% Work from Home
+          - generic [ref=e33]:
+            - heading [level=3] [ref=e34]: You have
+            - paragraph [ref=e35]:
+              - list [ref=e36]:
+                - listitem [ref=e37]: Abgeschlossene IT-Ausbildung (HF, FH oder vergleichbar) mit entsprechender Berufserfahrung im Security- oder System-Engineering-Umfeld.
+                - listitem [ref=e38]: Mehrjährige Erfahrung in SecOps, Security Engineering oder ähnlichen Rollen mit operativem Fokus.
+                - listitem [ref=e39]: "Sehr gutes technisches Verständnis in mehreren der folgenden Bereiche: – SIEM- und SOC-Prozesse – Incident Response, Analyse und Forensics – Netzwerk- und Systemarchitekturen – Firewall-, Endpoint- und Monitoring-Lösungen"
+                - listitem [ref=e40]: Selbstständige, zuverlässige Arbeitsweise und professionelles Auftreten auch in kritischen Situationen.
+                - listitem [ref=e41]: Teamfähigkeit, Lernbereitschaft und ein strukturierter, methodischer Arbeitsstil.
+                - listitem [ref=e42]: Bereitschaft, nach der Einarbeitung für mindestens 6–12 Monate oder länger in Vancouver zu arbeiten.
+                - listitem [ref=e43]: Fliessende Deutsch- sowie gute Englischkenntnisse.
+          - generic [ref=e44]:
+            - heading [level=3] [ref=e45]: Responsibilities
+            - paragraph [ref=e46]:
+              - paragraph [ref=e47]: "Um unseren Schweizer Kunden künftig einen noch leistungsfähigeren und qualitativ hochstehenden 7x24-Support bieten zu können, bauen wir aktuell einen neuen Standort in Vancouver (Kanada) auf. Nach einer fundierten Einarbeitung in der Schweiz wirst Du Teil unseres SecOps-Teams in Vancouver. Von dort aus stellst Du gemeinsam mit dem Engineering-Team in der Schweiz den stabilen, sicheren Betrieb der Kundenumgebungen sicher und trägst aktiv zur Weiterentwicklung unserer Security-Services bei. Deine Aufgaben im Überblick:"
+              - list [ref=e48]:
+                - listitem [ref=e49]: Operativer Betrieb, Überwachung und Weiterentwicklung von Security-Infrastrukturen inkl. SIEM-, SOC- und Monitoring-Lösungen.
+                - listitem [ref=e50]: Analyse, Bearbeitung und Dokumentation sicherheitsrelevanter Events sowie strukturierte Incident- und Response-Prozesse.
+                - listitem [ref=e51]: Mitarbeit im 7x24-Support für Schweizer Kunden (im Team und mit Rotation).
+                - listitem [ref=e52]: Technische Mitarbeit in Engineering-, Security- und Infrastrukturprojekten.
+                - listitem [ref=e53]: Enge Zusammenarbeit mit dem Schweizer Team – technisch, organisatorisch und konzeptionell.
+                - listitem [ref=e54]: Flexible Unterstützung in angrenzenden System- und Netzwerk-Themen je nach Situation und Know-how.
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - img [ref=e57]
+            - generic [ref=e58]:
+              - img [ref=e61] [cursor=pointer]
+              - generic:
+                - generic:
+                  - generic: Unpin
+          - heading [level=1] [ref=e64]: DevOps Engineer
+          - heading [level=2] [ref=e65]: 80000 - 120000 CHF
+          - generic [ref=e66]:
+            - heading [level=3] [ref=e67]: Workload
+            - paragraph [ref=e68]: 80 - 100%
+          - generic [ref=e69]:
+            - heading [level=3] [ref=e70]: Work location
+            - paragraph [ref=e71]: Solothurn, 60% Work from Home
+          - generic [ref=e72]:
+            - heading [level=3] [ref=e73]: You have
+            - paragraph [ref=e74]:
+              - list [ref=e75]:
+                - listitem [ref=e76]: Sicher im Umgang mit Ansible bist und komplexe Abläufe in wartbare Playbooks übersetzen kannst.
+                - listitem [ref=e77]: Grosses Interesse (oder bereits Erfahrung) an Terraform mitbringst und Lust hast, dieses Tool bei uns "ab Stunde Null" sauber aufzusetzen.
+                - listitem [ref=e78]: Dich auf der Linux-Kommandozeile (Oracle Linux/RHEL) zu Hause fühlst, aber keine Berührungsängste mit Windows-Servern hast, während wir diese ablösen.
+                - listitem [ref=e79]: Erste Erfahrungen mit Oracle Cloud (OCI), Docker oder CI/CD-Pipelines (Gitea Actions) hast.
+                - listitem [ref=e80]: Verstehst, wie man Datenbanken (Oracle) und Application Server (WebLogic) in modernen Umgebungen betreibt.
+                - listitem [ref=e81]: "Gerne Verantwortung übernimmst: Du siehst Verbesserungspotenzial und setzt es um."
+                - listitem [ref=e82]: Gute Deutsch- und Englischkenntnisse hast.
+          - generic [ref=e83]:
+            - heading [level=3] [ref=e84]: Responsibilities
+            - paragraph [ref=e85]:
+              - paragraph [ref=e86]: "Du gestaltest unseren technologischen Wandel von Windows zu Linux und in die Oracle Cloud massgeblich mit. Deine Aufgaben:"
+              - list [ref=e87]:
+                - listitem [ref=e88]:
+                  - text: "Automatisierung & Engineering: Du steuerst unsere Deployments und Konfigurationen aktuell routiniert mit"
+                  - strong [ref=e89]: Ansible
+                  - text: .
+                - listitem [ref=e90]:
+                  - text: "Architektur der Zukunft: Du übernimmst eine führende Rolle bei der"
+                  - strong [ref=e91]: Einführung von Terraform
+                  - text: (Infrastructure as Code), um unsere wachsende Infrastruktur in der Oracle Cloud skalierbar und wartbar zu machen blogs.oracle.com.
+                - listitem [ref=e92]:
+                  - text: "Cloud Transition: Du begleitest die Migration unserer ERP-Lösung von klassischen Windows-Umgebungen hin zu"
+                  - strong [ref=e93]: Oracle Linux
+                  - text: Containern.
+                - listitem [ref=e94]: "Monitoring & Betrieb: Du bist für den Aufbau und Pflege von Monitoring-Lösungen (z.B. Prometheus/Grafana) zur Sicherstellung der Systemstabilität zuständig."
+                - listitem [ref=e95]: "Support & Sparring: Du berätst unsere Entwicklerteams bei Infrastrukturfragen und hilfst eine smarte Automatisierung zu etablieren."
+    - contentinfo [ref=e96]:
+      - generic [ref=e97]:
+        - text: powered by
+        - link [ref=e98] [cursor=pointer]:
+          - /url: https://digitalent.community
+          - text: DIGITALENT
+        - text: © 2026
+  - button "Open Next.js Dev Tools" [ref=e104] [cursor=pointer]:
+    - img [ref=e105]
+  - alert [ref=e108]
+  - generic:
+    - generic:
+      - generic:
+        - dialog "About you":
+          - generic [ref=e112]:
+            - heading "About you" [level=3] [ref=e113]:
+              - generic [ref=e114]: About you
+              - img [ref=e115] [cursor=pointer]
+            - generic [ref=e118]:
+              - generic [ref=e119]:
+                - checkbox "Man" [ref=e121] [cursor=pointer]
+                - text: Man
+              - generic [ref=e122]:
+                - checkbox "Woman" [checked] [ref=e124] [cursor=pointer]
+                - text: Woman
+              - generic [ref=e125]:
+                - checkbox "Not specified" [ref=e127] [cursor=pointer]
+                - text: Not specified
+              - generic [ref=e128]:
+                - textbox "Email *" [ref=e129]:
+                  - /placeholder: " "
+                  - text: test@test.test
+                - generic [ref=e130]: Email *
+              - generic [ref=e131]:
+                - textbox "Name" [ref=e132]:
+                  - /placeholder: " "
+                - generic [ref=e133]: Name
+              - generic [ref=e134]:
+                - textbox "Message" [ref=e135]:
+                  - /placeholder: " "
+                - generic [ref=e136]: Message
+              - generic [ref=e137]:
+                - 'textbox "Link to LinkedIn profile: linkedin.com/in/..." [ref=e138]':
+                  - /placeholder: " "
+                - generic [ref=e139]: "Link to LinkedIn profile: linkedin.com/in/..."
+              - generic [ref=e142] [cursor=pointer]:
+                - button "Choose File" [ref=e143]
+                - paragraph [ref=e144]: Click here to upload your resume
+                - paragraph [ref=e145]: (image, .pdf)
+              - generic [ref=e146]:
+                - generic [ref=e147]:
+                  - checkbox "I am applying directly *" [checked] [active] [ref=e149] [cursor=pointer]
+                  - text: I am applying directly *
+                - generic [ref=e150]:
+                  - checkbox "I work for a recruitment agency" [ref=e152] [cursor=pointer]
+                  - text: I work for a recruitment agency
+              - generic [ref=e153]:
+                - checkbox "I have read the information on the Privacy & Recruitment Process read and agree with it *" [ref=e155] [cursor=pointer]
+                - generic [ref=e156]:
+                  - text: I have read the information on the
+                  - link "Privacy & Recruitment Process" [ref=e157] [cursor=pointer]:
+                    - /url: https://talentforce.ch/legal/datenschutz-rekrutierungsprozess/
+                  - text: read and agree with it *
+              - button "Go back" [ref=e158] [cursor=pointer]
+              - button "Next" [disabled] [ref=e159]: Next
+```
