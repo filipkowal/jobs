@@ -2,7 +2,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import toast from "react-hot-toast";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import Dropzone, { DropzoneOptions } from "react-dropzone";
+import Dropzone, { Accept } from "react-dropzone";
 import { v4 as uuidv4 } from "uuid";
 import { useIsDraggingOver } from "@/utils/hooks";
 
@@ -25,7 +25,7 @@ export default function FileInput({
   setFiles: Dispatch<SetStateAction<FileWithId[]>>;
   dropZoneText: string;
   className?: string;
-  accept?: DropzoneOptions["accept"];
+  accept?: Accept;
   dict: {
     drop: string;
     select: string;
@@ -95,11 +95,13 @@ export default function FileInput({
               <p className="text-sm mt-2">
                 {"(" +
                   Object.keys(accept)
-                    .map((key) =>
-                      key.includes("/*")
-                        ? key.replace("/*", "")
-                        : accept[key].join(", ")
-                    )
+                    .map((key) => {
+                      if (key.includes("/*")) return key.replace("/*", "");
+                      const extensions = accept[key];
+                      return typeof extensions === "string"
+                        ? extensions
+                        : extensions.join(", ");
+                    })
                     .join(", ") +
                   ")"}
               </p>

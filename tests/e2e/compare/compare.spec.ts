@@ -45,9 +45,9 @@ test("Can apply to jobs", async ({ applicationBasket }) => {
     name: /i am applying directly/i,
   });
   const termsCheckbox = page.getByRole("checkbox", {
-    name: /\* i have read the information on the privacy & recruitment process read and agree with it/i,
+    name: /i have read the information on the privacy & recruitment process/i,
   });
-  const nextButton = page.getByRole("button", { name: /next/i });
+  const nextButton = page.getByRole("button", { name: "Next", exact: true });
 
   await womanCheckbox.check();
   await emailInput.fill("test@test.test");

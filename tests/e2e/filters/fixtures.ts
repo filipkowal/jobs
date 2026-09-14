@@ -33,7 +33,7 @@ export const test = base.extend<{
       name: /filters/i,
     });
 
-    let filterAccordions: Filter = [];
+    const filterAccordions: Filter = [];
 
     for (const filterName of FILTER_NAMES) {
       filterAccordions.push({

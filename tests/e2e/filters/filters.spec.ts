@@ -61,10 +61,7 @@ test("Applying all filters updates job count", async ({ filterModal }) => {
   await careerFieldTag.click();
 
   // Technologies
-  const technologyTag = modal.getByRole("button", {
-    name: technology,
-    exact: true,
-  });
+  const technologyTag = modal.getByText(technology, { exact: true });
   await expect(technologyTag).toBeVisible();
   await technologyTag.click();
 
