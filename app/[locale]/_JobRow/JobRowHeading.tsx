@@ -28,7 +28,7 @@ export default async function JobRowHeading({
   const hidden = customBoard.hiddenJobData;
 
   function getEmployerNameAndHomeOffice() {
-    let strArr = [];
+    const strArr = [];
     if (!hidden.employerName && employer?.name) {
       strArr.push(employer.name);
     }

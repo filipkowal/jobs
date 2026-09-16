@@ -33,7 +33,7 @@ export default function JobColumn({
   const hidden = customBoard.hiddenJobData || {};
 
   function getCityAndHomeOffice() {
-    let cityAndHomeOffice = [];
+    const cityAndHomeOffice = [];
     if (!hidden.address) {
       cityAndHomeOffice.push(job.address?.city);
     }

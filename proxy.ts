@@ -15,8 +15,7 @@ function getLocale(request: NextRequest): string {
   const expectedLanguages = new Negotiator({
     headers: negotiatorHeaders,
   }).languages();
-  // @ts-ignore locales are readonly
-  const availableLocales: string[] = i18n.locales;
+  const availableLocales: string[] = [...i18n.locales];
 
   try {
     return matchLocale(
@@ -51,7 +50,7 @@ export function proxy(request: NextRequest) {
 
   // Check if first segment is a valid locale
   const isValidLocale =
-    firstSegment && i18n.locales.includes(firstSegment as any);
+    firstSegment && (i18n.locales as readonly string[]).includes(firstSegment);
 
   // If first segment exists but is not a valid locale, redirect to default locale
   if (firstSegment && !isValidLocale) {
